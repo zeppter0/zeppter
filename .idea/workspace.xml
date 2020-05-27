@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="25fa9bc6-ab81-4d72-993f-465b0e29cd5a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/zeppter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/zeppter.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zeppter/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/zeppter/wsgi.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1cSSUHpTbbnYpcH5bTd0Bripd16" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="zeppter" type="Python.DjangoServer" factoryName="Django server">
+      <module name="zeppter" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="zeppter.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="25fa9bc6-ab81-4d72-993f-465b0e29cd5a" name="Default Changelist" comment="" />
+      <created>1590520515177</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590520515177</updated>
+      <workItem from="1590520516479" duration="23000" />
+      <workItem from="1590520700665" duration="79000" />
+      <workItem from="1590521900596" duration="436000" />
+      <workItem from="1590591769828" duration="275000" />
+      <workItem from="1590592241599" duration="1853000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="169" y="55" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590592040287">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state x="169" y="55" key="#com.intellij.execution.impl.EditConfigurationsDialog/56.27.1310.741@56.27.1310.741" timestamp="1590592040287" />
+    <state x="373" y="27" width="666" height="741" key="#zeppter" timestamp="1590593139219">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state x="373" y="27" width="666" height="741" key="#zeppter/56.27.1310.741@56.27.1310.741" timestamp="1590593139219" />
+    <state x="489" y="160" width="424" height="491" key="FileChooserDialogImpl" timestamp="1590593163851">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state x="489" y="160" width="424" height="491" key="FileChooserDialogImpl/56.27.1310.741@56.27.1310.741" timestamp="1590593163851" />
+    <state width="1244" height="199" key="GridCell.Tab.0.bottom" timestamp="1590593734583">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state width="1244" height="199" key="GridCell.Tab.0.bottom/56.27.1310.741@56.27.1310.741" timestamp="1590593734583" />
+    <state width="1244" height="199" key="GridCell.Tab.0.center" timestamp="1590593734573">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state width="1244" height="199" key="GridCell.Tab.0.center/56.27.1310.741@56.27.1310.741" timestamp="1590593734573" />
+    <state width="1244" height="199" key="GridCell.Tab.0.left" timestamp="1590593734571">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state width="1244" height="199" key="GridCell.Tab.0.left/56.27.1310.741@56.27.1310.741" timestamp="1590593734571" />
+    <state width="1244" height="199" key="GridCell.Tab.0.right" timestamp="1590593734576">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state width="1244" height="199" key="GridCell.Tab.0.right/56.27.1310.741@56.27.1310.741" timestamp="1590593734576" />
+    <state width="1244" height="199" key="GridCell.Tab.1.bottom" timestamp="1590593734596">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state width="1244" height="199" key="GridCell.Tab.1.bottom/56.27.1310.741@56.27.1310.741" timestamp="1590593734596" />
+    <state width="1244" height="199" key="GridCell.Tab.1.center" timestamp="1590593734588">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state width="1244" height="199" key="GridCell.Tab.1.center/56.27.1310.741@56.27.1310.741" timestamp="1590593734588" />
+    <state width="1244" height="199" key="GridCell.Tab.1.left" timestamp="1590593734584">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state width="1244" height="199" key="GridCell.Tab.1.left/56.27.1310.741@56.27.1310.741" timestamp="1590593734584" />
+    <state width="1244" height="199" key="GridCell.Tab.1.right" timestamp="1590593734591">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state width="1244" height="199" key="GridCell.Tab.1.right/56.27.1310.741@56.27.1310.741" timestamp="1590593734591" />
+    <state x="200" y="31" width="1022" height="737" key="SettingsEditor" timestamp="1590591967660">
+      <screen x="56" y="27" width="1310" height="741" />
+    </state>
+    <state x="200" y="31" width="1022" height="737" key="SettingsEditor/56.27.1310.741@56.27.1310.741" timestamp="1590591967660" />
+  </component>
+</project>
