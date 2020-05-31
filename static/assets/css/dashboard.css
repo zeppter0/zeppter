@@ -1,0 +1,22 @@
+.side-bar{
+   width: 200px;
+   height: 100vh; 
+}
+#fixed-sidebar ul{
+    padding: 20px 0;
+    list-style: none;
+
+}
+#fixed-sidebar ul li a{
+        padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    background: olive;
+    
+
+}
+
+
+#fixed-sidebar ul li{
+    display:  list-item;
+}
