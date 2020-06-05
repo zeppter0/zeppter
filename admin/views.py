@@ -2,4 +2,4 @@ from django.shortcuts import render
 
 # Create your views here.
 def dashboard(request):
-    return render(request,'admin/login.html')
+    return render(request,'admin/dashboard')
