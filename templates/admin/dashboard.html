@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'admin/include/include.html' %}
 
-</body>
-</html>
+{% block content %}
+    <main class="main-content container" id="main_content">
+    <form id="post" action="post" method="POST">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col-9">
+                    <div class="form-group ">
+                        <label for="exampleInputEmail1">Title</label>
+                        <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Title">
+                    </div>
+                    <div class="form-group ">
+                        <label for="exampleInputEmail1">discription</label>
+                        <input type="text" name="description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter description">
+
+                    </div>
+
+                </div>
+                <div class="col-3">
+
+                </div>
+                <div class="form-group ">
+                    <label for="exampleInputEmail1">discription</label>
+                    <input type="file"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter description">
+
+                </div>
+
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </main>
+{% endblock %}

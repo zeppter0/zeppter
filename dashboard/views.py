@@ -1,8 +1,11 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from admin_dashboard.models import Book
 
 # Create your views here.
-from django.http import HttpResponse
 
 def dashboard(request):
-    return render(request,'dashboard/main.html')
-    #return HttpResponse("hello")
+    b = Book(book_title='kese ho')
+
+
+    return HttpResponse(b.book_description)
