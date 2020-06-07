@@ -5,13 +5,13 @@
 
 
 }
-@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 
 .main-menu {
     background: rgb(255, 255, 255);
     position: absolute;
-    top: 80px;
+    top: 55px;
     bottom: 0;
     height: 100%;
     z-index: 400;
@@ -56,7 +56,7 @@ nav.main-menu ul {
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
+    padding-inline-start: 10px;
 }
 
 .main-menu>ul {
@@ -67,6 +67,10 @@ nav.main-menu ul {
     position: relative;
     display: block;
     width: 250px;
+}
+.main-menu li:hover {
+    background-color: red;
+
 }
 .main-menu li>a {
     position: relative;
@@ -112,23 +116,19 @@ nav.main-menu ul {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: #BFBFBF;
 }
-/* Scrollbar End */
-.fa-lg {
-    font-size: 1em;
 
-}
-.fa {
-    position: relative;
-    display: table-cell;
-    width: 55px;
-    height: 36px;
-    text-align: center;
-    top:12px;
-    font-size:20px;
-
-
-}
 .main-content{
     margin-left: 55px;
     margin-top: 80px;
+}
+.fasside{
+    font-size: 30px; color: Tomato;text-align: center
+}
+#image_add_show{
+    width: 170px;
+    height: 100px;
+
+    margin: 20px;
+    margin: 10px;
+
 }

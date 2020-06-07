@@ -5,7 +5,7 @@ from admin_dashboard.models import Book
 # Create your views here.
 
 def dashboard(request):
-    b = Book(book_title='kese ho')
+    data = Book.objects.all();
 
 
-    return HttpResponse(b.book_description)
+    return render(request,'dashboard/main.html',{'data': data})

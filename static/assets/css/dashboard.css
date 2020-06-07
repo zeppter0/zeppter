@@ -1,6 +1,7 @@
 .side-bar{
    width: 200px;
-   height: 100vh; 
+   height: 100vh;
+    display: none;
 }
 #fixed-sidebar ul{
     padding: 20px 0;
@@ -20,3 +21,4 @@
 #fixed-sidebar ul li{
     display:  list-item;
 }
+
