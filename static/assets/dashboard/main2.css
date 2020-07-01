@@ -1,35 +1,41 @@
-.main-dashboard{
-    padding: 0 4%;
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-.carousel h2 a {
-    color: rgba(0,0,0,0.75);
-    line-height: 26px;
-}
-.carousel h2 .viewall {
-    font-size: 80%;
-    float: right;
-    -webkit-transition: all .8s;
-    transition: all .8s;
-    -moz-transition: all .8s;
-    -o-transition: all .8s;
-    -ms-transition: all .8s;
-    text-transform: initial;
-}
-.carousel h2 {
-    font-size: 110%;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    padding: 0 0 17px;
-    font-weight: normal;
-}
-.carousel{
-    border-bottom: 1px solid rgba(0,0,0,0.15);
-    padding: 25px 0;
-}
-.carousel .card_layout {
+
+.item-layout{
     width: 100%;
-    overflow: hidden;
-    padding: 1px 0;
-    position: relative;
-    -webkit-overflow-scrolling: touch;
+    background-color: red;
+    height: 250px;
+
+
+}
+.item-layout .title-layout{
+    height: 35px;
+    background-color: olive;
+}
+.item-layout .title-layout h4{
+    display: contents;
+    float: left;
+}
+.item-layout .title-layout a{
+    float: right;
+}
+.card-layout{
+    
+}
+
+ul {
+    background: #48D;
+    
+    line-height: 25px;
+    
+}
+li {
+    float: left;
+
+    list-style-type: none;
+    margin: 10px 0 0 10px;
+    
 }

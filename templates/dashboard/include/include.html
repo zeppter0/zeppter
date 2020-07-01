@@ -6,21 +6,18 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <style>
-        
-
-    </style>
+    
 
 
 
 
 
     <!-- boostrap-->
-    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}">
+    <!--link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}"-->
     <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'assets/dashboard/main2.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/card/card.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/slideshow.css' %}">
 
 
 
@@ -34,15 +31,15 @@
 <body>
 
 <header>
-    {% include "dashboard/include/header.html" %}
+    
 
 </header>
-<div class="row container-fluid">
+<main class="dashboard-main" >
+    {% include "dashboard/include/main.html" %}
 
-    {% include "dashboard/include/liftbar.html" %}
-    {% block content %}{% endblock %}
+    
 
-</div>
+</main>
 
 
 <footer></footer>
@@ -50,11 +47,14 @@
 
 </body>
 </html>
+<script>
+    {% include "dashboard/include/main.js" %}
+</script>
 
 
 
- <script src="{% static "assets/jquery/mainjquery.js" %}"></script>
+ <!--script src="{% static "assets/jquery/mainjquery.js" %}"></script>
 <script src="{% static "assets/pooper/popper.min.js" %}"></script>
-<script src="{% static "assets/bootstrap/js/bootstrap.min.js" %}" ></script>
+<script src="{% static "assets/bootstrap/js/bootstrap.min.js" %}" ></script-->
 
 
