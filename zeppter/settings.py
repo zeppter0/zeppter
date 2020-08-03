@@ -25,7 +25,11 @@ SECRET_KEY = 'a9u^k1a3@8%33v1^hj&@c0do%npc$(r$it4#%w=g2vs%0vzzxe'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["103.138.96.225"]
+ALLOWED_HOSTS = [
+   # "103.138.96.225",
+    "192.168.42.211"
+
+    ]
 
 
 # Application definition
@@ -80,14 +84,21 @@ WSGI_APPLICATION = 'zeppter.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'zeppter',
-        'USER': 'dkboss650',
-        'PASSWORD': 'Sorry9023@',
-        'HOST': 'localhost',
-        'PORT': '',
+#    'default': {
+ #       'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'zeppter',
+#        'USER': 'dkboss650',
+#        'PASSWORD': 'Sorry9023@',
+#        'HOST': 'localhost',
+#        'PORT': '',
+#    } 
+   'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+
+
+
 }
 
 

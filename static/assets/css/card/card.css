@@ -1,11 +1,13 @@
 .cardview {
-margin: 10px 0;
+margin-top: 30px;
+    margin-right: 40px;
 width: 180px;
 height: 250px;
 border-radius: 20px;
 box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
 cursor: pointer;
 transition: 0.4s;
+
 position: relative;
 }
 
@@ -34,13 +36,14 @@ position: relative;
     width: 100%;
     overflow: hidden;
 
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.5);
 
    height: 40%;
 }
 .cardview .card_Title h4{
     font-size: 0.9rem;
     font-weight: bold;
+    text-align: center;
 }
 
 .cardview:hover {
@@ -51,6 +54,7 @@ position: relative;
 
 .title-white {
   color: white;
+
 }
 
 .title-black {
