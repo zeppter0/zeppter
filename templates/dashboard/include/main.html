@@ -1,4 +1,6 @@
 <div class="slideshow-container">
+  
+
     {% for i in  data %}
 
     <div class="mySlides fade">
@@ -7,13 +9,17 @@
       <div class="text">{{ i.title }}</div>
     </div>
     {% endfor %}
-
+    
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
     
     
-    
-    
-    
-    
+    </div>
+    <br>
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span> 
+      <span class="dot" onclick="currentSlide(2)"></span> 
+      <span class="dot" onclick="currentSlide(3)"></span> 
     </div>
     <div class="item-layout">
       <div class="title-layout">
@@ -26,7 +32,7 @@
        
         
       </div>
-      <ul>
+      <ul id="card_list" class="card-list">
         {% for i in data %}
         <li>
           {% include "package/cardview.html" %}
@@ -39,3 +45,49 @@
       </ul>
   
       </div>
+
+<script>
+    function addcard(id) {
+  //var id = $("#card_list");
+  $.ajax({
+
+            type: 'GET',
+            url: "{{ request.get_full_path }}card",
+            dataType: "json",
+            success:function(data){
+                var  cardf = [];
+
+                var js= $.getJSON('{"hello" : "hehhe","jkdj":"jfjfj"}');
+
+             /* for (var d =  0;d < js.length ;d++){
+                var card = "<div class=\"cardview \">\n" +
+                  "          <div class=\"card_image\"> <img src=\"\" > </div>\n" +
+                  "          <div class=\"card_Title title-white\">\n" +
+                  "              <h4>"+js[d].title+"</h4>\n" +
+                  "            <p></p>\n" +
+                  "          </div>\n" +
+                  "</div>";
+
+                  cardf = card
+                  console.log(card)
+
+
+
+
+
+
+              }*/
+             //id.html(cardf.toString());
+              console.log(js)
+
+
+
+
+
+
+
+            }
+        });
+
+}
+</script>
