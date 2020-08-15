@@ -11,7 +11,7 @@ def dashboard(request):
 
     return render(request,'dashboard/main.html',{'data': data})
 def cardpost(request):
-    data = Book.objects.all()
+    data = Book.objects.all()[:1]
     st = list()
 
 
@@ -26,3 +26,6 @@ def cardpost(request):
 
 
     return HttpResponse(json_string)
+
+def view(request):
+    return render(request,"./view.html")
