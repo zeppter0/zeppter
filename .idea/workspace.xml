@@ -20,15 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25fa9bc6-ab81-4d72-993f-465b0e29cd5a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/dashboard/view.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/dashboard/view/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/dashboard/view/descreption.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_dashboard/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_dashboard/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/include/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/include/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/zeppter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/zeppter.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zeppter/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/zeppter/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zeppter/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/zeppter/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,6 +186,8 @@
       <workItem from="1597001243347" duration="1824000" />
       <workItem from="1597026549737" duration="1247000" />
       <workItem from="1597062957033" duration="485000" />
+      <workItem from="1597576076531" duration="1482000" />
+      <workItem from="1597577682985" duration="332000" />
     </task>
     <servers />
   </component>

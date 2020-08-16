@@ -39,6 +39,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
    # "103.138.96.225",
     #"192.168.42.211"
+    "www.zeppter.com",
+    '127.0.0.1'
 
     ]
 
