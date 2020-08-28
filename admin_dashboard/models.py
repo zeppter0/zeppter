@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Book(models.Model):
-    id = models.AutoField
+    id = models.AutoField(primary_key=True)
 
     book_title = models.CharField(max_length=50,default=None)
     book_description = models.CharField(max_length=500,default=None)
@@ -19,5 +19,10 @@ class Book(models.Model):
         return self.book_title
 
 
-
+class Category(models.Model):
+    id = models.AutoField(primary_key=True)
+    book_title = models.CharField(max_length=50)
+    book_category = models.CharField(max_length=50)
+    book_img = models.ImageField(upload_to='cat_img',default=None)
+    cat_pub_date = models.DateTimeField('date published')
 

@@ -1,0 +1,8 @@
+#show-content{
+    width: 500px;
+    height: 600px;
+    background-color: #e5e5bf;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+}

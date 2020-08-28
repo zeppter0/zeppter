@@ -20,9 +20,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25fa9bc6-ab81-4d72-993f-465b0e29cd5a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_dashboard/migrations/0004_category.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/comment/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/assets/admin/css/dashboard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/assets/dashboard/content.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/post.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/dashboard/content.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/zeppter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/zeppter.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_dashboard/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_dashboard/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_dashboard/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_dashboard/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_dashboard/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_dashboard/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/admin/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/admin/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/dashboard/main2.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/dashboard/main2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/dashboard/main3.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/dashboard/main3.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/include/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/include/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/include/include.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/include/include.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/include/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/include/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard/include/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/include/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zeppter/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/zeppter/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zeppter/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/zeppter/urls.py" afterDir="false" />
     </list>
@@ -38,9 +58,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="HTML File" />
         <option value="CSS File" />
         <option value="Python Script" />
-        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -187,7 +207,20 @@
       <workItem from="1597026549737" duration="1247000" />
       <workItem from="1597062957033" duration="485000" />
       <workItem from="1597576076531" duration="1482000" />
-      <workItem from="1597577682985" duration="332000" />
+      <workItem from="1597577682985" duration="2930000" />
+      <workItem from="1597595607954" duration="665000" />
+      <workItem from="1598356290670" duration="4127000" />
+      <workItem from="1598368288057" duration="6344000" />
+      <workItem from="1598401135710" duration="7982000" />
+      <workItem from="1598410538322" duration="2638000" />
+      <workItem from="1598429693996" duration="1447000" />
+      <workItem from="1598461952405" duration="2257000" />
+      <workItem from="1598491489983" duration="64000" />
+      <workItem from="1598491595661" duration="2507000" />
+      <workItem from="1598515222804" duration="1642000" />
+      <workItem from="1598582963280" duration="2405000" />
+      <workItem from="1598622637434" duration="1600000" />
+      <workItem from="1598633509504" duration="605000" />
     </task>
     <servers />
   </component>
@@ -212,6 +245,10 @@
     </state>
     <state x="118" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1366.705@0.27.1366.705" timestamp="1591445961046" />
     <state x="169" y="55" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/56.27.1310.741@56.27.1310.741" timestamp="1590651330538" />
+    <state x="449" y="165" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1598357647965">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="449" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1598357647965" />
     <state x="373" y="27" width="666" height="741" key="#zeppter" timestamp="1590593139219">
       <screen x="56" y="27" width="1310" height="741" />
     </state>
@@ -221,52 +258,52 @@
     </state>
     <state x="452" y="154" key="FileChooserDialogImpl/0.27.1366.705@0.27.1366.705" timestamp="1591380102892" />
     <state x="489" y="160" width="424" height="491" key="FileChooserDialogImpl/56.27.1310.741@56.27.1310.741" timestamp="1590593163851" />
-    <state width="1323" height="223" key="GridCell.Tab.0.bottom" timestamp="1596408379440">
+    <state width="1323" height="223" key="GridCell.Tab.0.bottom" timestamp="1598624251166">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1596408379440" />
+    <state width="1323" height="223" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1598624251166" />
     <state width="1320" height="199" key="GridCell.Tab.0.bottom/0.27.1366.705@0.27.1366.705" timestamp="1591380410525" />
     <state width="1264" height="214" key="GridCell.Tab.0.bottom/56.27.1310.741@56.27.1310.741" timestamp="1590651472253" />
-    <state width="1323" height="223" key="GridCell.Tab.0.center" timestamp="1596408379440">
+    <state width="1323" height="223" key="GridCell.Tab.0.center" timestamp="1598624251166">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1596408379440" />
+    <state width="1323" height="223" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1598624251166" />
     <state width="1320" height="199" key="GridCell.Tab.0.center/0.27.1366.705@0.27.1366.705" timestamp="1591380410525" />
     <state width="1264" height="214" key="GridCell.Tab.0.center/56.27.1310.741@56.27.1310.741" timestamp="1590651472253" />
-    <state width="1323" height="223" key="GridCell.Tab.0.left" timestamp="1596408379439">
+    <state width="1323" height="223" key="GridCell.Tab.0.left" timestamp="1598624251166">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1596408379439" />
+    <state width="1323" height="223" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1598624251166" />
     <state width="1320" height="199" key="GridCell.Tab.0.left/0.27.1366.705@0.27.1366.705" timestamp="1591380410524" />
     <state width="1264" height="214" key="GridCell.Tab.0.left/56.27.1310.741@56.27.1310.741" timestamp="1590651472252" />
-    <state width="1323" height="223" key="GridCell.Tab.0.right" timestamp="1596408379440">
+    <state width="1323" height="223" key="GridCell.Tab.0.right" timestamp="1598624251166">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1596408379440" />
+    <state width="1323" height="223" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1598624251166" />
     <state width="1320" height="199" key="GridCell.Tab.0.right/0.27.1366.705@0.27.1366.705" timestamp="1591380410525" />
     <state width="1264" height="214" key="GridCell.Tab.0.right/56.27.1310.741@56.27.1310.741" timestamp="1590651472253" />
-    <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1596408379441">
+    <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1598624251166">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1596408379441" />
+    <state width="1323" height="223" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1598624251166" />
     <state width="1320" height="199" key="GridCell.Tab.1.bottom/0.27.1366.705@0.27.1366.705" timestamp="1591380410526" />
     <state width="1264" height="214" key="GridCell.Tab.1.bottom/56.27.1310.741@56.27.1310.741" timestamp="1590651472254" />
-    <state width="1323" height="223" key="GridCell.Tab.1.center" timestamp="1596408379440">
+    <state width="1323" height="223" key="GridCell.Tab.1.center" timestamp="1598624251166">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1596408379440" />
+    <state width="1323" height="223" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1598624251166" />
     <state width="1320" height="199" key="GridCell.Tab.1.center/0.27.1366.705@0.27.1366.705" timestamp="1591380410526" />
     <state width="1264" height="214" key="GridCell.Tab.1.center/56.27.1310.741@56.27.1310.741" timestamp="1590651472254" />
-    <state width="1323" height="223" key="GridCell.Tab.1.left" timestamp="1596408379440">
+    <state width="1323" height="223" key="GridCell.Tab.1.left" timestamp="1598624251166">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1596408379440" />
+    <state width="1323" height="223" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1598624251166" />
     <state width="1320" height="199" key="GridCell.Tab.1.left/0.27.1366.705@0.27.1366.705" timestamp="1591380410526" />
     <state width="1264" height="214" key="GridCell.Tab.1.left/56.27.1310.741@56.27.1310.741" timestamp="1590651472253" />
-    <state width="1323" height="223" key="GridCell.Tab.1.right" timestamp="1596408379440">
+    <state width="1323" height="223" key="GridCell.Tab.1.right" timestamp="1598624251166">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1596408379440" />
+    <state width="1323" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1598624251166" />
     <state width="1320" height="199" key="GridCell.Tab.1.right/0.27.1366.705@0.27.1366.705" timestamp="1591380410526" />
     <state width="1264" height="214" key="GridCell.Tab.1.right/56.27.1310.741@56.27.1310.741" timestamp="1590651472254" />
     <state x="150" y="3" width="1022" height="737" key="SettingsEditor" timestamp="1596399173558">
@@ -284,7 +321,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="django-line">
           <url>file://$PROJECT_DIR$/templates/admin/include/include.html</url>
-          <line>30</line>
+          <line>32</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

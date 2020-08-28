@@ -11,7 +11,7 @@
 .main-menu {
     background: rgb(255, 255, 255);
     position: absolute;
-    top: 55px;
+    top: 0px;
     bottom: 0;
     height: 100%;
     z-index: 400;
@@ -132,3 +132,16 @@ nav.main-menu ul {
     margin: 10px;
 
 }
+.main-contents{
+
+	display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between; /* switched from default (flex-start, see below) */
+  background-color: lightyellow;
+
+}
+.main-content{
+    display: inline-block;
+}
+

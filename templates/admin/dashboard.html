@@ -2,39 +2,54 @@
 {% load static %}
 
 {% block content %}
+    <div class="main-contents">
     <main class="main-content container" id="main_content">
-    <form id="post" action="post" method="POST" enctype = "multipart/form-data">
-        {% csrf_token %}
-            <div class="row">
-                <div class="col-9">
-                    <div class="form-group ">
-                        <label for="exampleInputEmail1">Title</label>
-                        <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Title">
-                    </div>
-                    <div class="form-group ">
-                        <label for="exampleInputEmail1">discription</label>
-                        <input type="text" name="description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter description">
+        <div class="row">
+           <div class="col-sm " id="traffic_check">
 
-                    </div>
+    </div>
+    <div class="col-sm" id="traffic_check">
+       <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for dat in data  %}
+    <tr>
+      <th scope="row">{{ dat.id }}</th>
+      <td>{{ dat.book_title }}</td>
 
-                </div>
-                <div class="col-3">
-                    <img src="{% static 'assets/img/download.png' %}" id="image_add_show">
+    </tr>
+  {% endfor %}
 
-                </div>
-                <div class="form-group ">
-                    <input type="file"  class="form-control" id="book_add_pic" name="book_add_pic" >
+  </tbody>
+</table>
 
-
-
-                </div>
+    </div>
 
 
-            </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        </div>
     </main>
+    <div id="right_side">
+        <button type="submit" class="btn btn-primary">Publish</button>
+        <div id="category_form">
+            <form action="#" >
+            <div class="form-group">
+    <label for="exampleFormControlSelect2">Example multiple select</label>
+    <input type="checkbox"> hello word
+  </div>
+        </form>
+
+        </div>
+
+    </div>
+    </div>
     <script>
         function readURL(input) {
         if (input.files && input.files[0]) {

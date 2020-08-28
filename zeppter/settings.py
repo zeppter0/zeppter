@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     #'admin.apps.AdminConfig',
    # 'dashboard.apps.DashboardConfig',
     'admin_dashboard.apps.AdminDashboardConfig',
+    'comment.apps.CommentConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

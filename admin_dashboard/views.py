@@ -10,7 +10,7 @@ from admin_dashboard.BookForm import BookUploadForm
 
 def dashboard(request):
     if request.user.is_authenticated:
-        return render(request,'admin/dashboard.html')
+        return render(request,'admin/post.html')
     else:
         return  HttpResponse("please login")
 
@@ -32,5 +32,10 @@ def post(request):
 
 
     return HttpResponse('not found')
+
+
+def shows(request):
+    data = Book.objects.all()
+    return render(request,'admin/dashboard.html',{'data': data})
 
 

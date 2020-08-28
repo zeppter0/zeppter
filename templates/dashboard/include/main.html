@@ -45,6 +45,30 @@
       </ul>
   
       </div>
+<div class="item-layout">
+      <div class="title-layout">
+        <h4>Title</h4>
+        <a href="#">More</a>
+
+
+      </div>
+      <div class="card-layout">
+
+
+      </div>
+      <ul id="card_list" class="card-list">
+        <!--{% for i in data %}
+        <li>
+          {% include "package/cardview.html" %}
+
+        </li>
+
+      {% endfor %}-->
+
+
+      </ul>
+
+      </div>
 <div class="hekkjkf"></div>
 
 <script>
@@ -63,16 +87,16 @@
 
 
               for (var d =  0;d < data.length ;d++){
-                var card = "<li ><div class=\"cardview \">\n" +
+                var card = "<li><a href=\"./"+data[d].id+"\" ><div class=\"cardview \">\n" +
                   "          <div class=\"card_image\"> <img src=\""+data[d].img+"\ \" > </div>\n" +
                   "          <div class=\"card_Title title-white\">\n" +
                   "              <h4>"+data[d].title+"</h4>\n" +
                   "            <p></p>\n" +
                   "          </div>\n" +
-                  "</div> </li>";
+                  "</div></a> </li>";
 
                   id.append(card);
-                  console.log(card)
+               //   console.log(card)
 
 
 
@@ -90,6 +114,10 @@
 
 
             }
+        });
+        $("#card_image").click(function () {
+
+            alert("hello word");
         });
 
 }

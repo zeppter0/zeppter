@@ -23,8 +23,10 @@ from django.conf.urls.static import static
 urlpatterns = [
 
     path('',views.dashboard,name="dashboard"),
+   # path('dashboard',views.shows,name="shows"),
     path('card',views.cardpost,name="cardpost"),
-    path('view',views.view,name="view")
+    path('view',views.view,name="view"),
+    path('<int:id>',views.content,name="content")
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

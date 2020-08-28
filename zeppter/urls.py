@@ -20,5 +20,6 @@ urlpatterns = [
     path("admin/",admin.site.urls),
     path('hello/', include('admin_dashboard.urls')),
     path('',include('dashboard.urls')),
-    path('json',include('djson.urls'))
+    path('json',include('djson.urls')),
+    path('comment',include('comment.urls')),
 ]

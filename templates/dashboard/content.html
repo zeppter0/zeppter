@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    {% load static %}
+     <!-- boostrap-->
+
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/dashboard/content.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/dashboard/main2.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/dashboard/main3.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/card/card.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/slideshow.css' %}">
+     <script src="{% static "assets/jquery/mainjquery.js" %}"></script>
+<script src="{% static "assets/pooper/popper.min.js" %}"></script>
+<script src="{% static "assets/bootstrap/js/bootstrap.min.js" %}" ></script>
+</head>
+<body>
+<div  class="container" style="background-color: #0c5460">
+
+
+
+
+    <h1>{{ title }}</h1>
+    <div class="row">
+        <div id="show-content" class="col">
+        {{ dascription }}
+
+    </div>
+        <img src="{{ MEDIA_URL }}{{ img }}" width="200" height="200">
+        
+    </div>
+    
+    <div class="row">
+        <div class="col" style="width: 400px ;background-color: white">
+        <form action="../comment" id="content-comment">
+            <input type="hidden" name="postid" value="{{ postid }}">
+            <div class="form-group">
+
+    <label for="exampleInputEmail1">Your Name</label>
+    <input type="text" class="form-control" name="name" id="exampleInputEmail1" >
+
+
+            </div>
+            <div class="form-group">
+
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+
+            </div>
+            <div class="form-group">
+    <label for="exampleFormControlTextarea1">You Comment</label>
+    <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+        <div class="col" style="background-color: white;">
+            <ul>
+                {% for comment in comments %}
+                <li>
+                    <a href="#">
+                        {{ comment.name }}
+
+                    </a>
+                    <br>
+                    <comment>{{ comment.comment }}</comment>
+                </li>
+                {% endfor %}
+
+
+            </ul>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
+<script>
+    /*$("#content-comment").submit(function () {
+       // alert($("#content-comment").data().name);
+
+        $.ajax({
+            type : "post",
+            url: {{ url }}{{ request.get_full_path }},
+            data:$("#content-comment").for
+        });
+
+    });*/
+</script>
+
+
+

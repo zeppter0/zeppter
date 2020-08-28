@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('',views.dashboard,name="dashboard"),
+path('dashboard',views.shows,name="shows"),
     path('post',views.post, name='text')
 ]
 if settings.DEBUG:
