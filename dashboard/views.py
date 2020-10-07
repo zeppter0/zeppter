@@ -4,14 +4,17 @@ from admin_dashboard.models import Book
 import json
 from comment.models import Comment
 
+
+import math
+
 # Create your views here.
 
 def dashboard(request):
     data = Book.objects.all()
    # comments = Comment.objects.filter(postid=)
-
-
+   #return HttpResponse("hello word")
     return render(request,'dashboard/main.html',{'data': data})
+    #return HttpResponse("hello word")
 def cardpost(request):
     data = Book.objects.all()
     st = list()

@@ -40,7 +40,8 @@ ALLOWED_HOSTS = [
    # "103.138.96.225",
     #"192.168.42.211"
     "www.zeppter.com",
-    '127.0.0.1'
+    '127.0.0.1',
+    "localhost"
 
     ]
 
@@ -75,7 +76,9 @@ ROOT_URLCONF = 'zeppter.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [
+            os.path.join(BASE_DIR,"templates"),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -154,3 +157,11 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
+
+
+SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
+TEMPLATE_DIRS = (
+    os.path.join(SETTINGS_PATH, 'template'),
+)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "{{ zeppter }}.settings")
+
