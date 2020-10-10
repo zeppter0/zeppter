@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+
+    <input type="file" id="uploadimage"  />
+    <img width="300" height="300" src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" id="image" />
+
+    <h3>helo ho</h3>
+    
+    
+</body>
+</html>
+
+
+
+
+
+<script>
+
+images = document.querySelector("#uploadimage");
+clic = document.querySelector("#image");
+images
+
+images.onchange = function(e){
+    globalpic = new FileReader();
+    globalpic.onload = function(e){
+        clic.src =  e.target.result
+    }
+    globalpic.readAsDataURL(images.files[0]);
+
+    
+};
+
+//images.addEventListener("change",imageIsLoaded());
+
+
+function imageIsLoaded(){
+   // console.log("upload")
+
+
+   alert("hello word")
+}
+
+</script>
