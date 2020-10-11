@@ -127,15 +127,17 @@ brightness_4
   <!--for play the audio--> 
   <audio id="adioPlay" controls></audio> 
   <input type="file" id="uploadimage"  />
+  {% csrf_token %}
+
     <img width="300" height="300" src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" id="image" />
 </body> 
   
 </html> 
 <script>
 
-  images = document.querySelector("#uploadimage");
+  const images = document.querySelector("#uploadimage");
   clic = document.querySelector("#image");
-  images
+
   
   images.onchange = function(e){
       /*globalpic = new FileReader();
@@ -143,7 +145,30 @@ brightness_4
           clic.src =  e.target.result
       }
       globalpic.readAsDataURL(images.files[0]);*/
-      loadDoc(images.file[0]);
+    //  loadDoc(this);
+
+      let fordata= new FormData();
+
+      fordata.append("csrfmiddlewaretoken", "{{ csrf_token }}")
+
+      fordata.append("photo",images.files[0]);
+  var xhttp = new XMLHttpRequest();
+  //xhttp.file(file);
+
+
+
+
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    // document.getElementById("demo").innerHTML = this.responseText;
+
+
+        console.log(this.responseText);
+    }
+  };
+  xhttp.open("POST", "./data", true);
+  xhttp.send(fordata);
+
   
       
   };
@@ -152,20 +177,9 @@ brightness_4
   //images.addEventListener("change",imageIsLoaded());
   
   
-  function loadDoc(file) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.file(file);
-
-
-
-
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-     document.getElementById("demo").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "data", true);
-  xhttp.send(file);
+  function loadDoc(files) {
+     // var files = document.querySelector("#uploadimage");
+      f
 }
   
   </script>
