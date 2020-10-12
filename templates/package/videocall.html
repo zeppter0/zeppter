@@ -149,11 +149,14 @@ brightness_4
 
       let fordata= new FormData();
 
+
       fordata.append("csrfmiddlewaretoken", "{{ csrf_token }}")
 
       fordata.append("photo",images.files[0]);
   var xhttp = new XMLHttpRequest();
+
   //xhttp.file(file);
+      xhttp.responseType = "blob";
 
 
 
@@ -161,6 +164,8 @@ brightness_4
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
     // document.getElementById("demo").innerHTML = this.responseText;
+
+      clic.src =  URL.createObjectURL(this.response);
 
 
         console.log(this.responseText);
