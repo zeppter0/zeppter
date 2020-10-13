@@ -7,4 +7,4 @@ from django.http import HttpResponse
 def imageupload(request):
     #hello
   
-    return render(request,"test/uploadimage.html")
+    return render(request,"test/cemera.html")
