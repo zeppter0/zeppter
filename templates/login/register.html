@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static ""  %}{{ link.registercss }}">
+    <link rel="stylesheet" href="{% static ""  %}{{ link.bootstrapcss }}">
+    <link rel="stylesheet" href="{% static "" %}{{ link.fontawesome }}"
+    <script src="{% static "" %}{{ link.jquery }}"></script>
+</head>
+<body >
+
+
+    <div class="page-wrapper bg-gra-03 p-b-50 p-t-45">
+        <div class="wrapper wrapper--w790">
+            <div class="cards card-5">
+                <div class="card-heading">
+                    <h2 class="title">School registration form</h2>
+                </div>
+                <div class="card-body">
+                    <form>
+
+                        <div class="form-row m-b-55" >
+                            <div class="name">Your Name</div>
+                            <div class="value">
+                                
+                                    <div class="row">
+                                      <div class="col">
+                                        <input type="text" class="form-control" placeholder="First name">
+                                      </div>
+                                      <div class="col">
+                                        <input type="text" class="form-control" placeholder="Last name">
+                                      </div>
+                                    </div>
+                                  
+                            </div>
+
+                        </div>
+                        <div class="form-row" >
+                            <div class="name">School Name</div>
+                            <div class="value">
+                                
+                                <input type="text" class="form-control" placeholder="Last name">
+                                  
+                            </div>
+
+                        </div>
+                        <div class="form-row" >
+                            
+                            <div class="value" style="margin-left: auto;">
+                                
+                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Gender</label>
+  <select class="custom-select my-1 mr-sm-2"   id="inlineFormCustomSelectPref">
+    <option selected>Choose...</option>
+    <option value="1">Male</option>
+    <option value="2">Female</option>
+    
+  </select>
+                                  
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Date of birth</div>
+                            <div class="value">
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="number" class="form-control" placeholder="DD" maxlength="2">
+
+                                    </div>
+                                    <div class="col">
+                                        <input type="number" class="form-control" placeholder="MM" maxlength="2">
+
+                                    </div>
+                                    <div class="col">
+                                        <input type="number" class="form-control" placeholder="YY" maxlength="2">
+
+                                    </div>
+
+                                </div>
+                                
+                                
+                                  
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Adhaar Card</div>
+                            <div class="value">
+                                
+                                <input type="number" class="form-control" placeholder="Insert No" maxlength=12">
+                                  
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Address</div>
+                            <div class="value">
+                                
+                                <input type="text" class="form-control" placeholder="Insert Address">
+                                  
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            
+                                
+                                <div class="value" style="margin-left: auto;" >
+                                    
+                                
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="insertcity">Your City</label>
+                                          <input type="text" class="form-control" id="insertcity" placeholder="Insert city">
+                                        </div>
+                                        <div class="col">
+                                            <label for="insertcountry">Your Country</label>
+                                          <input type="text" class="form-control" id="insertcountry" placeholder="Insert country">
+                                        </div>
+                                      </div>
+                                      
+                                </div>
+                                
+                                
+                                
+                            
+                        </div>
+                        <div class="form-row">
+                            
+                                
+                            <div class="value" style="margin-left: auto;" >
+                                
+                            
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="insertmother">Mother Name</label>
+                                      <input type="text" class="form-control" id="insertmother" placeholder="Insert mother name">
+                                    </div>
+                                    <div class="col">
+                                        <label for="insertfather">Father Name</label>
+                                      <input type="text" class="form-control" id="insertfather" placeholder="Insert Father">
+                                    </div>
+                                  </div>
+                                  
+                            </div>
+                            
+                            
+                            
+                        
+                    </div>
+                    <div class="form-row">
+                        <div class="name">Mobile No. :</div>
+                        <div class="value">
+                            
+                            <input type="number" class="form-control" placeholder="Insert Mobile No" maxlength="10">
+                              
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        <div class="name">Your Email</div>
+                        <div class="value">
+                            
+                            <input type="email" class="form-control" placeholder="Email">
+                              
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        
+                        <div class="value row" style="margin-left: auto;">
+                            
+                            <a href="#" class="btn-face m-b-20 col">
+                                <i class="fa fa-facebook-official"></i>
+                                Facebook
+                                </a>
+                                <a href="#" class="btn-google m-b-20 col">
+                                    <img src="images/icons/icon-google.png" alt="GOOGLE">
+                                    Google
+                                    </a>
+                              
+                        </div>
+
+                    </div>
+                        
+                       
+
+                      </form>
+                </div>
+            </div>
+        </div>
+    
+        </div>
+    
+</body>
+</html>
+
+

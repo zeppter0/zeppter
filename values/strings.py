@@ -7,6 +7,7 @@ def bootstrap():
         "plopleadmin" : "assets/plopleadmin/plopleadmin.css",
         "googleicon": "https://fonts.googleapis.com/icon?family=Material+Icons",
         "fontawesome": "assets/fontawesome/css/all.css",
+        "registercss": "assets/login/register.css",
     }
 
 

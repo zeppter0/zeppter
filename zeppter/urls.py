@@ -24,5 +24,6 @@ urlpatterns = [
     path('comment',include('comment.urls')),
     path("test/",include("mytest.urls")),
     path("call/",include('videocall.urls')),
-    path("admin/",include("plopleadmin.urls"))
+   # path("admin/<str:id>",include("plopleadmin.urls")),
+    path("admin/",include("register.urls")),
 ]
