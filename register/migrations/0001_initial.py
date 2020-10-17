@@ -28,6 +28,8 @@ class Migration(migrations.Migration):
                 ('father_name', models.CharField(max_length=50)),
                 ('mobile_number', models.IntegerField(max_length=13)),
                 ('email', models.CharField(max_length=50)),
+                ('address' , models.CharField(max_length=500)),
+
             ],
         ),
     ]

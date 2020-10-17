@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
 # Create your views here.
 from admin_dashboard.models import Book
@@ -31,7 +31,7 @@ def post(request):
 
 
 
-    return HttpResponse('not found')
+    return redirect(dashboard)
 
 
 def shows(request):

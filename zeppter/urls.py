@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 
 urlpatterns = [
-  #  path("admin/",admin.site.urls),
+    path("admin/",admin.site.urls),
     path('hello/', include('admin_dashboard.urls')),
     path('',include('dashboard.urls')),
     path('json',include('djson.urls')),
@@ -25,5 +25,5 @@ urlpatterns = [
     path("test/",include("mytest.urls")),
     path("call/",include('videocall.urls')),
    # path("admin/<str:id>",include("plopleadmin.urls")),
-    path("admin/",include("register.urls")),
+    #path("admin/",include("register.urls")),
 ]

@@ -8,7 +8,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static ""  %}{{ link.registercss }}">
     <link rel="stylesheet" href="{% static ""  %}{{ link.bootstrapcss }}">
-    <link rel="stylesheet" href="{% static "" %}{{ link.fontawesome }}"
+    <link rel="stylesheet" href="{% static "" %}{{ link.fontawesome }}">
     <script src="{% static "" %}{{ link.jquery }}"></script>
 </head>
 <body >
@@ -21,7 +21,8 @@
                     <h2 class="title">School registration form</h2>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form method="post" action="./upregister" >
+                        {% csrf_token %}
 
                         <div class="form-row m-b-55" >
                             <div class="name">Your Name</div>
@@ -29,10 +30,10 @@
                                 
                                     <div class="row">
                                       <div class="col">
-                                        <input type="text" class="form-control" placeholder="First name">
+                                        <input type="text" class="form-control" name="first_name" placeholder="First name">
                                       </div>
                                       <div class="col">
-                                        <input type="text" class="form-control" placeholder="Last name">
+                                        <input type="text" class="form-control" name="last_name" placeholder="Last name">
                                       </div>
                                     </div>
                                   
@@ -43,7 +44,7 @@
                             <div class="name">School Name</div>
                             <div class="value">
                                 
-                                <input type="text" class="form-control" placeholder="Last name">
+                                <input type="text" class="form-control" placeholder="Insert School Name" name="school_name">
                                   
                             </div>
 
@@ -53,7 +54,7 @@
                             <div class="value" style="margin-left: auto;">
                                 
                                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Gender</label>
-  <select class="custom-select my-1 mr-sm-2"   id="inlineFormCustomSelectPref">
+  <select class="custom-select my-1 mr-sm-2" name="gender"   id="inlineFormCustomSelectPref">
     <option selected>Choose...</option>
     <option value="1">Male</option>
     <option value="2">Female</option>
@@ -68,15 +69,15 @@
                             <div class="value">
                                 <div class="row">
                                     <div class="col">
-                                        <input type="number" class="form-control" placeholder="DD" maxlength="2">
+                                        <input type="number" name="dd" class="form-control" placeholder="DD" maxlength="2">
 
                                     </div>
                                     <div class="col">
-                                        <input type="number" class="form-control" placeholder="MM" maxlength="2">
+                                        <input type="number" name="mm" class="form-control" placeholder="MM" maxlength="2">
 
                                     </div>
                                     <div class="col">
-                                        <input type="number" class="form-control" placeholder="YY" maxlength="2">
+                                        <input type="number" name="yy" class="form-control" placeholder="YY" maxlength="2">
 
                                     </div>
 
@@ -91,7 +92,7 @@
                             <div class="name">Adhaar Card</div>
                             <div class="value">
                                 
-                                <input type="number" class="form-control" placeholder="Insert No" maxlength=12">
+                                <input type="number" name="adhaar_card" class="form-control" placeholder="Insert No" maxlength=12">
                                   
                             </div>
 
@@ -100,7 +101,7 @@
                             <div class="name">Address</div>
                             <div class="value">
                                 
-                                <input type="text" class="form-control" placeholder="Insert Address">
+                                <input type="text" name="address" class="form-control" placeholder="Insert Address">
                                   
                             </div>
 
@@ -114,11 +115,11 @@
                                     <div class="row">
                                         <div class="col">
                                             <label for="insertcity">Your City</label>
-                                          <input type="text" class="form-control" id="insertcity" placeholder="Insert city">
+                                          <input type="text" name="city" class="form-control" id="insertcity" placeholder="Insert city">
                                         </div>
                                         <div class="col">
                                             <label for="insertcountry">Your Country</label>
-                                          <input type="text" class="form-control" id="insertcountry" placeholder="Insert country">
+                                          <input name="country" type="text" class="form-control" id="insertcountry" placeholder="Insert country">
                                         </div>
                                       </div>
                                       
@@ -137,11 +138,11 @@
                                 <div class="row">
                                     <div class="col">
                                         <label for="insertmother">Mother Name</label>
-                                      <input type="text" class="form-control" id="insertmother" placeholder="Insert mother name">
+                                      <input type="text" name="mother" class="form-control" id="insertmother" placeholder="Insert mother name">
                                     </div>
                                     <div class="col">
                                         <label for="insertfather">Father Name</label>
-                                      <input type="text" class="form-control" id="insertfather" placeholder="Insert Father">
+                                      <input type="text" name="father" class="form-control" id="insertfather" placeholder="Insert Father">
                                     </div>
                                   </div>
                                   
@@ -155,7 +156,7 @@
                         <div class="name">Mobile No. :</div>
                         <div class="value">
                             
-                            <input type="number" class="form-control" placeholder="Insert Mobile No" maxlength="10">
+                            <input type="number" class="form-control" name="mobile" placeholder="Insert Mobile No" maxlength="10">
                               
                         </div>
 
@@ -164,8 +165,17 @@
                         <div class="name">Your Email</div>
                         <div class="value">
                             
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" class="form-control" name="email" placeholder="Email">
                               
+                        </div>
+
+                    </div>
+                         <div class="form-row">
+                        <div class="name">Your Passpord</div>
+                        <div class="value">
+
+                            <input type="password" class="form-control" name="email" placeholder="Email">
+
                         </div>
 
                     </div>
@@ -185,7 +195,7 @@
                         </div>
 
                     </div>
-                    <input type="regitster" name="register" value="Register" class="btn btn-primary">
+                    <input type="submit" name="register" value="Register"  class="btn btn-primary">
                     
                         
                        
