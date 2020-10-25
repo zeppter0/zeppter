@@ -40,7 +40,8 @@ ALLOWED_HOSTS = [
     # "192.168.42.211"
     "www.zeppter.com",
     '127.0.0.1',
-    "localhost"
+    "localhost",
+    '192.168.1.104',
 
 ]
 
@@ -49,15 +50,17 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     # 'admin.apps.AdminConfig',
     # 'dashboard.apps.DashboardConfig',
+
     'admin_dashboard.apps.AdminDashboardConfig',
     'comment.apps.CommentConfig',
-    'register.apps.RegisterConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'register',
 
 ]
 
@@ -72,6 +75,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'zeppter.urls'
+AUTH_USER_MODEL = 'register.MyUser'
 
 TEMPLATES = [
     {
@@ -101,12 +105,8 @@ WSGI_APPLICATION = 'zeppter.wsgi.application'
 DATABASES = {
 
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'zeppter',
-        'USER': 'dkboss650',
-        'PASSWORD': 'Sorry9023@',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
     }
 

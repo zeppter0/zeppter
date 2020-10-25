@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate
 from django.shortcuts import render ,redirect
 from values import strings
-from register.models import Rregister
+from register.models import Register
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 import hashlib
@@ -21,7 +21,7 @@ def upregister(request):
 
     if request.method == "POST" and request.POST["email"] !="" and request.POST["first_name"] != "" and request.POST["last_name"]\
             and request.POST["school_name"] != "" and request.POST["gender"] != "":
-        check = Rregister.objects.filter(email=request.POST["email"]).count()
+        check = Register.objects.filter(email=request.POST["email"]).count()
 
 
 
@@ -56,8 +56,8 @@ def modelinsertdata(request):
     mobile = request.POST["mobile"];
     pasword = request.POST["password"]
 
-    register = Rregister(first_name=first_name,last_name=last_name,school_name=School_name,gender=gender,address=address,
-                         birth=birth,adhaar_card=adhaar_card,city=city,country=country,mother_name=mother_name,father_name=father_name,
+    register = Register(first_name=first_name,last_name=last_name,school_name=School_name,gender=gender,address=address,
+                         date_of_birth=birth,adhaar_card=adhaar_card,city=city,country=country,mother_name=mother_name,father_name=father_name,
                          email=email,mobile_number=mobile,password=pasword)
     if(register.save()):
         user = User.objects.create_user(first_name, email, pasword)

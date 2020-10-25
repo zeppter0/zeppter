@@ -22,7 +22,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
 
-    path('',views.index , name="dashboard")
+    path('',views.index , name="dashboard"),
+    path('slider',views.showslider , name="dashboard"),
+    path("books",views.books,name="books"),
+    path("comments/<int:id>", views.book_comment,name="book_commets"),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
