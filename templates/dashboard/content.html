@@ -25,7 +25,7 @@
 
     <h1>{{ title }}</h1>
     <div class="row">
-        <div id="show-content" class="col">
+        <div id="show-content"  class="col">
         {{ dascription }}
 
     </div>
@@ -35,7 +35,8 @@
     
     <div class="row">
         <div class="col" style="width: 400px ;background-color: white">
-        <form action="../comment" id="content-comment">
+        <form action="#" id="content-comment">
+            {% csrf_token %}
             <input type="hidden" name="postid" value="{{ postid }}">
             <div class="form-group">
 
@@ -59,7 +60,7 @@
         </form>
     </div>
         <div class="col" style="background-color: white;">
-            <ul>
+            <ul id="comment-list">
                 {% for comment in comments %}
                 <li>
                     <a href="#">
@@ -82,16 +83,55 @@
 </body>
 </html>
 <script>
-    /*$("#content-comment").submit(function () {
-       // alert($("#content-comment").data().name);
+    $("#content-comment").submit(function (e){
+        data_form = new FormData($(this)[0]);
+       var form =  $(this);
 
         $.ajax({
-            type : "post",
-            url: {{ url }}{{ request.get_full_path }},
-            data:$("#content-comment").for
-        });
+            url: "../comment",
+            method : "POST",
+            data : form.serialize(),
+            cache :false,
+            success:function (data) {
+                data_json = JSON.parse(data)
 
-    });*/
+                li = document.createElement("li");
+                a= document.createElement("a");
+                comment = document.createElement("comment");
+                a.href = "hello";
+                list = document.getElementById("comment-list");
+                var br = document.createElement('br');
+
+                a.innerText = data_json.name;
+                comment.innerText = data_json.comment;
+                li.appendChild(a);
+                li.appendChild(br)
+                li.appendChild(comment)
+                list.appendChild(li)
+
+                alert(data_json.response)
+
+
+
+
+            }
+        });
+        return false;
+    });
+
+    $("#show-content").dblclick(function (e) {
+
+        fullScreenTgl(this)
+
+    });
+function fullScreenTgl(elm) {
+    let doc=document;//,elm=doc.documentElement;
+    if      (elm.requestFullscreen      ) { (!doc.fullscreenElement   ? elm.requestFullscreen()       : doc.exitFullscreen()        ) }
+    else if (elm.mozRequestFullScreen   ) { (!doc.mozFullScreen       ? elm.mozRequestFullScreen()    : doc.mozCancelFullScreen()   ) }
+    else if (elm.msRequestFullscreen    ) { (!doc.msFullscreenElement ? elm.msRequestFullscreen()     : doc.msExitFullscreen()      ) }
+    else if (elm.webkitRequestFullscreen) { (!doc.webkitIsFullscreen  ? elm.webkitRequestFullscreen() : doc.webkitCancelFullscreen()) }
+    else                                  { console.log("Fullscreen support not detected.");                                          }
+    }
 </script>
 
 

@@ -12,6 +12,7 @@ from .models import Category
 
 def dashboard(request):
     if request.user.is_authenticated:
+<<<<<<< HEAD
         cat = Category.objects.all()
 
         data= {
@@ -23,6 +24,13 @@ def dashboard(request):
     else:
 
         return  HttpResponse("please login")
+=======
+        return  HttpResponse("login home")
+        
+    else:
+        return render(request,'admin/post.html')
+        
+>>>>>>> 0e5b86762ff9440cd555fb38d0cf73a356f399ac
 
 
 def post(request):

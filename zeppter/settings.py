@@ -32,7 +32,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'a9u^k1a3@8%33v1^hj&@c0do%npc$(r$it4#%w=g2vs%0vzzxe'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: do3qn't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [
@@ -41,6 +41,7 @@ ALLOWED_HOSTS = [
     "www.zeppter.com",
     '127.0.0.1',
     "localhost",
+    "192.168.43.106",
     '192.168.1.104',
 
 ]

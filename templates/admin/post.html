@@ -63,6 +63,7 @@
         readURL(this,'#image_add_show');
 
     });
+<<<<<<< HEAD
         $("#publish").click(function (e){
             form_data = new FormData($("#post")[0]);
 
@@ -80,5 +81,37 @@
                 }
             });
         });
+=======
+
+
+    $("#publish").click(function(e){
+        form = $("#post");
+
+        data_form = new FormData($(form)[0]);
+
+
+        $.ajax({
+            url : "./post",
+            type : "POST",
+            async: false,
+            data : data_form,
+       cache: false,
+       contentType: false,
+       enctype: 'multipart/form-data',
+       processData: false, 
+       success: function (response) {
+         alert(response);
+       }
+
+        });
+        return false;
+    });
+    $(document).ready(function (e) {
+
+
+    });
+
+
+>>>>>>> 0e5b86762ff9440cd555fb38d0cf73a356f399ac
     </script>
 {% endblock %}
