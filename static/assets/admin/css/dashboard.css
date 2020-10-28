@@ -5,3 +5,7 @@
     border: 2px solid black;
 
 }
+
+#book_add_pic{
+    display: none;
+}

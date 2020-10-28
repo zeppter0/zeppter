@@ -1,5 +1,5 @@
 #right_side{
-    width: 250px;
+    width: 310px;
     height: 100vh;
     background-color:black ;
     display: inline-block;
@@ -7,7 +7,7 @@
 }
 #category_form{
     width: 100%;
-
+    position: relative;
     height: 250px;
     overflow-y: auto;
     overflow-x: hidden;

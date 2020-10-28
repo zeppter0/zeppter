@@ -1,0 +1,35 @@
+#categoryadd {
+  position: sticky;
+  bottom: 0;
+
+  flex-flow: row wrap;
+  align-items: center;
+  display: block ruby;
+  background-color: white;
+}
+/* Style the input fields */
+#categoryadd input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+    ;
+  background-color: #fff;
+  border: 1px solid #ddd;
+
+}
+#categoryadd input[name=title]{
+    width: 150px;
+
+}
+#categoryadd input[name=file]{
+    display: none;
+}
+.categorylist{
+
+}
+
+#catshowimg{
+  width: 50px;
+  display: inline-block;
+  height: 50px;
+}

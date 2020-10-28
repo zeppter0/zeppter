@@ -20,43 +20,39 @@
 
                 </div>
                 <div class="col-3">
-                    <img src="{% static 'assets/img/download.png' %}" id="image_add_show">
+                    <img src="{% static 'assets/img/download.png' %}" id="image_add_show" onclick="document.getElementById('book_add_pic').click()">
 
                 </div>
-                <div class="form-group ">
-                    <input type="file"  class="form-control" id="book_add_pic" name="book_add_pic" >
 
-
-
-                </div>
 
 
             </div>
+        <div class="form-group">
+      <label for="comment">Book:</label>
+      <textarea class="form-control" name="book_data" rows="10" id="comment"></textarea>
+    </div>
+
+        <input type="file"  class="form-control" id="book_add_pic" style="display: none" name="book_add_pic" >
 
 
         </form>
     </main>
     <div id="right_side">
-        <button type="submit" class="btn btn-primary">Publish</button>
+        <button type="submit" id="publish" class="btn btn-primary">Publish</button>
         <div id="category_form">
-            <form action="#" >
-            <div class="form-group">
-    <label for="exampleFormControlSelect2">Example multiple select</label>
-    <input type="checkbox"> hello word
-  </div>
-        </form>
+            {% include "admin/include/category.html" %}
 
         </div>
 
     </div>
     </div>
     <script>
-        function readURL(input) {
+        function readURL(input,img) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                $('#image_add_show').attr('src', e.target.result);
+                $(img).attr('src', e.target.result);
             }
 
             reader.readAsDataURL(input.files[0]);
@@ -64,8 +60,25 @@
     }
 
     $("#book_add_pic").change(function(){
-        readURL(this);
+        readURL(this,'#image_add_show');
 
     });
+        $("#publish").click(function (e){
+            form_data = new FormData($("#post")[0]);
+
+            $.ajax({
+                type : "POST",
+                url : "{{ request.get_full_path }}post",
+                processData: false,
+      contentType: false,
+      async: false,
+      cache: false,
+                enctype: 'multipart/form-data',
+      data : form_data,
+                success: function (data){
+                    alert(data);
+                }
+            });
+        });
     </script>
 {% endblock %}

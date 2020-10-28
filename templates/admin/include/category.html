@@ -1,0 +1,69 @@
+<div class="categorylist">
+
+{% load static %}
+    <ul>
+
+        {% for i in cat %}
+        <li>
+            <img id="catshowimg" src="http://{{ request.get_host }}{{ i.cat_img.url }}">
+            <p style="display: inline-block">
+                {{ i.cat_title }}
+
+            </p>
+        </li>
+        {% endfor %}
+    </ul>
+
+
+
+
+
+</div>
+<form action="#" enctype="multipart/form-data" id="categoryadd" >
+    {% csrf_token %}
+
+       <input name="title" type="text">
+       <input name="file" type="file" id="categoryimg">
+       <img id="cataddimg" src="{% static 'assets/img/download.png' %}" width="70px" height="70px" onclick="document.getElementById('categoryimg').click()" >
+
+       <input name="submit" type="submit" value="upload">
+
+   </form>
+
+<script>
+
+    $("#cataddimg").click(function (e){
+
+        $("#categoryimg").change(function (){
+
+                readURL(this,"#cataddimg");
+
+        })
+
+       // alert("hello word")
+    });
+
+
+    $("#categoryadd").submit(function (e){
+            form_data = new FormData($(this)[0]);
+
+
+            $.ajax({
+                type : "POST",
+                url : "./addcategory",
+                processData: false,
+                contentType: false,
+                async: false,
+                cache: false,
+                enctype: 'multipart/form-data',
+                data : form_data,
+                success: function (data){
+                    alert(data);
+                }
+            });
+            return false;
+
+        });
+
+
+</script>
