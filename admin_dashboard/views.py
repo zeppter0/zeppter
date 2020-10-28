@@ -10,9 +10,11 @@ from admin_dashboard.BookForm import BookUploadForm
 
 def dashboard(request):
     if request.user.is_authenticated:
-        return render(request,'admin/post.html')
+        return  HttpResponse("login home")
+        
     else:
-        return  HttpResponse("please login")
+        return render(request,'admin/post.html')
+        
 
 
 def post(request):

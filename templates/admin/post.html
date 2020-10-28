@@ -37,7 +37,7 @@
         </form>
     </main>
     <div id="right_side">
-        <button type="submit" class="btn btn-primary">Publish</button>
+        <button type="submit" id="publish" class="btn btn-primary">Publish</button>
         <div id="category_form">
             <form action="#" >
             <div class="form-group">
@@ -67,5 +67,35 @@
         readURL(this);
 
     });
+
+
+    $("#publish").click(function(e){
+        form = $("#post");
+
+        data_form = new FormData($(form)[0]);
+
+
+        $.ajax({
+            url : "./post",
+            type : "POST",
+            async: false,
+            data : data_form,
+       cache: false,
+       contentType: false,
+       enctype: 'multipart/form-data',
+       processData: false, 
+       success: function (response) {
+         alert(response);
+       }
+
+        });
+        return false;
+    });
+    $(document).ready(function (e) {
+
+
+    });
+
+
     </script>
 {% endblock %}
