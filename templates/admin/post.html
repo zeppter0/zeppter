@@ -18,6 +18,7 @@
 
                     </div>
 
+
                 </div>
                 <div class="col-3">
                     <img src="{% static 'assets/img/download.png' %}" id="image_add_show" onclick="document.getElementById('book_add_pic').click()">
@@ -29,7 +30,7 @@
             </div>
         <div class="form-group">
       <label for="comment">Book:</label>
-      <textarea class="form-control" name="book_data" rows="10" id="comment"></textarea>
+      <textarea class="form-control" name="book_data" form="post" rows="10" id="comment"></textarea>
     </div>
 
         <input type="file"  class="form-control" id="book_add_pic" style="display: none" name="book_add_pic" >
@@ -63,8 +64,8 @@
         readURL(this,'#image_add_show');
 
     });
-<<<<<<< HEAD
-        $("#publish").click(function (e){
+
+     /*   $("#publish").click(function (e){
             form_data = new FormData($("#post")[0]);
 
             $.ajax({
@@ -80,8 +81,8 @@
                     alert(data);
                 }
             });
-        });
-=======
+        });*/
+
 
 
     $("#publish").click(function(e){
@@ -112,6 +113,6 @@
     });
 
 
->>>>>>> 0e5b86762ff9440cd555fb38d0cf73a356f399ac
+
     </script>
 {% endblock %}

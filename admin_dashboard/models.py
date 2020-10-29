@@ -14,9 +14,6 @@ class Book(models.Model):
     book_publish = models.BooleanField(default=False)
 
 
-
-    pub_date = models.DateTimeField('date published')
-
     def __str__(self):
         return self.book_title
 

@@ -50,14 +50,13 @@
       <change beforePath="$PROJECT_DIR$/values/strings.py" beforeDir="false" afterPath="$PROJECT_DIR$/values/strings.py" afterDir="false" />
 =======
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_dashboard/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_dashboard/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/comment/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djson/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/djson/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/admin/post.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/post.html" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/templates/dashboard/content.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/content.html" afterDir="false" />
 >>>>>>> 0e5b86762ff9440cd555fb38d0cf73a356f399ac
       <change beforePath="$PROJECT_DIR$/zeppter/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/zeppter/settings.py" afterDir="false" />
+=======
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,6 +266,7 @@
       <workItem from="1603397222935" duration="1871000" />
       <workItem from="1603480930901" duration="2107000" />
       <workItem from="1603580082003" duration="641000" />
+<<<<<<< Updated upstream
 <<<<<<< HEAD
       <workItem from="1603623417539" duration="354000" />
       <workItem from="1603624073092" duration="2878000" />
@@ -281,6 +281,10 @@
 =======
       <workItem from="1603865284162" duration="10484000" />
 >>>>>>> 0e5b86762ff9440cd555fb38d0cf73a356f399ac
+=======
+      <workItem from="1603865284162" duration="10785000" />
+      <workItem from="1603884759450" duration="666000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>

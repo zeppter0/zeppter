@@ -45,11 +45,22 @@ def content(request,id):
     data = Book.objects.filter(id=id)
     comments = Comment.objects.filter(postid=id)
     for d in data:
-        dat = {'title': d.book_title,'dascription':d.book_description,'img':d.book_image,'postid':id,'comments':comments}
+        d.book_data = d.book_data.replace("%*#h2","<h2>")
+        d.book_data = d.book_data.replace("%*&h2","</h2>")
+        dat = {'book_data' : d.book_data ,'title': d.book_title,'dascription':d.book_description,'img':d.book_image,'postid':id,'comments':comments}
 
 
 
 
 
     return render(request,"dashboard/content.html",dat)
+def bookdata(request,id):
+    data = Book.objects.filter(id=id)
+    if data.count() == 1:
+        book_data = data[0].book_data.replace("%*#h2", "<h2>")
+        book_data = data[0].book_data.replace("%*&h2", "</h2>")
+        return HttpResponse(book_data)
+
+    return HttpResponse("hello word")
+
 

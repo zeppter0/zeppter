@@ -12,7 +12,7 @@ from .models import Category
 
 def dashboard(request):
     if request.user.is_authenticated:
-<<<<<<< HEAD
+
         cat = Category.objects.all()
 
         data= {
@@ -24,13 +24,7 @@ def dashboard(request):
     else:
 
         return  HttpResponse("please login")
-=======
-        return  HttpResponse("login home")
-        
-    else:
-        return render(request,'admin/post.html')
-        
->>>>>>> 0e5b86762ff9440cd555fb38d0cf73a356f399ac
+
 
 
 def post(request):
@@ -42,7 +36,7 @@ def post(request):
         if Book.objects.filter(book_title=title).count() <1:
             book = Book(book_title=title, book_description=description,
                         book_data= book,
-                        book_rates=2, book_publish=False, pub_date=timezone.now(), book_image=book_pic,
+                        book_rates=2, book_publish=False, book_upload_date=timezone.now(), book_image=book_pic,
                         book_commit_id=1)
             book.save()
             return HttpResponse("save")
@@ -51,7 +45,7 @@ def post(request):
 
 
 
-    return redirect(dashboard)
+    return HttpResponse("please data check")
 
 
 def shows(request):
