@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
+    BaseUserManager, AbstractBaseUser, User
 )
 
 
@@ -34,7 +34,14 @@ class MyUserManager(BaseUserManager):
         )
         user.is_admin = True
         user.save(using=self._db)
-        return user
+        return user 
+    def create_plople_user(self,email,date_of_birth,password=None):
+        user = self.create_user(email,date_of_birth,password=password,)
+        user.is_plople
+
+        return user.save(using=self._db)
+
+        
 
 
 class MyUser(AbstractBaseUser):
@@ -46,6 +53,7 @@ class MyUser(AbstractBaseUser):
     date_of_birth = models.DateField()
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    is_plople = models.BooleanField(default=False)
 
     objects = MyUserManager()
 
@@ -70,3 +78,8 @@ class MyUser(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+
+    @property
+    def is_user(self):
+        return self.is_plople    

@@ -23,7 +23,13 @@ def dashboard(request):
 
     else:
 
-        return  HttpResponse("please login")
+        cat = Category.objects.all()
+
+        data= {
+            'link' : bootstrap(),
+            'cat' : cat,
+        }
+        return render(request, 'admin/post.html',data)
 
 
 
