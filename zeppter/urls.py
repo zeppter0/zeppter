@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.http import HttpResponse
+from django.conf.urls import url
 
 urlpatterns = [
     path("admin/",admin.site.urls),
@@ -26,4 +28,5 @@ urlpatterns = [
     path("call/",include('videocall.urls')),
    # path("admin/<str:id>",include("plopleadmin.urls")),
     #path("admin/",include("register.urls")),
+    url(r'^robots.txt', lambda x: HttpResponse("User-Agent: *\nDisallow:", content_type="text/plain"), name="robots_file"),
 ]
