@@ -12,7 +12,7 @@ def index(request):
         comments = request.POST['comment']
 
         comment  = Comment(postid=postid,name=name,email=email,comment=comments)
-       # comment.save()
+        comment.save()
 
         username = comment.name
         data= {
@@ -29,3 +29,5 @@ def index(request):
 
     
     return HttpResponse()
+def comment(request):
+    return HttpResponse("hello")    
