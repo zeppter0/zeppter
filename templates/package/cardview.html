@@ -1,7 +1,8 @@
 <div class="cardview ">
-          <div class="card_image"> <img src="{{ MEDIA_URL }}{{ i.book_image }}" /> </div>
+          <div class="card_image"> <img src="http://{{ request.get_host }}{{ MEDIA_URL }}{{ i.book_image }}" /> </div>
           <div class="card_Title title-white">
               <h4>{{ i.book_title }}</h4>
             <p>{{ i.book_description }}</p>
+
           </div>
 </div>

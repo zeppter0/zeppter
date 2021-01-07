@@ -26,6 +26,8 @@ urlpatterns = [
     path('comment',include('comment.urls')),
     path("test/",include("mytest.urls")),
     path("call/",include('videocall.urls')),
+    path("mobile/",include("mobile.urls")),
+    path("test",include("mytest.urls"),name="test"),
    # path("admin/<str:id>",include("plopleadmin.urls")),
     #path("admin/",include("register.urls")),
     url(r'^robots.txt', lambda x: HttpResponse("User-Agent: *\nDisallow:", content_type="text/plain"), name="robots_file"),

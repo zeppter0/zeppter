@@ -1,0 +1,121 @@
+<div class="container">
+<div class="downlod_fr">
+    <P>Loding</P>
+    <div class="downlod_sh">
+        <button class="button5 left" id="cancel_click">Cancel</button>
+        <button class="button5 right" id="downclick">Download</button>
+    </div>
+</div>
+<div class="title_frame_show text-center">
+    <h4>{{ book_title }}</h4>
+</div>
+<div class="book_img_frame text-center">
+
+    <img id="book_img" src="http://{{ request.get_host }}{{ MEDIA_URL }}{{ book_image }}">
+
+
+</div>
+<div class="load_frame">
+    <button id="online_load" class="button5">
+        <strong>Online</strong>
+
+    </button>
+    <button id="download_load" class="button5">
+        <strong>Download</strong>
+    </button>
+    <div>
+
+    </div>
+</div>
+<div class="item_abaut">
+    <div class="item-des">
+        <p>{{ book_description }}</p>
+        <table class="w-100">
+            <thead>
+            <tr>
+                <th>hello</th>
+                <th>kese</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>tere</td>
+                <td>bin</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+    {% for ca in cat %}
+<div class="_343 w-100">
+        <div class="_9050">
+            <h4 class="list-title" >{{ ca.cat_title }}</h4>
+            <button class="list-more button5"><strong>More</strong></button>
+</div>
+    <div class="item-list">
+        <ul>
+
+            {% for i in data %}
+        <li>
+        <a class="cardlink" href="http://{{ request.get_host }}/mobile/content/{{ i.id }}" >
+        {% include 'package/cardview.html' %}
+        </a>
+
+
+        </li>
+
+        {% endfor %}
+        </ul>
+    </div>
+    </div>
+{% endfor %}
+
+
+
+</div>
+
+
+
+<script>
+
+    $(document).ready(function (e){
+        da = document.getElementById("backbtn")
+        if ($('#backbtn').is(':empty')) {
+    // do something
+            i = document.createElement("i");
+        i.className += "material-icons";
+        i.innerHTML = "keyboard_backspace";
+
+        da.appendChild(i);
+}
+
+        $(".cardlink").click(function (e){
+    home($(this).attr("href"),function (data){
+        $(".main").html(data)
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+    });
+
+
+
+
+    return false;
+            });
+        $("#download_load").click(function (e){
+            $(".downlod_fr").css("display","block");
+        });
+        $("#cancel_click").click(function (e){
+            $(".downlod_fr").css("display","none");
+
+        });
+        $("#online_load").click(function (e){
+            main = $("#main");
+            home("http://{{ request.get_host }}/mobile/mobile_pdf/{{ id }}",function (data){
+        $(".main").html(data)
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+    });
+            return false;
+
+        });
+    });
+</script>

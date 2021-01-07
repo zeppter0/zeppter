@@ -1,0 +1,14 @@
+{% extends "mobile/include/include.html" %}
+{% block content %}
+
+    <div class="row">
+    {% for i in data %}
+        {% if forloop.counter|divisibleby:4 %}
+            <div class="w-100"></div>
+    {% endif %}
+        <div class="col-3">
+        {% include 'package/cardview.html' %}
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

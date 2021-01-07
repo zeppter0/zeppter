@@ -1,0 +1,43 @@
+   <div id="" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+      {% for i in data %}
+    <div class="carousel-item {% if forloop.counter == 1 %}
+
+    active
+
+    {% endif %} ">
+      <img id="carousel-img" class="d-block w-100" src="{{ MEDIA_URL }}{{ i.book_image }}" alt="First slide">
+    </div>
+      {% endfor %}
+
+  </div>
+    </div>
+{% for ca in cat %}
+<div class="_343 w-100">
+        <div class="_9050">
+            <h4 class="list-title" >{{ ca.cat_title }}</h4>
+            <button class="list-more button5"><strong>More</strong></button>
+</div>
+    <div class="item-list">
+        <ul id="lid{{ ca.id }}">
+
+
+        </ul>
+        <script>
+            $(document).ready(function (e){
+                $.ajax(
+        {
+            url : "http://{{ request.get_host }}/mobile/mobilecard/{{ ca.id }}",
+            cache: false,
+            success : function (data){
+                $("#lid{{ ca.id }}").html(data)
+
+            }
+        }
+    );
+            });
+
+        </script>
+    </div>
+    </div>
+{% endfor %}

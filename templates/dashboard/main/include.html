@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% block header %}{% endblock %}
+
+
+
+
+
+
+
+    <!-- boostrap-->
+    <!--link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}"-->
+    <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/dashboard/main2.css' %}">
+<link rel="stylesheet" href="{% static 'assets/dashboard/main3.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/card/card.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/slideshow.css' %}">
+     <script src="{% static "assets/jquery/mainjquery.js" %}"></script>
+<script src="{% static "assets/pooper/popper.min.js" %}"></script>
+<script src="{% static "assets/bootstrap/js/bootstrap.min.js" %}" ></script>
+<script src="{% static "" %}{{ link.buildpdf }}"></script>
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+{% block content %}{% endblock %}
+</body>
+</html>

@@ -138,10 +138,12 @@ nav.main-menu ul {
   flex-direction: row;            /* default value; can be omitted */
   flex-wrap: nowrap;              /* default value; can be omitted */
   justify-content: space-between; /* switched from default (flex-start, see below) */
-  background-color: lightyellow;
+  background-color: #93b39b40;
 
 }
 .main-content{
     display: inline-block;
 }
-
+.ck-editor__editable {
+        min-height: 500px;
+    }

@@ -13,16 +13,18 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">File Edit</th>
+      <th scope="col">File Delete</th>
     </tr>
   </thead>
   <tbody>
   {% for dat in data  %}
     <tr>
-      <th scope="row">{{ dat.id }}</th>
+      <th scope="row" id="tableshow">{{ dat.id }}</th>
       <td>{{ dat.book_title }}</td>
+    <td><a href="#">Edit</a> </td>
+    <td><a href="./delete/{{ dat.id }}" onclick="dele(this)" class="bg-danger" id="post-delete" >Delete</a> </td>
 
     </tr>
   {% endfor %}
@@ -51,6 +53,19 @@
     </div>
     </div>
     <script>
+    function dele(item){
+
+
+        $.ajax({
+            url : item.href,
+            type : "GET",
+            data : {id:1,
+            },
+            success : function (e){
+                alert(e);
+            }
+        });
+    }
         function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -70,3 +85,4 @@
 
     </script>
 {% endblock %}
+

@@ -8,7 +8,8 @@ def bootstrap():
         "googleicon": "https://fonts.googleapis.com/icon?family=Material+Icons",
         "fontawesome": "assets/fontawesome/css/all.css",
         "registercss": "assets/login/register.css",
-        "categorycss": "assets/admin/css/category.css"
+        "categorycss": "assets/admin/css/category.css",
+        "buildpdf":"assets/pdf/build/pdf.js",
     }
 
 

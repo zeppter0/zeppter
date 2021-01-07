@@ -1,0 +1,72 @@
+{% extends "mobile/include/include.html" %}
+{% block content %}
+    <div id="mob-navbar" >
+        <div class="row">
+            <div class="col text-center" id="backbtn">
+
+            </div>
+            <div class="col text-center">
+                <h4>Zeppter</h4>
+            </div>
+            <div class="col text-center">
+                
+            </div>
+
+        </div>
+    <div class="progress-show"></div>
+
+    </div>
+<div class="main">
+
+
+</div>
+
+
+
+    <div style="display: none">
+
+
+
+    </div>
+    <div id="bottom-toolbar">
+    <div id="bottom-bar" class="row">
+        <div class="col text-center" >
+            <div id="home-btn">
+                <i  class="material-icons" id="bottom-btn">home</i>
+            </div>
+        </div>
+        <div class="col text-center">
+            <i class="material-icons" id="bottom-btn">add</i>
+        </div>
+        <div class="col text-center">
+            <i class="material-icons" id="bottom-btn">offline_pin</i>
+        </div>
+
+
+    </div>
+
+    </div>
+    <script>
+
+        $(document).ready(function (e){
+
+            main = $(".main");
+            $(".list-more").click(function (e){
+         window.location = "./booklist/1";
+
+    });
+            $("#home-btn").click(function (e){
+                $("#backbtn").html("");
+                home("http://{{ request.get_host }}/mobile_home",function (e){
+                    main.html(e);
+                });
+
+
+            });
+
+
+
+        });
+
+    </script>
+{% endblock %}

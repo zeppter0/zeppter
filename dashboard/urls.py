@@ -26,8 +26,11 @@ urlpatterns = [
    # path('dashboard',views.shows,name="shows"),
     path('card',views.cardpost,name="cardpost"),
     path('view',views.view,name="view"),
-    path('<int:id>',views.content,name="content"),
+    path('<int:id>',views.shodata,name="content"),
     path('bookdata/<int:id>',views.bookdata,name="content"),
+    path('pdf_show/<int:id>',views.pdf_show,name="pdf_show"),
+    path("booklist/<int:id>",views.listview,name="listview"),
+    path("mobile_home",views.mobile_home,name="mobile_home"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

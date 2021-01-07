@@ -1,0 +1,157 @@
+{% extends 'dashboard/main/include.html' %}
+{% load static %}
+{% block content %}
+{% include "dashboard/main/header.html" %}
+    <div class="container contentshow">
+    <div id="_9023">
+        <div id="iconframe">
+            <img src="{{ MEDIA_URL }}{{ img }}" width="330" height="330"/>
+            <div class="_786786">
+                <div class="position-relative w-100">
+                    <button id="card_add" >Show Book</button>
+
+                <button id="download" href="../pdf_show/{{ postid }}" onclick="window.open('../pdf_show/{{ postid }}')" >Download Book</button>
+
+                </div>
+            </div>
+        </div>
+        <div class="_90237">
+            <div class="container">
+                <ul class="_786865">
+                    <li>
+                        <div class="_boottile">
+                            <h2>{{ title }}</h2>
+                        </div>
+                    </li>
+                    <li>
+                        <h4 class="_7854">{{ dascription }}</h4>
+                    </li>
+                    <li>
+                        <div class="_description">
+                            <p>{{ book_data }}</p>
+                        </div>
+                    </li>
+
+
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="container">
+        <h3 class="text-center">description</h3>
+        <table  class="center_margin" id="description_frame">
+            <thead>
+
+
+            <tr>
+                <th >Name</th>
+                <th >Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Book Name</td>
+                <td>Raja Chauhan</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="row">
+        <div class="col" style="width: 400px ;background-color: white">
+        <form action="#" id="content-comment">
+            {% csrf_token %}
+            <input type="hidden" name="postid" value="{{ postid }}">
+            <div class="form-group">
+
+    <label for="exampleInputEmail1">Your Name</label>
+    <input type="text" class="form-control" name="name" id="exampleInputEmail1" >
+
+
+            </div>
+            <div class="form-group">
+
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+
+            </div>
+            <div class="form-group">
+    <label for="exampleFormControlTextarea1">You Comment</label>
+    <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+            <input type="submit" class="btn btn-primary" value="Comment">
+        </form>
+    </div>
+        <div class="col" style="background-color: white;">
+            <ul id="comment-list">
+                {% for comment in comments %}
+                <li>
+                    <a href="#">
+                        {{ comment.name }}
+
+                    </a>
+                    <br>
+                    <comment>{{ comment.comment }}</comment>
+                </li>
+                {% endfor %}
+
+
+            </ul>
+
+        </div>
+    </div>
+
+    </div>
+    <script>
+
+    $("#content-comment").submit(function (e){
+        data_form = new FormData($(this)[0]);
+       var form =  $(this);
+
+        $.ajax({
+            url: "../comment",
+            method : "POST",
+            data : form.serialize(),
+            cache :false,
+            success:function (data) {
+                data_json = JSON.parse(data)
+
+                li = document.createElement("li");
+                a= document.createElement("a");
+                comment = document.createElement("comment");
+                a.href = "hello";
+                list = document.getElementById("comment-list");
+                var br = document.createElement('br');
+
+                a.innerText = data_json.name;
+                comment.innerText = data_json.comment;
+                li.appendChild(a);
+                li.appendChild(br)
+                li.appendChild(comment)
+                list.appendChild(li)
+
+                alert(data_json.response)
+
+
+
+
+            }
+        });
+
+        return false;
+    });
+
+
+
+
+</script>
+
+{% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}">
+
+{% endblock %}
+

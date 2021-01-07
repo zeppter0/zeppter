@@ -6,6 +6,14 @@
   align-items: center;
   display: block ruby;
   background-color: white;
+
+}
+#catgory-list{
+  list-style-type: none;
+}
+#catgory-list li {
+  margin-top: 2px;
+  margin-bottom: 10px;
 }
 /* Style the input fields */
 #categoryadd input {

@@ -5,6 +5,7 @@
     <div class="main-contents">
     <main class="main-content container" id="main_content">
     <form id="post" action="post" method="POST" enctype = "multipart/form-data">
+        <input type="hidden" value="" name="id" id="post_id">
         {% csrf_token %}
             <div class="row">
                 <div class="col-9">
@@ -15,6 +16,11 @@
                     <div class="form-group ">
                         <label for="exampleInputEmail1">discription</label>
                         <input type="text" name="description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter description">
+
+                    </div>
+                    <div class="form-group ">
+                        <label for="exampleInputEmail1">PDF File</label>
+                        <input type="file" accept="application/pdf" name="pdf_show" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter description">
 
                     </div>
 
@@ -30,7 +36,7 @@
             </div>
         <div class="form-group">
       <label for="comment">Book:</label>
-      <textarea class="form-control" name="book_data" form="post" rows="10" id="comment"></textarea>
+            <textarea class="form-control" name="editor1" rows="10" id="editor1"></textarea>
     </div>
 
         <input type="file"  class="form-control" id="book_add_pic" style="display: none" name="book_add_pic" >
@@ -40,6 +46,7 @@
     </main>
     <div id="right_side">
         <button type="submit" id="publish" class="btn btn-primary">Publish</button>
+        <button  id="dataupdate" class="btn btn-primary">Update</button>
         <div id="category_form">
             {% include "admin/include/category.html" %}
 
@@ -48,7 +55,20 @@
     </div>
     </div>
     <script>
+    var id = "";
+    ClassicEditor
+    .create( document.querySelector( '#editor1' ) )
+    .then( editor => {
+        console.log( editor );
+    } )
+    .catch( error => {
+        console.error( error );
+    } );
+
+
         function readURL(input,img) {
+
+
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
@@ -65,33 +85,66 @@
 
     });
 
-     /*   $("#publish").click(function (e){
-            form_data = new FormData($("#post")[0]);
+        $("#publish").click(function (e){
+            validate(function (da){
+                post_publish("true",da);
 
-            $.ajax({
-                type : "POST",
-                url : "{{ request.get_full_path }}post",
-                processData: false,
-      contentType: false,
-      async: false,
-      cache: false,
-                enctype: 'multipart/form-data',
-      data : form_data,
-                success: function (data){
-                    alert(data);
-                }
+
             });
-        });*/
+
+        });
+        $("#dataupdate").click(function (e){
+
+        });
+        function post_publish(upload,cat){
+
+            url = "{{ request.get_full_path }}post"
+            form_data = new FormData($(post)[0]);
+            form_data.append("publish",upload);
+            form_data.append("cat",cat);
+           catid =  $(".catgory-id").is(":checked");
+           form_data.append("cateid",id);
+
+
+            data_show(url,form_data,function (data){
+                alert(data)
+
+
+            });
+
+
+        }
+        function post_update(uplaod){
+            url = "{{ request.get_full_path }}post_update"
+            form_data = new FormData($(post)[0]);
+            form_data.append("publish",uplaod);
+
+            data_show(url,form_data,function (data){
+               alert(data);
+            });
+        }
 
 
 
-    $("#publish").click(function(e){
-        form = $("#post");
-
-        data_form = new FormData($(form)[0]);
 
 
-        $.ajax({
+        function validate(data) {
+            da = [];
+
+    $(".catgory-id").each(function(index){
+       if($(this).is(':checked')){
+           id = $(this).val();
+
+           da.push(parseInt($(this).val()))
+       }
+ });
+    data(JSON.stringify(da))
+ }
+
+
+
+
+       /* $.ajax({
             url : "./post",
             type : "POST",
             async: false,
@@ -106,11 +159,60 @@
 
         });
         return false;
-    });
+    });*/
     $(document).ready(function (e) {
+        check_show = true;
+        $('#post').on('change keyup paste', ':input', function(e) {
+    // The form has been changed. Your code here.
+            if (check_show){
+
+          post_timer=  setInterval(function (e){
+
+
+                clearInterval(post_timer)
+                check_show =true
+
+
+
+
+            },3000,false);
+
+            check_show= false;
+            }
+
+
+         //   readURL(this,'#image_add_show');
+
+
+});
 
 
     });
+
+    function data_show(url,form_data,response){
+
+
+            $.ajax({
+                type : "POST",
+                url : url,
+                processData: false,
+      contentType: false,
+      async: false,
+      cache: false,
+                enctype: 'multipart/form-data',
+      data : form_data,
+                success: function (data){
+                    response(data)
+
+
+
+
+
+                }
+            });
+}
+
+
 
 
 

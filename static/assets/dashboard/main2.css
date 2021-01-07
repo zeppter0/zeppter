@@ -6,14 +6,14 @@
 
 .item-layout{
     width: 100%;
-    background-color: red;
+
     height: 350px;
 
 
 }
 .item-layout .title-layout{
     height: 35px;
-    background-color: olive;
+
 }
 .item-layout .title-layout h4{
     display: contents;
@@ -27,7 +27,7 @@
 }
 
 .item-layout ul {
-    background: #48D;
+
     
     line-height: 2;
     

@@ -1,15 +1,18 @@
 <div class="categorylist">
 
 {% load static %}
-    <ul>
+    <ul id="catgory-list">
 
         {% for i in cat %}
         <li>
+        <input  type="checkbox" class="catgory-id" name="catid[]" value="{{ i.id }}">
             <img id="catshowimg" src="http://{{ request.get_host }}{{ i.cat_img.url }}">
             <p style="display: inline-block">
                 {{ i.cat_title }}
 
             </p>
+        <button href="#">Edit</button>
+        <button href="./cat_delete/{{ i.id }}" onclick="cat_delete(this)" value="{{ i.id }}">Delete</button>
         </li>
         {% endfor %}
     </ul>
@@ -22,8 +25,10 @@
 <form action="#" enctype="multipart/form-data" id="categoryadd" >
     {% csrf_token %}
 
-       <input name="title" type="text">
-       <input name="file" type="file" id="categoryimg">
+
+        <input  name="title" type="text" placeholder="cat name">
+
+    <input name="file" type="file" id="categoryimg">
        <img id="cataddimg" src="{% static 'assets/img/download.png' %}" width="70px" height="70px" onclick="document.getElementById('categoryimg').click()" >
 
        <input name="submit" type="submit" value="upload">
@@ -42,10 +47,22 @@
 
        // alert("hello word")
     });
+    function cat_delete(request){
+        $.ajax({
+            url: "./cat_delete/"+request.value,
+            type: "GET",
+            success: function (e){
+                alert(e);
+            }
+        });
+    }
 
 
     $("#categoryadd").submit(function (e){
             form_data = new FormData($(this)[0]);
+
+
+
 
 
             $.ajax({
@@ -63,7 +80,10 @@
             });
             return false;
 
+
         });
+
+
 
 
 </script>

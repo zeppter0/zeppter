@@ -1,0 +1,24 @@
+{% for i in book %}
+        <li>
+        <a class="cardlink" href="http://{{ request.get_host }}/mobile/content/{{ i.id }}" >
+        {% include 'package/cardview.html' %}
+        </a>
+
+
+        </li>
+
+        {% endfor %}
+
+<script>
+
+$(".cardlink").click(function (e){
+    home($(this).attr("href"),function (data){
+        $(".main").html(data)
+    });
+
+
+
+
+    return false;
+            });
+</script>
