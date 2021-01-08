@@ -40,7 +40,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'a9u^k1a3@8%33v1^hj&@c0do%npc$(r$it4#%w=g2vs%0vzzxe'
 
 # SECURITY WARNING: do3qn't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     # "103.138.96.225",
@@ -115,7 +115,7 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'myzeppter',
+        'NAME': 'zeppter',
         'USER': 'dkboss650',
         'PASSWORD': 'Sorry9023@',
         'HOST': 'localhost',

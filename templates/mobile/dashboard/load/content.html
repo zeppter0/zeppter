@@ -92,7 +92,11 @@
 
         $(".cardlink").click(function (e){
     home($(this).attr("href"),function (data){
-        $(".main").html(data)
+       // $(".main").hide();
+        let content = $(".show-content");
+        content.show();
+
+        content.html(data)
         $("html, body").animate({ scrollTop: 0 }, "slow");
     });
 
@@ -111,7 +115,11 @@
         $("#online_load").click(function (e){
             main = $("#main");
             home("http://{{ request.get_host }}/mobile/mobile_pdf/{{ id }}",function (data){
-        $(".main").html(data)
+        $(".main").hide();
+        let content = $(".show-content");
+        content.show();
+
+        content.html(data)
         $("html, body").animate({ scrollTop: 0 }, "slow");
     });
             return false;

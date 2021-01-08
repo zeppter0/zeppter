@@ -20,6 +20,10 @@
 
 
 </div>
+    <div class="show-content"
+    >
+
+    </div>
 
 
 
@@ -50,14 +54,21 @@
 
         $(document).ready(function (e){
 
-            main = $(".main");
+           let main = $(".main");
             $(".list-more").click(function (e){
          window.location = "./booklist/1";
 
     });
-            $("#home-btn").click(function (e){
+$("#home-btn").click(function (e){
                 $("#backbtn").html("");
                 home("http://{{ request.get_host }}/mobile_home",function (e){
+
+                    if ($(".show-content").hide()){
+
+                    $(".main").show();
+
+                    }
+
                     main.html(e);
                 });
 
@@ -66,7 +77,9 @@
 
 
 
+
         });
+
 
     </script>
 {% endblock %}
