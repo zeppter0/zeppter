@@ -10,7 +10,7 @@ class Book(models.Model):
     book_image = models.ImageField(upload_to='cat_img',default='')
     book_rates = models.IntegerField(default=5)
     book_commit_id = models.IntegerField()
-    book_data = models.CharField(max_length=100000,default="")
+    book_data = models.CharField(max_length=100000)
     book_upload_date = models.DateTimeField("date published")
     book_publish = models.BooleanField(default=False)
     data_book = models.FileField("zip_data",default=None)
