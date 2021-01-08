@@ -45,3 +45,4 @@ class ImgUpload(models.Model):
     img_pub_date = models.DateTimeField("date published")
     img = models.ImageField(upload_to='cat_img/content',default='')
 
+
