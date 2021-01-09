@@ -51,34 +51,75 @@
 
     </div>
     <script>
+    url =  window.location.href
 
-        $(document).ready(function (e){
+        $(document).ready(function (e) {
+            $("#backbtn").click(function (e){
+               if ( window.history.back()){
+                   hitory =  window.location.href
+                   home(hitory+"mobileload", function (e) {
+                        if ($(".show-content").hide()) {
 
-           let main = $(".main");
-            $(".list-more").click(function (e){
-         window.location = "./booklist/1";
+                            $(".main").show();
 
-    });
-$("#home-btn").click(function (e){
-                $("#backbtn").html("");
-                home("http://{{ request.get_host }}/mobile_home",function (e){
+                        }
 
-                    if ($(".show-content").hide()){
+                        main.html(e);
 
-                    $(".main").show();
 
-                    }
-
-                    main.html(e);
-                });
+                    });
+               }
 
 
             });
 
 
+            let main = $(".main");
+            $(".list-more").click(function (e) {
+                window.location = "./booklist/1";
+
+            });
+            $("#home-btn").click(function (e) {
+                    window.history.pushState('page2', 'Title', '/');
+
+
+
+                    $("#backbtn").html("");
+                    home("http://{{ request.get_host }}/mobile_home", function (e) {
+                        if ($(".show-content").hide()) {
+
+                            $(".main").show();
+
+                        }
+
+                        main.html(e);
+
+
+                    });
+
+
+
+
+            });
+            $("#backbtn").html("");
+
+home(url+"mobileload", function (e) {
+                        if ($(".show-content").hide()) {
+
+                            $(".main").show();
+
+                        }
+
+                        main.html(e);
+
+
+                    });
+
+
 
 
         });
+
 
 
     </script>

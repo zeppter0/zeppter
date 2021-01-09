@@ -18,13 +18,15 @@ import math
 # Create your views here.
 
 def dashboard(request):
-    data = Book.objects.filter(book_catid=1)
+    data = Book.objects.all()
     catgory= Category.objects.all()
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
    # comments = Comment.objects.filter(postid=)
-   #return HttpResponse("hello word")
+   #
     if ua.find("android")>0:
-        return render(request, 'mobile/dashboard/home.html', {'data': data,"cat": catgory})
+
+
+        return render(request, 'mobile/dashboard/home.html', {'data': data ,"cat": catgory})
 
 
 
@@ -138,6 +140,8 @@ def mobile_home(request):
     catgory = Category.objects.all()
 #    rengred = render_to_string("mobile/dashboard/load/home.html",{"data":data,"cat":catgory})
     return render(request,"mobile/dashboard/load/home.html",{"book":data,"data":data,"cat":catgory})
+
+
 
 
 

@@ -1,6 +1,6 @@
 {% for i in book %}
         <li>
-        <a class="cardlink" href="http://{{ request.get_host }}/mobile/content/{{ i.id }}" >
+        <a data-value="{{ i.id }}" class="cardlink" href="/mobile/content/{{ i.id }}"  >
         {% include 'package/cardview.html' %}
         </a>
 
@@ -13,8 +13,18 @@
 
 $(".cardlink").click(function (e){
     home($(this).attr("href"),function (data){
-        $(".main").html(data)
+
+        $(".main").html(data);
+
+
+
+
+
+
+
     });
+    history.pushState('data to be passed', 'Title of the page', '/mobile/content/'+$(this).data('value'));
+
 
 
 

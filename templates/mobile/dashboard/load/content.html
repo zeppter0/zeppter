@@ -1,4 +1,4 @@
-<div class="container">
+
 <div class="downlod_fr">
     <P>Loding</P>
     <div class="downlod_sh">
@@ -73,7 +73,7 @@
 
 
 
-</div>
+
 
 
 
@@ -90,13 +90,14 @@
         da.appendChild(i);
 }
 
-        $(".cardlink").click(function (e){
+     /*   $(".cardlink").click(function (e){
     home($(this).attr("href"),function (data){
        // $(".main").hide();
         let content = $(".show-content");
         content.show();
 
         content.html(data)
+
         $("html, body").animate({ scrollTop: 0 }, "slow");
     });
 
@@ -104,7 +105,7 @@
 
 
     return false;
-            });
+            });*/
         $("#download_load").click(function (e){
             $(".downlod_fr").css("display","block");
         });

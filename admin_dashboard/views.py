@@ -157,8 +157,9 @@ def post_update(request):
             return HttpResponse(book_publish)
     else:
         return HttpResponse("no data")
-
     return HttpResponse("please data check")
+
+
 
 
 
