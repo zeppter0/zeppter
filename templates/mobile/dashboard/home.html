@@ -2,17 +2,34 @@
 {% block content %}
     <div id="mob-navbar" >
         <div class="row">
-            <div class="col text-center" id="backbtn">
+            <div class="col text-center i-vcenter" id="backbtn">
 
             </div>
             <div class="col text-center">
                 <h4>Zeppter</h4>
             </div>
-            <div class="col text-center">
-                
+            <div class="col text-center" id="searchview">
+
+
+                <i class="material-icons i-vcenter">search</i>
             </div>
 
         </div>
+        <div id="search">
+
+      <form class="search-form" action="javascript:void(0);" method="GET">
+
+        <fieldset class="clearfix">
+
+          <input type="search" name="search" value="What are you looking for?" onBlur="if(this.value=='')this.value='What are you looking for?'" onFocus="if(this.value=='What are you looking for?')this.value='' ">
+          <!-- JS because of IE support; better: placeholder="What are you looking for?" -->
+          <input type="submit" value="Search" class="button">
+
+        </fieldset>
+
+      </form>
+
+    </div>
     <div class="progress-show"></div>
 
     </div>
@@ -51,9 +68,43 @@
 
     </div>
     <script>
-    url =  window.location.href
+
+
+
+
 
         $(document).ready(function (e) {
+            const main = $(".main");
+    var url= window.location.href;
+    $("#searchview").click(function (e){
+        $("#mob-navbar .row").hide();
+        $("#search").css("display","inline-block");
+    });
+
+    function geshows(s) {
+        home(url+s, function (e) {
+                        if ($(".show-content").hide()) {
+
+                            $(".main").show();
+
+                        }
+
+                        main.html(e);
+
+
+                    });
+    }
+
+    if ( window.location.pathname == '/' ){
+
+    geshows("mobileload");
+
+
+} else {
+    geshows("/mobileload");
+
+}
+
             $("#backbtn").click(function (e){
                if ( window.history.back()){
                    hitory =  window.location.href
@@ -74,7 +125,7 @@
             });
 
 
-            let main = $(".main");
+
             $(".list-more").click(function (e) {
                 window.location = "./booklist/1";
 
@@ -102,22 +153,6 @@
 
             });
             $("#backbtn").html("");
-
-home(url+"mobileload", function (e) {
-                        if ($(".show-content").hide()) {
-
-                            $(".main").show();
-
-                        }
-
-                        main.html(e);
-
-
-                    });
-
-
-
-
         });
 
 
