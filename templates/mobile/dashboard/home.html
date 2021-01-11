@@ -6,7 +6,7 @@
 
             </div>
             <div class="col text-center">
-                <h4>Zeppter</h4>
+                <h5 id="main-title">Zeppter</h5>
             </div>
             <div class="col text-center" id="searchview">
 
@@ -21,9 +21,10 @@
 
         <fieldset class="clearfix">
 
-          <input type="search" name="search" value="What are you looking for?" onBlur="if(this.value=='')this.value='What are you looking for?'" onFocus="if(this.value=='What are you looking for?')this.value='' ">
+          <input id="searif"  type="search" name="search" value="What are you looking for?" onBlur="if(this.value=='')this.value='What are you looking for?'" onFocus="if(this.value=='What are you looking for?')this.value='' ">
           <!-- JS because of IE support; better: placeholder="What are you looking for?" -->
-          <input type="submit" value="Search" class="button">
+            <input type="hidden" value="hello">
+
 
         </fieldset>
 
@@ -73,6 +74,7 @@
 
 
 
+
         $(document).ready(function (e) {
             const main = $(".main");
     var url= window.location.href;
@@ -80,6 +82,7 @@
         $("#mob-navbar .row").hide();
         $("#search").css("display","inline-block");
     });
+    $("")
 
     function geshows(s) {
         home(url+s, function (e) {
@@ -123,13 +126,13 @@
 
 
             });
+    $("#main-title").click(function (e){
+
+    });
 
 
 
-            $(".list-more").click(function (e) {
-                window.location = "./booklist/1";
 
-            });
             $("#home-btn").click(function (e) {
                     window.history.pushState('page2', 'Title', '/');
 
@@ -153,6 +156,37 @@
 
             });
             $("#backbtn").html("");
+
+
+
+            $("#searif").keyup(function (e) {
+                var main = $(".main");
+                var name = $('#searif').val();
+                if (name === ""){
+                    main.html("");
+
+                }else {
+                    $.ajax({
+
+                    url : "/mobile/search",
+                    type : "GET",
+                    data: {search : name},
+
+                    success : function (data) {
+
+                        main.html(data);
+
+
+
+
+                    }
+                });
+                }
+
+
+
+
+            });
         });
 
 

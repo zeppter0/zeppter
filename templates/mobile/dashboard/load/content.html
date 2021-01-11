@@ -70,6 +70,42 @@
     </div>
     </div>
 {% endfor %}
+<div class="commet-frame">
+
+    <div class="commet-list container">
+    <h3>Comment show</h3>
+        <ul>
+            <li>
+                {% for comment in comments %}
+                <div class="commet-show">
+                    <div class="imgframi d-inline-block">
+                        <img src="http://127.0.0.1:8000/media/cat_img/funny-story-in-hindi-9_l66eSUT.webp">
+                    </div>
+                    <div class="com-title d-inline-block ">
+                        <h4 class="comme-title">{{ comment.name }}</h4>
+                        <p class="commentsd">{{ comment.comment }}</p>
+                    </div>
+
+                </div>
+                {% endfor %}
+            </li>
+        </ul>
+
+</div>
+<form id="commtgd">
+    <input type="hidden" name="postid" value="{{ id }}">
+    {% csrf_token %}
+    <label for="comment" class="col-md-1 control-label">Tenth Comment:</label>
+<div class="col-md-2">
+    <input type="text" name="name" placeholder="Your Name">
+    <input type="email" name="email" placeholder="Your Email">
+    <textarea class="form-control input-sm" name="comment" rows="4" id="comment"></textarea>
+</div>
+    <input name="submit" type="submit" value="submit">
+</form>
+
+</div>
+
 
 
 
@@ -78,6 +114,7 @@
 
 
 <script>
+
 
     $(document).ready(function (e){
         da = document.getElementById("backbtn")
@@ -126,5 +163,44 @@
             return false;
 
         });
+
+
+
+
+        $("#commtgd").submit(function (e){
+        data_form = new FormData($(this)[0]);
+       var form =  $(this);
+
+        $.ajax({
+            url: "/comment",
+            method : "POST",
+            data : form.serialize(),
+            cache :false,
+            success:function (data) {
+                data_json = JSON.parse(data)
+
+                li = document.createElement("li");
+                a= document.createElement("a");
+                comment = document.createElement("comment");
+                a.href = "hello";
+                list = document.getElementById("comment-list");
+                var br = document.createElement('br');
+
+                a.innerText = data_json.name;
+                comment.innerText = data_json.comment;
+                li.appendChild(a);
+                li.appendChild(br)
+                li.appendChild(comment)
+                list.appendChild(li)
+
+                alert(data_json.response)
+
+
+
+
+            }
+        });
+        return false;
+    });
     });
 </script>

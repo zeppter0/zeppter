@@ -1,6 +1,9 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from admin_dashboard.models import Book
 from admin_dashboard.models import Category
+from comment.models import Comment
+from django.contrib.postgres.search import SearchVector
 
 # Create your views here.
 
@@ -11,7 +14,8 @@ def content(request,id):
         book = Book.objects.filter(id=id)
 
         cat = Category.objects.filter(id=book[0].book_catid)
-        data = Book.objects.filter(book_catid=cat[0].id)
+        data = Book.objects.filter(book_catid=cat[0].id)[:10]
+        comments = Comment.objects.filter(postid=id)
 
         print(cat)
         for da in book:
@@ -22,6 +26,7 @@ def content(request,id):
                 "data": data,
                 "cat": cat,
                 "id": da.id,
+                "comments" : comments,
             }
 
         return render(request, "mobile/dashboard/load/content.html", dat)
@@ -48,7 +53,7 @@ def showdatapdf(request,id):
 
 
 def mobilecard(request,id):
-    books = Book.objects.filter(book_catid=id)
+    books = Book.objects.filter(book_catid=id).order_by('-id')[:10]
 
     return render(request,"mobile/dashboard/load/cardlist.html",{"book":books})
 def home(request):
@@ -62,3 +67,25 @@ def loadhome():
 
 def loadcontent():
     return None
+
+
+def search(request):
+    if request.method in "GET" and "search" in request.GET:
+        search = request.GET["search"]
+        book = Book.objects.annotate(search=SearchVector('book_title', 'book_description'),).filter(search=search)
+        cat = Category.objects.filter(cat_title=search)
+        data = {
+            "cat": cat,
+            "book": book
+        }
+        return render(request, "mobile/dashboard/load/search.html", data)
+    return HttpResponse("hello word")
+def listview(request,cat):
+    book = Book.objects.filter(book_catid=cat)
+    ca = Category.objects.filter(id=cat)
+    data = {
+        "book" : book,
+        "cat" : ca,
+    }
+    return  render(request,"mobile/dashboard/load/listview.html",data)
+

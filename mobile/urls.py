@@ -8,5 +8,7 @@ urlpatterns = [
     path("mobile_pdf/<int:id>",views.showdatapdf, name="showpdf"),
 path("mobilecard/<int:id>",views.mobilecard, name="showpdf"),
     path("home",views.home,name="mobilehome"),
-path("content/<int:id>/mobileload",views.content,name="contentload")
+path("content/<int:id>/mobileload",views.content,name="contentload"),
+    path("search",views.search,name="mobile_serach"),
+    path("listview/<int:cat>",views.listview,name="listview"),
 ]

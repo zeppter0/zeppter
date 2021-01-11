@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="title-fd">
+        <p class="title-list">
+            {% for d in cat %}
+                {{ d.cat_title }}
+            {% endfor %}
+        </p>
+
+    </div>
+    <ul class="listviewul">
+        {% include "mobile/dashboard/load/cardlist.html" %}
+
+    </ul>
+
+</div>

@@ -18,7 +18,7 @@ import math
 # Create your views here.
 
 def dashboard(request):
-    data = Book.objects.all()
+    data = Book.objects.all()[:5]
     catgory= Category.objects.all()
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
    # comments = Comment.objects.filter(postid=)
@@ -41,7 +41,7 @@ def dashboard(request):
 
     #return HttpResponse("hello word")
 def cardpost(request):
-    data = Book.objects.filter(book_catid=1)
+    data = Book.objects.filter(book_catid=1)[:10]
     st = list()
 
 

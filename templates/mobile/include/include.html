@@ -5,17 +5,19 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="{% static "assets/mobile/dashboard/css/main1.css" %}">
+    <link rel="stylesheet" href="{% static "assets/mobile/dashboard/css/main2.css" %}">
     <link rel="stylesheet" href="{% static "assets/mobile/dashboard/css/content1.css" %}">
      <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}">
 
+
 <link rel="stylesheet" href="{% static 'assets/css/card/card.css' %}">
      <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="{% static "assets/jquery/mainjquery.js" %}"></script>
+    <script src="{% static "assets/jquery/mainjquery.js" %}" crossorigin="anonymous"></script>
     <script src="{% static "assets/mobile/dashboard/js/main1.js" %}"></script>
 
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script src="{% static "assets/pooper/popper.min.js" %}"></script>
-<script src="{% static "assets/bootstrap/js/bootstrap.min.js" %}" ></script>
+<script src="{% static "assets/pooper/popper.min.js" %}"  crossorigin="anonymous"></script>
+
 </head>
 <body>
 {% block content %}
@@ -23,3 +25,4 @@
 
 </body>
 </html>
+<script src="{% static "assets/bootstrap/js/bootstrap.min.js" %}"  crossorigin="anonymous" ></script>

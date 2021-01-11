@@ -1,0 +1,7 @@
+.listviewul{
+    list-style-type: none;
+}
+.listviewul li{
+    display: inline-block;
+    margin: 10px 5px;
+}
