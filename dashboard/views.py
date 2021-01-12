@@ -21,12 +21,42 @@ def dashboard(request):
     data = Book.objects.all()[:5]
     catgory= Category.objects.all()
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
+    meta = {
+        "title" : "zeppter hindi story kid ",
+        "description" : "zeppter hindi story top big rock story",
+        "keyboard" : "zeppter,hindi story,top story",
+        "pageUrl" : request.get_full_path(),
+
+        "auther"  : "devan mandal",
+        "facebook" : {
+            "pageTitle" : "zeppter hindi story kid",
+            "description": "zeppter hindi story top big rock story",
+            "pageUrl": request.get_full_path(),
+            "siteTitle" : "zeppter",
+            "homepageUrl" : request.get_host(),
+
+
+        } ,
+        "google" : {
+            "pageTitle": "zeppter hindi story kid",
+            "description": "zeppter hindi story top big rock story",
+            "pageUrl": request.get_full_path(),
+            "homepageUrl": "zeppter",
+        },
+        "twitter" : {
+            "pageTitle": "zeppter hindi story kid",
+            "description": "zeppter hindi story top big rock story",
+            "pageUrl": request.get_full_path(),
+            "name": "zeppter",
+        }
+    }
    # comments = Comment.objects.filter(postid=)
    #
     if ua.find("android")>0:
 
 
-        return render(request, 'mobile/dashboard/home.html', {'data': data ,"cat": catgory})
+
+        return render(request, 'mobile/dashboard/home.html', {'data': data ,"meta" : meta ,"cat": catgory})
 
 
 
@@ -139,9 +169,9 @@ def mobile_home(request):
     data = Book.objects.all()
     catgory = Category.objects.all()
 #    rengred = render_to_string("mobile/dashboard/load/home.html",{"data":data,"cat":catgory})
+  #  print(render(request,"mobile/dashboard/load/home.html",{"book":data,"data":data,"cat":catgory}))
     return render(request,"mobile/dashboard/load/home.html",{"book":data,"data":data,"cat":catgory})
 
 
-
-
-
+def googled9d554441dd811fd(request):
+    return HttpResponse("google-site-verification: googled9d554441dd811fd.html")

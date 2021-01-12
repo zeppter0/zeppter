@@ -17,6 +17,16 @@ function home(url,datashow){
 
 
 }
+function headtag(url ,data ,show){
+    $.ajax({
+        url : urls,
+        type: "GET",
+        data : data,
+        success : function (e){
+            show(e)
+        }
+    })
+}
 
 
 

@@ -49,6 +49,7 @@ def post(request):
         book_pdf = request.FILES['pdf_show']
         book_publish = request.POST['publish']
         book_catid = request.POST["cat"]
+        keyboard = request.POST["keyboard"]
         book_cat = request.POST["cateid"]
         cat_json = json.loads(book_catid)
         print(book)
@@ -61,6 +62,7 @@ def post(request):
                         book_data=book,
                         book_arrcat=cat_json,
                         book_rates=2,
+                        keyboard=keyboard,
                         book_publish=False,
                         book_upload_date=timezone.now(),
                         book_image=book_pic,
@@ -160,9 +162,5 @@ def post_update(request):
     return HttpResponse("please data check")
 
 
-
-
-
-
-
-
+def googled9d554441dd811fd(request):
+    return HttpResponse()

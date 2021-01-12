@@ -9,17 +9,49 @@ from django.contrib.postgres.search import SearchVector
 
 
 def content(request,id):
+    book = Book.objects.filter(id=id)
+    meta = {
+        "icon" : book[0].book_image,
+        "title": book[0].book_title,
+        "description": book[0].book_description,
+        "keywords": book[0].keyboard,
+        "pageUrl": request.get_full_path(),
+
+        "auther": "devan mandal",
+        "facebook": {
+            "pageTitle": book[0].book_title,
+            "description": book[0].book_description,
+            "pageUrl": request.get_full_path(),
+            "siteTitle": "zeppter",
+            "homepageUrl": request.get_host(),
+
+        },
+        "google": {
+            "pageTitle": book[0].book_title,
+            "description": book[0].book_description,
+            "pageUrl": request.get_full_path(),
+            "homepageUrl": "zeppter",
+        },
+        "twitter": {
+            "pageTitle": book[0].book_title,
+            "description": book[0].book_description,
+            "pageUrl": request.get_full_path(),
+            "name": "zeppter",
+        }
+    }
     if "hide" in request.GET :
         dat = ""
-        book = Book.objects.filter(id=id)
+
 
         cat = Category.objects.filter(id=book[0].book_catid)
         data = Book.objects.filter(book_catid=cat[0].id)[:10]
         comments = Comment.objects.filter(postid=id)
 
+
         print(cat)
         for da in book:
             dat = {
+
                 "book_image": da.book_image,
                 "book_title": da.book_title,
                 "book_description": da.book_description,
@@ -35,7 +67,7 @@ def content(request,id):
     else:
         data = Book.objects.all()
         catgory = Category.objects.all()
-        return render(request, 'mobile/dashboard/home.html', {'data': data, "cat": catgory})
+        return render(request, 'mobile/dashboard/home.html', {'data': data, "cat": catgory,"meta" : meta})
 
 
 

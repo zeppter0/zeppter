@@ -70,7 +70,13 @@
             url : "/mobile/listview/1",
             type : "GET",
             success : function (e){
-                $(".main").html(e)
+                datashhow = {content : "home",
+
+                }
+                headtag("/mobile/header",datashhow,function (e){
+                    $("head").append(e);
+                });
+                $(".main").html(e);
             }
         })
 

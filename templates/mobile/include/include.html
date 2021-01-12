@@ -2,12 +2,22 @@
 {% load static %}
 <html lang="en">
 <head>
+<title>{{ meta.title }}</title>
     <meta charset="UTF-8">
-    <title>Title</title>
+    {% block headshow %}
+    {% endblock %}
     <link rel="stylesheet" href="{% static "assets/mobile/dashboard/css/main1.css" %}">
     <link rel="stylesheet" href="{% static "assets/mobile/dashboard/css/main2.css" %}">
     <link rel="stylesheet" href="{% static "assets/mobile/dashboard/css/content1.css" %}">
      <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}">
+<link rel="shortcut icon" href="{{ MEDIA_URL }}{{ meta.icon }}">
+{% if meta  %}
+
+    {% include "mobile/dashboard/load/header.html" %}
+{% endif %}
+{% block metatag %}
+{% endblock %}
+
 
 
 <link rel="stylesheet" href="{% static 'assets/css/card/card.css' %}">

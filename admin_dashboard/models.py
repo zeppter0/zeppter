@@ -16,6 +16,7 @@ class Book(models.Model):
     data_book = models.FileField("zip_data",default=None)
     book_catid = models.IntegerField(default=1)
     book_arrcat = ArrayField(ArrayField(models.IntegerField()))
+    keyboard = models.CharField(max_length=50 ,default="")
 
     def delete(self, using=None, keep_parents=False):
         self.book_image.storage.delete(self.book_image.name)
