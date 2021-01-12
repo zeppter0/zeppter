@@ -62,9 +62,9 @@ def dashboard(request):
     elif ua.find("iphone")>0:
         return render(request, 'mobile/dashboard/home.html', {'data': data, "meta": meta, "cat": catgory})
     elif ua.find("linux")>0:
-        return render(request, 'dashboard/main.html', {'data': data})
+        return render(request, 'dashboard/main.html', {'data': data,"meta" : meta})
     else:
-        return render(request, 'dashboard/main.html', {'data': data})
+        return render(request, 'dashboard/main.html', {'data': data ,"meta" : meta})
 
 
 
@@ -99,6 +99,36 @@ def shows():
     return HttpResponse("dashboard")
 
 def content(request,id):
+    book = Book.objects.filter(id=id)
+    meta = {
+        "icon": book[0].book_image,
+        "title": book[0].book_title,
+        "description": book[0].book_description,
+        "keywords": book[0].keyboard,
+        "pageUrl": request.get_full_path(),
+
+        "auther": "devan mandal",
+        "facebook": {
+            "pageTitle": book[0].book_title,
+            "description": book[0].book_description,
+            "pageUrl": request.get_full_path(),
+            "siteTitle": "zeppter",
+            "homepageUrl": request.get_host(),
+
+        },
+        "google": {
+            "pageTitle": book[0].book_title,
+            "description": book[0].book_description,
+            "pageUrl": request.get_full_path(),
+            "homepageUrl": "zeppter",
+        },
+        "twitter": {
+            "pageTitle": book[0].book_title,
+            "description": book[0].book_description,
+            "pageUrl": request.get_full_path(),
+            "name": "zeppter",
+        }
+    }
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("linux") >0:
         dat = "";
@@ -111,7 +141,7 @@ def content(request,id):
             dat = {'book_data': d.book_data, 'title': d.book_title, 'dascription': d.book_description,
                    'img': d.book_image, 'postid': id, 'comments': comments}
 
-        return render(request, "dashboard/content.html", dat)
+        return render(request, "dashboard/content.html", {"meta" : meta})
 
 
 def bookdata(request,id):
@@ -125,6 +155,36 @@ def bookdata(request,id):
 
 def shodata(request,id):
     dat = "";
+    book = Book.objects.filter(id=id)
+    meta = {
+        "icon": book[0].book_image,
+        "title": book[0].book_title,
+        "description": book[0].book_description,
+        "keywords": book[0].keyboard,
+        "pageUrl": request.get_full_path(),
+
+        "auther": "devan mandal",
+        "facebook": {
+            "pageTitle": book[0].book_title,
+            "description": book[0].book_description,
+            "pageUrl": request.get_full_path(),
+            "siteTitle": "zeppter",
+            "homepageUrl": request.get_host(),
+
+        },
+        "google": {
+            "pageTitle": book[0].book_title,
+            "description": book[0].book_description,
+            "pageUrl": request.get_full_path(),
+            "homepageUrl": "zeppter",
+        },
+        "twitter": {
+            "pageTitle": book[0].book_title,
+            "description": book[0].book_description,
+            "pageUrl": request.get_full_path(),
+            "name": "zeppter",
+        }
+    }
 
     data = Book.objects.filter(id=id)
     comments = Comment.objects.filter(postid=id)
@@ -132,7 +192,7 @@ def shodata(request,id):
         d.book_data = d.book_data.replace("%*#h2", "<h2>")
         d.book_data = d.book_data.replace("%*&h2", "</h2>")
         dat = {'book_data': d.book_data, 'title': d.book_title, 'dascription': d.book_description,
-               'img': d.book_image, 'postid': id, 'comments': comments}
+               'img': d.book_image, 'postid': id, 'comments': comments ,'meta': meta}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("linux")>0:
         return render(request, "dashboard/showdata.html",dat)

@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ title }}</title>
+    <title>{{ meta.title }}</title>
+<link rel="shortcut icon" href="{{ MEDIA_URL }}{{ meta.icon }}">
+    {% if meta %}
+    {% include "mobile/dashboard/load/header.html" %}
+
+{% endif %}
     {% load static %}
      <!-- boostrap-->
 

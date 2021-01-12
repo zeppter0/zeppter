@@ -4,8 +4,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{ meta.title }}</title>
+<link rel="shortcut icon" href="{{ MEDIA_URL }}{{ meta.icon }}">
     {% block header %}{% endblock %}
+    {% if meta %}
+    {% include "mobile/dashboard/load/header.html" %}
+
+{% endif %}
 
 
 

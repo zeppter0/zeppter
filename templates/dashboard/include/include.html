@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{meta.title}}</title>
 
     
 
@@ -19,6 +19,10 @@
     <link rel="stylesheet" href="{% static 'assets/dashboard/main3.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/card/card.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/slideshow.css' %}">
+{% if meta %}
+    {% include "mobile/dashboard/load/header.html" %}
+
+{% endif %}
      <script src="{% static "assets/jquery/mainjquery.js" %}"></script>
 <script src="{% static "assets/pooper/popper.min.js" %}"></script>
 
