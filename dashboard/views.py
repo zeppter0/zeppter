@@ -18,7 +18,7 @@ import math
 # Create your views here.
 
 def dashboard(request):
-    data = Book.objects.all()[:5]
+    data = Book.objects.all().order_by('-id')[:3]
     catgory= Category.objects.all()
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     meta = {
@@ -133,7 +133,7 @@ def content(request,id):
     if ua.find("linux") >0:
         dat = "";
 
-        data = Book.objects.filter(id=id)
+        data = Book.objects.filter(id=id)[:5]
         comments = Comment.objects.filter(postid=id)
         for d in data:
             d.book_data = d.book_data.replace("%*#h2", "<h2>")
@@ -153,7 +153,7 @@ def bookdata(request,id):
 
     return HttpResponse("hello word")
 
-def shodata(request,id):
+def shodata(request,id,title):
     dat = "";
     book = Book.objects.filter(id=id)
     meta = {
@@ -186,7 +186,7 @@ def shodata(request,id):
         }
     }
 
-    data = Book.objects.filter(id=id)
+    data = Book.objects.filter(id=id)[:5]
     comments = Comment.objects.filter(postid=id)
     for d in data:
         d.book_data = d.book_data.replace("%*#h2", "<h2>")

@@ -33,42 +33,20 @@
         
       </div>
       <ul id="card_list" class="card-list">
-        <!--{% for i in data %}
+        {% for i in data %}
         <li>
+        <a href="/{{ i.book_title }}/{{ i.id }}">
           {% include "package/cardview.html" %}
-
+        </a>
         </li>
       
-      {% endfor %}-->
+      {% endfor %}
 
 
       </ul>
   
       </div>
-<div class="item-layout">
-      <div class="title-layout">
-        <h4>Title</h4>
-        <a href="#">More</a>
 
-
-      </div>
-      <div class="card-layout">
-
-
-      </div>
-      <ul id="card_list" class="card-list">
-        <!--{% for i in data %}
-        <li>
-          {% include "package/cardview.html" %}
-
-        </li>
-
-      {% endfor %}-->
-
-
-      </ul>
-
-      </div>
 <div class="hekkjkf"></div>
 
 <script>
