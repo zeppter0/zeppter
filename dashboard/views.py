@@ -59,9 +59,13 @@ def dashboard(request):
         return render(request, 'mobile/dashboard/home.html', {'data': data ,"meta" : meta ,"cat": catgory})
 
 
-
+    elif ua.find("iphone")>0:
+        return render(request, 'mobile/dashboard/home.html', {'data': data, "meta": meta, "cat": catgory})
     elif ua.find("linux")>0:
         return render(request, 'dashboard/main.html', {'data': data})
+    else:
+        return render(request, 'dashboard/main.html', {'data': data})
+
 
 
 
