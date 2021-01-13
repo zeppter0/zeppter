@@ -42,7 +42,7 @@
       </div>
       <div class="container">
           <div class="card-layout">
-       <ul id="card_list" class="card-list">
+       <ul id="card_list{{ ca.id }}" class="card-list">
 
        </ul>
 
@@ -55,7 +55,7 @@
             url : "/cardlist/{{ ca.id }}",
             cache: false,
             success : function (data){
-                $("#card_list").html(data)
+                $("#card_list{{ ca.id }}").html(data)
                 console.log(data)
 
             }
