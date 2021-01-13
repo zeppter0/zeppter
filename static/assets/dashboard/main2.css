@@ -5,8 +5,7 @@
 }
 
 .item-layout{
-    width: 100%;
-
+    margin: 30px 20px;
     height: 350px;
 
 
@@ -23,7 +22,8 @@
     float: right;
 }
 .card-layout{
-    
+    overflow-x: scroll;
+
 }
 
 .item-layout ul {
@@ -39,4 +39,22 @@
     margin: 10px 0 0 10px;
     
 }
+#card_list{
+    width: 2300px;
+}
+.dashboard-main{
+    margin-top: 0px;
+}
 
+#carouselExampleControls{
+    height: 300px;
+    overflow: hidden;
+}
+.footer-row{
+    padding: 20px;
+}
+@media only screen and (max-width: 600px){
+    #card_list{
+    width: 1800px;
+}
+}

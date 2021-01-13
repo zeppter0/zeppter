@@ -1,0 +1,13 @@
+{% for i in book %}
+        <li>
+        <a data-value="{{ i.id }}" class="cardlink" href="/{{ i.book_title }}/{{ i.id }}"  >
+        {% include 'package/cardview.html' %}
+        </a>
+
+
+        </li>
+
+        {% endfor %}
+
+<script>
+

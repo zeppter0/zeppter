@@ -24,7 +24,7 @@ urlpatterns = [
 
     path('',views.dashboard,name="dashboard"),
    # path('dashboard',views.shows,name="shows"),
-    path('card',views.cardpost,name="cardpost"),
+    path('cardlist/<int:catid>',views.cardpost,name="cardpost"),
     path('view',views.view,name="view"),
     path('<str:title>/<int:id>',views.shodata,name="content"),
     path('bookdata/<int:id>',views.bookdata,name="content"),

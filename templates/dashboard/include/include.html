@@ -14,6 +14,7 @@
 
     <!-- boostrap-->
     <!--link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}"-->
+<link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'assets/dashboard/main2.css' %}">
     <link rel="stylesheet" href="{% static 'assets/dashboard/main3.css' %}">
@@ -49,7 +50,8 @@
 <body>
 
 <header>
-    
+
+    {% include "dashboard/include/header.html" %}
 
 </header>
 <main class="dashboard-main" >
@@ -60,7 +62,9 @@
 </main>
 
 
-<footer></footer>
+<footer>
+    {% include "dashboard/main/footer.html" %}
+</footer>
 
 
 </body>

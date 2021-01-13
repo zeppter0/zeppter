@@ -19,6 +19,7 @@ import math
 
 def dashboard(request):
     data = Book.objects.all().order_by('-id')[:3]
+    carousel = "hhh"
     catgory= Category.objects.all()
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     meta = {
@@ -62,9 +63,9 @@ def dashboard(request):
     elif ua.find("iphone")>0:
         return render(request, 'mobile/dashboard/home.html', {'data': data, "meta": meta, "cat": catgory})
     elif ua.find("linux")>0:
-        return render(request, 'dashboard/main.html', {'data': data,"meta" : meta})
+        return render(request, 'dashboard/main.html', {'data': data,"meta" : meta,"cat" : catgory,"carousel" : carousel})
     else:
-        return render(request, 'dashboard/main.html', {'data': data ,"meta" : meta})
+        return render(request, 'dashboard/main.html', {'data': data ,"meta" : meta , "cat" : catgory })
 
 
 
@@ -74,22 +75,16 @@ def dashboard(request):
 
 
     #return HttpResponse("hello word")
-def cardpost(request):
-    data = Book.objects.filter(book_catid=1)[:10]
+def cardpost(request,catid):
+    book = Book.objects.filter(book_catid=catid).order_by('-id')[:10]
     st = list()
 
 
-    for d in data:
-        f = {"id": d.id,"img": d.book_image,"title" : d.book_title }
-        st.append({"id":d.id,"title" : d.book_title,"des" : d.book_description,"img" : d.book_image.url})
 
 
 
-    json_string = json.dumps(st)
-   # print(json_string)
 
-
-    return HttpResponse(json_string)
+    return render(request,"dashboard/cardlist.html",{"book" : book})
 
 def view(request):
     return render(request,"./view.html")
@@ -156,6 +151,7 @@ def bookdata(request,id):
 def shodata(request,id,title):
     dat = "";
     book = Book.objects.filter(id=id)
+    cat = Category.objects.filter()
     meta = {
         "icon": book[0].book_image,
         "title": book[0].book_title,
