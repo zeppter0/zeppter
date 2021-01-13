@@ -26,24 +26,24 @@
 
 }
 
-.item-layout ul {
+.card-layout ul  {
 
-    
+
     line-height: 2;
-    
+
 }
-.item-layout ul li {
+.card-layout ul li {
     float: left;
 
     list-style-type: none;
     margin: 10px 0 0 10px;
-    
+
 }
-#card_list{
+.card-list{
     width: 2300px;
 }
 .dashboard-main{
-    margin-top: 0px;
+
 }
 
 #carouselExampleControls{
@@ -53,8 +53,11 @@
 .footer-row{
     padding: 20px;
 }
+
+
 @media only screen and (max-width: 600px){
-    #card_list{
+
+    .card_list{
     width: 1800px;
 }
 }
