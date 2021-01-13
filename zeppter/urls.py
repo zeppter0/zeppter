@@ -19,17 +19,18 @@ from django.http import HttpResponse
 from django.conf.urls import url
 from django.views.generic import TemplateView
 
-urlpatterns = [
-    path("admin/",admin.site.urls),
+urlpatterns = {
+    path("admin/", admin.site.urls),
     path('hello/', include('admin_dashboard.urls')),
-    path('',include('dashboard.urls')),
-    path('json/',include('djson.urls')),
-    path('comment',include('comment.urls')),
-    path("test/",include("mytest.urls")),
-    path("call/",include('videocall.urls')),
-    path("mobile/",include("mobile.urls")),
-    path("test",include("mytest.urls"),name="test"),
-   # path("admin/<str:id>",include("plopleadmin.urls")),
-    #path("admin/",include("register.urls")),
-    url("robots.txt",TemplateView.as_view(template_name="include/robot.txt.html")),
-]
+    path('', include('dashboard.urls')),
+    path('json/', include('djson.urls')),
+    path('comment', include('comment.urls')),
+    path("test/", include("mytest.urls")),
+    path("call/", include('videocall.urls')),
+    path("mobile/", include("mobile.urls")),
+    path("test", include("mytest.urls"), name="test"),
+    # path("admin/<str:id>",include("plopleadmin.urls")),
+    # path("admin/",include("register.urls")),
+    url("robots.txt", TemplateView.as_view(template_name="include/robot.txt.html")),
+
+}

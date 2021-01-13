@@ -235,3 +235,8 @@ def mobile_home(request):
 
 def googled9d554441dd811fd(request):
     return HttpResponse("google-site-verification: googled9d554441dd811fd.html")
+
+
+def sitemap(request):
+    book = Book.objects.all()
+    return render(request,"include/sitemap.xml",{"book" : book})
