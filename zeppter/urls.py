@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.http import HttpResponse
 from django.conf.urls import url
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path("admin/",admin.site.urls),
@@ -30,5 +31,5 @@ urlpatterns = [
     path("test",include("mytest.urls"),name="test"),
    # path("admin/<str:id>",include("plopleadmin.urls")),
     #path("admin/",include("register.urls")),
-    url(r'^robots.txt', lambda x: HttpResponse("User-Agent: *\nDisallow:", content_type="text/plain"), name="robots_file"),
+    url("robots.txt",TemplateView.as_view(template_name="include/robot.txt.html")),
 ]

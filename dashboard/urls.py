@@ -34,6 +34,8 @@ urlpatterns = [
     path("mobileload",views.mobile_home,name="mobile_load"),
     path("googled9d554441dd811fd.html",views.googled9d554441dd811fd ,name="google")
 
+
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
