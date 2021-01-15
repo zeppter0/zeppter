@@ -18,7 +18,7 @@ from django.urls import path,include
 from django.http import HttpResponse
 from django.conf.urls import url
 from django.views.generic import TemplateView
-
+from zeppter import views
 urlpatterns = {
     path("admin/", admin.site.urls),
     path('hello/', include('admin_dashboard.urls')),
@@ -31,6 +31,8 @@ urlpatterns = {
     path("test", include("mytest.urls"), name="test"),
     # path("admin/<str:id>",include("plopleadmin.urls")),
     # path("admin/",include("register.urls")),
-    url("robots.txt", TemplateView.as_view(template_name="include/robot.txt.html")),
+   # path("robots.txt",views.robots ,name="roboot.txt"),
+url(r'^robots\.txt/$', TemplateView.as_view(template_name='include/robot.txt',
+                                            content_type='text/plain')),
 
 }

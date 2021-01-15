@@ -34,6 +34,7 @@ urlpatterns = [
     path("mobileload",views.mobile_home,name="mobile_load"),
     path("googled9d554441dd811fd.html",views.googled9d554441dd811fd ,name="google"),
     path("sitemap.xml", views.sitemap,name="sitemap"),
+#path("robots.txt",views.robots ,name="roboot.txt"),
 
 ]
 if settings.DEBUG:

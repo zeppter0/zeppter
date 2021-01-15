@@ -240,3 +240,7 @@ def googled9d554441dd811fd(request):
 def sitemap(request):
     book = Book.objects.all()
     return render(request,"include/sitemap.xml",{"book" : book})
+
+
+def robots(request):
+    return render(request, "include/robot.txt")
