@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template.loader import get_template
+from django.template.response import TemplateResponse
 
 from admin_dashboard.models import Book
 import json
@@ -11,6 +12,7 @@ from django.template.loader import render_to_string
 
 
 from comment.models import Comment
+
 
 
 import math
@@ -237,9 +239,10 @@ def googled9d554441dd811fd(request):
     return HttpResponse("google-site-verification: googled9d554441dd811fd.html")
 
 
-def sitemap(request):
+def sitema(request):
     book = Book.objects.all()
-    return render(request,"include/sitemap.xml",{"book" : book})
+
+    return render(request,"include/sitemap.xml",{"book":book})
 
 
 def robots(request):

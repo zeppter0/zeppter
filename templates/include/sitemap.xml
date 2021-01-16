@@ -1,29 +1,34 @@
+
+
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-<url>
-  <loc>http://www.zeppter.com/</loc>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+ <url>
 
-  <priority>1.00</priority>
-</url>
-    {% for d in book %}
-
-<url>
-  <loc>http://www.zeppter.com/{{ d.book_title }}/{{ d.id }}</loc>
-
-  <priority>0.80</priority>
-</url>
-
-
-{% endfor %}
+      <loc>http://www.zeppter.com/</loc>
 
 
 
+
+      <changefreq>daliy</changefreq>
+
+      <priority>1.0</priority>
+
+   </url>
+{% for d in book %}
+
+   <url>
+
+      <loc>http://www.zeppter.com/{{ d.book_title }}/{{ b.id }}</loc>
+
+
+
+
+      <changefreq>daliy</changefreq>
+
+      <priority>0.8</priority>
+
+   </url>
+    {% endfor %}
 
 </urlset>
-

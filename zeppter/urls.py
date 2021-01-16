@@ -13,12 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path,include
-from django.http import HttpResponse
 from django.conf.urls import url
+from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
+
+from django.urls import path, include
+from django.http import HttpResponse
+from admin_dashboard.models import Book
 from django.views.generic import TemplateView
-from zeppter import views
+
+
+
+
+
 urlpatterns = {
     path("admin/", admin.site.urls),
     path('hello/', include('admin_dashboard.urls')),
@@ -31,8 +38,11 @@ urlpatterns = {
     path("test", include("mytest.urls"), name="test"),
     # path("admin/<str:id>",include("plopleadmin.urls")),
     # path("admin/",include("register.urls")),
-   # path("robots.txt",views.robots ,name="roboot.txt"),
-url(r'^robots\.txt/$', TemplateView.as_view(template_name='include/robot.txt',
-                                            content_type='text/plain')),
+    # path("robots.txt",views.robots ,name="roboot.txt"),
+    url(r'^robots\.txt/$', TemplateView.as_view(template_name='include/robot.txt',
+                                                content_type='text/plain')),
+    url('BingSiteAuth.xml',TemplateView.as_view(template_name='include/BingSiteAuth.xml',
+                                                content_type='text/plain')),
+
 
 }

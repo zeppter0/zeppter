@@ -13,28 +13,36 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.sitemaps import GenericSitemap
+from django.contrib.sitemaps.views import sitemap
 from django.urls import path
 
+from admin_dashboard.models import Book
 from dashboard import views
 from django.conf import settings
 from django.conf.urls.static import static
+from dashboard import BookSiteMap
 
+sitemaps =  {"book" : BookSiteMap}
 urlpatterns = [
 
-    path('',views.dashboard,name="dashboard"),
-   # path('dashboard',views.shows,name="shows"),
-    path('cardlist/<int:catid>',views.cardpost,name="cardpost"),
-    path('view',views.view,name="view"),
-    path('<str:title>/<int:id>',views.shodata,name="content"),
-    path('bookdata/<int:id>',views.bookdata,name="content"),
-    path('pdf_show/<int:id>',views.pdf_show,name="pdf_show"),
-    path("booklist/<int:id>",views.listview,name="listview"),
-    path("mobile_home",views.mobile_home,name="mobile_home"),
-    path("mobileload",views.mobile_home,name="mobile_load"),
-    path("googled9d554441dd811fd.html",views.googled9d554441dd811fd ,name="google"),
-    path("sitemap.xml", views.sitemap,name="sitemap"),
-#path("robots.txt",views.robots ,name="roboot.txt"),
+    path('', views.dashboard, name="dashboard"),
+    # path('dashboard',views.shows,name="shows"),
+    path('cardlist/<int:catid>', views.cardpost, name="cardpost"),
+    path('view', views.view, name="view"),
+    path('<str:title>/<int:id>', views.shodata, name="content"),
+    path('bookdata/<int:id>', views.bookdata, name="content"),
+    path('pdf_show/<int:id>', views.pdf_show, name="pdf_show"),
+    path("booklist/<int:id>", views.listview, name="listview"),
+    path("mobile_home", views.mobile_home, name="mobile_home"),
+    path("mobileload", views.mobile_home, name="mobile_load"),
+    path("googled9d554441dd811fd.html", views.googled9d554441dd811fd, name="google"),
+    url('sitemap.xml',views.sitema, name='django.contrib.sitemaps.views.sitemap')
+
+
+    # path("robots.txt",views.robots ,name="roboot.txt"),
 
 ]
 if settings.DEBUG:

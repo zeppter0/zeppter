@@ -69,8 +69,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'register',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'dashboard',
 
 ]
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -112,7 +116,6 @@ WSGI_APPLICATION = 'zeppter.wsgi.application'
 
 DATABASES = {
 
-
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'zeppter',
@@ -121,8 +124,6 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '',
     }
-
-
 
 }
 

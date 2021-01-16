@@ -1,4 +1,3 @@
 User-agent: *
 Disallow: /hello/
 Disallow /admin/
-Sitemap: http://www.zeppter.com/sitemap.xml

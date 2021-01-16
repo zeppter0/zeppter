@@ -1,7 +1,12 @@
+
+
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
 # Create your models here.
+from django.urls import reverse
+
+
 class Book(models.Model):
     id = models.AutoField(primary_key=True)
 
@@ -26,6 +31,11 @@ class Book(models.Model):
 
     def __str__(self):
         return self.book_title
+
+    def get_absolute_url(self):
+        return reverse('recipe_detail', args=[])
+
+
 
 
 class Category(models.Model):
