@@ -22,6 +22,8 @@ class Book(models.Model):
     book_catid = models.IntegerField(default=1)
     book_arrcat = ArrayField(ArrayField(models.IntegerField()))
     keyboard = models.CharField(max_length=50 ,default="")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def delete(self, using=None, keep_parents=False):
         self.book_image.storage.delete(self.book_image.name)

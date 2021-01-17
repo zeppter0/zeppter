@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse,HttpResponseRedirect
 from admin_dashboard.models import Book
 from admin_dashboard.models import Category
 from comment.models import Comment
@@ -59,15 +59,29 @@ def content(request,id):
                 "cat": cat,
                 "id": da.id,
                 "comments" : comments,
+                "schema" : True,
             }
+            return render(request, "mobile/dashboard/load/content.html", dat)
 
-        return render(request, "mobile/dashboard/load/content.html", dat)
+
+
+
+
 
 
     else:
         data = Book.objects.all()
+        book = Book.objects.filter(id=id)
         catgory = Category.objects.all()
-        return render(request, 'mobile/dashboard/home.html', {'data': data, "cat": catgory,"meta" : meta})
+        ua = request.META.get('HTTP_USER_AGENT', '').lower()
+        if ua.find("android") > 0:
+            return render(request, 'mobile/dashboard/home.html', {'data': data, "cat": catgory,"meta" : meta})
+        elif ua.find("iphone") > 0:
+            return render(request, 'mobile/dashboard/home.html', {'data': data, "cat": catgory,"meta" : meta})
+        else:
+            return HttpResponseRedirect("http://"+request.get_host()+"/"+book[0].book_title+"/"+str(id))
+
+
 
 
 

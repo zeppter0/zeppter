@@ -18,3 +18,36 @@
 <meta name="twitter:title" content="{{meta.twitter.pageTitle}}">
 <meta name="twitter:description" content="{{meta.twitter.description}}">
 <meta name="twitter:image" content="{{meta.twitter.imageUrl}}">
+
+{% if schema %}
+
+
+<script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "breadcrumb": "Books > Marketing > JSON",
+      "mainEntity":{
+              "@type": "Book",
+              "author": "http://www.example.com/author.html",
+              "bookFormat": "http://schema.org/EBook",
+              "datePublished": "{{ meta.publishtime }}",
+              "image": "{{ MEDIA_URL }}{{ img }}",
+              "inLanguage": "hindi",
+              "isbn": "00000000",
+              "name": "{{ title }}",
+              "numberOfPages": "",
+
+              "publisher": "O'Json Publishing",
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4",
+                "reviewCount": "12"
+              }
+            }
+    }
+</script>
+
+{% endif %}
+
+

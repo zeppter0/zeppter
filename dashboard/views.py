@@ -160,6 +160,7 @@ def shodata(request,id,title):
         "description": book[0].book_description,
         "keywords": book[0].keyboard,
         "pageUrl": request.get_full_path(),
+        "publishtime" : book[0].created_at,
 
         "auther": "devan mandal",
         "facebook": {
@@ -190,7 +191,7 @@ def shodata(request,id,title):
         d.book_data = d.book_data.replace("%*#h2", "<h2>")
         d.book_data = d.book_data.replace("%*&h2", "</h2>")
         dat = {'book_data': d.book_data, 'title': d.book_title, 'dascription': d.book_description,
-               'img': d.book_image, 'postid': id, 'comments': comments ,'meta': meta}
+               'img': d.book_image, 'postid': id, 'comments': comments ,'meta': meta,"schema": True}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("linux")>0:
         return render(request, "dashboard/showdata.html",dat)
