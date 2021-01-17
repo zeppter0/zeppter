@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template.loader import get_template
 from django.template.response import TemplateResponse
 
@@ -200,7 +200,7 @@ def shodata(request,id,title):
     elif ua.find("window")>0:
         return render(request, "dashboard/showdata.html")
     else:
-        return HttpResponse(get_template('dashboard/igul.html'))
+        return HttpResponseRedirect("http://"+request.get_host()+"/mobile/content/"+"/"+str(id))
 
 def pdf_show(request,id):
     dat = "";
