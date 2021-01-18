@@ -17,6 +17,8 @@ from comment.models import Comment
 
 import math
 
+
+
 # Create your views here.
 
 def dashboard(request):
@@ -25,7 +27,7 @@ def dashboard(request):
     catgory= Category.objects.all()
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     meta = {
-        "title" : "zeppter hindi story kid ",
+        "title" : "zeppter",
         "description" : "zeppter hindi story top big rock story",
         "keyboard" : "zeppter,hindi story,top story",
         "pageUrl" : request.get_full_path(),
