@@ -4,7 +4,7 @@
 {% block content %}
     <div class="main-contents">
     <main class="main-content container" id="main_content">
-    <form id="post" action="post" method="POST" enctype = "multipart/form-data">
+    <form id="post" action="#" method="POST" enctype = "multipart/form-data">
         <input type="hidden" value="" name="id" id="post_id">
         {% csrf_token %}
             <div class="row">
@@ -27,6 +27,7 @@
                         <label for="exampleInputEmail1">Tag Name</label>
                         <input type="text" name="keyboard" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter TAG Name">
 
+
                     </div>
 
 
@@ -40,14 +41,76 @@
 
             </div>
         <div class="form-group">
-      <label for="comment">Book:</label>
-            <textarea class="form-control" name="editor1" rows="10" id="editor1"></textarea>
+
+
+
+
+
+
+
+
+
+
+
     </div>
 
         <input type="file"  class="form-control" id="book_add_pic" style="display: none" name="book_add_pic" >
 
 
         </form>
+        <label for="comment">Book:</label>
+        <div id="container" >
+    <fieldset>
+      <button class="fontStyle italic" onclick="document.execCommand('italic',false,null);" title="Italicize Highlighted Text"></button>
+      <button class="fontStyle bold" onclick="document.execCommand( 'bold',false,null);" title="Bold Highlighted Text"></button>
+      <button class="fontStyle underline" onclick="document.execCommand( 'underline',false,null);"></button>
+      <select id="input-font" class="input"  onchange="changeFont(this);">
+        <option value="Arial">Arial</option>
+        <option value="Helvetica">Helvetica</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Sans serif">Sans serif</option>
+        <option value="Courier New">Courier New</option>
+        <option value="Verdana">Verdana</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Palatino">Palatino</option>
+        <option value="Garamond">Garamond</option>
+        <option value="Comic Sans MS">Comic Sans MS</option>
+        <option value="Arial Black">Arial Black</option>
+        <option value="Tahoma">Tahoma</option>
+        <option value="Comic Sans MS">Comic Sans MS</option>
+      </select>
+      <button class="fontStyle strikethrough" onclick="document.execCommand( 'strikethrough',false,null);"><strikethrough></strikethrough></button>
+      <button class="fontStyle align-left" onclick="document.execCommand( 'justifyLeft',false,null);"><justifyLeft></justifyLeft></button>
+      <button class="fontStyle align-center" onclick="document.execCommand( 'justifyCenter',false,null);"><justifyCenter></justifyCenter></button>
+      <button class="fontStyle align-right" onclick="document.execCommand( 'justifyRight',false,null);"><justifyRight></justifyRight></button>
+      <button class="fontStyle redo-apply" onclick="document.execCommand( 'redo',false,null);"><redo></redo></button>
+      <button class="fontStyle undo-apply" onclick="document.execCommand( 'undo',false,null);"><undo></undo></button>
+      <button class="fontStyle orderedlist" onclick="document.execCommand('insertOrderedList', false, null);"><insertOrderedList></insertOrderedList></button>
+      <button class="fontStyle unorderedlist" onclick="document.execCommand('insertUnorderedList',false, null)"><insertUnorderedList></insertUnorderedList></button>
+      <input class="color-apply" type="color" onchange="chooseColor()" id="myColor">
+
+      <!-- font size start -->
+      <select id="fontSize" onclick="changeSize()">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+      </select>
+      <!-- font size end -->
+
+  </fieldset>
+
+  <div id="editor1" contenteditable="true" data-text="Enter comment...."></div>
+
+
+
+</div>
+
+
     </main>
     <div id="right_side">
         <button type="submit" id="publish" class="btn btn-primary">Publish</button>
@@ -58,7 +121,18 @@
         </div>
 
     </div>
+
+
+
+
+
+
+
+
+
+
     </div>
+
     <script>
     var id = "";
 
@@ -98,6 +172,7 @@
 
             url = "{{ request.get_full_path }}post"
             form_data = new FormData($(post)[0]);
+            form_data.append("editor1",$("#editor1").html());
             form_data.append("publish",upload);
             form_data.append("cat",cat);
            catid =  $(".catgory-id").is(":checked");
@@ -158,6 +233,22 @@
         });
         return false;
     });*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     $(document).ready(function (e) {
         check_show = true;
         $('#post').on('change keyup paste', ':input', function(e) {

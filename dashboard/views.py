@@ -27,8 +27,8 @@ def dashboard(request):
     catgory= Category.objects.all()
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     meta = {
-        "title" : "zeppter",
-        "description" : "zeppter hindi story top big rock story",
+        "title" : "zeppter book story and status hindi offers",
+        "description" : "zeppter hindi,love, kids, horror story top most story love status ",
         "keyboard" : "zeppter,hindi story,top story",
         "pageUrl" : request.get_full_path(),
 
