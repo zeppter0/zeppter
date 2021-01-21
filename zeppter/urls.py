@@ -27,7 +27,7 @@ from django.views.generic import TemplateView
 
 
 urlpatterns = {
-    path("admin/", admin.site.urls),
+  #  path("admin/", admin.site.urls),
     path('hello/', include('admin_dashboard.urls')),
     path('', include('dashboard.urls')),
     path('json/', include('djson.urls')),
@@ -37,12 +37,15 @@ urlpatterns = {
     path("mobile/", include("mobile.urls")),
     path("test", include("mytest.urls"), name="test"),
     # path("admin/<str:id>",include("plopleadmin.urls")),
-    # path("admin/",include("register.urls")),
+     path("admin/",include("myuser.urls")),
     # path("robots.txt",views.robots ,name="roboot.txt"),
     url(r'^robots\.txt/$', TemplateView.as_view(template_name='include/robot.txt',
+                                                content_type='text/plain')),
+url('yandex_47dbe3c258eabd6f.html', TemplateView.as_view(template_name='include/yandex_47dbe3c258eabd6f.html',
                                                 content_type='text/plain')),
     url('BingSiteAuth.xml',TemplateView.as_view(template_name='include/BingSiteAuth.xml',
                                                 content_type='text/plain')),
 
 
 }
+

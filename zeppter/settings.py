@@ -72,6 +72,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'dashboard',
+    'myuser',
 
 ]
 SITE_ID = 1

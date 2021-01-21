@@ -1,213 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+{% extends 'login/include.html' %}
+{% block content %}
 
-    {% load static %}
-    <link rel="stylesheet" href="{% static ""  %}{{ link.registercss }}">
-    <link rel="stylesheet" href="{% static ""  %}{{ link.bootstrapcss }}">
-    <link rel="stylesheet" href="{% static "" %}{{ link.fontawesome }}">
-    <script src="{% static "" %}{{ link.jquery }}"></script>
-</head>
-<body >
-
-
-    <div class="page-wrapper bg-gra-03 p-b-50 p-t-45">
-        <div class="wrapper wrapper--w790">
-            <div class="cards card-5">
-                <div class="card-heading">
-                    <h2 class="title">School registration form</h2>
-                </div>
-                <div class="card-body">
-                    <form method="post" action="./upregister" >
-                        {% csrf_token %}
-
-                        <div class="form-row m-b-55" >
-                            <div class="name">Your Name</div>
-                            <div class="value">
-                                
-                                    <div class="row">
-                                      <div class="col">
-                                        <input type="text" class="form-control" name="first_name" placeholder="First name">
-                                      </div>
-                                      <div class="col">
-                                        <input type="text" class="form-control" name="last_name" placeholder="Last name">
-                                      </div>
-                                    </div>
-                                  
-                            </div>
-
-                        </div>
-                        <div class="form-row" >
-                            <div class="name">School Name</div>
-                            <div class="value">
-                                
-                                <input type="text" class="form-control" placeholder="Insert School Name" name="school_name">
-                                  
-                            </div>
-
-                        </div>
-                        <div class="form-row" >
-                            
-                            <div class="value" style="margin-left: auto;">
-                                
-                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Gender</label>
-  <select class="custom-select my-1 mr-sm-2" name="gender"   id="inlineFormCustomSelectPref">
-    <option selected>Choose...</option>
-    <option value="1">Male</option>
-    <option value="2">Female</option>
-    
-  </select>
-                                  
-                            </div>
-
-                        </div>
-                        <div class="form-row">
-                            <div class="name">Date of birth</div>
-                            <div class="value">
-                                <div class="row">
-                                    <div class="col">
-                                        <input type="number" name="dd" class="form-control" placeholder="DD" maxlength="2">
-
-                                    </div>
-                                    <div class="col">
-                                        <input type="number" name="mm" class="form-control" placeholder="MM" maxlength="2">
-
-                                    </div>
-                                    <div class="col">
-                                        <input type="number" name="yy" class="form-control" placeholder="YY" maxlength="2">
-
-                                    </div>
-
-                                </div>
-                                
-                                
-                                  
-                            </div>
-
-                        </div>
-                        <div class="form-row">
-                            <div class="name">Adhaar Card</div>
-                            <div class="value">
-                                
-                                <input type="number" name="adhaar_card" class="form-control" placeholder="Insert No" maxlength=12">
-                                  
-                            </div>
-
-                        </div>
-                        <div class="form-row">
-                            <div class="name">Address</div>
-                            <div class="value">
-                                
-                                <input type="text" name="address" class="form-control" placeholder="Insert Address">
-                                  
-                            </div>
-
-                        </div>
-                        <div class="form-row">
-                            
-                                
-                                <div class="value" style="margin-left: auto;" >
-                                    
-                                
-                                    <div class="row">
-                                        <div class="col">
-                                            <label for="insertcity">Your City</label>
-                                          <input type="text" name="city" class="form-control" id="insertcity" placeholder="Insert city">
+<div class="container register">
+                <div class="row">
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Welcome</h3>
+                        <p>You are 30 seconds away from earning your own money!</p>
+                        <input type="submit" name="" value="Login"/><br/>
+                    </div>
+                    <div class="col-md-9 register-right">
+                        <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Employee</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Hirer</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading">Apply as a Employee</h3>
+                                <div class="row register-form">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="First Name *" value="" />
                                         </div>
-                                        <div class="col">
-                                            <label for="insertcountry">Your Country</label>
-                                          <input name="country" type="text" class="form-control" id="insertcountry" placeholder="Insert country">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Last Name *" value="" />
                                         </div>
-                                      </div>
-                                      
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" placeholder="Password *" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control"  placeholder="Confirm Password *" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="maxl">
+                                                <label class="radio inline">
+                                                    <input type="radio" name="gender" value="male" checked>
+                                                    <span> Male </span>
+                                                </label>
+                                                <label class="radio inline">
+                                                    <input type="radio" name="gender" value="female">
+                                                    <span>Female </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Your Email *" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Your Phone *" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control">
+                                                <option class="hidden"  selected disabled>Please select your Sequrity Question</option>
+                                                <option>What is your Birthdate?</option>
+                                                <option>What is Your old Phone Number</option>
+                                                <option>What is your Pet Name?</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Enter Your Answer *" value="" />
+                                        </div>
+                                        <input type="submit" class="btnRegister"  value="Register"/>
+                                    </div>
                                 </div>
-                                
-                                
-                                
-                            
-                        </div>
-                        <div class="form-row">
-                            
-                                
-                            <div class="value" style="margin-left: auto;" >
-                                
-                            
-                                <div class="row">
-                                    <div class="col">
-                                        <label for="insertmother">Mother Name</label>
-                                      <input type="text" name="mother" class="form-control" id="insertmother" placeholder="Insert mother name">
-                                    </div>
-                                    <div class="col">
-                                        <label for="insertfather">Father Name</label>
-                                      <input type="text" name="father" class="form-control" id="insertfather" placeholder="Insert Father">
-                                    </div>
-                                  </div>
-                                  
                             </div>
-                            
-                            
-                            
-                        
-                    </div>
-                    <div class="form-row">
-                        <div class="name">Mobile No. :</div>
-                        <div class="value">
-                            
-                            <input type="number" class="form-control" name="mobile" placeholder="Insert Mobile No" maxlength="10">
-                              
+                            <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <h3  class="register-heading">Apply as a Hirer</h3>
+                                <div class="row register-form">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="First Name *" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Last Name *" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Email *" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value="" />
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" placeholder="Password *" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control">
+                                                <option class="hidden"  selected disabled>Please select your Sequrity Question</option>
+                                                <option>What is your Birthdate?</option>
+                                                <option>What is Your old Phone Number</option>
+                                                <option>What is your Pet Name?</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="`Answer *" value="" />
+                                        </div>
+                                        <input type="submit" class="btnRegister"  value="Register"/>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
-                    <div class="form-row">
-                        <div class="name">Your Email</div>
-                        <div class="value">
-                            
-                            <input type="email" class="form-control" name="email" placeholder="Email">
-                              
-                        </div>
-
-                    </div>
-                         <div class="form-row">
-                        <div class="name">Your Passpord</div>
-                        <div class="value">
-
-                            <input type="password" class="form-control" name="email" placeholder="Email">
-
-                        </div>
-
-                    </div>
-                    <div class="form-row">
-                        
-                        <div class="value row" style="margin-left: auto;">
-                            
-                            <a href="#" class="btn-face m-b-20 col">
-                                <i class="fa fa-facebook-official"></i>
-                                Facebook
-                                </a>
-                                <a href="#" class="btn-google m-b-20 col">
-                                    <img src="images/icons/icon-google.png" alt="GOOGLE">
-                                    Google
-                                    </a>
-                              
-                        </div>
-
-                    </div>
-                    <input type="submit" name="register" value="Register"  class="btn btn-primary">
-                    
-                        
-                       
-
-                      </form>
                 </div>
+
             </div>
-        </div>
-    
-        </div>
-    
-</body>
-</html>
-
-
+{% endblock %}
