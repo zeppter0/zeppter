@@ -24,7 +24,7 @@ class Book(models.Model):
     keyboard = models.CharField(max_length=50 ,default="")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    publisher = models.BigIntegerField(default=1)
+    publisher = models.IntegerField()
 
     def delete(self, using=None, keep_parents=False):
         self.book_image.storage.delete(self.book_image.name)
