@@ -32,7 +32,7 @@ def dashboard(request):
 
 def post(request):
 
-    if request.method == 'POST' and 'title' in request.POST and 'description' in request.POST and 'book_add_pic' in request.FILES and 'pdf_show' in request.FILES and 'editor1' in request.POST :
+    if request.method == 'POST' and 'title' in request.POST and 'description' in request.POST and 'book_add_pic' in request.FILES and 'editor1' in request.POST :
 
 
         title = request.POST['title']
@@ -40,7 +40,7 @@ def post(request):
         book = request.POST['editor1']
         description = request.POST['description']
         book_pic = request.FILES['book_add_pic']
-        book_pdf = request.FILES['pdf_show']
+
         book_publish = request.POST['publish']
         book_catid = request.POST["cat"]
         keyboard = request.POST["keyboard"]
@@ -52,7 +52,7 @@ def post(request):
         if Book.objects.filter(book_title=title).count() < 1 :
             book = Book(book_title=title,
                         book_description=description,
-                        data_book=book_pdf,
+
                         book_data=book,
                         book_arrcat=cat_json,
                         book_rates=2,
@@ -126,20 +126,20 @@ def imgupload(request,id):
 
 
 def post_update(request):
-    if request.method == 'POST' and 'title' in request.POST and 'description' in request.POST and 'book_add_pic' in request.FILES and 'pdf_show' in request.FILES and 'book_data' in request.POST and "id" in request.POST:
+    if request.method == 'POST' and 'title' in request.POST and 'description' in request.POST and 'pdf_show' in request.FILES and 'book_data' in request.POST and "id" in request.POST:
 
 
         title = request.POST['title']
         book = request.POST['book_data']
         description = request.POST['description']
         book_pic = request.FILES['book_add_pic']
-        book_pdf = request.FILES['pdf_show']
+
         book_publish = request.POST['publish']
         book_id = request.POST['id']
 
         if book_publish == "true":
             book = Book.objects.filter(id=int(book_id)).update(book_title=title, book_description=description,
-                        data_book=book_pdf,
+
                         book_data=book,
                         book_rates=2, book_publish=False, book_upload_date=timezone.now(), book_image=book_pic,
                         book_commit_id=1)
