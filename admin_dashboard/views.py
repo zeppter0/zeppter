@@ -9,6 +9,7 @@ from values.strings import bootstrap
 from .models import Category
 from admin_dashboard.models import ImgUpload
 import json
+from myuser.models import MyUeers
 
 
 
@@ -31,8 +32,10 @@ def dashboard(request):
 
 
 def post(request):
+    if "email"  not in request.session:
+        return HttpResponse("please login")
 
-    if request.method == 'POST' and 'title' in request.POST and 'description' in request.POST and 'book_add_pic' in request.FILES and 'editor1' in request.POST :
+    if request.method == 'POST' and 'title' in request.POST and 'description' in request.POST and 'book_add_pic' in request.FILES and 'editor1' in request.POST and 'email' in request.session :
 
 
         title = request.POST['title']
@@ -40,6 +43,8 @@ def post(request):
         book = request.POST['editor1']
         description = request.POST['description']
         book_pic = request.FILES['book_add_pic']
+        session = request.session['email']
+        user = MyUeers.objects.filter(email=session)
 
         book_publish = request.POST['publish']
         book_catid = request.POST["cat"]
@@ -56,6 +61,7 @@ def post(request):
                         book_data=book,
                         book_arrcat=cat_json,
                         book_rates=2,
+                        publisher= user[0].id,
                         keyboard=keyboard,
                         book_publish=False,
                         book_upload_date=timezone.now(),
