@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'myzeppter',
@@ -31,7 +32,13 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from admin_dashboard import apps
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+from pathlib import Path
+
+#BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -55,25 +62,23 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    # 'admin.apps.AdminConfig',
-    # 'dashboard.apps.DashboardConfig',
 
+    'dashboard.apps.DashboardConfig',
     'admin_dashboard.apps.AdminDashboardConfig',
     'comment.apps.CommentConfig',
-    'django_cleanup',
 
+     'django_cleanup',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'register',
+
     'django.contrib.sites',
     'django.contrib.sitemaps',
-    'dashboard',
+    
     'myuser',
-
 ]
 SITE_ID = 1
 
@@ -88,7 +93,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'zeppter.urls'
-AUTH_USER_MODEL = 'register.MyUser'
+#AUTH_USER_MODEL = 'register.MyUser'
 
 TEMPLATES = [
     {
@@ -117,9 +122,10 @@ WSGI_APPLICATION = 'zeppter.wsgi.application'
 
 DATABASES = {
 
+
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'zeppter',
+        'NAME': 'myzeppter',
         'USER': 'dkboss650',
         'PASSWORD': 'Sorry9023@',
         'HOST': 'localhost',

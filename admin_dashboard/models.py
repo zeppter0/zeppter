@@ -24,6 +24,7 @@ class Book(models.Model):
     keyboard = models.CharField(max_length=50 ,default="")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    publisher = models.BigIntegerField(default=1)
 
     def delete(self, using=None, keep_parents=False):
         self.book_image.storage.delete(self.book_image.name)
@@ -34,8 +35,7 @@ class Book(models.Model):
     def __str__(self):
         return self.book_title
 
-    def get_absolute_url(self):
-        return reverse('recipe_detail', args=[])
+
 
 
 

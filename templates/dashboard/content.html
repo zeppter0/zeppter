@@ -46,6 +46,31 @@
         <img src="{{ MEDIA_URL }}{{ img }}" width="200" height="200">
         
     </div>
+<div class="container">
+    <div class="item-layout">
+      <div class="title-layout">
+        <h4>{{ ca.cat_title }}</h4>
+        <a href="#">More</a>
+
+
+      </div>
+      <div class="container">
+          <div class="card-layout">
+       <ul id="card_list{{ catid }}" class="card-list">
+
+       </ul>
+
+      </div>
+      </div>
+
+
+
+
+
+
+      </div>
+
+</div>
     
     <div class="row">
         <form action="#" id="content-comment">
@@ -95,6 +120,19 @@
 </body>
 </html>
 <script>
+    $(document).ready(function (e){
+            $.ajax(
+        {
+            url : "/cardlist/{{ catid }}",
+            cache: false,
+            success : function (data){
+                $("#card_list{{ catid }}").html(data)
+
+            }
+        }
+    );
+            });
+
     $("#content-comment").submit(function (e){
         data_form = new FormData($(this)[0]);
        var form =  $(this);
@@ -136,6 +174,8 @@
         fullScreenTgl(this)
 
     });
+
+
 function fullScreenTgl(elm) {
     let doc=document;//,elm=doc.documentElement;
     if      (elm.requestFullscreen      ) { (!doc.fullscreenElement   ? elm.requestFullscreen()       : doc.exitFullscreen()        ) }
@@ -144,6 +184,8 @@ function fullScreenTgl(elm) {
     else if (elm.webkitRequestFullscreen) { (!doc.webkitIsFullscreen  ? elm.webkitRequestFullscreen() : doc.webkitCancelFullscreen()) }
     else                                  { console.log("Fullscreen support not detected.");                                          }
     }
+
+
 </script>
 
 

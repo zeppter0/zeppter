@@ -12,7 +12,7 @@ from django.template.loader import render_to_string
 
 
 from comment.models import Comment
-
+from myuser.models import MyUeers
 
 
 import math
@@ -187,12 +187,26 @@ def shodata(request,id,title):
         }
     }
 
+
     data = Book.objects.filter(id=id)[:5]
     comments = Comment.objects.filter(postid=id)
     for d in data:
+        userd = MyUeers.objects.filter(id=d.publisher)
+        user ={}
+        if userd.count() ==1:
+
+          user = {
+              "fullname" : userd[0].first_name+" "+userd[0].last_name,
+              "id" : userd[0].id
+          }
+
+
+
+
+        cat = Category.objects.filter(id=d.book_catid)
         d.book_data = d.book_data.replace("%*#h2", "<h2>")
         d.book_data = d.book_data.replace("%*&h2", "</h2>")
-        dat = {'book_data': d.book_data, 'title': d.book_title, 'dascription': d.book_description,
+        dat = {'book_data': d.book_data,"user" : user ,"cat_title":cat[0].cat_title,"catid":d.book_catid, 'title': d.book_title, 'dascription': d.book_description,
                'img': d.book_image, 'postid': id, 'comments': comments ,'meta': meta,"schema": True}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("linux")>0:

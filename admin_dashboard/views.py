@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 
 # Create your views here.
 from admin_dashboard.models import Book
-from django.http import HttpResponse,JsonResponse
+from django.http import HttpResponse,JsonResponse,HttpResponseRedirect
 from django.utils import timezone
 from admin_dashboard.BookForm import BookUploadForm
 from values.strings import bootstrap
@@ -14,7 +14,8 @@ import json
 
 
 def dashboard(request):
-    if request.user.is_authenticated:
+
+    if "email" in request.session:
 
         cat = Category.objects.all()
 
@@ -25,14 +26,7 @@ def dashboard(request):
         return render(request, 'admin/post.html',data)
 
     else:
-
-        cat = Category.objects.all()
-
-        data= {
-            'link' : bootstrap(),
-            'cat' : cat,
-        }
-        return render(request, 'admin/post.html',data)
+        return HttpResponseRedirect("/user/login")
 
 
 

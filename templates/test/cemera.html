@@ -6,9 +6,9 @@
 </head>
 <body>
 
-<form action="/test/" method="post">
+<form action="/test/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form }}
+    <input type="file" name="audio">
     <input type="submit" value="Submit">
 </form>
 <script>

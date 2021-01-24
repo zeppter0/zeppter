@@ -48,12 +48,49 @@
             </thead>
             <tbody>
             <tr>
-                <td>Book Name</td>
-                <td>Raja Chauhan</td>
+                <td>Publidsher</td>
+                <td><a href="{{ user.id }}">{{ user.fullname }}</a> </td>
             </tr>
             </tbody>
         </table>
 
+    </div>
+    <div class="container">
+        <div class="item-layout">
+      <div class="title-layout">
+        <h4>{{ cat_title }}</h4>
+        <a href="#">More</a>
+
+
+      </div>
+      <div class="container">
+          <div class="card-layout">
+       <ul id="card_list{{ catid }}" class="card-list">
+
+       </ul>
+
+      </div>
+      </div>
+    <script>
+        $(document).ready(function (e){
+            $.ajax(
+        {
+            url : "/cardlist/{{ catid }}",
+            cache: false,
+            success : function (data){
+                $("#card_list{{ catid }}").html(data)
+
+            }
+        }
+    );
+        });
+    </script>
+
+
+
+
+
+      </div>
     </div>
     <div class="row">
         <div class="col" style="width: 400px ;background-color: white">
