@@ -67,7 +67,7 @@ INSTALLED_APPS = [
     'admin_dashboard.apps.AdminDashboardConfig',
     'comment.apps.CommentConfig',
 
-     'django_cleanup',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,7 +125,7 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'zeppter',
+        'NAME': 'myzeppter',
         'USER': 'dkboss650',
         'PASSWORD': 'Sorry9023@',
         'HOST': 'localhost',
