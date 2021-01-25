@@ -1,5 +1,8 @@
+import os
 
+from urllib import request
 
+from django.core.files import File
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
@@ -10,7 +13,7 @@ from django.urls import reverse
 class Book(models.Model):
     id = models.AutoField(primary_key=True)
 
-    book_title = models.CharField(max_length=50,default=None)
+    book_title = models.CharField(max_length=300,default=None)
     book_description = models.CharField(max_length=500,default=None)
     book_image = models.ImageField(upload_to='cat_img',default='')
     book_rates = models.IntegerField(default=5)
@@ -21,7 +24,7 @@ class Book(models.Model):
     data_book = models.FileField("zip_data",default=None)
     book_catid = models.IntegerField(default=1)
     book_arrcat = ArrayField(ArrayField(models.IntegerField()))
-    keyboard = models.CharField(max_length=50 ,default="")
+    keyboard = models.CharField(max_length=300 ,default="")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     publisher = models.IntegerField()
@@ -34,6 +37,15 @@ class Book(models.Model):
 
     def __str__(self):
         return self.book_title
+
+    def get_remote_image(self,image_url):
+        if image_url and not self.book_image:
+            result = request.urlretrieve(image_url)
+            self.book_image.save(
+                os.path.basename(image_url),
+                File(open(result[0], 'rb'))
+            )
+            self.save()
 
 
 
