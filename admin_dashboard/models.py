@@ -13,7 +13,7 @@ from django.urls import reverse
 class Book(models.Model):
     id = models.AutoField(primary_key=True)
 
-    book_title = models.CharField(max_length=500,default=None)
+    book_title = models.CharField(max_length=1000,default=None)
     book_description = models.CharField(max_length=1000,default=None)
     book_image = models.ImageField(upload_to='cat_img',default='')
     book_rates = models.IntegerField(default=5)
@@ -24,7 +24,7 @@ class Book(models.Model):
     data_book = models.FileField("zip_data",default=None)
     book_catid = models.IntegerField(default=1)
     book_arrcat = ArrayField(ArrayField(models.IntegerField()))
-    keyboard = models.CharField(max_length=500 ,default="")
+    keyboard = models.CharField(max_length=1000 ,default="")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     publisher = models.IntegerField()
