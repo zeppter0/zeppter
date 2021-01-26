@@ -29,10 +29,10 @@ def imageupload(request):
   #  po.Post()
 
 
-    for k in range(9):
+    for k in range(1232):
 
         try:
-            response = ur.urlopen("https://hindistory.net/story/58"+str(k))
+            response = ur.urlopen("https://hindistory.net/story/"+str(k))
             s = response.read()
             po = Post(s)
             po.update()
