@@ -58,3 +58,16 @@ class Post(object):
 
 
         return
+    def update(self):
+        ht = Html(self.data)
+        parsed_html = BeautifulSoup(self.data)
+        frame = parsed_html.body.find('img', attrs={'class': 'story-banner'})
+        title = re.sub(' +', ' ', ht.title().rstrip().lstrip().replace('\n', ' ').replace('\r', ''))
+        description = re.sub(' +', ' ', ht.description().rstrip().lstrip().replace('\n', ' ').replace('\r', ''))
+        if Book.objects.filter(book_title=ht.title()).count() ==0:
+
+            book = Book.objects.filter(book_title=ht.title())
+            book.update(book_title=title,book_description=description)
+            print(title)
+            return
+

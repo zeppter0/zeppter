@@ -35,7 +35,7 @@ def imageupload(request):
             response = ur.urlopen("https://hindistory.net/story/58"+str(k))
             s = response.read()
             po = Post(s)
-            po.Post()
+            po.update()
 
         except HTTPError as e:
             print('The server couldn\'t fulfill the request.')
@@ -74,7 +74,7 @@ def update(request):
     books = Book.objects.all()
 
     for book in books:
-        title = book.book_title.rstrip().lstrip().replace('\n', '').replace('\r', '')
-        description = book.book_description.rstrip().lstrip().replace('\n', '').replace('\r', '')
+        title = book.book_title.rstrip().lstrip().replace('\n', ' ').replace('\r', '')
+        description = book.book_description.rstrip().lstrip().replace('\n', ' ').replace('\r', '')
         bookup = Book.objects.filter(id=book.id).update(book_title=title,book_description=description)
         return HttpResponse("sessess")
