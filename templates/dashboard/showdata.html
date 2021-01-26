@@ -139,8 +139,8 @@
 
     </div>
     <script>
-
-    $("#content-comment").submit(function (e){
+    $(document).ready(function (e){
+        $("#content-comment").submit(function (e){
         data_form = new FormData($(this)[0]);
        var form =  $(this);
 
@@ -176,6 +176,13 @@
 
         return false;
     });
+        $("#card_add").click(function (e){
+            window.location.href = '/pdf_show/{{ title}}';
+        });
+
+    })
+
+
 
 
 

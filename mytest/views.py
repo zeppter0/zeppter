@@ -3,11 +3,14 @@ from urllib.error import HTTPError, URLError
 
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
+
+from admin_dashboard.models import Book
 from .form import NameForm
 from bs4 import BeautifulSoup
 
 from .html import Html
 from .post import Post
+import re
 
 try:
     from BeautifulSoup import BeautifulSoup
@@ -26,10 +29,10 @@ def imageupload(request):
   #  po.Post()
 
 
-    for k in range(1232):
+    for k in range(9):
 
         try:
-            response = ur.urlopen("https://hindistory.net/story/"+str(k))
+            response = ur.urlopen("https://hindistory.net/story/58"+str(k))
             s = response.read()
             po = Post(s)
             po.Post()
@@ -64,3 +67,14 @@ def imageupload(request):
 def getResponseCode(url):
     conn = urllib.request.urlopen(url)
     return conn.getcode()
+
+
+def update(request):
+
+    books = Book.objects.all()
+
+    for book in books:
+        title = book.book_title.rstrip().lstrip().replace('\n', ' ').replace('\r', '')
+        description = book.book_description.rstrip().lstrip().replace('\n', ' ').replace('\r', '')
+        bookup = Book.objects.filter(id=book.id).update(book_title=re.sub(' +',' ',title),book_description=re.sub(' +',' ',description))
+        return HttpResponse("sessess")

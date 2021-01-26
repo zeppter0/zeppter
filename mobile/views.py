@@ -8,33 +8,33 @@ from django.contrib.postgres.search import SearchVector
 # Create your views here.
 
 
-def content(request,id):
-    book = Book.objects.filter(id=id)
+def content(request,title):
+    book = Book.objects.filter(book_title=title).first()
     meta = {
-        "icon" : book[0].book_image,
-        "title": book[0].book_title,
-        "description": book[0].book_description,
-        "keywords": book[0].keyboard,
+        "icon" : book.book_image,
+        "title": book.book_title,
+        "description": book.book_description,
+        "keywords": book.keyboard,
         "pageUrl": request.get_full_path(),
 
         "auther": "devan mandal",
         "facebook": {
-            "pageTitle": book[0].book_title,
-            "description": book[0].book_description,
+            "pageTitle": book.book_title,
+            "description": book.book_description,
             "pageUrl": request.get_full_path(),
             "siteTitle": "zeppter",
             "homepageUrl": request.get_host(),
 
         },
         "google": {
-            "pageTitle": book[0].book_title,
-            "description": book[0].book_description,
+            "pageTitle": book.book_title,
+            "description": book.book_description,
             "pageUrl": request.get_full_path(),
             "homepageUrl": "zeppter",
         },
         "twitter": {
-            "pageTitle": book[0].book_title,
-            "description": book[0].book_description,
+            "pageTitle": book.book_title,
+            "description": book.book_description,
             "pageUrl": request.get_full_path(),
             "name": "zeppter",
         }
@@ -43,25 +43,24 @@ def content(request,id):
         dat = ""
 
 
-        cat = Category.objects.filter(id=book[0].book_catid)
+        cat = Category.objects.filter(id=book.book_catid)
         data = Book.objects.filter(book_catid=cat[0].id)[:10]
-        comments = Comment.objects.filter(postid=id)
+        comments = Comment.objects.filter(postid=book.id)
 
 
-        print(cat)
-        for da in book:
-            dat = {
 
-                "book_image": da.book_image,
-                "book_title": da.book_title,
-                "book_description": da.book_description,
+        dat = {
+
+                "book_image": book.book_image,
+                "book_title": book.book_title,
+                "book_description": book.book_description,
                 "data": data,
                 "cat": cat,
-                "id": da.id,
+                "id": book.id,
                 "comments" : comments,
                 "schema" : True,
-            }
-            return render(request, "mobile/dashboard/load/content.html", dat)
+        }
+        return render(request, "mobile/dashboard/load/content.html", dat)
 
 
 
@@ -71,7 +70,7 @@ def content(request,id):
 
     else:
         data = Book.objects.all()
-        book = Book.objects.filter(id=id)
+        book = Book.objects.filter(book_title=title)
         catgory = Category.objects.all()
         ua = request.META.get('HTTP_USER_AGENT', '').lower()
         if ua.find("android") > 0:
@@ -79,7 +78,7 @@ def content(request,id):
         elif ua.find("iphone") > 0:
             return render(request, 'mobile/dashboard/home.html', {'data': data, "cat": catgory,"meta" : meta})
         else:
-            return HttpResponseRedirect("http://"+request.get_host()+"/"+book[0].book_title+"/"+str(id))
+            return HttpResponseRedirect("http://"+request.get_host()+"/content/"+book[0].book_title+"/")
 
 
 

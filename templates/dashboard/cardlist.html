@@ -1,6 +1,8 @@
+
+
 {% for i in book %}
         <li>
-        <a data-value="{{ i.id }}" class="cardlink" href="/{{ i.book_title }}/{{ i.id }}"  >
+        <a data-value="{{ i.id }}" class="cardlink" href="/content/{{ i.book_title}}"  >
         {% include 'package/cardview.html' %}
         </a>
 

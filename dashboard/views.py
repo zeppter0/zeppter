@@ -1,3 +1,5 @@
+import re
+
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.loader import get_template
@@ -22,9 +24,12 @@ import math
 # Create your views here.
 
 def dashboard(request):
+
     data = Book.objects.all().order_by('-id')[:3]
     carousel = "hhh"
     catgory= Category.objects.all()
+
+
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     meta = {
         "title" : "zeppter book story and status hindi offers",
@@ -81,6 +86,9 @@ def dashboard(request):
     #return HttpResponse("hello word")
 def cardpost(request,catid):
     book = Book.objects.filter(book_catid=catid).order_by('-id')[:10]
+    for d in book:
+
+        print(re.sub(' +',' ',d.book_title.rstrip().lstrip().replace('\n', ' ').replace('\r', '')))
     st = list()
 
 
@@ -143,53 +151,53 @@ def content(request,id):
         return render(request, "dashboard/content.html", {"meta" : meta})
 
 
-def bookdata(request,id):
-    data = Book.objects.filter(id=id)
-    if data.count() == 1:
-        book_data = data[0].book_data.replace("%*#h2", "<h2>")
-        book_data = data[0].book_data.replace("%*&h2", "</h2>")
-        return HttpResponse(book_data)
+def bookdata(request,title):
+    if "fdhjtgfhfc hjgkiujgkjgug jm,khkjhkj" == title:
+        return HttpResponse("hello")
 
-    return HttpResponse("hello word")
 
-def shodata(request,id,title):
+
+
+    return HttpResponse(title)
+
+def shodata(request,title):
     dat = "";
-    book = Book.objects.filter(id=id)
+    book = Book.objects.filter(book_title=title).first()
     cat = Category.objects.filter()
     meta = {
-        "icon": book[0].book_image,
-        "title": book[0].book_title,
-        "description": book[0].book_description,
-        "keywords": book[0].keyboard,
+        "icon": book.book_image,
+        "title": book.book_title,
+        "description": book.book_description,
+        "keywords": book.keyboard,
         "pageUrl": request.get_full_path(),
-        "publishtime" : book[0].created_at,
+        "publishtime" : book.created_at,
 
         "auther": "devan mandal",
         "facebook": {
-            "pageTitle": book[0].book_title,
-            "description": book[0].book_description,
+            "pageTitle": book.book_title,
+            "description": book.book_description,
             "pageUrl": request.get_full_path(),
             "siteTitle": "zeppter",
             "homepageUrl": request.get_host(),
 
         },
         "google": {
-            "pageTitle": book[0].book_title,
-            "description": book[0].book_description,
+            "pageTitle": book.book_title,
+            "description": book.book_description,
             "pageUrl": request.get_full_path(),
             "homepageUrl": "zeppter",
         },
         "twitter": {
-            "pageTitle": book[0].book_title,
-            "description": book[0].book_description,
+            "pageTitle": book.book_title,
+            "description": book.book_description,
             "pageUrl": request.get_full_path(),
             "name": "zeppter",
         }
     }
 
 
-    data = Book.objects.filter(id=id)[:5]
-    comments = Comment.objects.filter(postid=id)
+    data = Book.objects.filter(id=book.id)[:5]
+    comments = Comment.objects.filter(postid=book.id)
     for d in data:
         userd = MyUeers.objects.filter(id=d.publisher)
         user ={}
@@ -209,26 +217,23 @@ def shodata(request,id,title):
         dat = {'book_data': d.book_data,"user" : user ,"cat_title":cat[0].cat_title,"catid":d.book_catid, 'title': d.book_title, 'dascription': d.book_description,
                'img': d.book_image, 'postid': id, 'comments': comments ,'meta': meta,"schema": True}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
-    if ua.find("linux")>0:
-        return render(request, "dashboard/showdata.html",dat)
+    if ua.find("android") > 0:
+        return HttpResponseRedirect("http://" + request.get_host() + "/mobile/content/" + title)
+    elif ua.find("iphone") > 0:
+        return HttpResponseRedirect("http://" + request.get_host() + "/mobile/content/" + title)
 
+    return render(request, "dashboard/showdata.html", dat)
 
-    elif ua.find("window")>0:
-        return render(request, "dashboard/showdata.html")
-    else:
-        return HttpResponseRedirect("http://"+request.get_host()+"/mobile/content/"+"/"+str(id))
-
-def pdf_show(request,id):
+def pdf_show(request,title):
     dat = "";
+    data = Book.objects.filter(book_title=title).first()
+    comments = Comment.objects.filter(postid=data.id)
+    d = data
 
-    data = Book.objects.filter(id=id)
-    comments = Comment.objects.filter(postid=id)
-    for d in data:
-        d.book_data = d.book_data.replace("%*#h2", "<h2>")
-        d.book_data = d.book_data.replace("%*&h2", "</h2>")
-        dat = {'book_data': d.book_data,"link":bootstrap(), 'title': d.book_title, 'dascription': d.book_description,
-               'img': d.book_image, 'postid': id, 'comments': comments,"pdf": d.data_book}
-    return render(request,"dashboard/PDF_show.html",dat)
+
+    dat = {'book_data': d.book_data,"link":bootstrap(), 'title': d.book_title, 'dascription': d.book_description,
+               'img': d.book_image, 'postid': data.id, 'comments': comments,"pdf": d.data_book}
+    return render(request,"dashboard/show_book.html",dat)
 
 
 

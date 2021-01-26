@@ -19,7 +19,7 @@
 
    <url>
 
-      <loc>http://www.zeppter.com/{{ d.book_title }}/{{ b.id }}</loc>
+      <loc>http://{{ request.get_host }}/content/{{ d.book_title }}/{{ b.id }}</loc>
 
 
 
