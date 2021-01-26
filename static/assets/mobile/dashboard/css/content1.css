@@ -32,6 +32,8 @@
 }
 .title_frame_show{
 padding: 10px 0;
+
+    overflow-y: hidden;
 }
 .item_abaut{
     width: 100%;
