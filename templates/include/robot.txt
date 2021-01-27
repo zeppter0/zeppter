@@ -1,3 +1,7 @@
 User-agent: *
 Disallow: /hello/
 
+
+
+Sitemap: http://www.zeppter.com/sitemap.xml/
+
