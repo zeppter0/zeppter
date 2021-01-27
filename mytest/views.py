@@ -77,5 +77,5 @@ def update(request):
         title = book.book_title.rstrip().lstrip().replace('\n', ' ').replace('\r', '')
         description = book.book_description.rstrip().lstrip().replace('\n', ' ').replace('\r', '')
 
-        bookup = Book.objects.filter(id=book.id).update(book_title=title,book_description=description)
+        bookup = Book.objects.filter(id=book.id).update(book_title=re.sub(" +"," ",title),book_description=re.sub(" +"," ",description))
     return HttpResponse("sesses")
