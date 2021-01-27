@@ -69,20 +69,22 @@ def imageupload(request):
 def getResponseCode(url):
     conn = urllib.request.urlopen(url)
     return conn.getcode()
-def changelang(request):
+def changelang(request,id):
     s = ""
-    books = Book.objects.all()
-    for d in books:
-        translator = Translator(service_urls=['translate.googleapis.com'])
-        trans1 = translator.translate(d.book_title, dest='en')
-        data = valids = re.sub(r"[^A-Za-z0-9 ]+", '', trans1.text)
+    books = Book.objects.filter(id=id)
+    if books.count() == 0:
+        for d in books:
+            translator = Translator(service_urls=['translate.googleapis.com'])
+            trans1 = translator.translate(d.book_title, dest='en')
+            data = valids = re.sub(r"[^A-Za-z0-9 ]+", '', trans1.text)
 
-        dat = Book.objects.filter(id=d.id).update(keyboard=data[:15],book_url=data[:60].replace(" ","-"))
+            dat = Book.objects.filter(id=d.id).update(keyboard=data[:15], book_url=data[:60].replace(" ", "-"))
 
+            changelang(request,++id)
+    else:
+        return HttpResponse("url change")
+    return HttpResponse("not change")
 
-
-
-    return HttpResponse("change url")
 
 
 
