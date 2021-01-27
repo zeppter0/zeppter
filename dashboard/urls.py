@@ -13,6 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+from django.contrib.sitemaps import views as st
 from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.sitemaps import GenericSitemap
@@ -23,9 +25,11 @@ from admin_dashboard.models import Book
 from dashboard import views
 from django.conf import settings
 from django.conf.urls.static import static
-from dashboard import BookSiteMap
+from dashboard.BookSiteMap import BookSiteMap
 
-sitemaps =  {"book" : BookSiteMap}
+sitemaps =  {"book" : BookSiteMap()
+
+             }
 urlpatterns = [
 
     path('', views.dashboard, name="dashboard"),
@@ -39,7 +43,11 @@ urlpatterns = [
     path("mobile_home", views.mobile_home, name="mobile_home"),
     path("mobileload", views.mobile_home, name="mobile_load"),
     path("googled9d554441dd811fd.html", views.googled9d554441dd811fd, name="google"),
-    url('sitemap.xml',views.sitema, name='django.contrib.sitemaps.views.sitemap')
+   # url('sitemap.xml',views.sitema, name='django.contrib.sitemaps.views.sitemap')
+
+
+    path("sitemap.xml/", sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
+
 
 
     # path("robots.txt",views.robots ,name="roboot.txt"),

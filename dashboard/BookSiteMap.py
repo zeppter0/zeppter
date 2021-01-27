@@ -12,7 +12,7 @@ class BookSiteMap(Sitemap):
         return Book.objects.all()
 
     def lastmod(self, obj):
-        return obj.date
+        return obj.updated_at
 
-    def location(self, item):
-        return reverse(item)
+
+

@@ -147,3 +147,27 @@ white-space: nowrap;
     bottom: 0;
     right: 0;
 }
+.backward-di{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-image: radial-gradient(
+	  circle closest-side,
+	  #21bdbd,
+	  #3881b1
+	);
+    text-align: center;
+
+    box-shadow: 0 0 8px 1px #000;
+
+    margin-top: 200px;
+
+}
+.backward-di:hover{
+
+}
+.show-backf{
+    color: white;
+    text-align: center;
+
+}

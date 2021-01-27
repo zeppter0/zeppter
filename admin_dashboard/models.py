@@ -47,6 +47,9 @@ class Book(models.Model):
             )
             self.save()
 
+    def get_absolute_url(self):
+        return "/content/"+str(self.book_title)
+
 
 
 
@@ -69,5 +72,7 @@ class ImgUpload(models.Model):
     title = models.CharField(max_length=500)
     img_pub_date = models.DateTimeField("date published")
     img = models.ImageField(upload_to='cat_img/content',default='')
+
+
 
 
