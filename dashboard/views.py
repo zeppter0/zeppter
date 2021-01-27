@@ -160,9 +160,9 @@ def bookdata(request,title):
 
     return HttpResponse(title)
 
-def shodata(request,title):
+def shodata(request,url):
     dat = "";
-    book = Book.objects.filter(book_title=title).first()
+    book = Book.objects.filter(book_url=url).first()
     cat = Category.objects.filter()
     meta = {
         "icon": book.book_image,
@@ -218,15 +218,15 @@ def shodata(request,title):
                'img': d.book_image, 'postid': id, 'comments': comments ,'meta': meta,"schema": True}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("android") > 0:
-        return HttpResponseRedirect("http://" + request.get_host() + "/mobile/content/" + title)
+        return HttpResponseRedirect("http://" + request.get_host() + "/mobile/content/" + url)
     elif ua.find("iphone") > 0:
-        return HttpResponseRedirect("http://" + request.get_host() + "/mobile/content/" + title)
+        return HttpResponseRedirect("http://" + request.get_host() + "/mobile/content/" + url)
 
     return render(request, "dashboard/showdata.html", dat)
 
-def pdf_show(request,title):
+def pdf_show(request,url):
     dat = "";
-    data = Book.objects.filter(book_title=title).first()
+    data = Book.objects.filter(book_url=url).first()
     comments = Comment.objects.filter(postid=data.id)
     d = data
 

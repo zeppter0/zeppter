@@ -28,6 +28,7 @@ class Book(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     publisher = models.IntegerField()
+    book_url = models.CharField(max_length=100)
 
     def delete(self, using=None, keep_parents=False):
         self.book_image.storage.delete(self.book_image.name)

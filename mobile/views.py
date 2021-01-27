@@ -8,8 +8,8 @@ from django.contrib.postgres.search import SearchVector
 # Create your views here.
 
 
-def content(request,title):
-    book = Book.objects.filter(book_title=title).first()
+def content(request,url):
+    book = Book.objects.filter(book_url=url).first()
     meta = {
         "icon" : book.book_image,
         "title": book.book_title,
@@ -70,7 +70,7 @@ def content(request,title):
 
     else:
         data = Book.objects.all()
-        book = Book.objects.filter(book_title=title)
+        book = Book.objects.filter(book_url=url)
         catgory = Category.objects.all()
         ua = request.META.get('HTTP_USER_AGENT', '').lower()
         if ua.find("android") > 0:
@@ -78,7 +78,7 @@ def content(request,title):
         elif ua.find("iphone") > 0:
             return render(request, 'mobile/dashboard/home.html', {'data': data, "cat": catgory,"meta" : meta})
         else:
-            return HttpResponseRedirect("http://"+request.get_host()+"/content/"+book[0].book_title+"/")
+            return HttpResponseRedirect("http://"+request.get_host()+"/content/"+book[0].book_url+"/")
 
 
 
@@ -117,7 +117,7 @@ def loadcontent():
 def search(request):
     if request.method in "GET" and "search" in request.GET:
         search = request.GET["search"]
-        book = Book.objects.annotate(search=SearchVector('book_title', 'book_description'),).filter(search=search)
+        book = Book.objects.annotate(search=SearchVector('book_title','keyboard', 'book_description'),).filter(search=search)
         cat = Category.objects.filter(cat_title=search)
         data = {
             "cat": cat,
