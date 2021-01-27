@@ -79,8 +79,8 @@ def changelang(request,id):
             data = valids = re.sub(r"[^A-Za-z0-9 ]+", '', trans1.text)
 
             dat = Book.objects.filter(id=d.id).update(keyboard=data[:15], book_url=data[:60].replace(" ", "-"))
-
-            changelang(request,++id)
+            id+=1
+            changelang(request,id)
     else:
         return HttpResponse("url change")
     return HttpResponse("not change")
