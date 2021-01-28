@@ -74,12 +74,18 @@ def changelang(request):
     books = Book.objects.all()
 
     for d in books:
+        df = re.sub("-+"," ", d.book_url)
+
+        if df == " " or d.book_url == "-":
             translator = Translator(service_urls=['translate.googleapis.com'])
             trans1 = translator.translate(d.book_title, dest='en')
             data = valids = re.sub(r"[^A-Za-z0-9 ]+", '', trans1.text)
 
             dat = Book.objects.filter(id=d.id).update(keyboard=data[:15], book_url=data[:60].replace(" ", "-"))
-            print(d.book_url)
+            print(data[:15])
+
+
+
 
 
     return HttpResponse("not change")
@@ -96,4 +102,5 @@ def update(request):
         description = book.book_description.rstrip().lstrip().replace('\n', ' ').replace('\r', '')
 
         bookup = Book.objects.filter(id=book.id).update(book_title=re.sub(" +"," ",title),book_description=re.sub(" +"," ",description))
+
     return HttpResponse("sesses")
