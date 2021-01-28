@@ -115,7 +115,7 @@ def changelang(request):
     books = Book.objects.all()
 
     for d in books:
-        df = re.sub("-+"," ", d.book_url).rstrip().lstrip()
+        df = re.sub("-+"," ", d.book_url)
 
 
         if df == " " or d.book_url == "-" or d.book_url.rstrip().lstrip() == "":
