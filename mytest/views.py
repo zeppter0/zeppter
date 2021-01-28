@@ -112,7 +112,7 @@ def modifalang(request):
 
 def changelang(request):
     s = ""
-    books = Book.objects.all().order_by('-id')
+    books = Book.objects.all()
 
     for d in books:
         df = re.sub("-+"," ", d.book_url)
