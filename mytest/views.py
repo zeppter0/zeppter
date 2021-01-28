@@ -115,10 +115,10 @@ def changelang(request):
     books = Book.objects.all()
 
     for d in books:
-        df = re.sub("-+"," ", d.book_url)
+        df = re.sub("-+"," ", d.book_url).rstrip().lstrip()
 
 
-        if df == " " or d.book_url == "-" or d.book_url == "":
+        if df == " " or d.book_url == "-" or d.book_url.rstrip().lstrip() == "":
             translator = Translator()
             trans1 = translator.translate(d.book_title, dest='en')
 
