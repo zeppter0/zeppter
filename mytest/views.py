@@ -76,19 +76,13 @@ def modifalang(request):
 
     for d in books:
         df = re.sub("-+", " ", d.book_url)
+        if df == " " or d.book_url == "-" or d.book_url =="":
+            dat = Book.objects.filter(id=d.id).update(keyboard=d.book_url[:15], book_url=d.book_url[:60].replace(" ", "-"))
 
 
-        translator = Translator(service_urls=['translate.googleapis.com'])
-        trans1 = translator.translate(d.book_title, dest='en')
 
-        data = re.sub(r"[^A-Za-z0-9 ]+", '', trans1.text)
-        if trans1.text == "":
-                dat = Book.objects.filter(id=d.id).update(keyboard=d.book_title[:15],book_url=d.book_title[:60].replace(" ", "-"))
-        else:
 
-                dat = Book.objects.filter(id=d.id).update(keyboard=data[:15], book_url=data[:60].replace(" ", "-"))
 
-                print(data[:15])
 
     return HttpResponse("not change")
 
@@ -98,6 +92,7 @@ def changelang(request):
 
     for d in books:
         df = re.sub("-+"," ", d.book_url)
+
 
         if df == " " or d.book_url == "-":
             translator = Translator(service_urls=['translate.googleapis.com'])
