@@ -95,7 +95,7 @@ def changelang(request):
 
 
         if df == " " or d.book_url == "-":
-            translator = Translator(service_urls=['translate.googleapis.com'])
+            translator = Translator()
             trans1 = translator.translate(d.book_title, dest='en')
 
 
