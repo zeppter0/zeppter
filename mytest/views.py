@@ -29,15 +29,15 @@ def imageupload(request):
   #  s = sl.read()
   ##  po = Post(s)
   #  po.Post()
-
-
-    for k in range(1232):
-
+    s = ""
+    if request.method in "GET":
         try:
-            response = ur.urlopen("https://hindistory.net/story/"+str(k))
-            s = response.read()
-            po = Post(s)
-            po.update()
+            response = ur.urlopen(request.GET['url'])
+
+            test = Html(response.read())
+            text = test.list()
+            s += str(text)
+
 
         except HTTPError as e:
             print('The server couldn\'t fulfill the request.')
@@ -47,6 +47,30 @@ def imageupload(request):
             print('Reason: ', e.reason)
         else:
             print('Website is working fine')
+
+        return HttpResponse(s)
+
+
+    try:
+        response = ur.urlopen("https://www.hindihorrorstories.info/")
+
+        test = Html(response.read())
+        text = test.list()
+        s+=str(text)
+
+
+    except HTTPError as e:
+        print('The server couldn\'t fulfill the request.')
+        print('Error code: ', e.code)
+    except URLError as e:
+        print('We failed to reach a server.')
+        print('Reason: ', e.reason)
+    else:
+        print('Website is working fine')
+
+    return HttpResponse(s)
+
+
 
 
 
