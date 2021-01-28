@@ -49,7 +49,7 @@ class Book(models.Model):
             self.save()
 
     def get_absolute_url(self):
-        return "/content/"+str(self.book_title)
+        return "/content/"+str(self.book_url)
 
 
 
