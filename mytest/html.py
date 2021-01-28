@@ -21,12 +21,12 @@ class Html(object):
     def list(self):
         parsed_html = BeautifulSoup(self.html)
         s = ""
-        frame = parsed_html.body.findAll('div', attrs={'class': 'post-outer'})
+        frame = parsed_html.body.findAll('a', attrs={'class': 'aft-post-image-link'})
 
         for d in frame:
-            print(d.a['href'])
 
-            self.content(d.a['href'])
+
+            self.content(d['href'])
 
 
 
@@ -45,23 +45,25 @@ class Html(object):
         try:
             response = ur.urlopen(urld)
             html = BeautifulSoup(response.read())
-            img = html.find('link',attrs={'rel' : "image_src"})
+            img = html.find('img',attrs={'class' : "attachment-magnitude-featured size-magnitude-featured wp-post-image"})
 
-            title = html.body.find('h1',attrs={'class' : "post-title entry-title"} )
-            content = html.body.find('div', attrs={'class': 'post-body entry-content'})
-            for f in content.select('span'):
-                f.extract()
-            for f in content.select('a'):
-                f.extract()
-            for f in content.select('img'):
-                f.extract()
+            title = html.body.find('h1',attrs={'class' : "entry-title"} )
+            content = html.body.find('div', attrs={'class': 'entry-content read-details pad ptb-10'})
+
+            p = content.findAll('p')
+            contenttext = ""
+
+            for g in p:
+                contenttext += g.text
+
+
 
             data =""
             df = Post(data)
-           # print(title.text)
+            print(contenttext)
 
 
-            df.newPost(img['href'],title.text,content.text)
+            df.newPost(img['src'],title.text,contenttext)
 
 
 

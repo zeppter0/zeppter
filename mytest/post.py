@@ -1,4 +1,5 @@
 from django.utils import timezone
+from googletrans import Translator
 
 from admin_dashboard.models import Book
 
@@ -13,7 +14,13 @@ class Post(object):
 
         title = re.sub(' +', ' ', mtitle.rstrip().lstrip().replace('\n', ' ').replace('\r', ''))
         focaskey = re.sub(r"[^A-Za-z0-9 ]+", '', title)
-        urls = focaskey.replace(" ","-")
+        urls = focaskey.replace(" ","-").rstrip("-").lstrip("-")
+        if urls == "":
+            translator = Translator()
+            trans1 = translator.translate(title, dest='en')
+
+            urls = re.sub(r"[^A-Za-z0-9 ]+", '', trans1.text)
+
 
         if Book.objects.filter(book_title=title).count() <1 :
             if img != "":
@@ -25,11 +32,11 @@ class Post(object):
                             book_rates=2,
                             publisher=1,
                             keyboard=focaskey,
-                            book_publish=False,
+                            book_publish=True,
                             book_upload_date=timezone.now(),
                             book_url=urls,
 
-                            book_catid=2,
+                            book_catid=3,
                             book_commit_id=1)
                 book.get_remote_image(img)
                 book.save()
@@ -46,7 +53,7 @@ class Post(object):
                             book_publish=True,
                             book_upload_date=timezone.now(),
 
-                            book_catid=2,
+                            book_catid=3,
                             book_commit_id=1)
                 book.save()
                 return print("not img")
