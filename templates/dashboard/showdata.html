@@ -10,7 +10,7 @@
                 <div class="position-relative w-100">
                     <button id="card_add" >Show Book</button>
 
-                <button id="download" href="../pdf_show/{{ postid }}" onclick="window.open('../pdf_show/{{ postid }}')" >Download Book</button>
+                <button id="download" href="../pdf_show/{{ url }}" onclick="window.open('/pdf_show/{{ url }}')" >Download Book</button>
 
                 </div>
             </div>
@@ -177,7 +177,7 @@
         return false;
     });
         $("#card_add").click(function (e){
-            window.location.href = '/pdf_show/{{ title}}';
+            window.location.href = '/pdf_show/{{ url}}';
         });
 
     })

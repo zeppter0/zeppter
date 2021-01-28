@@ -4,5 +4,5 @@ from mytest import views
 
 
 urlpatterns = [
-    path("",views.modifalang,name="image_upload"),
+    path("",views.changelang,name="image_upload"),
 ]

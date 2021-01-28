@@ -76,7 +76,7 @@ def modifalang(request):
 
     for d in books:
         df = re.sub("-+", " ", d.book_url)
-        if df == " " or d.book_url == "-" or d.book_url =="":
+        if d.book_url =="":
             dat = Book.objects.filter(id=d.id).update(keyboard=d.book_url[:15], book_url=d.book_url[:60].replace(" ", "-"))
 
 
@@ -88,7 +88,7 @@ def modifalang(request):
 
 def changelang(request):
     s = ""
-    books = Book.objects.all()
+    books = Book.objects.all().order_by('-id')
 
     for d in books:
         df = re.sub("-+"," ", d.book_url)
