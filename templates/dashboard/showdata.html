@@ -3,38 +3,45 @@
 {% block content %}
 {% include "dashboard/main/header.html" %}
     <div class="container contentshow">
-    <div id="_9023">
-        <div id="iconframe">
-            <img src="{{ MEDIA_URL }}{{ img }}" width="330" height="330"/>
-            <div class="_786786">
-                <div class="position-relative w-100">
-                    <button id="card_add" >Show Book</button>
+    <div class="_7585">
+        <div id="iconframe" class="">
+            <img src="{{ MEDIA_URL }}{{ img }}"  width="330" height="330"/>
+            <div class="_786786 ">
+                <div class="btn_frame">
+                    <button class="show-btn" id="card_add" >Show Book</button>
 
-                <button id="download" href="../pdf_show/{{ url }}" onclick="window.open('/pdf_show/{{ url }}')" >Download Book</button>
+                <button class="show-btn" id="download" href="../pdf_show/{{ url }}" onclick="window.open('/pdf_show/{{ url }}')" >Download Book</button>
 
                 </div>
             </div>
         </div>
         <div class="_90237">
-            <div class="container">
-                <ul class="_786865">
-                    <li>
+
+
+
+                <div class="_786865">
+
                         <div class="_boottile">
                             <h1>{{ title }}</h1>
                         </div>
-                    </li>
-                    <li>
-                        <h4 class="_7854">{{ dascription }}</h4>
-                    </li>
+
+                        <p class="_7854">{{ dascription }}</p>
 
 
 
-                </ul>
-            </div>
+
+                </div>
+        </div>
 
         </div>
 
+    <div class="showdata-g">
+        {{ book_data }}
+
+
     </div>
+    </div>
+
     <div class="container">
         <h3 class="text-center">description</h3>
         <table  class="center_margin" id="description_frame">

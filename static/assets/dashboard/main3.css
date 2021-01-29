@@ -1,51 +1,66 @@
 #iconframe{
-    width: 400px;
-height: 400px;
+    text-align: center;
+    padding: 30px;
 
-    position: relative;
+
+
     display: inline-block;
 
+
+}
+._7585{
 
 }
 #iconframe img{
-    position: absolute;
-    left: 0;
+
+
     margin:  0px auto 0px auto;
 }
 
-#_9023{
-height: 400px;
 
-
-
-}
 ._90237{
-    display: inline-block;
-    position: absolute;
+    margin-left: 30px;
+
+ display: inline-block;
     
 }
+.web-right{
+    float: right;
+}
+
 ._786786{
-    position: absolute;
-bottom: 0;
+
 margin: 10px;
 padding: 5px;
-    width: 100%;
+
+}
+.btn_frame{
+
+    background-color: #0f6674;
+    text-align: center;
 }
 button#card_add{
-    background-color: skyblue;
-color: white;
-border-radius: 6px;
-margin: auto;
+
+
+    float: left;
+
+
 }
 button#download{
 
-    position: absolute;
-    right: 0;
+    float: right;
 
-background-color: skyblue;
-color: white;
-border-radius: 6px;
-margin: 0px 90px 20px 0px;
+
+
+}
+
+.show-btn{
+
+    color: white;
+    border-radius: 9px;
+    box-shadow: 2px 2px #888888;
+    background-image: linear-gradient(to top, #3a85c2 0%, #21bdbd 100%);
+padding: 4px 10px;
 }
 ._786865{
     list-style-type: none;
@@ -54,27 +69,29 @@ margin: 0px 90px 20px 0px;
 }
 ._boottile{
     size: 20px;
-    margin: 30px;
-    padding: 10px;
-}
-._description{
-    margin: 30px;
-    padding: 10px;
-
+    padding: 5px  30px 0  10px;
 
 
 }
 ._7854{
+    padding-top: 20px;
+    width: 660px;
+}
+._description{
+    width: 300px;
     margin: 30px;
     padding: 10px;
+
+
+
 }
+
 #nav-bar{
     float: right;
     list-style-type: none;
-  margin: 0;
+  margin-left: auto;
 
-    position: absolute;
-    right: 0;
+
 }
 #nav-bar li{
     display: inline;
