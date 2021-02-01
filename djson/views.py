@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.core import serializers
 import json
+from admin_dashboard.models import Category
+
 
 from comment.models import Comment
 
@@ -12,8 +14,10 @@ from comment.models import Comment
 
 
 def index(request):
-    
+    data = []
     data = Book.objects.all()
+
+
     
         
     
@@ -24,17 +28,64 @@ def index(request):
     return HttpResponse(da)
 
 
+def catlist(request):
+    data = []
+    cats =  Category.objects.all()
+    for cat in cats:
+        datas = {"cat_title" : cat.cat_title,
+
+        "cat_id" : str(cat.id),
+        }
+        data.append(datas)
+    return HttpResponse(json.dumps(data))    
+
+def book(request,id):
+    data = []
+    books = Book.objects.filter(book_catid=id)[:10]
+    
+    for i in books:
+        img =  "http://"+request.get_host()+"/hello"
+        if i.book_image.url:
+            img = "http://"+request.get_host()+i.book_image.url
+        
+                 
+
+        datas ={
+            "book_title": i.book_title,
+             "book_dec": i.book_description,
+             'book_icon': img,
+
+        
+        "book_id": i.id,
+
+
+        }
+        data.append(datas)
+
+          
+    return HttpResponse(json.dumps(data))    
+
+
+
+    
+
 def books(request):
     data = []
     books = Book.objects.all()
     
     for i in books:
-       
+        img =  "http://"+request.get_host()+"/hello"
+        if i.book_image.url:
+            img = "http://"+request.get_host()+i.book_image.url
+        
+                 
 
         datas ={
             "book_title": i.book_title,
              "book_dec": i.book_description,
-        "book_icon": "http://"+request.get_host()+i.book_image.url,
+             'book_icon': img,
+
+        
         "book_id": i.id,
 
 
@@ -49,15 +100,19 @@ def books(request):
 def showslider(request):
     
     data = []
-    books = Book.objects.all()
+    books = Book.objects.all()[:5]
     
     for i in books:
+        img =  "http://"+request.get_host()+"/hello"
+        if i.book_image.url:
+            img = "http://"+request.get_host()+i.book_image.url
+            
        
 
         datas ={
             "book_title": i.book_title,
              "book_dec": i.book_description,
-        "book_icon": "http://"+request.get_host()+i.book_image.url,
+        "book_icon": img,
         "book_id": i.id
 
         }

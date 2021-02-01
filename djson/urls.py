@@ -25,6 +25,8 @@ urlpatterns = [
     path('',views.index , name="dashboard"),
     path('slider',views.showslider , name="dashboard"),
     path("books",views.books,name="books"),
+    path("cat/<int:id>",views.book,name="book"),
+    path("cats",views.catlist,name="cats"),
     path("comments/<int:id>", views.book_comment,name="book_commets"),
 
 ]

@@ -5,5 +5,26 @@
   <li><a href="news.asp">News</a></li>
   <li><a href="contact.asp">Contact</a></li>
   <li><a href="about.asp">About</a></li>
-</ul>
+
+    {% if 'email' in request.session %}
+    <li class="dropdown-frame nav-item dropdown">
+        <a class="" href="#" id="navuserDropdown" >
+          {{ request.session.email }}
+        </a>
+        <div class="dropdown-menu" >
+          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Logout</a>
+        </div>
+      </li>
+
+    {% else %}
+    <a>login</a>
+    {% endif %}
+
+
+     </ul>
+
+
 </nav>

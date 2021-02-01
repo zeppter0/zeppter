@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 {% include "dashboard/main/header.html" %}
-    <div class="container contentshow">
     <div class="_7585">
         <div id="iconframe" class="">
             <img src="{{ MEDIA_URL }}{{ img }}"  width="330" height="330"/>
@@ -35,12 +34,6 @@
 
         </div>
 
-    <div class="showdata-g">
-        {{ book_data }}
-
-
-    </div>
-    </div>
 
     <div class="container">
         <h3 class="text-center">description</h3>
@@ -99,8 +92,23 @@
 
       </div>
     </div>
-    <div class="row">
-        <div class="col" style="width: 400px ;background-color: white">
+
+
+        <div  style="width: 400px ;background-color: white">
+            <ul id="comment-list">
+                {% for comment in comments %}
+                <li>
+                    <a href="#">
+                        {{ comment.name }}
+
+                    </a>
+                    <br>
+                    <comment>{{ comment.comment }}</comment>
+                </li>
+                {% endfor %}
+
+
+            </ul>
         <form action="#" id="content-comment">
             {% csrf_token %}
             <input type="hidden" name="postid" value="{{ postid }}">
@@ -125,26 +133,10 @@
             <input type="submit" class="btn btn-primary" value="Comment">
         </form>
     </div>
-        <div class="col" style="background-color: white;">
-            <ul id="comment-list">
-                {% for comment in comments %}
-                <li>
-                    <a href="#">
-                        {{ comment.name }}
-
-                    </a>
-                    <br>
-                    <comment>{{ comment.comment }}</comment>
-                </li>
-                {% endfor %}
 
 
-            </ul>
 
-        </div>
-    </div>
 
-    </div>
     <script>
     $(document).ready(function (e){
         $("#content-comment").submit(function (e){
@@ -152,7 +144,7 @@
        var form =  $(this);
 
         $.ajax({
-            url: "../comment",
+            url: "/comment",
             method : "POST",
             data : form.serialize(),
             cache :false,

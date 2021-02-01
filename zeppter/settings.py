@@ -48,14 +48,16 @@ SECRET_KEY = 'a9u^k1a3@8%33v1^hj&@c0do%npc$(r$it4#%w=g2vs%0vzzxe'
 
 # SECURITY WARNING: do3qn't run with debug turned on in production!
 DEBUG = True
+APPEND_SLASH=False
 
 ALLOWED_HOSTS = [
     # "103.138.96.225",
     # "192.168.42.211"
     "www.zeppter.com",
-    "192.168.1.106",
+    "192.168.1.107",
     'zeppter.com',
     '127.0.0.1',
+    
 
 ]
 

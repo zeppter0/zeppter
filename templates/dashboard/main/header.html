@@ -1,5 +1,5 @@
 <nav id="nav-bar-frame">
-    <a href="http://{{ request.get_host }}" id="nav-bar-brand" >Zeppter</a>
+    <a href="http://{{ request.get_host }}" id="nav-user" >Zeppter</a>
 
          <ul id="nav-bar">
   <li><a href="default.asp">Home</a></li>
@@ -7,5 +7,10 @@
   <li><a href="contact.asp">Contact</a></li>
   <li><a href="about.asp">About</a></li>
 </ul>
+       {% if 'email' in request.session %}
+    <a>{{ request.session.email }}</a>
+    {% else %}
+    <a>login</a>
+    {% endif %}
 
 </nav>

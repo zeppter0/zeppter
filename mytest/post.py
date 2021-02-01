@@ -36,7 +36,7 @@ class Post(object):
                             book_upload_date=timezone.now(),
                             book_url=urls,
 
-                            book_catid=3,
+                            book_catid=1,
                             book_commit_id=1)
                 book.get_remote_image(img)
                 book.save()
@@ -53,7 +53,7 @@ class Post(object):
                             book_publish=True,
                             book_upload_date=timezone.now(),
 
-                            book_catid=3,
+                            book_catid=1,
                             book_commit_id=1)
                 book.save()
                 return print("not img")
