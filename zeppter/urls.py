@@ -21,7 +21,7 @@ path('hello/', include('admin_dashboard.urls')),
     path("test/", include("mytest.urls")),
     path("call/", include('videocall.urls')),
     path("mobile/", include("mobile.urls")),
-    path("test", include("mytest.urls"), name="test"),
+    path("test", include("mytest.urls")),
 
     url(r'^robots\.txt/$', TemplateView.as_view(template_name='include/robot.txt',
                                                 content_type='text/plain')),
