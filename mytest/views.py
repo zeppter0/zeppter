@@ -159,7 +159,7 @@ def check(request):
     data= ""
     books = Book.objects.all()
     for d in books:
-        data += d.book_title+"</br>"
+        data += d.book_url+"</br>"
     return HttpResponse(data)
 
 def changebook(request,book):
