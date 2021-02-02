@@ -153,3 +153,40 @@ def update(request):
         bookup = Book.objects.filter(id=book.id).update(book_title=re.sub(" +"," ",title),book_description=re.sub(" +"," ",description))
 
     return HttpResponse("sesses")
+
+
+def check(request):
+    data= ""
+    books = Book.objects.all()
+    for d in books:
+        data += d.book_title+"</br>"
+    return HttpResponse(data)
+
+def changebook(request,book):
+    s = ""
+    books = Book.objects.filter(book_url=book)
+
+    for d in books:
+        df = re.sub("-+"," ", d.book_url)
+
+
+        if df == " " or d.book_url == "-" or d.book_url.rstrip().lstrip() == "":
+            translator = Translator()
+            trans1 = translator.translate(d.book_title, dest='en')
+
+
+
+            data = re.sub(r"[^A-Za-z0-9 ]+", '', trans1.text)
+            if trans1.text == "":
+                dat = Book.objects.filter(id=d.id).update(keyboard=d.book_title[:15], book_url=d.book_title[:60].replace(" ", "-"))
+            else:
+
+                dat = Book.objects.filter(id=d.id).update(keyboard=data[:15], book_url=data[:60].replace(" ", "-"))
+
+            print(data[:15])
+
+
+
+
+
+    return HttpResponse("not change")
