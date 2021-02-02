@@ -124,6 +124,9 @@ padding: 4px 10px;
     background-image: linear-gradient(to top, #3881b1 0%, #21bdbd 100%);
 
 }
+#nav-user{
+    color: white;
+}
 .center_margin{
     margin-left: auto;
   margin-right: auto;
