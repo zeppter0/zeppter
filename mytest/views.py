@@ -75,6 +75,9 @@ def imageupload(request):
                 books = Book.objects.filter(book_title=title)
                 keybord = re.sub(r"[^A-Za-z0-9 ]+", '', title)
                 slug = js['slug']
+                fgh = re.sub(' +', ' ', slug.rstrip().lstrip().replace('\n', ' ').replace('\r', ''))
+                focaskey = re.sub(r"[^A-Za-z0-9 ]+", '', fgh)
+                urlsd = focaskey.replace(" ", "-").rstrip("-").lstrip("-")
                 if img =="":
                   return  print('notimg')
 
@@ -90,9 +93,9 @@ def imageupload(request):
                         keyboard="",
                         book_publish=True,
                         book_upload_date=timezone.now(),
-                        book_url=slug,
+                        book_url=urlsd,
 
-                        book_catid=0,
+                        book_catid=1,
                         book_commit_id=1
                     )
                     book.get_remote_image(img)
@@ -109,9 +112,9 @@ def imageupload(request):
                         keyboard="",
                         book_publish=True,
                         book_upload_date=timezone.now(),
-                        book_url=slug,
+                        book_url=urlsd,
 
-                        book_catid=0,
+                        book_catid=1,
                         book_commit_id=1
                     )
 

@@ -212,6 +212,7 @@ def shodata(request,url):
 
 
         cat = Category.objects.filter(id=d.book_catid)
+
         d.book_data = d.book_data.replace("%*#h2", "<h2>")
         d.book_data = d.book_data.replace("%*&h2", "</h2>")
         dat = {"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cat_title":cat[0].cat_title,"catid":d.book_catid, 'title': d.book_title, 'dascription': d.book_description,
