@@ -27,7 +27,7 @@ def dashboard(request):
 
     data = Book.objects.all().order_by('-id')[:3]
     carousel = "hhh"
-    catgory= Category.objects.all()
+    catgory= Category.objects.all()[:3]
 
 
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
@@ -251,7 +251,7 @@ def listview(request,id):
 def mobile_home(request):
 
     data = Book.objects.all()
-    catgory = Category.objects.all()
+    catgory = Category.objects.all()[:3]
 #    rengred = render_to_string("mobile/dashboard/load/home.html",{"data":data,"cat":catgory})
   #  print(render(request,"mobile/dashboard/load/home.html",{"book":data,"data":data,"cat":catgory}))
     return render(request,"mobile/dashboard/load/home.html",{"book":data,"data":data,"cat":catgory})

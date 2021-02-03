@@ -8,6 +8,7 @@ from django.contrib.postgres.fields import ArrayField
 
 # Create your models here.
 from django.urls import reverse
+from django.core.validators import int_list_validator
 
 
 class Book(models.Model):
@@ -23,12 +24,15 @@ class Book(models.Model):
     book_publish = models.BooleanField(default=False)
     data_book = models.FileField("zip_data",default=None)
     book_catid = models.IntegerField(default=1)
-    book_arrcat = ArrayField(ArrayField(models.IntegerField()))
+
+    book_arrcat = ArrayField(models.IntegerField(),default=[1])
+    book_arrcatstr = models.CharField(max_length=40,default="1")
     keyboard = models.CharField(max_length=5000 ,default="")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     publisher = models.IntegerField()
     book_url = models.CharField(max_length=100)
+
 
     def delete(self, using=None, keep_parents=False):
         self.book_image.storage.delete(self.book_image.name)
@@ -61,7 +65,7 @@ class Category(models.Model):
     cat_title = models.CharField(max_length=50)
   #  book_category = models.CharField(max_length=50,default="empty")
     cat_img = models.ImageField(upload_to='cat_img',default=None)
-    cat_pub_date = models.DateTimeField("date published")
+    cat_pub_date = models.DateTimeField(auto_now_add=True)
     def delete(self, using=None, keep_parents=False):
         self.cat_img.storage.delete(self.cat_img.name)
 

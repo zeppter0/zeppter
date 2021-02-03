@@ -39,6 +39,7 @@ class Post(object):
                             book_catid=1,
                             book_commit_id=1)
                 book.get_remote_image(img)
+
                 book.save()
                 return print("save data")
             else:
