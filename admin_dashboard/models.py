@@ -31,7 +31,7 @@ class Book(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     publisher = models.IntegerField()
-    book_url = models.CharField(max_length=100)
+    book_url = models.CharField(max_length=300)
 
 
     def delete(self, using=None, keep_parents=False):
