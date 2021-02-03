@@ -74,6 +74,7 @@ def imageupload(request):
                 img =  img_json['guid']['rendered']
                 books = Book.objects.filter(book_title=title)
                 keybord = re.sub(r"[^A-Za-z0-9 ]+", '', title)
+                slug = js['slug']
                 if img =="":
                   return  print('notimg')
 
@@ -89,13 +90,31 @@ def imageupload(request):
                         keyboard="",
                         book_publish=True,
                         book_upload_date=timezone.now(),
-                        book_url=title,
+                        book_url=slug,
 
                         book_catid=0,
                         book_commit_id=1
                     )
                     book.get_remote_image(img)
                     book.save()
+                else:
+                    books.update(
+                        book_title=title,
+                        book_description=description,
+
+                        book_data=str(parsed_html),
+                        book_arrcat=caatid,
+                        book_rates=2,
+                        publisher=1,
+                        keyboard="",
+                        book_publish=True,
+                        book_upload_date=timezone.now(),
+                        book_url=slug,
+
+                        book_catid=0,
+                        book_commit_id=1
+                    )
+
 
 
 
