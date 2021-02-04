@@ -263,7 +263,8 @@ def wordpressjson(url):
                     book_catid=1,
                     book_commit_id=1
                 )
-                book.get_remote_image(img)
+                if img !="":
+                   book.get_remote_image(img)
                 book.save()
             else:
                 books.update(
