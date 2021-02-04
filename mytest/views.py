@@ -30,10 +30,10 @@ import json
 import urllib.request as ur
 
 
-def wordpress(request):
+def wordpress(request,id):
     for d in range(1969):
-        wordpressjson('https://www.grihshobha.in/wp-json/wp/v2/posts?page='+str(238+d))
-        print(d)
+        wordpressjson('https://www.grihshobha.in/wp-json/wp/v2/posts?page='+str(id+d))
+        print(id+d)
     return HttpResponse("hello word")
 
 
