@@ -32,7 +32,7 @@ import urllib.request as ur
 
 def wordpress(request):
     for d in range(1969):
-        wordpressjson('https://www.grihshobha.in/wp-json/wp/v2/posts?page='+str(d))
+        wordpressjson('https://www.grihshobha.in/wp-json/wp/v2/posts?page='+str(225+d))
         print(d)
     return HttpResponse("hello word")
 
