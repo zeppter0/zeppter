@@ -30,6 +30,12 @@ import json
 import urllib.request as ur
 
 
+def wordpress(request):
+    for d in range(1969):
+        wordpressjson('https://www.grihshobha.in/wp-json/wp/v2/posts?page='+str(d))
+    return HttpResponse("hello word")
+
+
 def imageupload(request):
     #  html = re.urlopen("https://www.livehindustan.com/nandan/story-old-book-3136666.html")
   # sl = ur.urlopen("https://hindistory.net/story/555" )
@@ -39,129 +45,7 @@ def imageupload(request):
     s = ""
     if request.method in "GET":
 
-        try:
-            response = ur.urlopen(request.GET['url'])
-
-            jas = json.loads(response.read())
-            caatid  = []
-            for js in jas:
-                title = js['title']['rendered']
-                content = js['content']['rendered']
-                parsed_html = BeautifulSoup(content)
-                for f in parsed_html.select('img'):
-                    f.extract()
-
-                for f in parsed_html.select('a'):
-                    f.extract()
-                for f in parsed_html.select('script'):
-                    f.extract()
-                description = parsed_html.text[:400]
-                cat = js['categories']
-                for ca in cat:
-                    caty =    geturl("https://www.grihshobha.in/wp-json/wp/v2/categories/"+str((ca)))
-                    jsc = json.loads(caty)
-                    catname = jsc['name']
-                    cats  = Category.objects.filter(cat_title=catname)
-                    if cats.count() <1:
-                       catsave =  Category(cat_title=catname)
-                       catsave.save()
-
-                       caatid.append(catsave.id)
-                    else:
-                        caatid.append(cats[0].id)
-                featured_media = geturl("https://www.grihshobha.in/wp-json/wp/v2/media/"+str(js['featured_media']))
-                img_json  = json.loads(featured_media)
-                img =  img_json['guid']['rendered']
-                books = Book.objects.filter(book_title=title)
-                keybord = re.sub(r"[^A-Za-z0-9 ]+", '', title)
-                slug = js['slug']
-                fgh = re.sub(' +', ' ', slug.rstrip().lstrip().replace('\n', ' ').replace('\r', ''))
-                focaskey = re.sub(r"[^A-Za-z0-9 ]+", '', fgh)
-                urlsd = focaskey.replace(" ", "-").rstrip("-").lstrip("-")
-                if img =="":
-                  return  print('notimg')
-
-                if books.count() <1:
-                    book = Book(
-                        book_title=title,
-                        book_description=description,
-
-                        book_data=str(parsed_html),
-                        book_arrcat=caatid,
-                        book_rates=2,
-                        publisher=1,
-                        keyboard="",
-                        book_publish=True,
-                        book_upload_date=timezone.now(),
-                        book_url=urlsd,
-
-                        book_catid=1,
-                        book_commit_id=1
-                    )
-                    book.get_remote_image(img)
-                    book.save()
-                else:
-                    books.update(
-                        book_title=title,
-                        book_description=description,
-
-                        book_data=str(parsed_html),
-                        book_arrcat=caatid,
-                        book_rates=2,
-                        publisher=1,
-                        keyboard="",
-                        book_publish=True,
-                        book_upload_date=timezone.now(),
-                        book_url=urlsd,
-
-                        book_catid=1,
-                        book_commit_id=1
-                    )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-         #   test = Html(response.read())
-          #  text = test.list()
-        #    s += str(text)
-
-        
-
-         #   post.json()
-
-
-          #  return JsonResponse(response.read())
-
-
-
-
-        except HTTPError as e:
-            print('The server couldn\'t fulfill the request.')
-            print('Error code: ', e.code)
-        except URLError as e:
-            print('We failed to reach a server.')
-            print('Reason: ', e.reason)
-        else:
-            print('Website is working fine')
+        wordpressjson(request.GET['url'])
 
         return HttpResponse(s)
 
@@ -316,3 +200,125 @@ def geturl(data):
     else:
         print('Website is working fine')
     return s
+
+
+def wordpressjson(url):
+    try:
+        response = ur.urlopen(url)
+
+        jas = json.loads(response.read())
+        caatid = []
+        for js in jas:
+            title = js['title']['rendered']
+            content = js['content']['rendered']
+            parsed_html = BeautifulSoup(content)
+            for f in parsed_html.select('img'):
+                f.extract()
+
+            for f in parsed_html.select('a'):
+                f.extract()
+            for f in parsed_html.select('script'):
+                f.extract()
+            description = parsed_html.text[:400]
+            cat = js['categories']
+            for ca in cat:
+                caty = geturl("https://www.grihshobha.in/wp-json/wp/v2/categories/" + str((ca)))
+                jsc = json.loads(caty)
+                catname = jsc['name']
+                cats = Category.objects.filter(cat_title=catname)
+                if cats.count() < 1:
+                    catsave = Category(cat_title=catname)
+                    catsave.save()
+
+                    caatid.append(catsave.id)
+                else:
+                    caatid.append(cats[0].id)
+            featured_media = geturl("https://www.grihshobha.in/wp-json/wp/v2/media/" + str(js['featured_media']))
+            img_json = json.loads(featured_media)
+            img = img_json['guid']['rendered']
+            books = Book.objects.filter(book_title=title)
+            keybord = re.sub(r"[^A-Za-z0-9 ]+", '', title)
+            slug = js['slug']
+            fgh = re.sub(' +', ' ', slug.rstrip().lstrip().replace('\n', ' ').replace('\r', ''))
+            focaskey = re.sub(r"[^A-Za-z0-9 ]+", '', fgh)
+            urlsd = focaskey.replace(" ", "-").rstrip("-").lstrip("-")
+            if img == "":
+                return print('notimg')
+
+            if books.count() < 1:
+                book = Book(
+                    book_title=title,
+                    book_description=description,
+
+                    book_data=str(parsed_html),
+                    book_arrcat=caatid,
+                    book_rates=2,
+                    publisher=1,
+                    keyboard="",
+                    book_publish=True,
+                    book_upload_date=timezone.now(),
+                    book_url=urlsd,
+
+                    book_catid=1,
+                    book_commit_id=1
+                )
+                book.get_remote_image(img)
+                book.save()
+            else:
+                books.update(
+                    book_title=title,
+                    book_description=description,
+
+                    book_data=str(parsed_html),
+                    book_arrcat=caatid,
+                    book_rates=2,
+                    publisher=1,
+                    keyboard="",
+                    book_publish=True,
+                    book_upload_date=timezone.now(),
+                    book_url=urlsd,
+
+                    book_catid=1,
+                    book_commit_id=1
+                )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #   test = Html(response.read())
+    #  text = test.list()
+    #    s += str(text)
+
+    #   post.json()
+
+    #  return JsonResponse(response.read())
+
+    except HTTPError as e:
+        print('The server couldn\'t fulfill the request.')
+        print('Error code: ', e.code)
+    except URLError as e:
+        print('We failed to reach a server.')
+        print('Reason: ', e.reason)
+    else:
+        print('Website is working fine')
+
+    return "load susecuss"
