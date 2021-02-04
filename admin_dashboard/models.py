@@ -1,6 +1,7 @@
 import os
 
 from urllib import request
+from urllib.error import HTTPError, URLError
 
 from django.core.files import File
 from django.db import models
@@ -45,12 +46,26 @@ class Book(models.Model):
 
     def get_remote_image(self,image_url):
         if image_url and not self.book_image:
-            result = request.urlretrieve(image_url)
-            self.book_image.save(
-                os.path.basename(image_url),
-                File(open(result[0], 'rb'))
-            )
-            self.save()
+            try:
+                result = request.urlretrieve(image_url)
+                self.book_image.save(
+                    os.path.basename(image_url),
+                    File(open(result[0], 'rb'))
+                )
+                self.save()
+            except HTTPError as e:
+                print('The server couldn\'t fulfill the request.')
+                print('Error code: ', e.code)
+            except URLError as e:
+                print('We failed to reach a server.')
+                print('Reason: ', e.reason)
+            else:
+                print('Website is working fine')
+
+
+
+
+
 
     def get_absolute_url(self):
         return "/content/"+str(self.book_url)
