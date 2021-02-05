@@ -35,6 +35,13 @@ def wordpress(request,id):
         wordpressjson('https://www.grihshobha.in/wp-json/wp/v2/posts?page='+str(id+d))
         print(id+d)
     return HttpResponse("hello word")
+def changecatgory(request):
+    books = Book.objects.all()
+    for book in books:
+        if book.book_catid != 1:
+            bd = Book.objects.filter(id=book.id)
+            bd.update(book_arrcat=[book.book_catid])
+    return HttpResponse("sesse")
 
 
 def imageupload(request):

@@ -85,7 +85,7 @@ def dashboard(request):
 
     #return HttpResponse("hello word")
 def cardpost(request,catid):
-    book = Book.objects.filter(book_catid=catid).order_by('-id')[:10]
+    book = Book.objects.filter(book_arrcat=[catid]).order_by('-id')[:10]
     for d in book:
 
         print(re.sub(' +',' ',d.book_title.rstrip().lstrip().replace('\n', ' ').replace('\r', '')))
@@ -207,15 +207,21 @@ def shodata(request,url):
               "fullname" : userd[0].first_name+" "+userd[0].last_name,
               "id" : userd[0].id
           }
+        dst = []
+        for ca in d.book_arrcat:
+            dst.append(Category.objects.filter(id=ca)[0])
 
 
 
 
-        cat = Category.objects.filter(id=d.book_catid)
+
+
+
+
 
         d.book_data = d.book_data.replace("%*#h2", "<h2>")
         d.book_data = d.book_data.replace("%*&h2", "</h2>")
-        dat = {"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cat_title":cat[0].cat_title,"catid":d.book_catid, 'title': d.book_title, 'dascription': d.book_description,
+        dat = {"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cats":dst, 'title': d.book_title, 'dascription': d.book_description,
                'img': d.book_image, 'postid': id, 'comments': comments ,'meta': meta,"schema": True}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("android") > 0:

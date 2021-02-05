@@ -56,16 +56,17 @@
 
     </div>
     <div class="container">
+    {% for ca in cats %}
         <div class="item-layout">
       <div class="title-layout">
-        <h4>{{ cat_title }}</h4>
+        <h4>{{ ca.cat_title }}</h4>
         <a href="#">More</a>
 
 
       </div>
       <div class="container">
           <div class="card-layout">
-       <ul id="card_list{{ catid }}" class="card-list">
+       <ul id="card_list{{ ca.id }}" class="card-list">
 
        </ul>
 
@@ -75,10 +76,10 @@
         $(document).ready(function (e){
             $.ajax(
         {
-            url : "/cardlist/{{ catid }}",
+            url : "/cardlist/{{ ca.id }}",
             cache: false,
             success : function (data){
-                $("#card_list{{ catid }}").html(data)
+                $("#card_list{{ ca.id }}").html(data)
 
             }
         }
@@ -91,6 +92,7 @@
 
 
       </div>
+    {% endfor %}
     </div>
 
 
