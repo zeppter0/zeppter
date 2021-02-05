@@ -5,6 +5,7 @@ from mobile import views
 
 urlpatterns = [
     path("content/<str:url>/",views.content,name="content"),
+path("content/<str:url>",views.content,name="content"),
     path("mobile_pdf/<int:id>",views.showdatapdf, name="showpdf"),
 path("mobilecard/<int:id>",views.mobilecard, name="showpdf"),
     path("home",views.home,name="mobilehome"),
