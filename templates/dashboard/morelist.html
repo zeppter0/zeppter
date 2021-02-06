@@ -1,0 +1,61 @@
+{% extends 'dashboard/main/include.html' %}
+{% load static %}
+{% block content %}
+    {% include 'dashboard/main/header.html' %}
+    <div class="container-fluid">
+    <div class="_567">
+        <div class="title-black">
+            <h1 class="h4">
+                Search :
+                {{ title }}
+
+            </h1>
+        </div>
+
+
+
+    </div>
+       <div class="container">
+
+<div class="row">
+
+
+
+    {% for i in profiles %}
+        <div class="col-4">
+         <a data-value="{{ i.id }}" class="cardlink" href="/content/{{ i.book_url}}/"  >
+        {% include 'package/cardview.html' %}
+         </a>
+        </div>
+        {% empty %}
+  No athletes
+    {% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if profiles.has_previous %}
+            <a href="?page=1&search={{ title }}">&laquo; first</a>
+            <a href="?page={{ profiles.previous_page_number }}&search={{ title }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ profiles.number }} of {{ profiles.paginator.num_pages }}.
+        </span>
+
+        {% if profiles.has_next %}
+            <a href="?page={{ profiles.next_page_number }}&search={{ title }}">next</a>
+            <a href="?page={{ profiles.paginator.num_pages }}&search={{ title }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+</div>
+    </div>
+    </div>
+
+
+
+{% endblock %}
+
+{% block heade %}
+    <link rel="stylesheet" href="{% static 'assets/dashboard/morelist.css' %}">
+{% endblock %}

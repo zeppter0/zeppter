@@ -36,7 +36,7 @@
     <div class="item-layout">
       <div class="title-layout">
         <h4>{{ ca.cat_title }}</h4>
-        <a href="#">More</a>
+        <a href="/catlist/{{ ca.id }}">More</a>
       
 
       </div>
@@ -50,6 +50,17 @@
       </div>
     <script>
         $(document).ready(function (e){
+
+
+            $('#search-addon').click(function (e){
+        data = $('#search_input').val();
+        if (data !== ""){
+            $('#search').submit()
+
+        }
+
+    });
+
             $.ajax(
         {
             url : "/cardlist/{{ ca.id }}",

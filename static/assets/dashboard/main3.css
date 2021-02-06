@@ -95,9 +95,10 @@ padding: 4px 10px;
   margin-left: auto;
 
 
+
 }
 #nav-bar li{
-    display: inline;
+    display: inline-block;
     padding: 5px;
     margin: 6px;
 
@@ -119,13 +120,15 @@ padding: 4px 10px;
     display: flex;
     padding: .5rem 1rem;
     align-items: center;
-    min-height: 4rem;
+    max-height: 4rem;
         box-shadow: 0 0 8px 1px #000;
     background-image: linear-gradient(to top, #3881b1 0%, #21bdbd 100%);
 
 }
 #nav-user{
     color: white;
+    font-family: "proxima-nova", sans-serif;
+  font-weight: 100;
 }
 .center_margin{
     margin-left: auto;

@@ -1,10 +1,19 @@
 <nav id="nav-bar-frame">
     <a href="http://{{ request.get_host }}" id="nav-bar-brand" >Zeppter</a>
      <ul id="nav-bar">
-  <li><a href="default.asp">Home</a></li>
-  <li><a href="news.asp">News</a></li>
-  <li><a href="contact.asp">Contact</a></li>
-  <li><a href="about.asp">About</a></li>
+     <li><form id="search" method="get" action="/search">
+                     <input type="hidden" name="page" value="1">
+                 <div class="input-group rounded">
+  <input type="search" class="form-control rounded" name="search" id="search_input" placeholder="Search" aria-label="Search"
+    aria-describedby="search-addon" />
+  <span class="input-group-text border-0" id="search-addon">
+    <i class="fas fa-search"></i>
+  </span>
+</div>
+                     </form></li>
+
+  <li><a href="contact">Contact</a></li>
+  <li><a href="about">About</a></li>
 
     {% if 'email' in request.session %}
     <li class="dropdown-frame nav-item dropdown">

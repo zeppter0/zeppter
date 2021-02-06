@@ -58,7 +58,7 @@
 
             {% for i in data %}
         <li>
-        <a class="cardlink" href="http://{{ request.get_host }}/mobile/content/{{ i.book_url }}" >
+        <a class="cardlink" href="http://{{ request.get_host }}/mobile/content/{{ i.book_url }}/" >
         {% include 'package/cardview.html' %}
         </a>
 

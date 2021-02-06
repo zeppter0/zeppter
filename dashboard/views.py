@@ -1,5 +1,6 @@
 import re
 
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.loader import get_template
@@ -18,7 +19,7 @@ from myuser.models import MyUeers
 
 
 import math
-
+from django.contrib.postgres.search import SearchVector
 
 
 # Create your views here.
@@ -225,9 +226,9 @@ def shodata(request,url):
                'img': d.book_image, 'postid': id, 'comments': comments ,'meta': meta,"schema": True}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("android") > 0:
-        return HttpResponseRedirect("http://" + request.get_host() + "/mobile/content/" + url)
+        return HttpResponseRedirect("http://" + request.get_host() + "/mobile/content/" + url+"/")
     elif ua.find("iphone") > 0:
-        return HttpResponseRedirect("http://" + request.get_host() + "/mobile/content/" + url)
+        return HttpResponseRedirect("http://" + request.get_host() + "/mobile/content/" + url+"/")
 
     return render(request, "dashboard/showdata.html", dat)
 
@@ -276,3 +277,41 @@ def sitema(request):
 
 def robots(request):
     return render(request, "include/robot.txt")
+
+
+def contect(request):
+    return render(request,"dashboard/contact.html")
+
+
+def morelist(request):
+
+    title = ""
+    books= []
+    if request.method == "GET":
+        search = request.GET['search']
+        books = Book.objects.annotate(
+            search=SearchVector('book_title'),
+        ).filter(search=search)
+        bd = Book.objects.all()
+
+        paginator = Paginator(books, 15)  # So limited to 5 profiles in a page
+
+        page = request.GET.get('page')
+
+        profile = paginator.get_page(page)  # data
+        return render(request, "dashboard/morelist.html", {"title":search, 'profiles': profile})
+
+
+def catlist(request,id):
+    books = Book.objects.filter(book_arrcat=[id])
+    cat = Category.objects.filter(id=id).first().cat_title
+    paginator = Paginator(books, 15)  # So limited to 5 profiles in a page
+
+
+    page = request.GET.get('page')
+
+    profile = paginator.get_page(page)  # data
+    return render(request, "dashboard/morelist.html", {"title": cat, 'profiles': profile})
+
+
+    return None

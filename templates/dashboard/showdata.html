@@ -60,7 +60,7 @@
         <div class="item-layout">
       <div class="title-layout">
         <h4>{{ ca.cat_title }}</h4>
-        <a href="#">More</a>
+        <a href="/catlist/{{ ca.id }}">More</a>
 
 
       </div>
@@ -74,6 +74,12 @@
       </div>
     <script>
         $(document).ready(function (e){
+
+
+
+
+
+
             $.ajax(
         {
             url : "/cardlist/{{ ca.id }}",
