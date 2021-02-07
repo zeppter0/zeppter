@@ -1,5 +1,38 @@
-<div class="container">
+<div class="container" id="text-hod">
 
     {{ des | safe }}
+<div class="audio-play" >
 
+    <i class="fas fa-play-circle"></i>
 </div>
+</div>
+<script>
+    $(document).ready(function (e){
+        $('.audio-play').click(function (e){
+        url = "https://ajax.googleapis.com/ajax/services/language/translate";
+        text = $("#text-hod").text()
+
+
+var audio = new Audio();
+$.ajax({
+    url: url,
+    type: "GET",
+    dataType: 'jsonp',
+
+
+    data: {
+        q: 'Hello world!',  // text to translate
+            v: '1.0',
+            langpair: 'en|es'
+    },
+
+    success: function (e){
+        audio.src = e;
+        audio.play();
+    }
+})
+
+    });
+    })
+
+</script>

@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 from googletrans import Translator
 from django.core import serializers
 from admin_dashboard.models import Category
-
+import requests
 
 from .html import Html
 from .post import Post
@@ -270,7 +270,9 @@ def wordpressjson(url):
                     book_catid=1,
                     book_commit_id=1
                 )
-                if img !="":
+                check_img = requests.get(img)
+
+                if check_img.status_code==200:
                    book.get_remote_image(img)
                 book.save()
             else:

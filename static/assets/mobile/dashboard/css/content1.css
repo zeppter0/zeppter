@@ -68,3 +68,15 @@ padding: 10px 0;
     margin-left: 10px;
 
 }
+.audio-play{
+    position: fixed;
+    bottom: 80px;
+    right: 30px;
+}
+.audio-play i{
+    font-size: 40px;
+    color: #0f6674;
+    background-color: white;
+    box-shadow: 2px 2px 2px #000000;
+
+}
