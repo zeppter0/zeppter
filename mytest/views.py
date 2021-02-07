@@ -270,9 +270,9 @@ def wordpressjson(url):
                     book_catid=1,
                     book_commit_id=1
                 )
-                check_img = requests.get(img)
 
-                if check_img.status_code==200:
+
+                if img.find("//") == -1:
                    book.get_remote_image(img)
                 book.save()
             else:
