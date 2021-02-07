@@ -253,7 +253,7 @@ def wordpressjson(url):
             if img == "":
                 return print('notimg')
 
-            if books.count() < 1:
+            if books.count() < 1 and js['status']=="publish":
                 book = Book(
                     book_title=title,
                     book_description=description,
