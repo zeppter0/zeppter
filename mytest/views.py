@@ -272,8 +272,10 @@ def wordpressjson(url):
                 )
 
 
-                if img.find("//") == -1:
+                if img.find("https://") == -1:
                    book.get_remote_image(img)
+                else:
+                    print("not img")
                 book.save()
             else:
                 books.update(
