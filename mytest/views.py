@@ -242,9 +242,10 @@ def wordpressjson(url):
                     caatid.append(catsave.id)
                 else:
                     caatid.append(cats[0].id)
-            featured_media = geturl("https://"+web__url+"/wp-json/wp/v2/media/" + str(js['featured_media']))
-            img_json = json.loads(featured_media)
-            img = img_json['guid']['rendered']
+       #     featured_media = geturl("https://"+web__url+"/wp-json/wp/v2/media/" + str(js['featured_media']))
+         #   img_json = json.loads(featured_media)
+       #     img = img_json['guid']['rendered']
+            img = js['featuredimage']
             books = Book.objects.filter(book_title=title)
             keybord = re.sub(r"[^A-Za-z0-9 ]+", '', title)
             slug = js['slug']
