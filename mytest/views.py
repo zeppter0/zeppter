@@ -28,11 +28,12 @@ except ImportError:
 import json
 
 import urllib.request as ur
-
+web__url2 = "www.grihshobha.in"
+web__url = "https://thatsmystory-book.com/"
 
 def wordpress(request,id):
     for d in range(1969):
-        wordpressjson('https://www.grihshobha.in/wp-json/wp/v2/posts?page='+str(id+d))
+        wordpressjson('https://'+web__url+'/wp-json/wp/v2/posts?page='+str(id+d))
         print(id+d)
     return HttpResponse("hello word")
 def changecatgory(request):
@@ -230,7 +231,7 @@ def wordpressjson(url):
             description = parsed_html.text[:400]
             cat = js['categories']
             for ca in cat:
-                caty = geturl("https://www.grihshobha.in/wp-json/wp/v2/categories/" + str((ca)))
+                caty = geturl("https://"+web__url+"/wp-json/wp/v2/categories/" + str((ca)))
                 jsc = json.loads(caty)
                 catname = jsc['name']
                 cats = Category.objects.filter(cat_title=catname)
@@ -241,7 +242,7 @@ def wordpressjson(url):
                     caatid.append(catsave.id)
                 else:
                     caatid.append(cats[0].id)
-            featured_media = geturl("https://www.grihshobha.in/wp-json/wp/v2/media/" + str(js['featured_media']))
+            featured_media = geturl("https://"+web__url+"/wp-json/wp/v2/media/" + str(js['featured_media']))
             img_json = json.loads(featured_media)
             img = img_json['guid']['rendered']
             books = Book.objects.filter(book_title=title)
@@ -270,12 +271,10 @@ def wordpressjson(url):
                     book_catid=1,
                     book_commit_id=1
                 )
+                book.get_remote_image(img)
 
 
-                if img.find("https://") == -1:
-                   book.get_remote_image(img)
-                else:
-                    print("not img")
+
                 book.save()
             else:
                 books.update(
