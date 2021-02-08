@@ -29,10 +29,10 @@ import json
 
 import urllib.request as ur
 web__url2 = "www.grihshobha.in"
-web__url = "https://thatsmystory-book.com/"
+web__url = "thatsmystory-book.com"
 
 def wordpress(request,id):
-    for d in range(1969):
+    for d in range(7):
         wordpressjson('https://'+web__url+'/wp-json/wp/v2/posts?page='+str(id+d))
         print(id+d)
     return HttpResponse("hello word")
