@@ -73,9 +73,9 @@ def dashboard(request):
     elif ua.find("iphone")>0:
         return render(request, 'mobile/dashboard/home.html', {'data': data, "meta": meta, "cat": catgory})
     elif ua.find("linux")>0:
-        return render(request, 'dashboard/main.html', {'data': data,"meta" : meta,"cat" : catgory,"carousel" : carousel})
+        return render(request, 'dashboard/main.html', {'data': data,"meta" : meta,"cat" : catgory,"carousel" : carousel,"website":True})
     else:
-        return render(request, 'dashboard/main.html', {'data': data ,"meta" : meta , "cat" : catgory })
+        return render(request, 'dashboard/main.html', {'data': data ,"meta" : meta , "cat" : catgory ,"website":True})
 
 
 
@@ -222,8 +222,8 @@ def shodata(request,url):
 
         d.book_data = d.book_data.replace("%*#h2", "<h2>")
         d.book_data = d.book_data.replace("%*&h2", "</h2>")
-        dat = {"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cats":dst, 'title': d.book_title, 'dascription': d.book_description,
-               'img': d.book_image, 'postid': id, 'comments': comments ,'meta': meta,"schema": True}
+        dat = {"publish_date":d.created_at,"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cats":dst, 'title': d.book_title, 'dascription': d.book_description,
+               'img': d.book_image, 'postid': d.id, 'comments': comments ,'meta': meta,"book": True}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("android") > 0:
         return HttpResponseRedirect("http://" + request.get_host() + "/mobile/content/" + url+"/")
@@ -258,7 +258,7 @@ def listview(request,id):
 
 def mobile_home(request):
 
-    data = Book.objects.all()
+    data = Book.objects.all()[:3]
     catgory = Category.objects.all()[:3]
 #    rengred = render_to_string("mobile/dashboard/load/home.html",{"data":data,"cat":catgory})
   #  print(render(request,"mobile/dashboard/load/home.html",{"book":data,"data":data,"cat":catgory}))
@@ -314,4 +314,12 @@ def catlist(request,id):
     return render(request, "dashboard/morelist.html", {"title": cat, 'profiles': profile})
 
 
-    return None
+def about(request):
+    meta = {
+
+
+
+
+    }
+
+    return render(request,"dashboard/about.html",{"logo":True})

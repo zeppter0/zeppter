@@ -23,6 +23,7 @@ def dashboard(request):
         data= {
             'link' : bootstrap(),
             'cat' : cat,
+
         }
         return render(request, 'admin/post.html',data)
 

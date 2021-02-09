@@ -40,35 +40,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-5B8PSGJ');</script>
 <!-- End Google Tag Manager -->
 
-{% if schema %}
+
 
 
 <script type="application/ld+json">
-{
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "breadcrumb": "Books > Marketing > JSON",
-      "mainEntity":{
-              "@type": "Book",
-              "author": "http://www.example.com/author.html",
-              "bookFormat": "http://schema.org/EBook",
-              "datePublished": "{{ meta.publishtime }}",
-              "image": "{{ MEDIA_URL }}{{ img }}",
-              "inLanguage": "hindi",
-              "isbn": "00000000",
-              "name": "{{ title }}",
-              "numberOfPages": "",
 
-              "publisher": "O'Json Publishing",
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4",
-                "reviewCount": "12"
-              }
-            }
-    }
+{
+{% if book %}
+  "@context": "http://schema.org",
+  "@type": "DataFeed",
+  "dataFeedElement": [
+    {
+      "@context": "http://schema.org",
+      "@type": "Book",
+      "@id": "{{ request.build_absolute_uri  }}",
+      "url": "{{ request.build_absolute_uri }}",
+      "name": "{{ title }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ user.fullname }}"
+      },
+      "sameAs": "{{ request.build_absolute_uri }}",
+
+   }
+  ],
+  "dateModified": "{{ publish_date|date:'Y-m-d'}}"
+
+
+
+      {% elif website %}
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "{{ request.scheme }}://{{ request.get_host }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ request.scheme }}://{{ request.get_host }}/search?page=1&search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    {% endif %}
+
+}
+
+
+
 </script>
 
-{% endif %}
+
 
 

@@ -102,21 +102,64 @@
     </div>
 
 
-        <div  style="width: 400px ;background-color: white">
-            <ul id="comment-list">
-                {% for comment in comments %}
-                <li>
-                    <a href="#">
-                        {{ comment.name }}
+        <div   class="container">
+        <div class="row">
+        <div class="panel panel-default widget w-100">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-comment"></span>
+                <h3 class="panel-title">
+                    Recent Comments</h3>
+                <span class="label label-info">
+                    {{ comments.count }}</span>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    {% for comment in comments %}
 
-                    </a>
-                    <br>
-                    <comment>{{ comment.comment }}</comment>
-                </li>
-                {% endfor %}
+
+                    <li class="list-group-item">
+                        <div class="row w-full">
+                            <div class="col-xs-2 col-md-1">
+                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
+                            <div class="col-xs-10 col-md-11">
+                                <div>
+                                    <a href="http://bootsnipp.com/BhaumikPatel/snippets/4ldn">Cool Sign Up</a>
+                                    <div class="mic-info">
+                                        By: <a href="#"> {{ comment.name }}</a> on {{ comment.pub_date|date:"M d, Y" }}
+                                    </div>
+                                </div>
+                                <div class="comment-text">
+                                    {{ comment.comment }}
+                                </div>
+                                <div class="action">
+                                    <button type="button" class="btn btn-primary btn-xs" title="Edit">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-success btn-xs" title="Approved">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-xs" title="Delete">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+
+                </ul>
 
 
-            </ul>
+            {% if comments.count > 9 %}
+
+                <a href="#" class="btn btn-primary btn-sm btn-block" role="button"><span class="glyphicon glyphicon-refresh"></span> More</a>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+            
         <form action="#" id="content-comment">
             {% csrf_token %}
             <input type="hidden" name="postid" value="{{ postid }}">
@@ -141,6 +184,7 @@
             <input type="submit" class="btn btn-primary" value="Comment">
         </form>
     </div>
+
 
 
 

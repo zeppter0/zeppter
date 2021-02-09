@@ -25,6 +25,11 @@
 <link rel="stylesheet" href="{% static 'assets/dashboard/main3.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/card/card.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/slideshow.css' %}">
+<link rel="stylesheet" href="{% static 'assets/dashboard/footer.css' %}">
+<link rel="stylesheet" href="{% static 'assets/dashboard/content.css' %}">
+
+
+
 
 {% block heade%}{% endblock %}
      <script src="{% static "assets/jquery/mainjquery.js" %}"></script>
@@ -56,5 +61,6 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 {% block content %}{% endblock %}
+{% include 'dashboard/main/footer.html' %}
 </body>
 </html>

@@ -31,7 +31,7 @@ url('yandex_47dbe3c258eabd6f.html', TemplateView.as_view(template_name='include/
                                                 content_type='text/plain')),
     path("googleaec1d028d595b8d4.html" ,TemplateView.as_view(template_name='include/googleaec1d028d595b8d4.html',
                                                 content_type='text/plain')),
-path("about", TemplateView.as_view(template_name='dashboard/about.html')),
+
 # path("admin/<str:id>",include("plopleadmin.urls")),
     path("user/",include("myuser.urls")),
 # path("robots.txt",views.robots ,name="roboot.txt"),

@@ -10,4 +10,13 @@
 {% endblock %}
 {% block heade %}
     <link rel="stylesheet" href="{% static 'assets/dashboard/about.css'%}">
+    {% if logo %}
+        <script type="application/ld+json">
+ { "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "{{ request.scheme }}://{{ request.get_host }}",
+      "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'assets/img/zeppter.png' %}"
+ }
+ </script>
+    {% endif %}
 {% endblock %}
