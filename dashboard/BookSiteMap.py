@@ -5,8 +5,7 @@ from admin_dashboard.models import Book
 
 
 class BookSiteMap(Sitemap):
-    changefreq = "daily"
-    priority = 1.0
+
 
     def items(self):
         return Book.objects.all()
