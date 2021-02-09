@@ -10,8 +10,7 @@ class BookSiteMap(Sitemap):
     def items(self):
         return Book.objects.all()
 
-    def lastmod(self, obj):
-        return obj.updated_at
+
 
 
 
