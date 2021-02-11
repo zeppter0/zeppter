@@ -1,11 +1,23 @@
 {% extends 'dashboard/main/include.html' %}
 {% load static %}
+
 {% block content %}
 {% include "dashboard/main/header.html" %}
     <div class="_7585">
         <div id="iconframe" class="">
             <img src="{{ MEDIA_URL }}{{ img }}"  width="330" height="330"/>
-            <div class="_786786 ">
+            <div class="w-full">
+                <p>view {{ views }} </p>
+                <a class="like">
+        <i class="fab fa-thumbs-up" style="float: left"></i>  Like
+        <input class="qty1" name="qty1" readonly="readonly" type="text" value="0" />
+    </a>
+    <a class="dislike">
+        <i class="fab fa-thumbs-o-down" style="float: right"></i> Dislike
+        <input class="qty2"  name="qty2" readonly="readonly" type="text" value="0" />
+    </a>
+            </div>
+            <div class="_786786  ">
                 <div class="btn_frame">
                     <button class="show-btn" id="card_add" >Show Book</button>
 
@@ -13,6 +25,7 @@
 
                 </div>
             </div>
+
         </div>
         <div class="_90237">
 
@@ -56,6 +69,19 @@
 
     </div>
     <div class="container">
+    <h4>Book Share</h4>
+    <div class="social">
+
+
+
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.scheme }}://{{ request.get_host }}{{ request.get_full_path }}" id="share-fb" class="sharer button"><i class="fab fa-2x fa-facebook-f"></i></a>
+  <a href="http://www.twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{{ request.get_full_path }}" id="share-tw" class="sharer button"><i class="fab fa-2x fa-twitter"></i></a>
+  <a href="https://plus.google.com/share?url={{ request.scheme }}://{{ request.get_host }}{{ request.get_full_path }}" id="share-li" class="sharer button"><i class="fab  fa-2x fa-google-plus-g"></i></a>
+  <a href="https://plus.google.com/share?url=" id="share-em" class="sharer button"><i class="fa fa-2x fa-envelope-square"></i></a>
+</div>
+    </div>
+    <div class="container">
     {% for ca in cats %}
         <div class="item-layout">
       <div class="title-layout">
@@ -90,6 +116,18 @@
             }
         }
     );
+            $(function () {
+     $(".like").click(function () {
+
+         var input = $(this).find('.qty1');
+         input.val(parseInt(input.val())+ 1);
+     });
+
+     $(".dislike").click(function () {
+         var input = $(this).find('.qty2');
+         input.val(input.val() - 1);
+     });
+});
         });
     </script>
 

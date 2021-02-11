@@ -35,6 +35,7 @@ class Book(models.Model):
     book_url = models.CharField(max_length=300)
 
 
+
     def delete(self, using=None, keep_parents=False):
         self.book_image.storage.delete(self.book_image.name)
         self.data_book.storage.delete(self.data_book.name)
@@ -92,6 +93,12 @@ class ImgUpload(models.Model):
     title = models.CharField(max_length=500)
     img_pub_date = models.DateTimeField("date published")
     img = models.ImageField(upload_to='cat_img/content',default='')
+class Views(models.Model):
+    id = models.AutoField(primary_key=True)
+    ip_address = models.GenericIPAddressField(null=True)
+    post_id = ArrayField(models.IntegerField())
+    updated_at = models.DateTimeField(auto_now=True)
+
 
 
 

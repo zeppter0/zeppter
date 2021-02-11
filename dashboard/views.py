@@ -6,8 +6,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template.loader import get_template
 from django.template.response import TemplateResponse
 
-from admin_dashboard.models import Book
+from admin_dashboard.models import Book, Views
 import json
+
+from dashboard.Pakage import ArrayAppend
 from dashboard.showdata import content
 from values.strings import bootstrap
 from admin_dashboard.models import Category
@@ -202,7 +204,15 @@ def shodata(request,url):
     for d in data:
         userd = MyUeers.objects.filter(id=d.publisher)
         user ={}
+
         if userd.count() ==1:
+          views =  Views.objects.filter(ip_address=get_client_ip(request),post_id=[userd[0].id])
+
+          if views.count() <1:
+              vi = Views(ip_address=get_client_ip(request),post_id=[userd[0].id])
+              vi.save()
+
+
 
           user = {
               "fullname" : userd[0].first_name+" "+userd[0].last_name,
@@ -222,7 +232,8 @@ def shodata(request,url):
 
         d.book_data = d.book_data.replace("%*#h2", "<h2>")
         d.book_data = d.book_data.replace("%*&h2", "</h2>")
-        dat = {"publish_date":d.created_at,"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cats":dst, 'title': d.book_title, 'dascription': d.book_description,
+        vie = Views.objects.filter(post_id=[userd[0].id])
+        dat = {"views": vie.count(),"publish_date":d.created_at,"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cats":dst, 'title': d.book_title, 'dascription': d.book_description,
                'img': d.book_image, 'postid': d.id, 'comments': comments ,'meta': meta,"book": True}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("android") > 0:
@@ -323,3 +334,17 @@ def about(request):
     }
 
     return render(request,"dashboard/about.html",{"logo":True})
+
+PRIVATE_IPS_PREFIX = ('10.', '172.', '192.', )
+def get_client_ip(request ):
+    remote_address = request.META.get('HTTP_X_FORWARDED_FOR') or request.META.get('REMOTE_ADDR')
+    ip = remote_address
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        proxies = x_forwarded_for.split(',')
+        while (len(proxies) > 0 and proxies[0].startswith(PRIVATE_IPS_PREFIX)):
+            proxies.pop(0)
+            if len(proxies) > 0:
+                ip = proxies[0]
+                print("IP Address",ip)
+        return ip

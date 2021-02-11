@@ -60,6 +60,7 @@ ALLOWED_HOSTS = [
     
 
 ]
+BASE_URL = 'http://www.zeppter.com'
 
 # Application definition
 
