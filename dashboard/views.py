@@ -206,10 +206,10 @@ def shodata(request,url):
         user ={}
 
         if userd.count() ==1:
-          views =  Views.objects.filter(ip_address=get_client_ip(request),post_id=[userd[0].id])
+          views =  Views.objects.filter(ip_address=get_client_ip(request),post_id=[d.id])
 
           if views.count() <1:
-              vi = Views(ip_address=get_client_ip(request),post_id=[userd[0].id])
+              vi = Views(ip_address=get_client_ip(request),post_id=[d.id])
               vi.save()
 
 
@@ -232,7 +232,7 @@ def shodata(request,url):
 
         d.book_data = d.book_data.replace("%*#h2", "<h2>")
         d.book_data = d.book_data.replace("%*&h2", "</h2>")
-        vie = Views.objects.filter(post_id=[userd[0].id])
+        vie = Views.objects.filter(post_id=[d.id])
         dat = {"views": vie.count(),"publish_date":d.created_at,"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cats":dst, 'title': d.book_title, 'dascription': d.book_description,
                'img': d.book_image, 'postid': d.id, 'comments': comments ,'meta': meta,"book": True}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
@@ -336,15 +336,25 @@ def about(request):
     return render(request,"dashboard/about.html",{"logo":True})
 
 PRIVATE_IPS_PREFIX = ('10.', '172.', '192.', )
-def get_client_ip(request ):
-    remote_address = request.META.get('HTTP_X_FORWARDED_FOR') or request.META.get('REMOTE_ADDR')
+
+def get_client_ip(request):
+    """get the client ip from the request
+    """
+    remote_address = request.META.get('REMOTE_ADDR')
+    # set the default value of the ip to be the REMOTE_ADDR if available
+    # else None
     ip = remote_address
+    # try to get the first non-proxy ip (not a private ip) from the
+    # HTTP_X_FORWARDED_FOR
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
         proxies = x_forwarded_for.split(',')
-        while (len(proxies) > 0 and proxies[0].startswith(PRIVATE_IPS_PREFIX)):
+        # remove the private ips from the beginning
+        while (len(proxies) > 0 and
+                proxies[0].startswith(PRIVATE_IPS_PREFIX)):
             proxies.pop(0)
-            if len(proxies) > 0:
-                ip = proxies[0]
-                print("IP Address",ip)
-        return ip
+        # take the first ip which is not a private one (of a proxy)
+        if len(proxies) > 0:
+            ip = proxies[0]
+
+    return ip
