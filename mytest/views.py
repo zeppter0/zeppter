@@ -28,8 +28,8 @@ except ImportError:
 import json
 
 import urllib.request as ur
-web__url2 = "www.grihshobha.in"
-web__url = "thatsmystory-book.com"
+web__url = "www.grihshobha.in"
+web__url2 = "thatsmystory-book.com"
 
 def wordpress(request,id):
     for d in range(7):
@@ -242,10 +242,10 @@ def wordpressjson(url):
                     caatid.append(catsave.id)
                 else:
                     caatid.append(cats[0].id)
-       #     featured_media = geturl("https://"+web__url+"/wp-json/wp/v2/media/" + str(js['featured_media']))
-         #   img_json = json.loads(featured_media)
-       #     img = img_json['guid']['rendered']
-            img = js['featuredimage']
+            featured_media = geturl("https://"+web__url+"/wp-json/wp/v2/media/" + str(js['featured_media']))
+            img_json = json.loads(featured_media)
+            img = img_json['guid']['rendered']
+           # img = js['featuredimage']
             books = Book.objects.filter(book_title=title)
             keybord = re.sub(r"[^A-Za-z0-9 ]+", '', title)
             slug = js['slug']

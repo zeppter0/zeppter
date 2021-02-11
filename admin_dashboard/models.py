@@ -98,6 +98,15 @@ class Views(models.Model):
     ip_address = models.GenericIPAddressField(null=True)
     post_id = ArrayField(models.IntegerField())
     updated_at = models.DateTimeField(auto_now=True)
+class Like(models.Model):
+    id = models.AutoField(primary_key=True)
+
+    user = models.IntegerField()
+    post_id = models.IntegerField()
+class DisLike(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.IntegerField()
+    post_id = models.IntegerField()
 
 
 

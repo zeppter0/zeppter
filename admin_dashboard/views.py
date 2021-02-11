@@ -166,4 +166,11 @@ def post_update(request):
 def googled9d554441dd811fd(request):
     return HttpResponse()
 
+def like(request):
+    if request.method == "POST":
+        return
+    return HttpResponse()
+def dislike(request):
+    return HttpResponse()
+
 
