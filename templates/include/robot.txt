@@ -4,5 +4,6 @@ Disallow: /media/
 
 
 
-Sitemap: http://www.zeppter.com/sitemap.xml/
+Sitemap: http://www.zeppter.com/sitemap.xml
 
+Sitemap: http://www.zeppter.com/mobile/sitemap.xml
