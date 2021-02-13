@@ -20,6 +20,5 @@ path("mobilecard/<int:id>",views.mobilecard, name="showpdf"),
     path("content/<str:url>/mobileload",views.content,name="contentload"),
     path("search",views.search,name="mobile_serach"),
     path("listview/<int:cat>",views.listview,name="listview"),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
-     name='django.contrib.sitemaps.views.sitemap')
+    path('sitemap.xml', views.sitemap ,name="mobile_site")
 ]

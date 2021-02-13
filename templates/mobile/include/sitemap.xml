@@ -3,7 +3,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     {% for book in books %}
         <url>
-        <loc>{{ request.scheme }}://{{ request.get_host }}/mobile/content/{{ book.book_url }}</loc>
+        <loc>{{ request.scheme }}://{{ request.get_host }}/mobile/content/{{ book.book_url }}/</loc>
         </url>
     {% endfor %}
 </urlset>
