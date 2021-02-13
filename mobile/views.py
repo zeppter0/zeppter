@@ -141,3 +141,9 @@ def listview(request,cat):
     }
     return  render(request,"mobile/dashboard/load/listview.html",data)
 
+
+def sitemap(request):
+
+
+    book = Book.objects.all()
+    return render(request,'mobile/include/sitemap.xml',{"books":book}, content_type="application/xhtml+xml")

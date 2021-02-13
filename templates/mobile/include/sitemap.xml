@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset>
+    {% for book in books %}
+        <url>
+        <loc>{{ request.scheme }}://{{ request.get_host }}/mobile/content/{{ book.book_url }}</loc>
+        </url>
+    {% endfor %}
+</urlset>
