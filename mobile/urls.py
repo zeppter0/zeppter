@@ -1,8 +1,13 @@
 from django.urls import path
 from django.views.generic import RedirectView
 
-from mobile import views
 
+from mobile import views
+from django.contrib.sitemaps.views import sitemap
+
+from mobile.MobileSitemap import MobileSitemap
+
+sitemaps =  {"book" : MobileSitemap()}
 
 
 urlpatterns = [
@@ -15,5 +20,6 @@ path("mobilecard/<int:id>",views.mobilecard, name="showpdf"),
     path("content/<str:url>/mobileload",views.content,name="contentload"),
     path("search",views.search,name="mobile_serach"),
     path("listview/<int:cat>",views.listview,name="listview"),
-    path("sitemap.xml" ,views.sitemap,name="mobile_site")
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+     name='django.contrib.sitemaps.views.sitemap')
 ]
