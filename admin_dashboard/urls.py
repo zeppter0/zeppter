@@ -13,6 +13,8 @@ path('dashboard',views.shows,name="shows"),
     path("delete/<int:id>",views.post_delele,name="post_delete"),
     path("cat_delete/<int:id>",views.cat_delete,name="catgory_delete"),
     path("post_update",views.post_update,name="post_update"),
+    path ("post/dislike",views.dislike,name="dislike"),
+    path("post/like", views.like,name="like"),
 
 
     path("googled9d554441dd811fd.html",views.googled9d554441dd811fd , name="google")

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse,HttpResponseRedirect
-from admin_dashboard.models import Book
+from admin_dashboard.models import Book, Views, Like, DisLike
 from admin_dashboard.models import Category
 from comment.models import Comment
 from django.contrib.postgres.search import SearchVector
@@ -46,10 +46,16 @@ def content(request,url):
         cat = Category.objects.filter(id=book.book_catid)
         data = Book.objects.filter(book_catid=cat[0].id)[:10]
         comments = Comment.objects.filter(postid=book.id)
-
+        view = Views.objects.filter(post_id=[book.id])
+        likes = Like.objects.filter(post_id=book.id).count()
+        dislike = DisLike.objects.filter(post_id=book.id).count()
 
 
         dat = {
+            "views": view.count(),
+            "likes" : likes,
+            "dislikes" : dislike,
+
 
                 "book_image": book.book_image,
                 "book_title": book.book_title,
@@ -60,6 +66,7 @@ def content(request,url):
                 "comments" : comments,
                 "schema" : True,
         }
+
         return render(request, "mobile/dashboard/load/content.html", dat)
 
 

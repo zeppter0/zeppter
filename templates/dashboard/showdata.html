@@ -10,11 +10,11 @@
                 <p>view {{ views }} </p>
                 <a class="like">
         <i class="fab fa-thumbs-up" style="float: left"></i>  Like
-        <input class="qty1" name="qty1" readonly="readonly" type="text" value="0" />
+        <input class="qty1" name="qty1" readonly="readonly" type="text" value="{{ like }}" />
     </a>
     <a class="dislike">
         <i class="fab fa-thumbs-o-down" style="float: right"></i> Dislike
-        <input class="qty2"  name="qty2" readonly="readonly" type="text" value="0" />
+        <input class="qty2"  name="qty2" readonly="readonly" type="text" value="{{ dislike }}" />
     </a>
             </div>
             <div class="_786786  ">
@@ -120,12 +120,59 @@
      $(".like").click(function () {
 
          var input = $(this).find('.qty1');
-         input.val(parseInt(input.val())+ 1);
+
+         $.ajax({
+             url : "/hello/post/like",
+             type : "get",
+             data: {
+
+                 postid : "{{ postid }}"
+             },
+             success : function (e){
+                data =  JSON.parse(e)
+                 if (data.check === "like"){
+
+                         input.val(data.likes);
+
+
+                 }else if (data.check === "delete"){
+
+                         input.val(data.likes);
+
+
+                 }
+                 console.log(e)
+             }
+         })
      });
 
      $(".dislike").click(function () {
          var input = $(this).find('.qty2');
-         input.val(input.val() - 1);
+
+
+         $.ajax({
+             url : "/hello/post/dislike",
+             type : "get",
+             data: {
+
+                 postid : "{{ postid }}"
+             },
+             success : function (e){
+                 data =  JSON.parse(e)
+                 if (data.check === "dislike"){
+
+                         input.val(data.likes);
+
+
+                 }else if (data.check === "delete"){
+
+                         input.val(data.likes);
+
+
+                 }
+                 console.log(e)
+             }
+         })
      });
 });
         });

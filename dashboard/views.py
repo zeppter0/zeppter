@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template.loader import get_template
 from django.template.response import TemplateResponse
 
-from admin_dashboard.models import Book, Views
+from admin_dashboard.models import Book, Views, Like, DisLike
 import json
 
 from dashboard.Pakage import ArrayAppend
@@ -232,8 +232,10 @@ def shodata(request,url):
 
         d.book_data = d.book_data.replace("%*#h2", "<h2>")
         d.book_data = d.book_data.replace("%*&h2", "</h2>")
+        like = Like.objects.filter(post_id=d.id).count()
+        dislike = DisLike.objects.filter(post_id=d.id).count()
         vie = Views.objects.filter(post_id=[d.id])
-        dat = {"views": vie.count(),"publish_date":d.created_at,"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cats":dst, 'title': d.book_title, 'dascription': d.book_description,
+        dat = {"like":like,"dislike":dislike,"views": vie.count(),"publish_date":d.created_at,"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cats":dst, 'title': d.book_title, 'dascription': d.book_description,
                'img': d.book_image, 'postid': d.id, 'comments': comments ,'meta': meta,"book": True}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("android") > 0:

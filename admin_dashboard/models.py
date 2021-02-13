@@ -101,11 +101,11 @@ class Views(models.Model):
 class Like(models.Model):
     id = models.AutoField(primary_key=True)
 
-    user = models.IntegerField()
+    user = models.CharField(max_length=60)
     post_id = models.IntegerField()
 class DisLike(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.IntegerField()
+    user = models.CharField(max_length=60)
     post_id = models.IntegerField()
 
 

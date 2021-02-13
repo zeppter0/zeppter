@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 
 # Create your views here.
-from admin_dashboard.models import Book
+from admin_dashboard.models import Book, Like, DisLike
 from django.http import HttpResponse,JsonResponse,HttpResponseRedirect
 from django.utils import timezone
 from admin_dashboard.BookForm import BookUploadForm
@@ -167,10 +167,75 @@ def googled9d554441dd811fd(request):
     return HttpResponse()
 
 def like(request):
-    if request.method == "POST":
-        return
-    return HttpResponse()
+
+    check = "nodata"
+    liks = 0
+
+    if request.method == "GET" and "postid" in request.GET  and "email" in request.session :
+
+
+
+
+        post_id = int(request.GET['postid'])
+
+
+        user = request.session["email"]
+        userd = MyUeers.objects.filter(email=user).first()
+        like = Like.objects.filter(user=user)
+        di = DisLike.objects.filter(user=user)
+        if userd.email == user:
+
+            if like.count() < 1 and di.count() < 1:
+                print(post_id)
+                like = Like(user=user, post_id=post_id)
+                like.save()
+
+                check = "like"
+
+
+
+
+
+            elif di.count() < 1:
+                like.delete()
+
+                check = "delete"
+
+
+
+
+        else:
+            check = "login"
+        liks = Like.objects.filter(post_id=post_id).count()
+    data = {"check": check,"likes":liks}
+
+    return HttpResponse(json.dumps(data))
 def dislike(request):
-    return HttpResponse()
+    check = "nodata"
+    liks = 0
+    if request.method == "GET" and "postid" in request.GET and "email" in request.session:
+        data = {}
+
+        post_id = int(request.GET['postid'])
+        print(post_id)
+        user = request.session["email"]
+        userd = MyUeers.objects.filter(email=user).first()
+        like = Like.objects.filter(user=user)
+        di = DisLike.objects.filter(user=user)
+        if userd.email == user:
+            if like.count() < 1 and di.count() < 1:
+                like = DisLike(user=user, post_id=post_id)
+                like.save()
+                check = "dislike"
+
+            elif like.count() < 1:
+                di.delete()
+                check ="delete"
+        else:
+            check = "login"
+
+        liks = DisLike.objects.filter(post_id=post_id).count()
+    data = {"check": check, "likes": liks}
+    return HttpResponse(json.dumps(data))
 
 

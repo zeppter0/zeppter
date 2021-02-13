@@ -11,6 +11,7 @@ class MyUeers(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+   # username = models.CharField(max_length=50)
     email  =  models.EmailField(max_length=50)
     password = models.CharField(max_length=200)
     mobile_no = models.BigIntegerField(default=1)
