@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from admin_dashboard.models import Book, Views, Like, DisLike
@@ -6,7 +8,8 @@ from comment.models import Comment
 from django.contrib.postgres.search import SearchVector
 
 # Create your views here.
-
+from myuser.models import MyUeers
+from django.contrib.auth.hashers import make_password, check_password
 
 def content(request,url):
     book = Book.objects.filter(book_url=url).first()
@@ -147,3 +150,93 @@ def sitemap(request):
 
     book = Book.objects.all()
     return render(request,'mobile/include/sitemap.xml',{"books":book}, content_type="application/xhtml+xml")
+
+
+def login(request):
+    check = "nodata"
+
+
+    email = ""
+    if "email" in request.session:
+        emails = request.session['email']
+        myuser = MyUeers.objects.filter(email=emails).first()
+        if myuser.email == emails:
+            email = myuser.email
+            check = "deshboard"
+        return HttpResponse(json.dumps({"email":email,"check":check}))
+
+
+
+    elif request.method in "POST" and "email" in request.POST and "password" in request.POST:
+        email_q = request.POST['email']
+        password = request.POST['password']
+        myuser = MyUeers.objects.filter(email=email_q)
+
+        if myuser.count() == 1:
+            checkd = check_password(password, myuser[0].password)
+            if checkd :
+                ud = request.session["email"] = myuser[0].email
+                email = myuser[0].email
+                check = "deshboard"
+            else:
+                 check = "password"
+
+        else:
+            check  = "email"
+        return HttpResponse(json.dumps({"email": email, "check": check}))
+
+
+
+
+
+
+
+
+
+
+
+    return render(request,"mobile/login/load/login.html")
+
+
+
+
+
+def register(request):
+    checklogin = "nodata"
+    if 'email' in request.session:
+        checklogin =  "login"
+
+    elif request.method in "POST" and 'email' \
+            in request.POST and 'first_name' \
+            in request.POST and 'last_name' \
+            in request.POST and 'mobile_no' \
+            in request.POST and 'gender' \
+            in request.POST and "password1" \
+            in request.POST and "password2":
+
+        email = request.POST['email']
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        mobile_no = request.POST['mobile_no']
+        gender = request.POST['gender']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        pass4 = make_password(password1)
+        if password1 == password2:
+            myuser = MyUeers.objects.filter(email=email)
+            if myuser.count() < 1:
+                user = MyUeers(gender=gender, first_name=first_name,
+                               last_name=last_name, email=email, password=pass4, mobile_no=int(mobile_no))
+                user.save()
+                request.session['email'] = email
+                checklogin ="register"
+            else:
+                checklogin = "user"
+        else:
+            checklogin = "password"
+        return HttpResponse(json.dumps({"check":checklogin}))
+
+    else:
+
+
+        return render(request,"mobile/login/load/register.html")

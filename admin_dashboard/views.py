@@ -171,41 +171,45 @@ def like(request):
     check = "nodata"
     liks = 0
 
-    if request.method == "GET" and "postid" in request.GET  and "email" in request.session :
-
-
-
-
+    if request.method == "GET" and "postid" in request.GET  :
         post_id = int(request.GET['postid'])
+        if "email" in request.session:
+            user = request.session["email"]
+            userd = MyUeers.objects.filter(email=user).first()
+            like = Like.objects.filter(user=user)
+            di = DisLike.objects.filter(user=user)
+            if userd.email == user:
 
+                if like.count() < 1 and di.count() < 1:
+                    print(post_id)
+                    like = Like(user=user, post_id=post_id)
+                    like.save()
 
-        user = request.session["email"]
-        userd = MyUeers.objects.filter(email=user).first()
-        like = Like.objects.filter(user=user)
-        di = DisLike.objects.filter(user=user)
-        if userd.email == user:
-
-            if like.count() < 1 and di.count() < 1:
-                print(post_id)
-                like = Like(user=user, post_id=post_id)
-                like.save()
-
-                check = "like"
-
-
-
-
-
-            elif di.count() < 1:
-                like.delete()
-
-                check = "delete"
+                    check = "like"
 
 
 
 
-        else:
-            check = "login"
+
+                elif di.count() < 1:
+                    like.delete()
+
+                    check = "delete"
+
+
+
+
+            else:
+                check = "login"
+
+
+
+
+
+
+
+
+
         liks = Like.objects.filter(post_id=post_id).count()
     data = {"check": check,"likes":liks}
 
@@ -213,28 +217,35 @@ def like(request):
 def dislike(request):
     check = "nodata"
     liks = 0
-    if request.method == "GET" and "postid" in request.GET and "email" in request.session:
-        data = {}
-
+    if request.method == "GET" and "postid" in request.GET :
         post_id = int(request.GET['postid'])
-        print(post_id)
-        user = request.session["email"]
-        userd = MyUeers.objects.filter(email=user).first()
-        like = Like.objects.filter(user=user)
-        di = DisLike.objects.filter(user=user)
-        if userd.email == user:
-            if like.count() < 1 and di.count() < 1:
-                like = DisLike(user=user, post_id=post_id)
-                like.save()
-                check = "dislike"
+        if "email" in request.session :
+            data = {}
 
-            elif like.count() < 1:
-                di.delete()
-                check ="delete"
+
+            print(post_id)
+            user = request.session["email"]
+            userd = MyUeers.objects.filter(email=user).first()
+            like = Like.objects.filter(user=user)
+            di = DisLike.objects.filter(user=user)
+            if userd.email == user:
+                if like.count() < 1 and di.count() < 1:
+                    like = DisLike(user=user, post_id=post_id)
+                    like.save()
+                    check = "dislike"
+
+                elif like.count() < 1:
+                    di.delete()
+                    check = "delete"
+            else:
+                check = "login"
         else:
             check = "login"
 
+
+
         liks = DisLike.objects.filter(post_id=post_id).count()
+
     data = {"check": check, "likes": liks}
     return HttpResponse(json.dumps(data))
 

@@ -127,6 +127,9 @@
 
 
     $(document).ready(function (e){
+
+
+
         $("#like").click(function (e){
             $.ajax({
                 url: "/hello/post/like",
@@ -143,8 +146,24 @@
                  }else if (data.check === "delete"){
                      $("#like_v").text(data.likes)
 
+                 }else if (data.check==="login"){
+                     $.ajax({
+                         url: "/mobile/login",
+                         type : "post",
+                         data : {
+                             csrfmiddlewaretoken: '{{ csrf_token }}'
+                         },
+                         success : function (e){
+                             $(".main").hide()
+                             $(".show-content").show()
+                             $(".show-content").html(e)
+                         }
+
+
+                     })
+
                  }
-                 console.log(e)
+
 
 
                 }
@@ -166,6 +185,22 @@
 
                  }else if (data.check === "delete"){
                      $("#dislike_v").text(data.likes)
+
+                 }else if (data.check==="login"){
+                     $.ajax({
+                         url: "/mobile/login",
+                         type : "post",
+                         data : {
+                             csrfmiddlewaretoken: '{{ csrf_token }}'
+                         },
+                         success : function (e){
+                             $(".main").hide()
+                             $(".show-content").show()
+                             $(".show-content").html(e)
+                         }
+
+
+                     })
 
                  }
                  console.log(e)

@@ -20,6 +20,7 @@ def login(request):
 
             checkd = check_password(clearPassNoHash, user[0].password)
 
+
             if checkd and username == user[0].email:
                 ud = request.session["email"] = username
                 return HttpResponseRedirect('welcome')
