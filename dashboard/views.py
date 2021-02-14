@@ -88,18 +88,26 @@ def dashboard(request):
 
     #return HttpResponse("hello word")
 def cardpost(request,catid):
+    ua = request.META.get('HTTP_USER_AGENT', '').lower()
     book = Book.objects.filter(book_arrcat=[catid]).order_by('-id')[:10]
     for d in book:
 
         print(re.sub(' +',' ',d.book_title.rstrip().lstrip().replace('\n', ' ').replace('\r', '')))
     st = list()
 
+    if ua.find("linux")>0:
+        return render(request, "dashboard/cardlist.html", {"book": book})
+
+    else:
+        return render(request, "dashboard/cardlist.html", {"book": book})
 
 
 
 
 
-    return render(request,"dashboard/cardlist.html",{"book" : book})
+
+
+
 
 def view(request):
     return render(request,"./view.html")
@@ -316,6 +324,12 @@ def morelist(request):
 
 
 def catlist(request,id):
+    ua = request.META.get('HTTP_USER_AGENT', '').lower()
+    if ua.find("android")>0:
+        return HttpResponseRedirect("/mobile/listview/"+str(id)+"/")
+    if ua.find("iphone")>0:
+        return HttpResponseRedirect("/mobile/listview/" + str(id) + "/")
+
     books = Book.objects.filter(book_arrcat=[id])
     cat = Category.objects.filter(id=id).first().cat_title
     paginator = Paginator(books, 15)  # So limited to 5 profiles in a page

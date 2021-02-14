@@ -224,5 +224,15 @@
     font-weight: 400;
 
 }
+.user-logo{
+    text-align: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 25px;
+    background-color: pink;
+    margin-right: 30px;
+    color: white;
+    border: 1px solid #000000 ;
+}
 
 

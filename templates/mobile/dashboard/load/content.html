@@ -61,7 +61,7 @@
 <div class="_343 w-100">
         <div class="_9050">
             <h4 class="list-title" >{{ ca.cat_title }}</h4>
-            <button class="list-more button5"><strong>More</strong></button>
+            <button data-listview="{{ ca.id }}" class="list-more button5"><strong>More</strong></button>
 </div>
     <div class="item-list">
         <ul>
@@ -295,5 +295,28 @@
         });
         return false;
     });
+
+
+        $(".list-more").click(function (e) {
+        id = $(this).attr("data-listview")
+
+        $.ajax({
+            url : "/mobile/listview/"+id+"/mobileload",
+            type : "GET",
+            data :{
+                hide : "show"
+            },
+            success : function (e){
+                console.log(e)
+                history.pushState('data to be passed', 'Title of the page', '/mobile/listview/'+id+"/");
+
+                $(".main").html(e);
+
+
+            }
+        })
+
+
+            });
     });
 </script>

@@ -136,13 +136,40 @@ def search(request):
         return render(request, "mobile/dashboard/load/search.html", data)
     return HttpResponse("hello word")
 def listview(request,cat):
-    book = Book.objects.filter(book_catid=cat)
-    ca = Category.objects.filter(id=cat)
-    data = {
-        "book" : book,
-        "cat" : ca,
-    }
-    return  render(request,"mobile/dashboard/load/listview.html",data)
+    ua = request.META.get('HTTP_USER_AGENT', '').lower()
+    if ua.find("android") > 0:
+        if request.method in "GET" and "hide" in request.GET:
+            if "show" == request.GET["hide"]:
+                book = Book.objects.filter(book_arrcat=[cat])
+                ca = Category.objects.filter(id=cat)
+                data = {
+                    "book": book,
+                    "cat": ca,
+                }
+                return render(request, "mobile/dashboard/load/listview.html", data)
+
+        return render(request, "mobile/dashboard/home.html", )
+
+
+
+
+    elif ua.find("iphone") > 0:
+        if request.method in "GET" and "hide" in request.GET:
+            if "show" == request.GET["hide"]:
+                book = Book.objects.filter(book_arrcat=[cat])
+                ca = Category.objects.filter(id=cat)
+                data = {
+                    "book": book,
+                    "cat": ca,
+                }
+                return render(request, "mobile/dashboard/load/listview.html", data)
+
+        return render(request, "mobile/dashboard/home.html", )
+    else:
+        return  HttpResponseRedirect("/catlist/"+str(cat))
+
+
+
 
 
 def sitemap(request):
