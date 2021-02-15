@@ -23,7 +23,7 @@ def login(request):
 
             if checkd and username == user[0].email:
                 ud = request.session["email"] = username
-                return HttpResponseRedirect('welcome')
+                return HttpResponseRedirect('/')
             else:
                 return render(request,'login/login.html',{'error': "password is wrong"})
 
@@ -41,7 +41,7 @@ def login(request):
 
             username = "insert user"
 
-            return render(request, 'login/login.html', {"error": "wrong email"})
+            return render(request,'login/login.html',{'error': "insert user"})
 
     else:
         return render(request,'login/login.html')
@@ -63,7 +63,7 @@ def welcome(request):
 def logout(request):
     del request.session['email']
 
-    return HttpResponseRedirect("login")
+    return HttpResponseRedirect("/user/login")
 
 
 

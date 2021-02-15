@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="w-full">
+        <div class="img-logo-f">
+            <img src="{{ MEDIA_URL }}{{ user.photo }}" width="100%" height="100%">
+        </div>
+        <div class="row name-f-d">
+            <div class="col-6">Name</div>
+            <div class="col-6">{{ user.first_name }} {{ user.last_name }}</div>
+            <div class="col-6">Gender</div>
+            <div class="col-6">{{ user.gender }}</div>
+            {% if request.session.email == user.email %}
+            <div class="col-6">Mobile No.</div>
+            <div class="col-6">{{ user.mobile_no }}</div>
+            <div class="col-6">Email</div>
+            <div class="col-6">{{ user.email }}</div>
+            {% endif %}
+        </div>
+    </div>
+</div>

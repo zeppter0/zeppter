@@ -27,6 +27,11 @@ from django.contrib.postgres.search import SearchVector
 # Create your views here.
 
 def dashboard(request):
+    user_data = ""
+    if "email" in request.session:
+        email = request.session["email"]
+        user_data = MyUeers.objects.filter(email=email).first()
+        print("user name ")
 
     data = Book.objects.all().order_by('-id')[:3]
     carousel = "hhh"
@@ -69,15 +74,15 @@ def dashboard(request):
 
 
 
-        return render(request, 'mobile/dashboard/home.html', {'data': data ,"meta" : meta ,"cat": catgory})
+        return render(request, 'mobile/dashboard/home.html', {'data': data,"userdata": user_data ,"meta" : meta ,"cat": catgory})
 
 
     elif ua.find("iphone")>0:
-        return render(request, 'mobile/dashboard/home.html', {'data': data, "meta": meta, "cat": catgory})
+        return render(request, 'mobile/dashboard/home.html', {'data': data,"userdata": user_data, "meta": meta, "cat": catgory})
     elif ua.find("linux")>0:
-        return render(request, 'dashboard/main.html', {'data': data,"meta" : meta,"cat" : catgory,"carousel" : carousel,"website":True})
+        return render(request, 'dashboard/main.html', {'data': data,"userdata": user_data,"meta" : meta,"cat" : catgory,"carousel" : carousel,"website":True})
     else:
-        return render(request, 'dashboard/main.html', {'data': data ,"meta" : meta , "cat" : catgory ,"website":True})
+        return render(request, 'dashboard/main.html', {"userdata": user_data,'data': data ,"meta" : meta , "cat" : catgory ,"website":True})
 
 
 
@@ -172,7 +177,12 @@ def bookdata(request,title):
     return HttpResponse(title)
 
 def shodata(request,url):
-    dat = "";
+    dat = ""
+    user_data = ""
+    if "email" in request.session:
+        email = request.session["email"]
+        user_data = MyUeers.objects.filter(email=email).first()
+        print("user name ")
     book = Book.objects.filter(book_url=url).first()
     cat = Category.objects.filter()
     meta = {
@@ -243,7 +253,7 @@ def shodata(request,url):
         like = Like.objects.filter(post_id=d.id).count()
         dislike = DisLike.objects.filter(post_id=d.id).count()
         vie = Views.objects.filter(post_id=[d.id])
-        dat = {"like":like,"dislike":dislike,"views": vie.count(),"publish_date":d.created_at,"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cats":dst, 'title': d.book_title, 'dascription': d.book_description,
+        dat = {"like":like,"userdata":user_data,"dislike":dislike,"views": vie.count(),"publish_date":d.created_at,"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cats":dst, 'title': d.book_title, 'dascription': d.book_description,
                'img': d.book_image, 'postid': d.id, 'comments': comments ,'meta': meta,"book": True}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("android") > 0:
@@ -320,7 +330,12 @@ def morelist(request):
         page = request.GET.get('page')
 
         profile = paginator.get_page(page)  # data
-        return render(request, "dashboard/morelist.html", {"title":search, 'profiles': profile})
+        user_data ={}
+        if 'email' in request.session:
+            email = request.session['email']
+
+            user_data = MyUeers.objects.get(email=email)
+        return render(request, "dashboard/morelist.html", {"userdata":user_data,"title":search, 'profiles': profile})
 
 
 def catlist(request,id):
@@ -386,7 +401,7 @@ def user_profile(request,id):
     if data.count() ==1:
 
 
-        return render(request,'dashboard/user_profile.html',{"data": data.first()})
+        return render(request,'dashboard/user_profile.html',{"data": data.first(),"userdata": data.first()})
 
 
 

@@ -15,25 +15,30 @@
   <li><a href="contact">Contact</a></li>
   <li><a href="about">About</a></li>
 
-    {% if 'email' in request.session %}
-    <li class="dropdown-frame nav-item dropdown">
-        <a class="" href="#" id="navuserDropdown" >
-          {{ request.session.email }}
-        </a>
-        <div class="dropdown-menu" >
-          <a class="dropdown-item" href="#">Profile</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Logout</a>
-        </div>
-      </li>
 
-    {% else %}
-    <a>login</a>
-    {% endif %}
 
 
      </ul>
+    {% if 'email' in request.session %}
+        <div class="dropdown-frame nav-item dropdown" style="cursor:pointer; margin-left: 20px" >
+        <div class="header-c-img"  href="#" id="navuserDropdown" >
+            <img src="{{ MEDIA_URL }}{{ userdata.photo }}" width="100%" height="100%">
+        </div>
+        <div class="dropdown-menu dropdown-menu-md-right " >
+          <a class="dropdown-item" href="/user/data/{{ userdata.id }}">Profile</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/user/logout">Logout</a>
+        </div>
+
+        </div>
+
+
+
+    {% else %}
+    <a href="/user/login" class="btn btn-danger">login</a>
+    {% endif %}
 
 
 </nav>
+

@@ -24,4 +24,5 @@ path("listview/<int:cat>/",views.listview,name="listview"),
     path('sitemap.xml', views.sitemap ,name="mobile_site"),
     path('login', views.login ,name="login_mobile"),
     path('register', views.register ,name="register_mobile"),
+    path('user/data/<int:id>',views.userprofile,name="user_profile"),
 ]

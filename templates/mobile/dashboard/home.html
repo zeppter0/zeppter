@@ -13,7 +13,15 @@
 
                 <i class="material-icons i-vcenter">search</i>
             </div>
-            <div class="user-logo">h</div>
+            {% if "email" in request.session %}
+            <div class="user-logo">
+            <img src="{{ MEDIA_URL }}{{ userdata.photo }}" width="100%" height="100%">
+            </div>
+            {% else %}
+                <a href="/mobile/login">login</a>
+            {% endif %}
+
+
 
         </div>
         <div id="search">
@@ -77,7 +85,30 @@
 
 
 
+
         $(document).ready(function (e) {
+            {% if "email" in request.session %}
+            $(".user-logo").click(function (e){
+                $.ajax({
+                    url: "/mobile/user/data/{{ userdata.pk }}",
+                    type: "get",
+                    success : function (e){
+                       if( $(".show-content").hide()){
+                           mai = $(".main")
+
+                        mai.html(e)
+                       }
+
+
+                    }
+
+                })
+
+
+            })
+            {% endif %}
+
+
             const main = $(".main");
     var url= window.location.href;
     $("#searchview").click(function (e){

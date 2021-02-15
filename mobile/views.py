@@ -79,14 +79,19 @@ def content(request,url):
 
 
     else:
+        user_data = {}
+        if "email" in request.session:
+            emai = request.session["email"]
+
+            user_data = MyUeers.objects.get(email=emai)
         data = Book.objects.all()
         book = Book.objects.filter(book_url=url)
         catgory = Category.objects.all()
         ua = request.META.get('HTTP_USER_AGENT', '').lower()
         if ua.find("android") > 0:
-            return render(request, 'mobile/dashboard/home.html', {'data': data, "cat": catgory,"meta" : meta})
+            return render(request, 'mobile/dashboard/home.html', {"userdata" : user_data,'data': data, "cat": catgory,"meta" : meta})
         elif ua.find("iphone") > 0:
-            return render(request, 'mobile/dashboard/home.html', {'data': data, "cat": catgory,"meta" : meta})
+            return render(request, 'mobile/dashboard/home.html', {"userdata" : user_data,'data': data, "cat": catgory,"meta" : meta})
         else:
             return HttpResponseRedirect("http://"+request.get_host()+"/content/"+book[0].book_url+"/")
 
@@ -267,3 +272,9 @@ def register(request):
 
 
         return render(request,"mobile/login/load/register.html")
+
+
+def userprofile(request,id):
+    user = MyUeers.objects.get(pk=id)
+
+    return render(request,"mobile/admin/user_profile.html",{"user": user ,"userdata" :user})

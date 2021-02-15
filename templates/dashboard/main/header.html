@@ -18,9 +18,28 @@
   <li><a href="/about">About</a></li>
 </ul>
        {% if 'email' in request.session %}
-    <a>{{ request.session.email }}</a>
+        <div class="dropdown-frame nav-item dropdown" style="cursor:pointer; margin-left: 20px" >
+        <div class="header-c-img"  href="#" id="navuserDropdown" >
+            <img src="{{ MEDIA_URL }}{{ userdata.photo }}" width="100%" height="100%">
+        </div>
+        <div class="dropdown-menu dropdown-menu-md-right" >
+          <a class="dropdown-item" href="/user/data/{{ userdata.id }}">Profile</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/user/logout">Logout</a>
+        </div>
+
+        </div>
+           <script>
+        $('.dropdown-frame').click(function (e){
+            $('.dropdown-menu').toggleClass("d-block")
+
+        })
+        </script>
+
+
     {% else %}
-    <a>login</a>
+    <a href="/user/login" class="btn-danger btn">login</a>
     {% endif %}
 
 </nav>
