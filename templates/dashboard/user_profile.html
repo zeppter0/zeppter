@@ -1,0 +1,217 @@
+{% extends "dashboard/main/include.html" %}
+
+{% load static %}
+{% block content %}
+    {% include "dashboard/main/header.html" %}
+
+<div class="container profile_frame">
+<div class=" w-full">
+    <div class="user-photo">
+        {% if data.photo != "404_user.png" %}
+        <img src="{{ MEDIA_URL }}{{ data.photo }}" height="100%" width="100%" >
+        {% else %}
+            <h1>{{ data.first_name }}</h1>
+
+        {% endif %}
+    {% if request.session.email ==  data.email %}
+    <div class="icon-edit"  id="photo_edit">
+        <i class="fas fa-edit "></i>
+    </div>
+    {% endif %}
+
+
+    </div>
+
+
+
+</div>
+
+
+<div class="frame-desck">
+    <div class="row">
+        <div class="col-md-6 tit-data">
+            Name
+        </div>
+        <div class="col-md-6 tit-val">
+            <div data-val="name" class="d-inline-block name_tag">{{ data.first_name }} {{ data.last_name }}</div>
+
+            {% if request.session.email ==  data.email %}
+                        <i class="fas fa-edit edit-icon d-inline-block" id="name_edit" onclick="textchage('.name_tag')"  > </i>
+
+            {% endif %}
+
+        </div>
+
+        <div class="col-md-6 tit-data">
+            Gender
+        </div>
+        <div class="col-md-6 tit-val">
+            {{ data.gender}}
+
+        </div>
+        {% if request.session.email ==  data.email %}
+        <div class="col-md-6 tit-data">
+           Mobile No
+
+        </div>
+        <div class="col-md-6 tit-val">
+        <div data-val="mobile_no" class="d-inline-block mobile_no_tag">{{ data.mobile_no }}</div>
+
+        <i class="fas fa-edit edit-icon " id="mobile_edit" onclick="textchage('.mobile_no_tag')"></i>
+
+        </div>
+            <div class="col-md-6 tit-data">
+            Email
+        </div>
+        <div class="col-md-6 tit-val">
+        <div data-val="email" class="d-inline-block email_tag">{{ data.email}}</div>
+
+        <i class="fas fa-edit edit-icon" id="email_edit" onclick="textchage('.email_tag')"></i>
+
+        </div>
+
+        {% endif %}
+    </div>
+</div>
+
+</div>
+
+
+    <script>
+
+    function textchage(data){
+        text = $(data)
+        if (text.is("[contenteditable='true']")){
+            var form_datay = new FormData();
+                form_datay.append(text.data("val"),text.text())
+                form_datay.append("csrfmiddlewaretoken","{{ csrf_token }}")
+                $.ajax({
+                    url: "/user/data/name/1",
+                    type : "post",
+                    cache: false,
+                processData: false,
+                contentType: false,
+                    data: form_datay,
+                    success :function (e){
+                        alert(e);
+                        text.attr("contentEditable",false)
+
+                    }
+
+                })
+
+        }else {
+            text.attr("contentEditable",true)
+            text.addClass('text-editors');
+
+
+        }
+
+
+}
+
+
+
+
+
+        function changedata(data){
+            tag = $(data)
+            tag_name =tag.name
+            var is_element_input = tag.is("input");
+
+            if (is_element_input){
+               var form_datay = new FormData();
+                form_datay.append(tag.attr("name"),tag.attr("value"))
+                form_datay.append("csrfmiddlewaretoken","{{ csrf_token }}")
+                $.ajax({
+                    url: "/user/data/name/1",
+                    type : "post",
+                    cache: false,
+                processData: false,
+                contentType: false,
+                    data: form_datay,
+                    success :function (e){
+                        alert(e);
+                    }
+
+                })
+
+            }else {
+                renameElement(tag,'input');
+            console.log(tag)
+            }
+
+        }
+
+
+    $(document).ready(function (e){
+
+
+
+
+
+        $("#photo_edit").click(function (e){
+        input = document.createElement("input")
+        input.type = "file";
+        input.id = "photo_input"
+      //  input.attributes("id","photo_input")
+         input.addEventListener("change" ,function (e){
+           var  form_data = new FormData();
+             form_data.append("photo",input.files[0])
+             form_data.append("csrfmiddlewaretoken","{{ csrf_token }}")
+
+            $.ajax({
+                url : "/user/photo/{{ data.id }}",
+                type : "POST",
+                cache: false,
+                processData: false,
+                contentType: false,
+                data: form_data,
+                success : function (e){
+                    alert(e)
+                }
+            })
+        })
+        input.click()
+
+
+
+
+    });
+    });
+    function renameElement($element,newElement){
+
+    $element.wrap("<"+newElement+">");
+    $newElement = $element.parent();
+
+    //Copying Attributes
+    $.each($element.prop('attributes'), function() {
+        $newElement.attr(this.name,this.value);
+        $newElement.attr("value",$element.text());
+
+    });
+    $newElement.attr("type" ,"text");
+ //   $newElement.attr("onchange" ,"textchange()");
+
+
+
+    $element.contents().unwrap();
+
+    return $newElement;
+}
+
+
+
+
+
+
+
+    </script>
+
+{% endblock %}
+
+{% block header %}
+
+<link rel="stylesheet" href="{% static "assets/dashboard/user_profile.css" %}">
+
+{% endblock %}

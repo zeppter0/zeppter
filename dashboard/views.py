@@ -374,3 +374,20 @@ def get_client_ip(request):
             ip = proxies[0]
 
     return ip
+
+
+def user_profile(request,id):
+
+
+
+
+
+    data = MyUeers.objects.filter(id=id)
+    if data.count() ==1:
+
+
+        return render(request,'dashboard/user_profile.html',{"data": data.first()})
+
+
+
+    return None

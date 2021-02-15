@@ -1,0 +1,68 @@
+.profile_frame{
+    box-shadow: 0 0 8px 2px #888;
+    margin: 40px 0;
+    padding: 40px 0;
+}
+.user-photo{
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    margin:40px auto;
+    border-radius: 50%;
+    box-shadow: 0 0 8px 2px #888;
+    border: 1px solid black;
+    text-align: center;
+    overflow: hidden;
+    color: white;
+    position: relative;
+
+}
+.user-photo .icon-edit{
+    position: absolute;
+    bottom: 21%;
+    right: 7%;
+    cursor: pointer;
+
+
+}
+.user-photo .icon-edit:hover{
+    color: #00bcd4;
+}
+.fa-edits{
+    font-size: 1.5em;
+
+}
+
+.frame-desck{
+    width: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.tit-data{
+    text-align: center;
+    height: 40px;
+}
+.tit-val{
+    text-align: center;
+    height: 40px;
+}
+.edit-icon{
+ color: #0b2e13;
+}
+.edit-icon:hover{
+    color: #00bcd4;
+    cursor: pointer;
+}
+.name_tag{
+    width: 200px;
+}
+.text-editors{
+    box-shadow: 5px 5px 5px rgba(62, 59, 59, 0);
+    border: 1px solid black;
+    border-radius: 4px;
+}
+.tit-val div{
+    width: 200px;
+    cursor: pointer;
+
+}

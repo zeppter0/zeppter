@@ -11,4 +11,4 @@ class MobileSitemap(Sitemap):
         return Book.objects.all()
 
     def location(self, item):
-        return reverse('content/'+item.book_url+'/')
+        return reverse(item)

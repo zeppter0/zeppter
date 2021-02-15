@@ -111,3 +111,53 @@ def Register(request):
 
         return render(request,'login/register.html',{'error': "please insert data"})
 
+
+def photoupload(request,id):
+    global photo
+    if request.session["email"] and "POST" == request.method and "photo" in  request.FILES:
+        photo = request.FILES['photo']
+        user = MyUeers.objects.get(pk=id)
+        user.photo = photo
+
+        user.save()
+        return HttpResponse("susuful")
+
+
+
+
+
+
+    return HttpResponse("not susse")
+
+
+def changedata(request ,id):
+    data = ""
+
+
+    if "email" in request.session :
+        user = MyUeers.objects.get(pk=id)
+        if "POST" in request.method and user.email == request.session["email"]:
+            if "name" in request.POST:
+                name = request.POST['name']
+                user = MyUeers.objects.get(pk=id)
+                user.first_name = name
+                user.save()
+                data = "change name"
+            elif "mobile_no" in request.POST :
+                mobile_no = request.POST['mobile_no']
+                user = MyUeers.objects.get(pk=id)
+                user.mobile_no = mobile_no
+                user.save()
+                data = "change mobile no."
+            elif "email" in request.POST:
+                email = request.POST["email"]
+                user = MyUeers.objects.get(pk=id)
+                user.email = email
+                user.save()
+
+    return HttpResponse(data)
+
+
+def sitemap(request):
+    users = MyUeers.objects.all()
+    return render(request, 'login/sitemap.xml', {"users": users}, content_type="application/xhtml+xml")
