@@ -68,6 +68,7 @@ def keyboardserach(request):
 
       #  print(",".join(jsdata[:5]))
         bks.update(keyboard=",".join(jsdata[:5]))
+
         print(",".join(jsdata[:5]))
     return HttpResponse("sussec")
 
@@ -298,7 +299,7 @@ def wordpressjson(url):
                     book_arrcat=caatid,
                     book_rates=2,
                     publisher=1,
-                    keyboard="",
+                    keyboard=keyboad(title),
                     book_publish=True,
                     book_upload_date=timezone.now(),
                     book_url=urlsd,
@@ -369,3 +370,20 @@ def wordpressjson(url):
         print('Website is working fine')
 
     return "load susecuss"
+
+
+def keyboad(title):
+    keysearch = keysearch = '%20'.join(title.split()[:3])
+    data = requests.get("http://google.com/complete/search?output=toolbar&q=" + keysearch)
+
+    soup = BeautifulSoup(data.text)
+    d = soup.findAll('suggestion')
+    data = ""
+    string = []
+
+    for i in d:
+        string.append(i['data'])
+
+    print(",".join(string[:5]))
+
+    return ",".join(string[:5])
