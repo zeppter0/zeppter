@@ -287,6 +287,22 @@ def wordpressjson(url):
             fgh = re.sub(' +', ' ', slug.rstrip().lstrip().replace('\n', ' ').replace('\r', ''))
             focaskey = re.sub(r"[^A-Za-z0-9 ]+", '', fgh)
             urlsd = focaskey.replace(" ", "-").rstrip("-").lstrip("-")
+
+            keysearch = keysearch = '%20'.join(title.split()[:3])
+            data = requests.get("http://google.com/complete/search?output=toolbar&q=" + keysearch)
+
+            soup = BeautifulSoup(data.text)
+            d = soup.findAll('suggestion')
+            data = ""
+            string = []
+
+            for i in d:
+                string.append(i['data'])
+
+            print(",".join(string[:5]))
+
+
+
             if img == "":
                 return print('notimg')
 
@@ -299,7 +315,7 @@ def wordpressjson(url):
                     book_arrcat=caatid,
                     book_rates=2,
                     publisher=1,
-                    keyboard=keyboad(title),
+                    keyboard=",".join(string[:5]),
                     book_publish=True,
                     book_upload_date=timezone.now(),
                     book_url=urlsd,
