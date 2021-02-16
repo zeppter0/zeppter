@@ -1,0 +1,78 @@
+<div class="container justify-content-center mt-5 border-left border-right">
+
+    {% if "email" in request.session %}
+    <form class="form-inline" id="commentsend">
+          {% csrf_token %}
+
+  <div class="form-group  comment-text">
+
+    <textarea name="comment" class="form-control" id="inputPassword2" placeholder="Comment" required></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary comment-send "><i class="fas fa-paper-plane" style="color: white"></i> </button>
+</form>
+    {% else%}
+    <button class="btn btn-danger" onclick="login()" style="margin: 0 auto;">login</button>
+    {% endif %}
+<div id="comment-data">
+    {% for d in comments %}
+
+    <div class="d-flex justify-content-center py-2">
+        <div class="second py-2 px-2"> <span class="text1">{{ d.comment }}</span>
+            <div class="d-flex justify-content-between py-1 pt-2">
+                <div onclick="userprofi('{{ d.userid }}')"><img src="{{ MEDIA_URL }}{{ d.photo }}" width="18"><span class="text2">{{ d.user_name }}</span></div>
+                <div><span class="text3">Upvote?</span><span class="thumbup"><i class="fa fa-thumbs-o-up "></i></span><span class="text4">3</span></div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+
+</div>
+
+</div>
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function (e){
+        {% if "email" in request.session %}
+        $("#commentsend").submit(function (e){
+            var form_data = new FormData($(this)[0])
+            form_data.append("userid", "{{ userdata.id }}")
+            form_data.append("bookid" , "{{ id }}")
+            console.log(form_data)
+            $(this).closest('form').find("input[type=text], textarea").val("");
+
+
+            $.ajax({
+                url: "/comment/send",
+                type : "post",
+                data :form_data,
+                contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+    processData: false,
+                success : function (e){
+
+                    if (e !== "error"){
+                        $("#comment-data").prepend(e)
+                    }else {
+                        alert("Comment Error")
+                    }
+
+
+
+                }
+            })
+            return false;
+        })
+        {% endif %}
+
+    })
+
+
+</script>
+
+
+

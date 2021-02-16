@@ -3,5 +3,6 @@ from comment import views
 
 
 urlpatterns = [
-    path('',views.index ,name="comment")
+    path('',views.index ,name="comment"),
+    path('/send',views.send ,name="comment"),
 ]

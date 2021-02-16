@@ -12,6 +12,11 @@ from myuser.models import MyUeers
 from django.contrib.auth.hashers import make_password, check_password
 
 def content(request,url):
+    user_data = {}
+    if "email" in request.session:
+        emai = request.session["email"]
+
+        user_data = MyUeers.objects.get(email=emai)
     book = Book.objects.filter(book_url=url).first()
     meta = {
         "icon" : book.book_image,
@@ -48,13 +53,21 @@ def content(request,url):
 
         cat = Category.objects.filter(id=book.book_catid)
         data = Book.objects.filter(book_catid=cat[0].id)[:10]
-        comments = Comment.objects.filter(postid=book.id)
+        comments = Comment.objects.filter(contentid=book.id)
         view = Views.objects.filter(post_id=[book.id])
         likes = Like.objects.filter(post_id=book.id).count()
         dislike = DisLike.objects.filter(post_id=book.id).count()
 
+        comme = []
+
+        for d in comments:
+             user_g = MyUeers.objects.get(pk=d.userid)
+             comme.append({"id" : d.pk ,"userid" : user_g.pk,"photo": user_g.photo ,"comment" : d.comment,"user_name":user_g.first_name+" "+user_g.last_name} )
+
 
         dat = {
+
+
             "views": view.count(),
             "likes" : likes,
             "dislikes" : dislike,
@@ -66,8 +79,9 @@ def content(request,url):
                 "data": data,
                 "cat": cat,
                 "id": book.id,
-                "comments" : comments,
+                "comments" : comme,
                 "schema" : True,
+            "userdata": user_data,
         }
 
         return render(request, "mobile/dashboard/load/content.html", dat)
@@ -79,11 +93,7 @@ def content(request,url):
 
 
     else:
-        user_data = {}
-        if "email" in request.session:
-            emai = request.session["email"]
 
-            user_data = MyUeers.objects.get(email=emai)
         data = Book.objects.all()
         book = Book.objects.filter(book_url=url)
         catgory = Category.objects.all()

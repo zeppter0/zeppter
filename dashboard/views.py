@@ -154,7 +154,7 @@ def content(request,id):
     }
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("linux") >0:
-        dat = "";
+        dat = ""
 
         data = Book.objects.filter(id=id)[:5]
         comments = Comment.objects.filter(postid=id)
@@ -218,7 +218,16 @@ def shodata(request,url):
 
 
     data = Book.objects.filter(id=book.id)[:5]
-    comments = Comment.objects.filter(postid=book.id)
+    comments = Comment.objects.filter(contentid=book.id)
+    comme = []
+
+    for d in comments:
+        user_g = MyUeers.objects.get(pk=d.userid)
+        comme.append({"id": d.pk, "userid": user_g.pk, "photo": user_g.photo, "comment": d.comment,
+
+                      "date" : d.pub_date,"email":user_g.email,
+                      "user_name": user_g.first_name + " " + user_g.last_name})
+
     for d in data:
         userd = MyUeers.objects.filter(id=d.publisher)
         user ={}
@@ -254,7 +263,7 @@ def shodata(request,url):
         dislike = DisLike.objects.filter(post_id=d.id).count()
         vie = Views.objects.filter(post_id=[d.id])
         dat = {"like":like,"userdata":user_data,"dislike":dislike,"views": vie.count(),"publish_date":d.created_at,"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cats":dst, 'title': d.book_title, 'dascription': d.book_description,
-               'img': d.book_image, 'postid': d.id, 'comments': comments ,'meta': meta,"book": True}
+               'img': d.book_image, 'postid': d.id, 'comments': comme ,'meta': meta,"book": True}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("android") > 0:
         return HttpResponseRedirect("http://" + request.get_host() + "/mobile/content/" + url+"/")
@@ -264,13 +273,21 @@ def shodata(request,url):
     return render(request, "dashboard/showdata.html", dat)
 
 def pdf_show(request,url):
-    dat = "";
+    dat = ""
     data = Book.objects.filter(book_url=url).first()
     comments = Comment.objects.filter(postid=data.id)
     d = data
 
+    user_data = ""
+    if "email" in request.session:
+        email = request.session["email"]
+        user_data = MyUeers.objects.filter(email=email).first()
+        print("user name ")
 
-    dat = {'book_data': d.book_data,"link":bootstrap(), 'title': d.book_title, 'dascription': d.book_description,
+
+
+
+    dat = {"userdata":user_data,'book_data': d.book_data,"link":bootstrap(), 'title': d.book_title, 'dascription': d.book_description,
                'img': d.book_image, 'postid': data.id, 'comments': comments,"pdf": d.data_book}
     return render(request,"dashboard/show_book.html",dat)
 

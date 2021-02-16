@@ -14,11 +14,11 @@
                 <i class="material-icons i-vcenter">search</i>
             </div>
             {% if "email" in request.session %}
-            <div class="user-logo">
+            <div class="user-logo" onclick="userprofi('{{ userdata.pk }}')">
             <img src="{{ MEDIA_URL }}{{ userdata.photo }}" width="100%" height="100%">
             </div>
             {% else %}
-                <a href="/mobile/login">login</a>
+                <BUTTON id="login" onclick="login()" class="btn btn-info" href="/mobile/login" style="margin-right: 20px ">login</BUTTON>
             {% endif %}
 
 
@@ -78,19 +78,33 @@
     </div>
 
     </div>
-    <script>
+    <script type="text/javascript">
+
+function login(){
+    $.ajax({
+                         url: "/mobile/login",
+                         type : "post",
+                         data : {
+                             csrfmiddlewaretoken: '{{ csrf_token }}'
+                         },
+                         success : function (e){
+                             $(".main").hide()
+                             $(".show-content").show()
+                             $(".show-content").html(e)
+                         }
+
+
+                     })
 
 
 
 
 
+}
 
-
-        $(document).ready(function (e) {
-            {% if "email" in request.session %}
-            $(".user-logo").click(function (e){
-                $.ajax({
-                    url: "/mobile/user/data/{{ userdata.pk }}",
+function userprofi(id){
+        $.ajax({
+                    url: "/mobile/user/data/"+id,
                     type: "get",
                     success : function (e){
                        if( $(".show-content").hide()){
@@ -103,10 +117,18 @@
                     }
 
                 })
+    }
 
 
-            })
-            {% endif %}
+
+
+
+        $(document).ready(function (e) {
+
+
+
+
+
 
 
             const main = $(".main");
