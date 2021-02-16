@@ -10,4 +10,5 @@ path("change/<str:book>",views.changebook,name="change_url"),
 path("check",views.check,name="check"),
    path('books',views.books,name="books"),
 path('changecat',views.changecatgory,name="changecatgory"),
+    path('searchkey' , views.keyboardserach,name="search"),
 ]

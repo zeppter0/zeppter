@@ -1,5 +1,6 @@
 import urllib
 import urllib.request as re
+from os.path import join
 from urllib import request
 from urllib.error import HTTPError, URLError
 
@@ -43,6 +44,39 @@ def changecatgory(request):
             bd = Book.objects.filter(id=book.id)
             bd.update(book_arrcat=[book.book_catid])
     return HttpResponse("sesse")
+
+def keyboardserach(request):
+    books = Book.objects.all()
+    for book in books:
+
+
+        title = book.book_title
+        keysearch = '%20'.join(title.split()[:3])
+        data =   requests.get("http://google.com/complete/search?output=toolbar&q="+keysearch)
+
+
+        xmlse = BeautifulSoup(data.text)
+        jsdata = []
+
+
+        for d in xmlse.findAll("suggestion"):
+            jsdata.append(d['data'])
+
+
+        bks = Book.objects.filter(pk=book.pk)
+      #  bks.update(keyboard="hello")
+
+      #  print(",".join(jsdata[:5]))
+        bks.update(keyboard=",".join(jsdata[:5]))
+        print(",".join(jsdata[:5]))
+    return HttpResponse("sussec")
+
+
+
+
+
+
+
 
 
 def imageupload(request):
