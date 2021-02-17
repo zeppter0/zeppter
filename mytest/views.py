@@ -33,7 +33,7 @@ web__url = "www.grihshobha.in"
 web__url2 = "thatsmystory-book.com"
 
 def wordpress(request,id):
-    for d in range(7):
+    for d in range(900):
         wordpressjson('https://'+web__url+'/wp-json/wp/v2/posts?page='+str(id+d))
         print(id+d)
     return HttpResponse("hello word")
