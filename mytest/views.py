@@ -289,10 +289,10 @@ def wordpressjson(url):
             urlsd = focaskey.replace(" ", "-").rstrip("-").lstrip("-")
 
             keysearch = keysearch = '%20'.join(title.split()[:3])
-            data = requests.get("http://google.com/complete/search?output=toolbar&q=" + keysearch)
+            datad = requests.get("http://google.com/complete/search?output=toolbar&q=" + keysearch)
 
-            soup = BeautifulSoup(data.text)
-            d = soup.findAll('suggestion')
+            soupd = BeautifulSoup(datad.text)
+            d = soupd.findAll('suggestion')
             data = ""
             string = []
 
@@ -306,7 +306,7 @@ def wordpressjson(url):
             if img == "":
                 return print('notimg')
 
-            if books.count() < 1 and js['status']=="publish":
+            if books.count() < 1 and js['status']=="publish" and datad.status_code == 200:
                 book = Book(
                     book_title=title,
                     book_description=description,
