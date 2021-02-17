@@ -302,11 +302,14 @@ def wordpressjson(url):
             print(",".join(string[:5]))
 
 
+            check_img = requests.get(img)
+
+
 
             if img == "":
                 return print('notimg')
 
-            if books.count() < 1 and js['status']=="publish" and datad.status_code == 200:
+            if books.count() < 1 and js['status']=="publish" and datad.status_code == 200 and check_img.status_code ==200:
                 book = Book(
                     book_title=title,
                     book_description=description,
