@@ -331,23 +331,7 @@ def wordpressjson(url):
 
 
                 book.save()
-            else:
-                books.update(
-                    book_title=title,
-                    book_description=description,
 
-                    book_data=str(parsed_html),
-                    book_arrcat=caatid,
-                    book_rates=2,
-                    publisher=1,
-                    keyboard="",
-                    book_publish=True,
-                    book_upload_date=timezone.now(),
-                    book_url=urlsd,
-
-                    book_catid=1,
-                    book_commit_id=1
-                )
 
 
 
