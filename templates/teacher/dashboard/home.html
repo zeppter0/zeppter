@@ -1,0 +1,30 @@
+{% extends "teacher/include/include.html" %}
+{% block content %}
+<div id="main">
+
+</div>
+
+
+    <script type="text/javascript">
+    $(document).ready(function (e){
+        auto_ajax("/teacher/children",{home :  false})
+    })
+
+    $('#menu').on('click', function(){
+    if( $('#mySidenav').width() === 210  ) {
+        $('#mySidenav').animate({ 'width': '70px' }, 'slow');
+        $('#main').animate({ 'margin-left': '70px' }, 'slow');
+    }
+    else {
+
+
+        $('#mySidenav').animate({ 'width': '210px' }, 'slow');
+        $('#main').animate({ 'margin-left': '210px' }, 'slow');
+        console.log($("#mySidenav").width())
+    }
+});
+
+
+</script>
+
+{% endblock %}

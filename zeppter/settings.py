@@ -69,6 +69,8 @@ INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'admin_dashboard.apps.AdminDashboardConfig',
     'comment.apps.CommentConfig',
+    "teacher",
+    "students",
 
 
 

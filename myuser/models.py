@@ -1,5 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from teacher.models import Subject,School
 
 # Create your models here.
 class MyUeers(models.Model):
@@ -16,10 +17,29 @@ class MyUeers(models.Model):
    # username = models.CharField(max_length=50)
     email  =  models.EmailField(max_length=50)
     password = models.CharField(max_length=200)
+    teacher = models.BooleanField(default=False)
+    student = models.BooleanField(default=False)
     mobile_no = models.BigIntegerField(default=1)
     def __str__(self):
         return self.email
 
+
+
+class Teacher(models.Model):
+    user = models.IntegerField()
+
+
+
+    subject = models.ForeignKey(Subject,on_delete=models.CASCADE)
+    school = models.ForeignKey(School,models.CASCADE)
+
+
+
+
+class Student(models.Model):
+    user = models.IntegerField()
+    class_id = models.CharField(max_length=20)
+    school = models.ForeignKey(School,on_delete=models.CASCADE)
 
 
 

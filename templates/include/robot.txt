@@ -1,7 +1,8 @@
 User-agent: *
-Disallow: /hello/
-Disallow: /media/
-
+Disallow: /hello/*
+Disallow: /media/*
+Disallow: /student/*
+Disallow: /teacher/*
 
 
 Sitemap: http://www.zeppter.com/sitemap.xml

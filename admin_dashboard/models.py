@@ -36,10 +36,11 @@ class Book(models.Model):
 
 
 
-    def delete(self, using=None, keep_parents=False):
-        self.book_image.storage.delete(self.book_image.name)
-        self.data_book.storage.delete(self.data_book.name)
-        super().delete()
+    def delete(self,*args,**kwargs):
+        if os.path.isfile(self.book_image.path):
+            os.remove(self.book_image.path)
+
+        super(Book, self).delete(*args, **kwargs)
 
 
     def __str__(self):
