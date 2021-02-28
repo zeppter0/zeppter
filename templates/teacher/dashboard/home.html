@@ -7,7 +7,12 @@
 
     <script type="text/javascript">
     $(document).ready(function (e){
-        auto_ajax("/teacher/children",{home :  false})
+
+        load("/teacher/")
+
+
+
+
     })
 
     $('#menu').on('click', function(){
@@ -23,6 +28,35 @@
         console.log($("#mySidenav").width())
     }
 });
+
+    function load(url){
+        $.ajax({
+            url : url,
+            type : "post",
+            data: {
+
+                data:"load",
+                csrfmiddlewaretoken :'{{ csrf_token }}',
+
+
+
+            },
+            success : function (e){
+                $("#main").html(e)
+            }
+        })
+    }
+
+    function dataload(url,data){
+        $.ajax({
+            url:url,
+            type: "post",
+            data:data,
+            success : function (e){
+                console.log(e)
+            }
+        })
+    }
 
 
 </script>

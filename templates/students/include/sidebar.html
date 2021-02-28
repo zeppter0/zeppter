@@ -1,0 +1,32 @@
+<div id="mySidenav" class="sidenav">
+
+  <a href="#" id="menu" ><i class="fas fa-bars"></i> <h4>Menu</h4></a>
+  <a href="#" onclick="textnow()"><i class="fas fa-book"><h4>Book</h4></i></a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<script>
+    function textnow(){
+        data = {
+            csrfmiddlewaretoken : "{{ csrf_token }}",
+            id : "1"
+
+        }
+        update(data)
+
+    }
+
+    function update(data) {
+        dataload("taxtnow",data,function (e){
+            $("#main").html(e)
+            window.setTimeout(update(data), 10000);
+        });
+
+    }
+</script>
+
+
+
+
+

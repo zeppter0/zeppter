@@ -61,3 +61,64 @@
   .sidenav a {font-size: 18px;}
 
 }
+.childlist{
+  margin: 40px 0;
+  list-style-type: none;
+}
+
+.childlist li{
+  margin: 0 60px;
+  display: inline-block;
+}
+
+
+.childcard{
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+
+  border-radius: 50%;
+  background-color: #b6b6b6;
+  position: relative;
+  text-align: center;
+
+
+}
+.childcard p{
+  position: absolute;
+  bottom: 0;
+  border-radius: 0 0 100% 100% ;
+  margin: 0 auto;
+  background-color: #818181;
+  width: 100%;
+}
+
+.childcard img{
+border-radius: 50%;
+}
+
+.check-child-online{
+  width: 8px;
+  height: 8px;
+
+  border: 1px solid black;
+
+
+  border-radius: 50%;
+
+
+  z-index: 1000;
+
+  background-color: greenyellow;
+}
+.childcard img{
+  width: 100%;
+
+}
+.project-title{
+  margin: 60px;
+  padding: 30px;
+  font-size: 40px;
+  border: 2px solid black;
+  background-color: black;
+}

@@ -3,8 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'assets/fontawesome/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static "assets/teaacher/dashboard/main1.css" %}">
+
+    <script type="text/javascript" src="{% static 'assets/jquery/mainjquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"
+    <script type="text/javascript" src="{% static "assets/teaacher/dashboard/main1.js" %}"></script>
+
 </head>
 <body>
+<div class="include">
+    {% include 'students/include/header.html' %}
+    {% include "students/include/sidebar.html" %}
+
+</div>
+
+
+
+{% block content %}
+{% endblock %}
+
+
 
 </body>
 </html>

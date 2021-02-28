@@ -1,0 +1,66 @@
+{% extends "students/include/include.html" %}
+
+{% block content %}
+<div id="main">
+
+</div>
+
+
+    <script type="text/javascript">
+    $(document).ready(function (e){
+
+        load("/student/")
+
+
+
+
+    })
+
+    $('#menu').on('click', function(){
+    if( $('#mySidenav').width() === 210  ) {
+        $('#mySidenav').animate({ 'width': '70px' }, 'slow');
+        $('#main').animate({ 'margin-left': '70px' }, 'slow');
+    }
+    else {
+
+
+        $('#mySidenav').animate({ 'width': '210px' }, 'slow');
+        $('#main').animate({ 'margin-left': '210px' }, 'slow');
+        console.log($("#mySidenav").width())
+    }
+});
+
+    function load(url){
+        $.ajax({
+            url : url,
+            type : "post",
+            data: {
+
+                data:"load",
+                csrfmiddlewaretoken :'{{ csrf_token }}',
+
+
+
+            },
+            success : function (e){
+                $("#main").html(e)
+            }
+        })
+    }
+    function dataload(url,data,show){
+        $.ajax({
+            url:url,
+            type: "post",
+            data:data,
+            success : function (e){
+
+
+                show(e)
+            }
+        })
+    }
+
+
+</script>
+
+{% endblock %}

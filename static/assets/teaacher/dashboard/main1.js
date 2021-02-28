@@ -10,3 +10,6 @@ function auto_ajax(data,url){
     })
 
 }
+
+
+

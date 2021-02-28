@@ -1,3 +1,4 @@
+from django.contrib.postgres.fields import ArrayField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from teacher.models import Subject,School
@@ -20,6 +21,7 @@ class MyUeers(models.Model):
     teacher = models.BooleanField(default=False)
     student = models.BooleanField(default=False)
     mobile_no = models.BigIntegerField(default=1)
+
     def __str__(self):
         return self.email
 
@@ -27,11 +29,11 @@ class MyUeers(models.Model):
 
 class Teacher(models.Model):
     user = models.IntegerField()
-
-
-
     subject = models.ForeignKey(Subject,on_delete=models.CASCADE)
     school = models.ForeignKey(School,models.CASCADE)
+
+
+    students = ArrayField(models.IntegerField())
 
 
 
@@ -40,6 +42,7 @@ class Student(models.Model):
     user = models.IntegerField()
     class_id = models.CharField(max_length=20)
     school = models.ForeignKey(School,on_delete=models.CASCADE)
+    teachers = ArrayField(models.IntegerField())
 
 
 

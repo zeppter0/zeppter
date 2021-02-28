@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="title-child">
+        <h1 class="h4">children</h1>
+    </div>
+
+    <ul class="childlist">
+        {% for s in students %}
+        <li>
+
+        <div class="check-child-online"></div>
+            <div class="childcard">
+            <img src="{{ MEDIA_URL }}{{ s.photo }}">
+                <p >{{ s.first_name }}</p>
+
+
+        </div>
+
+        </li>
+        {% endfor %}
+
+
+    </ul>
+</div>
