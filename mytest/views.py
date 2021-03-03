@@ -29,8 +29,9 @@ except ImportError:
 import json
 
 import urllib.request as ur
-web__url = "www.grihshobha.in"
+web__ur3 = "www.grihshobha.in"
 web__url2 = "thatsmystory-book.com"
+web__url = "http://www.horrorstoryinhindi.in"
 
 def wordpress(request,id):
     for d in range(1800):
