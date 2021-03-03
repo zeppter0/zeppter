@@ -56,6 +56,7 @@ class worktext(View):
 
         user = MyUeers.objects.get(email=request.session.get("email"))
         work = Work.objects.filter(user_id=user.pk)
+
         if work.count() <1:
             wk =  Work(user_id=user.pk,task=request.POST.get("text"))
             wk.save()

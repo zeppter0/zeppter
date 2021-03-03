@@ -1,12 +1,18 @@
+from sys import addaudithook
 import urllib
 import urllib.request as re
 from os.path import join
 from urllib import request
 from urllib.error import HTTPError, URLError
+import translate
 
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 from django.utils import timezone
+from googletrans import Translator, LANGUAGES
+from googletrans.models import Translated
+from googletrans import Translator
+
 
 from admin_dashboard.models import Book
 from mytest.json import Post
@@ -31,10 +37,10 @@ import json
 import urllib.request as ur
 web__ur3 = "www.grihshobha.in"
 web__url2 = "thatsmystory-book.com"
-web__url = "http://www.horrorstoryinhindi.in"
+web__url = "www.hindikahane.in"
 
 def wordpress(request,id):
-    for d in range(1800):
+    for d in range(11):
         wordpressjson('https://'+web__url+'/wp-json/wp/v2/posts?page='+str(id+d))
         print(id+d)
     return HttpResponse("hello word")
@@ -250,8 +256,9 @@ def geturl(data):
 def wordpressjson(url):
     try:
         response = ur.urlopen(url)
+     #   response = requests.get(url)
 
-        jas = json.loads(response.read())
+        jas = json.loads(response.text)
         caatid = []
         for js in jas:
             title = js['title']['rendered']
@@ -289,7 +296,7 @@ def wordpressjson(url):
             focaskey = re.sub(r"[^A-Za-z0-9 ]+", '', fgh)
             urlsd = focaskey.replace(" ", "-").rstrip("-").lstrip("-")
 
-            keysearch = keysearch = '%20'.join(title.split()[:3])
+            keysearch = '%20'.join(title.split()[:3])
             datad = requests.get("http://google.com/complete/search?output=toolbar&q=" + keysearch)
 
             soupd = BeautifulSoup(datad.text)
@@ -391,3 +398,103 @@ def keyboad(title):
     print(",".join(string[:5]))
 
     return ",".join(string[:5])
+
+
+def urldata(request):
+
+    if "url" in request.GET:
+        bookid = request.GET['url']
+        i = int(bookid)
+        while i <1300:
+            hindistory(request,"https://hindistory.net/story/"+str(i))
+            i += 1
+            
+
+
+        return HttpResponse("sessse full")
+
+
+
+def hindistory(request, url):
+    data =""
+    response = requests.get(url)
+    if response.status_code == 200 :
+        soup = BeautifulSoup(response.text)
+        d = soup.find("div", attrs={'class': "col-md-9 col-md-push-3"})
+
+        titles = d.find('h1', attrs={'class': 'story-head'})
+        title = titles.text
+        print(title)
+
+        content = d
+
+        for s in content.select('div'):
+            s.extract()
+
+        for s in content.select('h1'):
+            s.extract()
+
+        url = re.sub("[^a-zA-Z\u0900-\u097F]+", ' ', title)
+
+        keysearch = '%20'.join(title.split()[:3])
+        datad = requests.get("http://google.com/complete/search?output=toolbar&q=" + keysearch)
+
+        soupd = BeautifulSoup(datad.text)
+        d = soupd.findAll('suggestion')
+        data = ""
+        string = []
+
+        for i in d:
+            string.append(i['data'])
+
+        print(",".join(string[:5]))
+
+        catid = 1
+
+        cat_check = Category.objects.filter(cat_title="hindi story")
+        if cat_check.count() < 1:
+            catr = Category(cat_title="hindi story")
+            catr.save()
+            catid = catr.id
+
+        else:
+            catid = cat_check.first().id
+
+        books = Book.objects.filter(book_title=title)
+
+        if books.count() < 1:
+            book = Book(
+                book_title=title,
+                book_description=content.text[:400],
+
+                book_data=str(content),
+                book_arrcat=[catid],
+                book_rates=2,
+                publisher=1,
+                keyboard=",".join(string[:5]),
+                book_publish=True,
+                book_upload_date=timezone.now(),
+                book_url=url.replace("\n", "").replace(" ", "-"),
+
+                book_catid=1,
+                book_commit_id=1
+            )
+
+
+            img = soup.find("img",attrs={"class": 'story-banner'})
+            if img:
+                book.get_remote_image("https://hindistory.net" + img.get('src'))
+                print("https://hindistory.net" + img.get('src'))
+
+
+
+
+            book.save()
+
+
+
+    
+
+       
+
+    return data
