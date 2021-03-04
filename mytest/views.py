@@ -402,16 +402,24 @@ def keyboad(title):
 
 def urldata(request):
 
-    if "url" in request.GET:
-        bookid = request.GET['url']
-        i = int(bookid)
-        while i <1300:
-            hindistory(request,"https://hindistory.net/story/"+str(i))
-            i += 1
+
+
+
+    res = requests.get("https://storymirror.com/sitemaps/story/hindi.xml")
+    if res.status_code == 200:
+        xml = res.text
+
+        y = BeautifulSoup(xml)
+        data = y.findAll("loc")
+        for ds in data:
+            hindistory(request,ds.get_text())
+            
+            
+            
             
 
 
-        return HttpResponse("sessse full")
+
 
 
 
@@ -420,36 +428,51 @@ def hindistory(request, url):
     response = requests.get(url)
     if response.status_code == 200 :
         soup = BeautifulSoup(response.text)
-        d = soup.find("div", attrs={'class': "col-md-9 col-md-push-3"})
+        d = soup.find("div", attrs={'id': "main-row"})
 
-        titles = d.find('h1', attrs={'class': 'story-head'})
+        titles = d.find('h2', attrs={'class': 'title-target text-left d-none d-sm-block'})
         title = titles.text
         print(title)
 
-        content = d
+        content = d.find("div",attrs="content-container avoid-text-copy story")
 
-        for s in content.select('div'):
-            s.extract()
 
-        for s in content.select('h1'):
-            s.extract()
 
-        url = re.sub("[^a-zA-Z\u0900-\u097F]+", ' ', title)
+        url = re.sub("^a-zA-Z\u0900-\u097F+", '', title)
 
         keysearch = '%20'.join(title.split()[:3])
         datad = requests.get("http://google.com/complete/search?output=toolbar&q=" + keysearch)
 
         soupd = BeautifulSoup(datad.text)
-        d = soupd.findAll('suggestion')
+        ds = soupd.findAll('suggestion')
         data = ""
         string = []
 
-        for i in d:
+
+
+        for i in ds:
             string.append(i['data'])
 
         print(",".join(string[:5]))
+        catarray = []
+
+        arraycat = d.findAll("a", {"class": 'badge badge-light badge-light-hover p-2 rounded-pill mr-1 mb-2 ga-track border border-danger'})
+
+        for catd in arraycat:
+            cat_check = Category.objects.filter(cat_title=catd.text)
+            if cat_check.count() < 1:
+                cats = Category(cat_title=catd.text)
+                cats.save()
+                catarray.append(cats.pk)
+
+
+            else:
+                catarray.append(cat_check.first().id)
+
+            books = Book.objects.filter(book_title=title)
 
         catid = 1
+        description = soup.find("meta" ,attrs={'name':"description"})
 
         cat_check = Category.objects.filter(cat_title="hindi story")
         if cat_check.count() < 1:
@@ -461,14 +484,17 @@ def hindistory(request, url):
             catid = cat_check.first().id
 
         books = Book.objects.filter(book_title=title)
+        img = soup.find("img", attrs={"class": 'rounded shadow-lg d-block'})
+        print(img.get('src'))
+
 
         if books.count() < 1:
             book = Book(
                 book_title=title,
-                book_description=content.text[:400],
+                book_description=str(description['content']),
 
                 book_data=str(content),
-                book_arrcat=[catid],
+                book_arrcat=catarray,
                 book_rates=2,
                 publisher=1,
                 keyboard=",".join(string[:5]),
@@ -481,10 +507,11 @@ def hindistory(request, url):
             )
 
 
-            img = soup.find("img",attrs={"class": 'story-banner'})
+
+
             if img:
-                book.get_remote_image("https://hindistory.net" + img.get('src'))
-                print("https://hindistory.net" + img.get('src'))
+                book.get_remote_image(img.get('src'))
+                print(img.get('src'))
 
 
 
