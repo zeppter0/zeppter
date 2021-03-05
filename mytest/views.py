@@ -413,6 +413,7 @@ def urldata(request):
         data = y.findAll("loc")
         for ds in data:
             hindistory(request,ds.get_text())
+            print(ds)
             
             
             
