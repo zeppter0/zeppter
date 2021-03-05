@@ -194,7 +194,7 @@ function userprofi(id){
 
 
                     $("#backbtn").html("");
-                    home("http://{{ request.get_host }}/mobile_home", function (e) {
+                    home("{{ request.scheme }}://{{ request.get_host }}/mobile_home", function (e) {
                         if ($(".show-content").hide()) {
 
                             $(".main").show();
