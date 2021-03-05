@@ -488,7 +488,7 @@ def hindistory(request, url):
         print(img.get('src'))
 
 
-        if books.count() < 1:
+        if books.count() < 1 and d:
             book = Book(
                 book_title=title,
                 book_description=str(description['content']),
