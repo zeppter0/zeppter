@@ -426,7 +426,19 @@ def urldata(request):
                         y = BeautifulSoup(xml)
                         data = y.findAll("loc")
                         for ds in data:
-                            hindistory(request, ds.get_text())
+                            
+                            try:
+                                hindistory(request, ds.get_text())
+                            except HTTPError as e:
+                                 print('The server couldn\'t fulfill the request.')
+                                 print('Error code: ', e.code)
+                            except URLError as e:
+                                 print('We failed to reach a server.')
+                                 print('Reason: ', e.reason)
+                            else:
+                                 print('Website is working fine')
+
+    return "load susecuss"    
     return HttpResponse("sucesssfull")                        
 
             
