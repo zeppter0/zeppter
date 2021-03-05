@@ -510,8 +510,10 @@ def hindistory(request, url):
 
 
             if img:
-                book.get_remote_image(img.get('src'))
-                print(img.get('src'))
+                check_img = requests.gt(img.get('src'))
+                if check_img.status_code == 200:
+                   book.get_remote_image(img.get('src'))
+                   print(img.get('src'))
 
 
 
