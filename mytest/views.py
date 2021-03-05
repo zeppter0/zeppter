@@ -405,15 +405,30 @@ def urldata(request):
 
 
 
-    res = requests.get("https://storymirror.com/sitemaps/story/hindi.xml")
+    res = requests.get("https://storymirror.com/sitemap.xml")
     if res.status_code == 200:
         xml = res.text
 
         y = BeautifulSoup(xml)
         data = y.findAll("loc")
         for ds in data:
-            hindistory(request,ds.get_text())
-            print(ds)
+            res = requests.get(ds.get_text())
+            if res.status_code == 200:
+                xml = res.text
+
+                y = BeautifulSoup(xml)
+                data = y.findAll("loc")
+                for ds in data:
+                    res = requests.get(ds.get_text())
+                    if res.status_code == 200:
+                        xml = res.text
+
+                        y = BeautifulSoup(xml)
+                        data = y.findAll("loc")
+                        for ds in data:
+                            hindistory(request, ds.get_text())
+    return HttpResponse("sucesssfull")                        
+
             
             
             
@@ -472,20 +487,28 @@ def hindistory(request, url):
 
             books = Book.objects.filter(book_title=title)
 
-        catid = 1
+
         description = soup.find("meta" ,attrs={'name':"description"})
 
-        cat_check = Category.objects.filter(cat_title="hindi story")
-        if cat_check.count() < 1:
-            catr = Category(cat_title="hindi story")
-            catr.save()
-            catid = catr.id
 
-        else:
-            catid = cat_check.first().id
 
         books = Book.objects.filter(book_title=title)
         img = soup.find("img", attrs={"class": 'rounded shadow-lg d-block'})
+        catds = d.find('span', attrs={'class': 'col-sm-6 col-12'})
+
+        catmain = catds.find("a",attrs={'class':'ga-track'})
+        for s in catmain.select('b'):
+            s.extract()
+        
+        cts = Category.objects.filter(cat_title=str(catmain.text.replace(':',"")))
+        if cts.count() <1:
+            ctd = Category(cat_title=str(catmain.text.replace(':',"")))
+            ctd.save()
+            catarray.append(ctd.id)
+        else:
+            catarray.append(cts[0].id)
+
+
         print(img.get('src'))
 
 
@@ -498,6 +521,7 @@ def hindistory(request, url):
                 book_arrcat=catarray,
                 book_rates=2,
                 publisher=1,
+
                 keyboard=",".join(string[:5]),
                 book_publish=True,
                 book_upload_date=timezone.now(),
