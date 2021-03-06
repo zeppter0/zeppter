@@ -47,24 +47,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 {
 {% if book %}
-  "@context": "http://schema.org",
-  "@type": "DataFeed",
-  "dataFeedElement": [
-    {
-      "@context": "http://schema.org",
-      "@type": "Book",
-      "@id": "{{ request.build_absolute_uri  }}",
-      "url": "{{ request.build_absolute_uri }}",
-      "name": "{{ title }}",
-      "author": {
-        "@type": "Person",
-        "name": "{{ user.fullname }}"
-      },
-      "sameAs": "{{ request.build_absolute_uri }}",
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "breadcrumb": "Books > Marketing > JSON",
+      "mainEntity":{
+              "@type": "Book",
+              "author": "{{ request.scheme }}://{{ request.META.HTTP_HOST }}{{ request.get_full_path }}",
+              "bookFormat": "http://schema.org/EBook",
+              "datePublished": "{{ publish_date|date:'Y-m-d' }}",
+              "image": "{{ request.scheme }}://{{ request.META.HTTP_HOST }}{{ MEDIA_URL }}{{ img }}",
+              "inLanguage": "Hindi",
 
-   }
-  ],
-  "dateModified": "{{ publish_date|date:'Y-m-d'}}"
+              "name": "{{ title }}",
+
+
+              "publisher": "O'Json Publishing",
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4",
+                "reviewCount": "12"
+              }
+            }
 
 
 
