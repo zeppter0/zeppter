@@ -457,115 +457,99 @@ def hindistory(request, url):
     if response.status_code == 200 :
         soup = BeautifulSoup(response.text)
         d = soup.find("div", attrs={'id': "main-row"})
+        if d:
+            titles = d.find('h2', attrs={'class': 'title-target text-left d-none d-sm-block'})
+            title = titles.text
+            print(title)
 
-        titles = d.find('h2', attrs={'class': 'title-target text-left d-none d-sm-block'})
-        title = titles.text
-        print(title)
+            content = d.find("div", attrs="content-container avoid-text-copy story")
 
-        content = d.find("div",attrs="content-container avoid-text-copy story")
+            url = re.sub("^a-zA-Z\u0900-\u097F+", '', title)
 
+            keysearch = '%20'.join(title.split()[:3])
+            datad = requests.get("http://google.com/complete/search?output=toolbar&q=" + keysearch)
 
+            soupd = BeautifulSoup(datad.text)
+            ds = soupd.findAll('suggestion')
+            data = ""
+            string = []
 
-        url = re.sub("^a-zA-Z\u0900-\u097F+", '', title)
+            for i in ds:
+                string.append(i['data'])
 
-        keysearch = '%20'.join(title.split()[:3])
-        datad = requests.get("http://google.com/complete/search?output=toolbar&q=" + keysearch)
+            print(",".join(string[:5]))
+            catarray = []
 
-        soupd = BeautifulSoup(datad.text)
-        ds = soupd.findAll('suggestion')
-        data = ""
-        string = []
+            arraycat = d.findAll("a", {
+                "class": 'badge badge-light badge-light-hover p-2 rounded-pill mr-1 mb-2 ga-track border border-danger'})
 
-
-
-        for i in ds:
-            string.append(i['data'])
-
-        print(",".join(string[:5]))
-        catarray = []
-
-        arraycat = d.findAll("a", {"class": 'badge badge-light badge-light-hover p-2 rounded-pill mr-1 mb-2 ga-track border border-danger'})
-
-        for catd in arraycat:
-            cat_check = Category.objects.filter(cat_title=catd.text)
-            if cat_check.count() < 1:
-                cats = Category(cat_title=catd.text)
-                cats.save()
-                catarray.append(cats.pk)
+            for catd in arraycat:
+                cat_check = Category.objects.filter(cat_title=catd.text)
+                if cat_check.count() < 1:
+                    cats = Category(cat_title=catd.text)
+                    cats.save()
+                    catarray.append(cats.pk)
 
 
-            else:
-                catarray.append(cat_check.first().id)
+                else:
+                    catarray.append(cat_check.first().id)
+
+                books = Book.objects.filter(book_title=title)
+
+            description = soup.find("meta", attrs={'name': "description"})
 
             books = Book.objects.filter(book_title=title)
+            img = soup.find("img", attrs={"class": 'rounded shadow-lg d-block'})
+            catds = d.find('span', attrs={'class': 'col-sm-6 col-12'})
 
+            catmain = catds.find("a", attrs={'class': 'ga-track'})
+            for s in catmain.select('b'):
+                s.extract()
 
-        description = soup.find("meta" ,attrs={'name':"description"})
+            cts = Category.objects.filter(cat_title=str(catmain.text.replace(':', "")))
+            if cts.count() < 1:
+                ctd = Category(cat_title=str(catmain.text.replace(':', "")))
+                ctd.save()
+                catarray.append(ctd.id)
+            else:
+                catarray.append(cts[0].id)
 
+            print(img.get('src'))
 
+            if books.count() < 1 and d:
+                book = Book(
+                    book_title=title,
+                    book_description=str(description['content']),
 
-        books = Book.objects.filter(book_title=title)
-        img = soup.find("img", attrs={"class": 'rounded shadow-lg d-block'})
-        catds = d.find('span', attrs={'class': 'col-sm-6 col-12'})
+                    book_data=str(content),
+                    book_arrcat=catarray,
+                    book_rates=2,
+                    publisher=1,
 
-        catmain = catds.find("a",attrs={'class':'ga-track'})
-        for s in catmain.select('b'):
-            s.extract()
-        
-        cts = Category.objects.filter(cat_title=str(catmain.text.replace(':',"")))
-        if cts.count() <1:
-            ctd = Category(cat_title=str(catmain.text.replace(':',"")))
-            ctd.save()
-            catarray.append(ctd.id)
-        else:
-            catarray.append(cts[0].id)
+                    keyboard=",".join(string[:5]),
+                    book_publish=True,
+                    book_upload_date=timezone.now(),
+                    book_url=url.replace("\n", "").replace(" ", "-"),
 
+                    book_catid=1,
+                    book_commit_id=1
+                )
 
-        print(img.get('src'))
+                if img:
+                    check_img = requests.get(img.get('src'))
+                    if check_img.status_code == 200:
+                        try:
+                            book.get_remote_image(img.get('src'))
+                            print(img.get('src'))
+                        except:
+                            print("error data")
+                        else:
+                            print("error data")
 
-
-        if books.count() < 1 and d:
-            book = Book(
-                book_title=title,
-                book_description=str(description['content']),
-
-                book_data=str(content),
-                book_arrcat=catarray,
-                book_rates=2,
-                publisher=1,
-
-                keyboard=",".join(string[:5]),
-                book_publish=True,
-                book_upload_date=timezone.now(),
-                book_url=url.replace("\n", "").replace(" ", "-"),
-
-                book_catid=1,
-                book_commit_id=1
-            )
-
-
-
-
-            if img:
-                check_img = requests.get(img.get('src'))
-                if check_img.status_code == 200:
-                    try:
-                       book.get_remote_image(img.get('src'))
-                       print(img.get('src'))
-                    except:
-                        print("error data")
-                    else:
-                        print("error data")
+                book.save()
 
 
 
-
-
-
-
-
-
-            book.save()
 
 
 
