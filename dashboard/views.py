@@ -94,7 +94,8 @@ def dashboard(request):
     #return HttpResponse("hello word")
 def cardpost(request,catid):
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
-    book = Book.objects.filter(book_arrcat=[catid]).order_by('-id')[:10]
+    print("cat_id :"+str(catid))
+    book = Book.objects.filter(book_arrcat__overlap=[catid]).order_by('-id')[:10]
     for d in book:
 
         print(re.sub(' +',' ',d.book_title.rstrip().lstrip().replace('\n', ' ').replace('\r', '')))
@@ -266,9 +267,9 @@ def shodata(request,url):
                'img': d.book_image, 'postid': d.id, 'comments': comme ,'meta': meta,"book": True}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("android") > 0:
-        return HttpResponseRedirect("http://" + request.get_host() + "/mobile/content/" + url+"/")
+        return HttpResponseRedirect(request.scheme+"://" + request.get_host() + "/mobile/content/" + url+"/")
     elif ua.find("iphone") > 0:
-        return HttpResponseRedirect("http://" + request.get_host() + "/mobile/content/" + url+"/")
+        return HttpResponseRedirect(request.scheme+"://" + request.get_host() + "/mobile/content/" + url+"/")
 
     return render(request, "dashboard/showdata.html", dat)
 

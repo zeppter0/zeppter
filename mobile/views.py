@@ -103,7 +103,7 @@ def content(request,url):
         elif ua.find("iphone") > 0:
             return render(request, 'mobile/dashboard/home.html', {"userdata" : user_data,'data': data, "cat": catgory,"meta" : meta})
         else:
-            return HttpResponseRedirect("http://"+request.get_host()+"/content/"+book[0].book_url+"/")
+            return HttpResponseRedirect(request.scheme+"://"+request.get_host()+"/content/"+book[0].book_url+"/")
 
 
 
