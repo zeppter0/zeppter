@@ -45,7 +45,7 @@
             $(document).ready(function (e){
                 $.ajax(
         {
-            url : "{{ request.scheme }}://{{ request.get_host }}/mobile/mobilecard/{{ ca.id }}",
+            url : "/mobile/mobilecard/{{ ca.id }}",
             cache: false,
             success : function (data){
                 $("#lid{{ ca.id }}").html(data)
