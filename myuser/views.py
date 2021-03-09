@@ -61,9 +61,21 @@ def welcome(request):
 
 
 def logout(request):
-    del request.session['email']
 
-    return HttpResponseRedirect("/user/login")
+    if request.session['email']:
+        del request.session['email']
+        ua = request.META.get('HTTP_USER_AGENT', '').lower()
+
+        if ua.find("android")>0:
+            return HttpResponseRedirect("/")
+        elif ua.find("iphone")>0:
+            return HttpResponseRedirect("/")
+
+
+        return HttpResponseRedirect("/user/login")
+
+
+
 
 
 

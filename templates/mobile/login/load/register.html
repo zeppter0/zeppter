@@ -74,9 +74,16 @@
             success: function (e){
                 console.log(e)
                 data =JSON.parse(e)
+
                 if(data.check ==="register"){
                     $(".show-content").hide()
                     $(".main").show()
+                    setTimeout(function(){ alert("Hello "+data.user);
+
+
+
+                }, 3000);
+
                     window.location.reload()
 
                 }

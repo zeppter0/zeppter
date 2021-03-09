@@ -1,0 +1,32 @@
+<iframe name="I1" id="if1" width="100%"
+ height="254" style="visibility:visible"
+ src="https://www.google.com"></iframe>
+sudo nano /etc/apache2/sites-available/zeppter.com.conf
+
+
+172.23.88.24
+...
+ServerName zeppter.com
+ServerAlias www.zeppter.com
+...
+
+Alias /static/ /var/www/zeppter/static/
+Alias /media/ /var/www/zeppter/media/
+
+<Directory /var/www/zeppter/media>
+        Require all granted
+    </Directory>
+
+    <Directory /var/www/zeppter/static>
+        Require all granted
+    </Directory>
+
+    <Directory /var/www/zeppter/zeppter>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+WSGIDaemonProcess zeppter python-home=/var/www/zeppter/venv python-path=/var/www/zeppter
+    WSGIProcessGroup zeppter
+    WSGIScriptAlias / /var/www/zeppter/zeppter/wsgi.py

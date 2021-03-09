@@ -5,6 +5,6 @@ Disallow: /student/*
 Disallow: /teacher/*
 
 
-Sitemap: http://www.zeppter.com/sitemap.xml
+Sitemap: https://www.zeppter.com/sitemap.xml
 
-Sitemap: http://www.zeppter.com/mobile/sitemap.xml
+Sitemap: https://www.zeppter.com/mobile/sitemap.xml

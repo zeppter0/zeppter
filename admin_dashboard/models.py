@@ -15,12 +15,12 @@ from django.core.validators import int_list_validator
 class Book(models.Model):
     id = models.AutoField(primary_key=True)
 
-    book_title = models.CharField(max_length=10000,default=None)
-    book_description = models.CharField(max_length=10000,default=None)
+    book_title = models.CharField(max_length=100000,default=None)
+    book_description = models.CharField(max_length=100000,default=None)
     book_image = models.ImageField(upload_to='cat_img',default='')
     book_rates = models.IntegerField(default=5)
     book_commit_id = models.IntegerField()
-    book_data = models.CharField(max_length=1000000,default="")
+    book_data = models.TextField()
     book_upload_date = models.DateTimeField("date published")
     book_publish = models.BooleanField(default=False)
     data_book = models.FileField("zip_data",default=None)
@@ -28,7 +28,7 @@ class Book(models.Model):
 
     book_arrcat = ArrayField(models.IntegerField(),default=[1])
     book_arrcatstr = models.CharField(max_length=40,default="1")
-    keyboard = models.CharField(max_length=10000 ,default="")
+    keyboard = models.CharField(max_length=100000 ,default="")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     publisher = models.IntegerField()

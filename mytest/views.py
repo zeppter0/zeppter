@@ -9,6 +9,7 @@ import translate
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 from django.utils import timezone
+from django.views import View
 from googletrans import Translator, LANGUAGES
 from googletrans.models import Translated
 from googletrans import Translator
@@ -558,3 +559,11 @@ def hindistory(request, url):
        
 
     return data
+
+
+
+
+class Google(View):
+    def get(self, request):
+        # <view logic>
+        return render(request,'test/google/views.html')

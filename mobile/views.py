@@ -116,7 +116,9 @@ def showdatapdf(request,id):
    # print(id)
     for da in book:
         dat = {
-            "des":da.book_data
+            "des":da.book_data,
+            "title" : da.book_title,
+            "img" : da.book_image
         }
 
     return render(request,"mobile/dashboard/load/onlinedata.html",dat)
@@ -245,6 +247,9 @@ def login(request):
 
 def register(request):
     checklogin = "nodata"
+
+
+
     if 'email' in request.session:
         checklogin =  "login"
 
@@ -272,6 +277,9 @@ def register(request):
                 user.save()
                 request.session['email'] = email
                 checklogin ="register"
+                return HttpResponse(json.dumps({"check":checklogin,"user": user.first_name}))
+
+
             else:
                 checklogin = "user"
         else:
