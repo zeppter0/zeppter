@@ -402,6 +402,9 @@ def keyboad(title):
 
 
 def urldata(request):
+    bdf = Book.objects.all()
+    if bdf.count() <40000:
+        return HttpResponse("puh")
 
 
 
