@@ -79,7 +79,7 @@ class Book(models.Model):
 
 class Category(models.Model):
     id = models.AutoField(primary_key=True)
-    cat_title = models.CharField(max_length=50)
+    cat_title = models.CharField(max_length=500)
   #  book_category = models.CharField(max_length=50,default="empty")
     cat_img = models.ImageField(upload_to='cat_img',default=None)
     cat_pub_date = models.DateTimeField(auto_now_add=True)
