@@ -363,7 +363,7 @@ def catlist(request,id):
     if ua.find("iphone")>0:
         return HttpResponseRedirect("/mobile/listview/" + str(id) + "/")
 
-    books = Book.objects.filter(book_arrcat=[id])
+    books = Book.objects.filter(book_arrcat__overlap=[id])
     cat = Category.objects.filter(id=id).first().cat_title
     paginator = Paginator(books, 15)  # So limited to 5 profiles in a page
 
