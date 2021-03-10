@@ -25,7 +25,7 @@ path('hello/', include('admin_dashboard.urls')),
     path('teacher/',include('teacher.urls')),
     path('student/',include("students.urls")),
 
-    url(r'^robots\.txt/$', TemplateView.as_view(template_name='include/robot.txt',
+    url(r'^robots\.txt', TemplateView.as_view(template_name='include/robot.txt',
                                                 content_type='text/plain')),
 url('yandex_47dbe3c258eabd6f.html', TemplateView.as_view(template_name='include/yandex_47dbe3c258eabd6f.html',
                                                 content_type='text/plain')),

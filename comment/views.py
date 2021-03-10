@@ -65,3 +65,12 @@ def send(request):
 
 
     return HttpResponse(error)
+
+
+
+
+def commentshow(request):
+
+
+    
+    return HttpResponse("hello word")
