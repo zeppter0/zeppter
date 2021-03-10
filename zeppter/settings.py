@@ -47,7 +47,7 @@ from pathlib import Path
 SECRET_KEY = 'a9u^k1a3@8%33v1^hj&@c0do%npc$(r$it4#%w=g2vs%0vzzxe'
 
 # SECURITY WARNING: do3qn't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 APPEND_SLASH=False
 
 ALLOWED_HOSTS = [
@@ -58,6 +58,7 @@ ALLOWED_HOSTS = [
     'zeppter.com'
     "18.215.82.54",
     '127.0.0.1',
+    'eb5ea0c1323fc679c30dbad2a88da814.zeppter.com',
 
     
     
