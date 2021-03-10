@@ -403,8 +403,7 @@ def keyboad(title):
 
 def urldata(request):
     bdf = Book.objects.all()
-    if bdf.count() <40000:
-        return HttpResponse("puh")
+
 
 
 
@@ -456,6 +455,9 @@ def urldata(request):
 
 
 def hindistory(request, url):
+
+    if bdf.count() <40000:
+        return HttpResponse("puh")
     data =""
     response = requests.get(url)
     if response.status_code == 200 :
