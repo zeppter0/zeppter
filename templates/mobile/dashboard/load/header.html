@@ -48,37 +48,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 {
 {% if book %}
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "breadcrumb": "Books > Marketing > JSON",
-      "mainEntity":{
-              "@type": "Book",
-              "author": "{{ request.scheme }}://{{ request.META.HTTP_HOST }}{{ request.get_full_path }}",
-              "bookFormat": "http://schema.org/EBook",
-              "datePublished": "{{ publish_date|date:'Y-m-d' }}",
-              "image": "{{ request.scheme }}://{{ request.META.HTTP_HOST }}{{ MEDIA_URL }}{{ img }}",
-              "inLanguage": "Hindi",
 
-              "name": "{{ title }}",
+  "@context": "http://schema.org",
+    "@type": "Product",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.7,
+      "reviewCount": 2
+    },
+    "image": "{{ request.scheme }}://{{ request.META.HTTP_HOST }}{{ MEDIA_URL }}{{ img }}?q=70",
+    "name": "{{ title }}"
 
-
-              "publisher": "O'Json Publishing",
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4",
-                "reviewCount": "12"
-              }
-            }
 
 
 
       {% elif website %}
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "url": "{{ request.scheme }}://{{ request.get_host }}",
+      "url": "https://{{ request.get_host }}/",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "{{ request.scheme }}://{{ request.get_host }}/search?page=1&search={search_term_string}",
+        "target": "https://{{ request.get_host }}/search?page=1&search={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     {% endif %}
