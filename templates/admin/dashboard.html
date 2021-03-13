@@ -6,6 +6,28 @@
     <main class="main-content container" id="main_content">
         <div class="row">
            <div class="col-sm " id="traffic_check">
+                <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">comments</th>
+      <th scope="col">User Id</th>
+      <th scope="col">File Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for da in comments  %}
+    <tr>
+      <th scope="row" id="tableshow">{{ da.id }}</th>
+      <td>{{ da.comment }}</td>
+    <td><a href="#">Edit</a> </td>
+    <td><a href="./delete/{{ da.id }}" onclick="dele(this)" class="bg-danger" id="post-delete" >Delete</a> </td>
+
+    </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
 
     </div>
     <div class="col-sm" id="traffic_check">

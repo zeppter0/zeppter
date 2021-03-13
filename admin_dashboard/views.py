@@ -9,6 +9,8 @@ from values.strings import bootstrap
 from .models import Category
 from admin_dashboard.models import ImgUpload
 import json
+from comment.models import Comment
+from django.core.paginator import Paginator
 from myuser.models import MyUeers
 
 
@@ -86,8 +88,20 @@ def post(request):
 
 
 def shows(request):
+    comments = Comment.objects.all()
+    com_page = request.GET.get("com_page")
+    com_max = Paginator(comments,5)
+
+
+    comment =  com_max.get_page(com_page)
+
     data = Book.objects.all()
-    return render(request,'admin/dashboard.html',{'data': data})
+    paginator = Paginator(data, 5)  # So limited to 5 profiles in a page
+
+    page = request.GET.get('page')
+
+    profile = paginator.get_page(page)  # data
+    return render(request,'admin/dashboard.html',{'data': profile,"comments" : comment})
 
 
 def addcategory(request):

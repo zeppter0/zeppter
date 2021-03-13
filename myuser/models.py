@@ -22,6 +22,7 @@ class MyUeers(models.Model):
     student = models.BooleanField(default=False)
     mobile_no = models.BigIntegerField(default=1)
 
+
     def __str__(self):
         return self.email
 

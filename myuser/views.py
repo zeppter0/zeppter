@@ -1,6 +1,10 @@
 from django.contrib.auth.hashers import make_password, check_password
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.utils import timezone
+
+from django.views import View
+
 from myuser.models import MyUeers
 # Create your views here.
 def login(request):
@@ -173,3 +177,26 @@ def changedata(request ,id):
 def sitemap(request):
     users = MyUeers.objects.all()
     return render(request, 'login/sitemap.xml', {"users": users}, content_type="application/xhtml+xml")
+
+
+class Activation(View):
+    def get(self,request):
+        return HttpResponse("hello word")
+
+
+    def activate(request, key):
+        activation_expired = False
+        already_active = False
+        profile = get_object_or_404("hello", activation_key=key)
+        if profile.user.is_active == False:
+            if timezone.now() > profile.key_expires:
+                activation_expired = True  # Display: offer the user to send a new activation link
+                id_user = profile.user.id
+            else:  # Activation successful
+                profile.user.is_active = True
+                profile.user.save()
+
+        # If user is already active, simply display error message
+        else:
+            already_active = True  # Display : error message
+        return render(request, 'siteApp/activation.html', locals())
