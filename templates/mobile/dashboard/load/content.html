@@ -1,4 +1,4 @@
-
+<div id="editor"></div>
 <div class="downlod_fr">
     <P>Loding</P>
     <div class="downlod_sh">
@@ -100,8 +100,20 @@
 
 <script>
 
+var doc = new jsPDF();
+        var specialElementHandlers = {
+            '#editor': function (element, renderer) {
+                return true;
+            }
+        }
+
+
+
+
 
     $(document).ready(function (e){
+
+
 
 
 
@@ -212,6 +224,8 @@
     return false;
             });*/
         $("#download_load").click(function (e){
+
+
             $(".downlod_fr").css("display","block");
         });
         $("#cancel_click").click(function (e){
@@ -293,5 +307,11 @@
 
 
             });
+    });
+    $("#downclick").click(function (e) {
+  home("/mobile/mobile_pdf/{{ id }}",function (data){
+
+
+    });
     });
 </script>
