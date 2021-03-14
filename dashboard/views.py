@@ -48,6 +48,9 @@ def dashboard(request):
         "auther"  : "devan mandal",
         "facebook" : {
             "pageTitle" : "zeppter hindi story kid",
+            "imageUrl": "/static/assets/img/zeppter.png",
+            "type" : "website",
+
             "description": "zeppter hindi story top big rock story",
             "pageUrl": request.get_full_path(),
             "siteTitle" : "zeppter",
@@ -198,6 +201,8 @@ def shodata(request,url):
         "facebook": {
             "pageTitle": book.book_title,
             "description": book.book_description,
+            "imageUrl" : "/media/"+str(book.book_image),
+            "type" :"book",
             "pageUrl": request.get_full_path(),
             "siteTitle": "zeppter",
             "homepageUrl": request.get_host(),

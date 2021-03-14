@@ -5,10 +5,10 @@
 <meta name="keywords" content="{{meta.keywords}}"/>
 <link rel="author" href="https://plus.google.com/{{googlePlusId}}" >
 <link rel="canonical" href="{{meta.pageUrl}}" />
-<meta property="og:url" content="{{meta.facebook.pageUrl}}">
-<meta property="og:image" content="{{meta.facebook.imageUrl}}">
+<meta property="og:url" content="http://{{ request.get_host }}{{meta.facebook.pageUrl}}">
+<meta property="og:image" content="http://{{ request.get_host }}{{meta.facebook.imageUrl}}">
 <meta property="og:description" content="{{meta.facebook.description}}">
-<meta property="og:type"               content="article" >
+<meta property="og:type"               content="{{meta.facebook.type}}" >
 <meta property="og:title" content="{{meta.facebook.pageTitle}}">
 <meta property="og:site_name" content="{{meta.facebook.siteTitle}}">
 <meta property="og:see_also" content="{{meta.facebook.homepageUrl}}">
