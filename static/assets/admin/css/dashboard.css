@@ -1,8 +1,13 @@
 #traffic_check{
-    margin: 0px 20px;
-    height: 400px;
+    position: relative;
     background-color: white;
     border: 2px solid black;
+
+}
+#traffic_check ul{
+    position: absolute;
+    bottom: 0;
+
 
 }
 

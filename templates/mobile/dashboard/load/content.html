@@ -220,7 +220,7 @@
         });
         $("#online_load").click(function (e){
             main = $("#main");
-            home("http://{{ request.get_host }}/mobile/mobile_pdf/{{ id }}",function (data){
+            home("/mobile/mobile_pdf/{{ id }}",function (data){
         $(".main").hide();
         let content = $(".show-content");
         content.show();
