@@ -1,6 +1,6 @@
 User-agent: *
 Disallow: /hello/*
-Disallow: /media/*
+
 Disallow: /student/*
 Disallow: /teacher/*
 
