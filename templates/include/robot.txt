@@ -7,3 +7,5 @@ Disallow: /teacher/*
 Sitemap: https://www.zeppter.com/sitemap.xml
 
 Sitemap: https://www.zeppter.com/mobile/sitemap.xml
+
+Sitemap: https://www.zeppter.com/user/sitemap.xml
