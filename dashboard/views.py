@@ -41,13 +41,15 @@ def dashboard(request):
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     meta = {
         "title" : "zeppter book story and status hindi offers",
-        "description" : "zeppter hindi,love, kids, horror story top most story love status ",
-        "keyboard" : "zeppter,hindi story,top story",
+        "description": "zeppter book kahaniya khana banane ka tarika bollywood kahaniya love best story in hindi bangali story,most marvel hingh  ",
+        "googlePlusId" : "zeppter0",
+        "keywords" : "zeppter,hindi story,horror story,love story,kids story,bollywood story,hindi kahaniya,bangali story",
         "pageUrl" : request.get_full_path(),
 
         "auther"  : "devan mandal",
         "facebook" : {
             "pageTitle" : "zeppter hindi story kid",
+
             "imageUrl": "/static/assets/img/zeppter.png",
             "type" : "website",
 

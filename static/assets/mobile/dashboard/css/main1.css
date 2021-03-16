@@ -94,6 +94,7 @@
 }
 #bottom-btn{
     font-size: 40px;
+    cursor: pointer;
 }
 .progress-show{
     height: 2px;
