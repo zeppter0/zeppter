@@ -157,7 +157,7 @@ def listview(request,cat):
     if ua.find("android") > 0:
         if request.method in "GET" and "hide" in request.GET:
             if "show" == request.GET["hide"]:
-                book = Book.objects.filter(book_arrcat=[cat])
+                book = Book.objects.filter(book_arrcat__overlap=[cat])
                 ca = Category.objects.filter(id=cat)
                 data = {
                     "book": book,
