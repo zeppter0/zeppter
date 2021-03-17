@@ -1,3 +1,5 @@
+{% load static %}
+
 <title>{{ meta.title }}</title>
 <link rel="shortcut icon" href="{{ MEDIA_URL }}{{ meta.icon }}">
 
@@ -57,16 +59,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "ratingValue": 4.7,
       "reviewCount": 2
     },
-    "image": "{{ request.scheme }}://{{ request.META.HTTP_HOST }}{{ MEDIA_URL }}{{ img }}?q=70",
+    "image": "https:://{{ request.get_host}}{{ MEDIA_URL }}{{ img }}",
     "name": "{{ title }}"
+
+
+
+    "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:://{{ request.get_host}}{{ request.path}}"
+      },
+      "headline": "{{ title }}",
+      "image": [
+        "https:://{{ request.get_host}}{{ MEDIA_URL }}{{ img }}",
+
+       ],
+      "datePublished": "{{ create_d}}",
+      "dateModified": "{{ update_d }}",
+      "author": {
+        "@type": "Person",
+        "name": "Devan mandal"
+      },
+       "publisher": {
+        "@type": "Organization",
+        "name": "Zeppter",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{% static 'assets/img/zeppter.png' %}"
+        }
+      }
+
 
 
 
 
       {% elif website %}
+
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "url": "https://{{ request.get_host }}/",
+      "url": "https://www.{{ request.get_host }}.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://{{ request.get_host }}.com/search?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
 
     {% endif %}
 

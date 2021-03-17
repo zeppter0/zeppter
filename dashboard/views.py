@@ -22,7 +22,7 @@ from myuser.models import MyUeers
 
 import math
 from django.contrib.postgres.search import SearchVector
-
+import goslate
 
 # Create your views here.
 
@@ -271,7 +271,7 @@ def shodata(request,url):
         dislike = DisLike.objects.filter(post_id=d.id).count()
         vie = Views.objects.filter(post_id=[d.id])
         dat = {"like":like,"userdata":user_data,"dislike":dislike,"views": vie.count(),"publish_date":d.created_at,"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cats":dst, 'title': d.book_title, 'dascription': d.book_description,
-               'img': d.book_image, 'postid': d.id, 'comments': comme ,'meta': meta,"book": True}
+               'img': d.book_image,"create_b": d.created_at,"update_b": d.updated_at, 'postid': d.id, 'comments': comme ,'meta': meta,"book": True}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("android") > 0:
         return HttpResponseRedirect(request.scheme+"://" + request.get_host() + "/mobile/content/" + url+"/")
@@ -344,7 +344,13 @@ def morelist(request):
     title = ""
     books= []
     if request.method == "GET":
-        search = request.GET['search']
+        searc = request.GET['search']
+
+        from googletrans import Translator
+
+        translator = Translator()  # initalize the Translator object
+        search = translator.translate(searc, dest='hi').text  # translate two phrases to Hindi
+        print(search)
         books = Book.objects.annotate(
             search=SearchVector('book_title'),
         ).filter(search=search)
