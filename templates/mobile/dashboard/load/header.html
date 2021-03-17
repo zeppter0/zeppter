@@ -52,14 +52,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {
 {% if book %}
 
-  "@context": "http://schema.org",
+  "@context": "https://schema.org",
     "@type": "Product",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": 4.7,
       "reviewCount": 2
     },
-    "image": "https:://{{ request.get_host}}{{ MEDIA_URL }}{{ img }}",
+    "image": "https://{{ request.get_host}}{{ MEDIA_URL }}{{ img }}",
     "name": "{{ title }}"
 
 
@@ -68,11 +68,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "@type": "NewsArticle",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https:://{{ request.get_host}}{{ request.path}}"
+        "@id": "https://{{ request.get_host}}{{ request.path}}"
       },
       "headline": "{{ title }}",
       "image": [
-        "https:://{{ request.get_host}}{{ MEDIA_URL }}{{ img }}",
+        "https://{{ request.get_host}}{{ MEDIA_URL }}{{ img }}",
 
        ],
       "datePublished": "{{ create_d}}",
