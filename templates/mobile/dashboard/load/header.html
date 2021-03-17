@@ -52,15 +52,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {
 {% if book %}
 
-  "@context": "https://schema.org",
-    "@type": "Product",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": 4.7,
-      "reviewCount": 2
-    },
-    "image": "https://{{ request.get_host}}{{ MEDIA_URL }}{{ img }}",
-    "name": "{{ title }}"
+
 
 
 
@@ -105,8 +97,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         "query-input": "required name=search_term_string"
       }
 
-    {% endif %}
+    {% elif about %}
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://{{ request.get_host }}.com",
+      "logo": "https://{{ request.get_host }}{% static 'assets/img/zeppter.png' %}"
 
+    {% endif %}
 }
 
 
