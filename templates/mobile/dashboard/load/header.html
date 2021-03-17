@@ -63,10 +63,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         "@id": "https://{{ request.get_host}}{{ request.path}}"
       },
       "headline": "{{ title }}",
-      "image": [
+      "image":
         "https://{{ request.get_host}}{{ MEDIA_URL }}{{ img }}",
-
-       ],
       "datePublished": "{{ create_d}}",
       "dateModified": "{{ update_d }}",
       "author": {
