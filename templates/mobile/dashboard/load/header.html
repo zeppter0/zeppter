@@ -86,7 +86,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         "name": "Zeppter",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://{{ request.get_host }}.com{% static 'assets/img/zeppter.png' %}"
+          "url": "https://{{ request.get_host }}{% static 'assets/img/zeppter.png' %}"
         }
       }
 
@@ -98,10 +98,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "url": "https://www.{{ request.get_host }}.com/",
+      "url": "https://www.{{ request.get_host }}/",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://{{ request.get_host }}.com/search?search={search_term_string}",
+        "target": "https://{{ request.get_host }}search?search={search_term_string}",
         "query-input": "required name=search_term_string"
       }
 
