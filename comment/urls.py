@@ -3,6 +3,6 @@ from comment import views
 
 
 urlpatterns = [
-    path('',views.index ,name="comment"),
+    path('',views.CommentPost.as_view() ),
     path('/send',views.send ,name="comment"),
 ]

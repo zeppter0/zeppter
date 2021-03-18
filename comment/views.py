@@ -1,9 +1,44 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from comment.models import Comment
+from django.views.generic import View
 import json
 from myuser.models import MyUeers
 # Create your views here.
+
+class CommentPost(View):
+    def post(self,request):
+        if "postid" in request.POST and "email" in request.session:
+            postid = request.POST['postid']
+
+            comments = request.POST['comment']
+            user = MyUeers.objects.get(email=request.session.get("email"))
+            data = []
+
+            if user:
+                comment_d = Comment()
+                comment_d.comment = comments
+                comment_d.userid = user.pk
+                comment_d.contentid = int(postid)
+                comment_d.save()
+                data = {
+                    'name': user.first_name,
+                    "photo" : user.photo,
+                    'comment': comment_d.comment,
+                    "usrid" : user.pk,
+                    "date" :comment_d.pub_date,
+                    "email" : user.email,
+                    'response': "sussecsful"
+
+                }
+
+
+
+
+
+
+            return render(request,"dashboard/comment.html",{"comment": data})
+
 def index(request):
     if request.method == "POST" and "postid" in request.POST:
         postid = request.POST['postid']

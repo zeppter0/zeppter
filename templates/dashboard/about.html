@@ -3,12 +3,23 @@
 {% block content %}
 {% include 'dashboard/main/header.html' %}
     <div class="container">
-    <h1 >hello</h1>
+     <center>
+         <h1 class="h3 title ">About us</h1>
+
+
+
+         <p class="h5 description">Zeppter Online book store hai Yahan per aapko free mein main Hindi book mil sakti hai agar aap ko khana banana Ho kya Kahani padhna Ho aapko Kisi Tarah ka book ok bhi mil sakti hai agar aapko book Nahin Milta Hai To Hamen contact Karen Ham aapko book Laga Denge
+  mera naam devar Mandal hai </p>
+
+         <img alt="devan mandal" src="{{ request.scheme }}://{{ request.get_host }}{% static 'assets/img/devanmandal.jpg' %}" width="300">
+     </center>
 
     </div>
   
 {% endblock %}
 {% block heade %}
+    <title>About US</title>
+
     <link rel="stylesheet" href="{% static 'assets/dashboard/about.css'%}">
     {% if logo %}
         <script type="application/ld+json">
@@ -19,4 +30,16 @@
  }
  </script>
     {% endif %}
+
+    <style>
+    .title{
+        font-style: oblique;
+        padding: 50px 0px;
+    }
+    .description{
+
+
+    }
+
+    </style>
 {% endblock %}

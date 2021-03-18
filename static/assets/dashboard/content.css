@@ -63,3 +63,10 @@
 }
 
 
+.comment-texta {
+    width: 500px;
+    margin: 0 40px;
+}
+.comment-send i{
+    font-size: 40px;
+}
