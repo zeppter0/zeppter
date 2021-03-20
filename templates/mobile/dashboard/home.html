@@ -162,22 +162,18 @@ function userprofi(id){
     geshows("mobileload");
 
 }
-
-            $("#backbtn").click(function (e){
-               if ( window.history.back()){
-                   hitory =  window.location.href
-                   home(hitory+"mobileload", function (e) {
-                        if ($(".show-content").hide()) {
-
-                            $(".main").show();
-
-                        }
-
-                        main.html(e);
+    back = $("#backbtn");
+    back.hide()
+    content = $(".show-content")
+    if (content.show()){
+        back.show()
+    }else {
+        back.hide()
+    }
 
 
-                    });
-               }
+            back.click(function (e){
+
 
 
             });
