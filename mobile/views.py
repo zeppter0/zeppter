@@ -148,7 +148,7 @@ def search(request):
         from translate import Translator
         translator = Translator(to_lang="hi")  # initalize the Translator object
         search = translator.translate(searc )  # translate two phrases to Hindi
-        book = Book.objects.annotate(search=SearchVector('book_title','keyboard'),).filter(search=search)
+        book = Book.objects.annotate(search=SearchVector('keyboard','book_title'),).filter(search=search)
         cat = Category.objects.filter(cat_title=search)
         data = {
             "cat": cat,

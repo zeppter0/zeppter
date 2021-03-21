@@ -347,12 +347,15 @@ def morelist(request):
 
 
     if request.method == "GET":
-        search = request.GET['search']
+        searc = request.GET['search']
+        from translate import Translator
+        translator = Translator(to_lang="hi")  # initalize the Translator object
+        search = translator.translate(searc)  # translate two phrases to Hindi
 
 
         print(search)
         books = Book.objects.annotate(
-            search=SearchVector('book_title','book_url','keyboard'),
+            search=SearchVector('keyboard','book_title'),
         ).filter(search=search)
         bd = Book.objects.all()
 
