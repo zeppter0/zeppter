@@ -1,5 +1,6 @@
 import json
 
+from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
 from django.shortcuts import render, redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from admin_dashboard.models import Book, Views, Like, DisLike
@@ -144,10 +145,9 @@ def loadcontent():
 def search(request):
     if request.method in "GET" and "search" in request.GET:
         searc = request.GET["search"]
-        from googletrans import Translator
-
-        translator = Translator()  # initalize the Translator object
-        search = translator.translate(searc, dest='hi').text  # translate two phrases to Hindi
+        from translate import Translator
+        translator = Translator(to_lang="hi")  # initalize the Translator object
+        search = translator.translate(searc )  # translate two phrases to Hindi
         book = Book.objects.annotate(search=SearchVector('book_title','keyboard'),).filter(search=search)
         cat = Category.objects.filter(cat_title=search)
         data = {
@@ -160,14 +160,29 @@ def listview(request,cat):
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("android") > 0:
         if request.method in "GET" and "hide" in request.GET:
-            if "show" == request.GET["hide"]:
+
+            if "show" == request.GET["hide"] :
+
+
+
                 book = Book.objects.filter(book_arrcat__overlap=[cat])
+                paginator = Paginator(book, 10)
+
+
+
+                page = request.GET.get('page')
+
+                profile = paginator.get_page(page)
+
                 ca = Category.objects.filter(id=cat)
                 data = {
-                    "book": book,
+                    "book": profile,
                     "cat": ca,
                 }
+
+
                 return render(request, "mobile/dashboard/load/listview.html", data)
+
 
         return render(request, "mobile/dashboard/home.html", )
 

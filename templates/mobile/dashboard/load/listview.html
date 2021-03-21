@@ -11,5 +11,32 @@
         {% include "mobile/dashboard/load/cardlist.html" %}
 
     </ul>
+<div class="pagination">
+    <span class="step-links">
+        {% if book.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ book.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ book.number }} of {{ book.paginator.num_pages }}.
+        </span>
+    <a class="next" href="/mobile/listview{{ catid }}/mobileload?page={{ book.next_page_number }}">next</a>
+            <a class="next" href="/mobile/listview{{ catid }}/mobileload/?page={{ book.paginator.num_pages }}">last &raquo;</a>
+
+        {% if profiles.has_next %}
+
+        {% endif %}
+    </span>
+</div>
 
 </div>
+<script>
+    $(".next").click(function (e){
+
+        home($(this).attr("href"),function (e){
+            $(".main").html(e)
+        })
+        return false
+    });
+</script>

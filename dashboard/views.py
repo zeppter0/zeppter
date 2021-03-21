@@ -343,16 +343,16 @@ def morelist(request):
 
     title = ""
     books= []
+
+
+
     if request.method == "GET":
-        searc = request.GET['search']
+        search = request.GET['search']
 
-        from googletrans import Translator
 
-        translator = Translator()  # initalize the Translator object
-        search = translator.translate(searc, dest='hi').text  # translate two phrases to Hindi
         print(search)
         books = Book.objects.annotate(
-            search=SearchVector('book_title'),
+            search=SearchVector('book_title','book_url','keyboard'),
         ).filter(search=search)
         bd = Book.objects.all()
 
