@@ -178,6 +178,7 @@ def listview(request,cat):
                 data = {
                     "book": profile,
                     "cat": ca,
+                    'catid' : ca.first().pk
                 }
 
 

@@ -565,6 +565,25 @@ def hindistory(request, url):
        
 
     return data
+class UrlChange(View):
+    def get(self,request):
+        res = requests.get("http://192.168.1.107:8000/sitemap.xml")
+        if res.status_code == 200:
+            xml = res.text
+
+            y = BeautifulSoup(xml)
+            data = y.findAll("loc")
+            for ds in data:
+                res = requests.get(ds.get_text())
+                if res.status_code != 200:
+                    xml = res.text
+                    book = Book.objects.get(book_url=str(xml.split('/',1)))
+                    print(book.book_title)
+
+                  #  books = Book.objects.get()
+
+        return HttpResponse("suscesssful")
+
 
 
 
