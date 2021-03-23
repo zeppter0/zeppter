@@ -92,6 +92,19 @@
 }
     
 }
+#user_m{
+    font-size: 40px;
+    cursor: pointer;
+}
+#notification_m_btn{
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#login_m{
+    font-size: 40px;
+    cursor: pointer;
+}
 #bottom-btn{
     font-size: 40px;
     cursor: pointer;
@@ -230,9 +243,9 @@
     width: 28px;
     height: 28px;
     border-radius: 25px;
-    background-color: pink;
+
     margin-right: 30px;
-    color: white;
+
     border: 1px solid #000000 ;
 }
 

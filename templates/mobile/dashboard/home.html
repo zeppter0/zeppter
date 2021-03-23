@@ -14,12 +14,15 @@
                 <i class="material-icons i-vcenter">search</i>
             </div>
             {% if "email" in request.session %}
-            <div class="user-logo" onclick="userprofi('{{ userdata.pk }}')">
-            <img src="{{ MEDIA_URL }}{{ userdata.photo }}" width="100%" height="100%">
-            </div>
-            {% else %}
-                <BUTTON id="login" onclick="login()" class="btn btn-info" href="/mobile/login" style="margin-right: 20px ">login</BUTTON>
+                <div class="col text-center">
+            <i class="material-icons" id="notification_m_btn">notifications</i>
+        </div>
+
+
+
             {% endif %}
+
+
 
 
 
@@ -71,7 +74,28 @@
             <i class="material-icons" id="bottom-btn">add</i>
         </div>
         <div class="col text-center">
-            <i class="material-icons" id="bottom-btn">offline_pin</i>
+           {% if "email" in request.session %}
+            <!---div class="user-logo" onclick="userprofi('{{ userdata.pk }}')"-->
+
+                {% if userdata.photo == "" %}
+            <img src="{{ MEDIA_URL }}{{ userdata.photo }}" width="100%" height="100%">
+
+
+                    {% else %}
+
+
+<i id="user_m" onclick="userprofi('{{ userdata.pk }}')" class="material-icons" aria-hidden="true">person</i>
+
+                  {% endif %}
+            <!--/div-->
+            {% else %}
+
+
+
+<i id="login_m" onclick="login()"  class="material-icons" >login</i>
+
+
+            {% endif %}
         </div>
 
 
@@ -109,6 +133,10 @@ function userprofi(id){
                     success : function (e){
                        if( $(".show-content").hide()){
                            mai = $(".main")
+                           if( mai.hide()){
+                               mai.show();
+
+                           }
 
                         mai.html(e)
                        }
