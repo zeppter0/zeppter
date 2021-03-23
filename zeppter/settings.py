@@ -55,7 +55,7 @@ ALLOWED_HOSTS = [
     # "192.168.42.211"
     "www.zeppter.com",
     "192.168.1.107",
-    'zeppter.com'
+    'zeppter.com',
     "18.215.82.54",
     '127.0.0.1',
     'eb5ea0c1323fc679c30dbad2a88da814.zeppter.com',
