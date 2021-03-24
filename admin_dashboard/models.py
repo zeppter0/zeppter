@@ -17,7 +17,7 @@ class Book(models.Model):
 
     book_title = models.CharField(max_length=100000,default=None)
     book_description = models.CharField(max_length=100000,default=None)
-    book_image = models.ImageField(upload_to='cat_img',default='')
+    book_image = models.ImageField(upload_to='cat_img',default='',blank=True, null=True)
     book_rates = models.IntegerField(default=5)
     book_commit_id = models.IntegerField()
     book_data = models.TextField()

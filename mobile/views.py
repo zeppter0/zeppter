@@ -12,6 +12,9 @@ from django.contrib.postgres.search import SearchVector
 from myuser.models import MyUeers
 from django.contrib.auth.hashers import make_password, check_password
 
+from zeppter import settings
+
+
 def content(request,url):
     user_data = {}
     if "email" in request.session:
@@ -19,8 +22,10 @@ def content(request,url):
 
         user_data = MyUeers.objects.get(email=emai)
     book = Book.objects.filter(book_url=url).first()
+    img =  ""
+    img = book.book_image
     meta = {
-        "icon" : book.book_image,
+        "icon" : img,
         "title": book.book_title,
         "description": book.book_description,
         "keywords": book.keyboard,
