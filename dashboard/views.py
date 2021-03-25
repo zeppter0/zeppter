@@ -297,6 +297,13 @@ def pdf_show(request,url):
 
     dat = {"userdata":user_data,'book_data': d.book_data,"link":bootstrap(), 'title': d.book_title, 'dascription': d.book_description,
                'img': d.book_image, 'postid': data.id, 'comments': comments,"pdf": d.data_book}
+
+    ua = request.META.get('HTTP_USER_AGENT', '').lower()
+    if ua.find("android") > 0:
+        return HttpResponseRedirect(request.scheme + "://" + request.get_host() + "/mobile/content/" + url + "/")
+    elif ua.find("iphone") > 0:
+        return HttpResponseRedirect(request.scheme + "://" + request.get_host() + "/mobile/content/" + url + "/")
+
     return render(request,"dashboard/show_book.html",dat)
 
 
