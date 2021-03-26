@@ -5,7 +5,13 @@
 {% include "dashboard/main/header.html" %}
     <div class="_7585">
         <div id="iconframe" class="">
+            {% if img != "" %}
             <img src="{{ MEDIA_URL }}{{ img }}"  width="330" height="330"/>
+            {% else %}
+
+
+                {% include "404/mobiel_img.html" %}
+            {% endif %}
             <div class="w-full">
                 <p>view {{ views }} </p>
                 <a class="like">
