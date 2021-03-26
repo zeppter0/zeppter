@@ -1,5 +1,15 @@
 <div class="cardview ">
+
+{% load static %}
+    {%  if i.book_image != "" %}
           <div class="card_image"> <img src="http://{{ request.get_host }}{{ MEDIA_URL }}{{ i.book_image }}" /> </div>
+      {% else %}
+
+      <div class="card_image"> <img src="http://{{ request.get_host }}{% static 'assets/404/img/404img.png' %}" /> </div>
+
+
+    {% endif %}
+
           <div class="card_Title title-white">
               <h4>{{ i.book_title }}</h4>
             <p>{{ i.book_description }}</p>

@@ -9,6 +9,7 @@
 
 }
 ._7585{
+    position: relative;
 
 }
 .dropdown-menu {
@@ -22,6 +23,8 @@
 
 
 ._90237{
+    position: absolute;
+    top: 80px;
     margin-left: 30px;
 
  display: inline-block;
@@ -195,5 +198,40 @@ white-space: nowrap;
 .show-backf{
     color: white;
     text-align: center;
+
+}
+
+#formain{
+	width: 330px;
+	height: 330px;
+
+}
+.fof{
+    -moz-box-shadow:    inset 0 0 10px #000000;
+   -webkit-box-shadow: inset 0 0 10px #000000;
+   box-shadow:         inset 0 0 10px #000000;
+
+}
+.fof h1{
+    font-family: 'Roboto', sans-serif;
+    font-size: 80px;
+
+}
+.fof h1 span{
+    color: #00a5bb;
+
+}
+.card_image h1{
+    width: inherit;
+height: inherit;
+border-radius: 20px;
+object-fit: cover;
+
+    color: #0b2e13;
+    font-size: 60px;
+}
+.card_image h1 span{
+    color: #00a5bb;
+
 
 }

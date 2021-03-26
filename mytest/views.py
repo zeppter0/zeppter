@@ -569,7 +569,7 @@ class UrlChange(View):
     def get(self,request):
         book = Book.objects.all()
         for b in book:
-            bd = Book.objects.filter(id=b.id).update(book_url= b.book_url.replace("?",""))
+            bd = Book.objects.filter(id=b.id).update(book_url= b.book_url.replace("/",""))
 
 
 
