@@ -25,4 +25,5 @@ path("listview/<int:cat>/",views.listview,name="listview"),
     path('login', views.login ,name="login_mobile"),
     path('register', views.register ,name="register_mobile"),
     path('user/data/<int:id>',views.userprofile,name="user_profile"),
+    path('donation',views.Donations.as_view()),
 ]

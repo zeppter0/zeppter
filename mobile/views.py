@@ -3,6 +3,8 @@ import json
 from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
 from django.shortcuts import render, redirect
 from django.http import HttpResponse,HttpResponseRedirect
+from django.views.generic.base import View
+
 from admin_dashboard.models import Book, Views, Like, DisLike
 from admin_dashboard.models import Category
 from comment.models import Comment
@@ -321,3 +323,7 @@ def userprofile(request,id):
     user = MyUeers.objects.get(pk=id)
 
     return render(request,"mobile/admin/user_profile.html",{"user": user ,"userdata" :user})
+
+class Donations(View):
+    def get(self,request):
+        return render(request,'donations/mobile.html')
