@@ -249,6 +249,27 @@
     border: 1px solid #000000 ;
 }
 
+.du_content{
+    position: absolute;
+    top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    border: 2px solid red;
+    width: 190px;
+    height: inherit;
+
+	margin: auto;
+}
+.du_content div{
+    border: 2px solid black;
+    width: 210px;
+    overflow-x: hidden;
+    margin-bottom: 20px;
+    display: block;
+    text-align: center;
+}
+
 
 
 

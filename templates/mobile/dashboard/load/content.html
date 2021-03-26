@@ -41,7 +41,7 @@
     </div>
 </div>
 <div class="container">
-    <a  href="https://imjo.in/gVsbY8" class="btn btn-primary" style="margin: 20px auto;width: 100%;">Donate for Zeppter</a>
+    <a id="donation"  class="btn btn-primary" style="margin: 20px auto;width: 100%;">Donate for Zeppter</a>
 </div>
 
 
@@ -116,6 +116,19 @@ var doc = new jsPDF();
 
 
     $(document).ready(function (e){
+
+        $("#donation").click(function (e){
+            $.ajax({
+                url : "/mobile/donation",
+                success : function (e){
+                    $(".main").hide()
+                             $(".show-content").show()
+                             $(".show-content").html(e)
+
+                }
+            });
+            return false;
+        })
 
 
 
