@@ -37,13 +37,22 @@
             <button data-listview="{{ ca.id }}" class="list-more button5"><strong>More</strong></button>
 </div>
     <div class="item-list">
-        <ul id="lid{{ ca.id }}">
+        <ul class="lid{{ ca.id }}" id="lid{{ ca.id }}" >
+
 
 
         </ul>
-        <script>
-            $(document).ready(function (e){
-                $.ajax(
+
+    </div>
+    </div>
+    <script>
+    $(document).ready(function (e){
+
+
+          $.ajax({
+       //
+       success:function(data){
+          $.ajax(
         {
             url : "/mobile/mobilecard/{{ ca.id }}",
             cache: false,
@@ -51,19 +60,24 @@
                 $("#lid{{ ca.id }}").html(data)
 
             }
-        }
-    );
+        });
+       }
+      });
 
 
             });
-
-        </script>
-    </div>
-    </div>
+    </script>
 {% endfor %}
 
 
 <script>
+
+
+
+
+
+
+
     $(".list-more").click(function (e) {
         id = $(this).attr("data-listview")
 

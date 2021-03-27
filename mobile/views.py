@@ -133,7 +133,7 @@ def showdatapdf(request,id):
 
 
 def mobilecard(request,id):
-    books = Book.objects.filter(book_catid=id).order_by('-id')[:10]
+    books = Book.objects.filter(book_arrcat__overlap=[id]).order_by('-id')[:10]
 
     return render(request,"mobile/dashboard/load/cardlist.html",{"book":books})
 def home(request):
