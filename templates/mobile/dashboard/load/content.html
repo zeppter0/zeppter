@@ -75,22 +75,37 @@
             <h4 class="list-title" >{{ ca.cat_title }}</h4>
             <button data-listview="{{ ca.id }}" class="list-more button5"><strong>More</strong></button>
 </div>
-    <div class="item-list">
-        <ul>
-
-            {% for i in data %}
-        <li>
-        <a class="cardlink" href="http://{{ request.get_host }}/mobile/content/{{ i.book_url }}/" >
-        {% include 'package/cardview.html' %}
-        </a>
+     <div class="item-list">
+        <ul class="lid{{ ca.id }}" id="lid{{ ca.id }}" >
 
 
-        </li>
 
-        {% endfor %}
         </ul>
+
     </div>
     </div>
+    <script>
+    $(document).ready(function (e){
+
+
+          $.ajax({
+       //
+       success:function(data){
+          $.ajax(
+        {
+            url : "/mobile/mobilecard/{{ ca.id }}",
+            cache: false,
+            success : function (data){
+                $("#lid{{ ca.id }}").html(data)
+
+            }
+        });
+       }
+      });
+
+
+            });
+    </script>
         {% include "mobile/dashboard/load/comment.html" %}
 {% endfor %}
 
