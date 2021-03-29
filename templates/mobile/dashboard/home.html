@@ -191,7 +191,7 @@ function userprofi(id){
 
 }
     back = $("#backbtn");
-    back.hide()
+
     content = $(".show-content")
     if (content.show()){
         back.show()
@@ -201,10 +201,26 @@ function userprofi(id){
 
 
             back.click(function (e){
+                content.hide();
+                $(".main").show();
+
 
 
 
             });
+    window.onhashchange = function() {
+
+
+ //blah blah blah
+
+
+       if( content.show()){
+           content.hide();    
+                   $(".main").show();
+
+       }
+}
+
     $("#main-title").click(function (e){
 
     });
