@@ -441,8 +441,40 @@ def urldata(request):
                             else:
                                  print('Website is working fine')
 
-    return "load susecuss"    
-    return HttpResponse("sucesssfull")                        
+
+    return HttpResponse("sucesssfull")
+
+
+class Dada(View):
+    def get(self,request):
+                res = requests.get("https://storymirror.com/sitemaps/poem.xml")
+
+                if res.status_code == 200:
+                    xml = res.text
+
+                    y = BeautifulSoup(xml)
+                    data = y.findAll("loc")
+                    for ds in data:
+                        res = requests.get(ds.get_text())
+                        if res.status_code == 200:
+                            xml = res.text
+
+                            y = BeautifulSoup(xml)
+                            data = y.findAll("loc")
+                            for ds in data:
+
+                                try:
+                                    hindistory(request, ds.get_text())
+                                except HTTPError as e:
+                                    print('The server couldn\'t fulfill the request.')
+                                    print('Error code: ', e.code)
+                                except URLError as e:
+                                    print('We failed to reach a server.')
+                                    print('Reason: ', e.reason)
+                                else:
+                                    print('Website is working fine')
+
+                return HttpResponse("sucesssfull")
 
             
             
