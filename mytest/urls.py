@@ -13,4 +13,5 @@ path('changecat',views.changecatgory,name="changecatgory"),
     path('searchkey' , views.keyboardserach,name="search"),
     path("posts",views.urldata,name="post"),
     path("changeurl",views.UrlChange.as_view()),
+    path('getpostdata',views.Dada.as_view()),
 ]
