@@ -195,6 +195,8 @@ def listview(request,cat):
 
                 page = request.GET.get('page')
 
+
+
                 profile = paginator.get_page(page)
 
                 ca = Category.objects.filter(id=cat)
