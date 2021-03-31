@@ -411,12 +411,15 @@ def urldata(request):
     res = requests.get("https://storymirror.com/sitemap.xml")
     if res.status_code == 200:
         xml = res.text
+        print("siteme")
 
         y = BeautifulSoup(xml)
         data = y.findAll("loc")
         for ds in data:
             res = requests.get(ds.get_text())
+
             if res.status_code == 200:
+                print("text")
                 xml = res.text
 
                 y = BeautifulSoup(xml)
@@ -424,6 +427,7 @@ def urldata(request):
                 for ds in data:
                     res = requests.get(ds.get_text())
                     if res.status_code == 200:
+                        print("hello")
                         xml = res.text
 
                         y = BeautifulSoup(xml)
