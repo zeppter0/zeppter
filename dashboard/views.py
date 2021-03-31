@@ -43,7 +43,7 @@ def dashboard(request):
         "title" : "zeppter book story and status hindi offers",
         "description": "zeppter book kahaniya khana banane ka tarika bollywood kahaniya love best story in hindi bangali story,most marvel hingh  ",
         "googlePlusId" : "zeppter0",
-        "keywords" : "zeppter,hindi story,horror story,love story,kids story,bollywood story,hindi kahaniya,bangali story",
+        "keywords" : "zeppter,hindi story,hindi kahaniya,love story,story in hindi,story for kids,hindi language",
         "pageUrl" : request.get_full_path(),
 
         "auther"  : "devan mandal",

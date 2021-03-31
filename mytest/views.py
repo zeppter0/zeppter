@@ -38,10 +38,10 @@ import json
 import urllib.request as ur
 web__ur3 = "www.grihshobha.in"
 web__url2 = "thatsmystory-book.com"
-web__url = "www.hindikahane.in"
+web__url = "dhakadbaate.com"
 
 def wordpress(request,id):
-    for d in range(11):
+    for d in range(42):
         wordpressjson('https://'+web__url+'/wp-json/wp/v2/posts?page='+str(id+d))
         print(id+d)
     return HttpResponse("hello word")
