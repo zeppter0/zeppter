@@ -256,7 +256,7 @@ def geturl(data):
 
 def wordpressjson(url):
     try:
-        response = ur.urlopen(url)
+        response = requests.get(url)
      #   response = requests.get(url)
 
         jas = json.loads(response.text)
@@ -297,7 +297,7 @@ def wordpressjson(url):
             focaskey = re.sub(r"[^A-Za-z0-9 ]+", '', fgh)
             urlsd = focaskey.replace(" ", "-").rstrip("-").lstrip("-")
 
-            keysearch = '%20'.join(title.split()[:3])
+            keysearch = '%20'.join(title.split()[:2])
             datad = requests.get("http://google.com/complete/search?output=toolbar&q=" + keysearch)
 
             soupd = BeautifulSoup(datad.text)
