@@ -38,7 +38,7 @@ import json
 import urllib.request as ur
 web__ur3 = "www.grihshobha.in"
 web__url2 = "thatsmystory-book.com"
-web__url = "www.storytal.com"
+web__url = "hindi.storytal.com"
 
 def wordpress(request,id):
     for d in range(5):
