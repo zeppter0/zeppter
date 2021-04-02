@@ -30,7 +30,7 @@ def index(request):
 
 def catlist(request):
     data = []
-    cats =  Category.objects.all()
+    cats =  Category.objects.all()[:10]
     for cat in cats:
         datas = {"cat_title" : cat.cat_title,
 

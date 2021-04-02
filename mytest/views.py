@@ -499,6 +499,7 @@ def hindistory(request, url):
     response = requests.get(url)
     if response.status_code == 200 :
         soup = BeautifulSoup(response.text)
+
         d = soup.find("div", attrs={'id': "main-row"})
         if d:
             titles = d.find('h2', attrs={'class': 'title-target text-left d-none d-sm-block'})
@@ -619,3 +620,17 @@ class Google(View):
     def get(self, request):
         # <view logic>
         return render(request,'test/google/views.html')
+
+
+
+class Webdunia(View):
+    def get(self,request):
+        urlrespose = requests.get("https://hindi.webdunia.com/sitemaps/recipe.xml")
+        if urlrespose.status_code == 200:
+            soup = BeautifulSoup(urlrespose.text)
+
+            d = soup.find("div", attrs={'id': "main-row"})
+            title = d.find("div", attrs={'class',"det_title"})
+            #discription =
+
+
