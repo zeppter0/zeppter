@@ -1,4 +1,4 @@
-{% if book.number <= 1 %}
+
 <div class="container" id="listframe">
     <div class="title-fd">
         <p class="title-list">
@@ -10,16 +10,16 @@
     </div>
 
     <ul class="listviewul">
-        {% endif %}
+
         {% include "mobile/dashboard/load/cardlist.html" %}
-{% if book.number <= 1 %}
+
     </ul>
     <div class="loding-show">
-    <div class="pagination">
+
+<div class="pagination">
     <span class="step-links">
         {% if book.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ book.previous_page_number }}">previous</a>
+            <a class="next_page" href="?page={{ book.previous_page_number }}">previous</a>
         {% endif %}
 
         <span class="current">
@@ -28,11 +28,9 @@
 
         {% if book.has_next %}
             <a class="next_page" href="?page={{ book.next_page_number }}">next</a>
-            <a class="next_page" href="?page={{ book.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
     </span>
 </div>
-
     </div>
 
 
@@ -43,8 +41,8 @@
 
 $(document).ready(function (e){
     $(".next_page").click(function (e){
-        home("/mobile/listview/mobileload/"+$(this).attr("href"),function (e){
-            alert("hello")
+        home("/mobile/listview/{% for d in cat %}{{ d.pk }}{% endfor %}/mobileload"+$(this).attr("href"),function (e){
+            $(".main").html(e)
         })
         return false
     });
@@ -56,4 +54,3 @@ $(document).ready(function (e){
 
 
 </script>
-{% endif %}

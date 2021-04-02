@@ -58,8 +58,24 @@ def content(request,url):
     if "hide" in request.GET :
         dat = ""
 
+        cs = 0
+        cat = []
+        count = 0
+        for ca in book.book_arrcat:
+            if count <= 2 :
+               cat.append(Category.objects.filter(id=ca)[0])
+               print(ca)
+            count += 1
+       
 
-        cat = Category.objects.filter(id=book.book_catid)
+
+
+
+
+
+
+
+
         data = Book.objects.filter(book_catid=cat[0].id)[:10]
         comments = Comment.objects.filter(contentid=book.id)
         view = Views.objects.filter(post_id=[book.id])
@@ -178,6 +194,8 @@ def listview(request,cat):
 
 
                 page = request.GET.get('page')
+
+
 
                 profile = paginator.get_page(page)
 

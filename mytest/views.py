@@ -38,10 +38,10 @@ import json
 import urllib.request as ur
 web__ur3 = "www.grihshobha.in"
 web__url2 = "thatsmystory-book.com"
-web__url = "www.hindikahane.in"
+web__url = "hindi.storytal.com"
 
 def wordpress(request,id):
-    for d in range(11):
+    for d in range(5):
         wordpressjson('https://'+web__url+'/wp-json/wp/v2/posts?page='+str(id+d))
         print(id+d)
     return HttpResponse("hello word")
@@ -256,7 +256,7 @@ def geturl(data):
 
 def wordpressjson(url):
     try:
-        response = ur.urlopen(url)
+        response = requests.get(url)
      #   response = requests.get(url)
 
         jas = json.loads(response.text)
@@ -297,7 +297,7 @@ def wordpressjson(url):
             focaskey = re.sub(r"[^A-Za-z0-9 ]+", '', fgh)
             urlsd = focaskey.replace(" ", "-").rstrip("-").lstrip("-")
 
-            keysearch = '%20'.join(title.split()[:3])
+            keysearch = '%20'.join(title.split()[:2])
             datad = requests.get("http://google.com/complete/search?output=toolbar&q=" + keysearch)
 
             soupd = BeautifulSoup(datad.text)
@@ -411,12 +411,15 @@ def urldata(request):
     res = requests.get("https://storymirror.com/sitemap.xml")
     if res.status_code == 200:
         xml = res.text
+        print("siteme")
 
         y = BeautifulSoup(xml)
         data = y.findAll("loc")
         for ds in data:
             res = requests.get(ds.get_text())
+
             if res.status_code == 200:
+                print("text")
                 xml = res.text
 
                 y = BeautifulSoup(xml)
@@ -424,6 +427,7 @@ def urldata(request):
                 for ds in data:
                     res = requests.get(ds.get_text())
                     if res.status_code == 200:
+                        print("hello")
                         xml = res.text
 
                         y = BeautifulSoup(xml)
@@ -495,6 +499,7 @@ def hindistory(request, url):
     response = requests.get(url)
     if response.status_code == 200 :
         soup = BeautifulSoup(response.text)
+
         d = soup.find("div", attrs={'id': "main-row"})
         if d:
             titles = d.find('h2', attrs={'class': 'title-target text-left d-none d-sm-block'})
@@ -615,3 +620,17 @@ class Google(View):
     def get(self, request):
         # <view logic>
         return render(request,'test/google/views.html')
+
+
+
+class Webdunia(View):
+    def get(self,request):
+        urlrespose = requests.get("https://hindi.webdunia.com/sitemaps/recipe.xml")
+        if urlrespose.status_code == 200:
+            soup = BeautifulSoup(urlrespose.text)
+
+            d = soup.find("div", attrs={'id': "main-row"})
+            title = d.find("div", attrs={'class',"det_title"})
+            #discription =
+
+
