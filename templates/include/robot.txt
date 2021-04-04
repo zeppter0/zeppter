@@ -3,6 +3,8 @@ Disallow: /hello/*
 Disallow: /student/*
 Disallow: /teacher/*
 
+Allow: /
+
 
 Sitemap: https://www.zeppter.com/sitemap.xml
 

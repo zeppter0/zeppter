@@ -16,6 +16,9 @@ from teacher.models import Work
 @method_decorator(Teather_login,name="dispatch")
 class Dashboard(View):
     def get(self,request):
+        works = Work.objects.all()
+        for work in works:
+            dels = Work.objects.filter(pk=work.pk).delete()
 
         return render(request,"teacher/dashboard/home.html")
 

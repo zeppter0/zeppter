@@ -10,3 +10,10 @@
     {{ des | safe }}
 
 </div>
+
+<script>
+        var myEle = document.getElementById("main");
+if(myEle  == null){
+   window.location = "http://{{ request.get_host }}/mobile/content/{{ url }}/";
+}
+</script>

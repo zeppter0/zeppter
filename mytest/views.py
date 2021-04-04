@@ -37,8 +37,8 @@ import json
 
 import urllib.request as ur
 web__ur3 = "www.grihshobha.in"
-web__url2 = "thatsmystory-book.com"
-web__url = "hindi.storytal.com"
+web__url = "thatsmystory-book.com"
+web__url2 = "hindi.storytal.com"
 
 def wordpress(request,id):
     for d in range(5):
@@ -632,5 +632,26 @@ class Webdunia(View):
             d = soup.find("div", attrs={'id': "main-row"})
             title = d.find("div", attrs={'class',"det_title"})
             #discription =
+
+
+class Shyamvishwakarma(View):
+    def get(self,request):
+        url = requests.get("http://shyamvishwakarma.blogspot.com/sitemap.xml?page=1")
+        if url.status_code == 200:
+            soup = BeautifulSoup(url.text)
+
+            locs = soup.findAll("loc")
+            for loc in locs:
+                print(loc)
+                url2 = requests.get(loc)
+                if url2.status_code == 200:
+                    fullcontent = BeautifulSoup(url2.text).find("class", "post hentry uncustomized-post-template")
+
+
+                    title = fullcontent.find("class","post-title entry-title")
+                    content = fullcontent.find("class" "img")
+
+
+
 
 

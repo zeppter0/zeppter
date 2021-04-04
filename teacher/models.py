@@ -28,8 +28,8 @@ class Photo(models.Model):
 
 
 class Work(models.Model):
-    user_id = models.IntegerField()
+    user_id = models.IntegerField(default=1)
     title = models.CharField(max_length=200,default="")
-    task = models.TextField()
+    task = models.TextField(default="")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
