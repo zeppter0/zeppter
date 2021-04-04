@@ -41,12 +41,11 @@ def catlist(request):
 
 def book(request,id):
     data = []
-    books = Book.objects.filter(book_catid=id)[:10]
+    books = Book.objects.filter(book_arrcat=[id])[:10]
     
     for i in books:
         img =  "http://"+request.get_host()+"/hello"
-        if i.book_image.url:
-            img = "http://"+request.get_host()+i.book_image.url
+        
         
                  
 

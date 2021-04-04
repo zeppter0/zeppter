@@ -25,6 +25,7 @@ def content(request,url):
         user_data = MyUeers.objects.get(email=emai)
     book = Book.objects.filter(book_url=url).first()
     img =  ""
+
     img = book.book_image
     meta = {
         "icon" : img,
@@ -141,8 +142,9 @@ def showdatapdf(request,id):
     for da in book:
         dat = {
             "des":da.book_data,
-            "title" : da.book_title,
-            "img" : da.book_image
+            "title" : da.book_title ,
+            "img" : da.book_image ,
+            "url" : da.book_url,
         }
 
     return render(request,"mobile/dashboard/load/onlinedata.html",dat)
