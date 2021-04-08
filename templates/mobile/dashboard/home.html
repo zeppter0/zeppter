@@ -37,11 +37,13 @@
           <!-- JS because of IE support; better: placeholder="What are you looking for?" -->
 
             <input type="hidden" value="hello">
+                          <i id="hide_search" style="margin-left: 30px" class="fa fa-2x fa-times"></i>
 
 
         </fieldset>
 
-      </form>
+
+</form>
 
     </div>
     <div class="progress-show"></div>
@@ -152,6 +154,11 @@ function userprofi(id){
 
 
         $(document).ready(function (e) {
+            $("#hide_search").click(function (e){
+                $('#search').hide();
+                -        $("#mob-navbar .row").show();
+
+            });
 
 
 
@@ -162,8 +169,9 @@ function userprofi(id){
             const main = $(".main");
     var url= window.location.href;
     $("#searchview").click(function (e){
-        $("#mob-navbar .row").hide();
-        $("#search").css("display","inline-block");
+               $("#mob-navbar .row").hide();
+
+        $("#search").show();
     });
     $("")
 

@@ -1,4 +1,18 @@
 <div id="editor"></div>
+
+<div class="share-data">
+<div class="shae-dis">
+    <div class="horizontal">
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://{{ request.get_host }}{{ request.get_full_path }}" id="share-fb" class="sharer button"><i class="fab fa-2x fa-facebook-f"></i></a>
+  <a href="http://www.twitter.com/share?url=https://{{ request.get_host }}{{ request.get_full_path }}" id="share-tw" class="sharer button"><i class="fab fa-2x fa-twitter"></i></a>
+
+  <a href="whatsapp://send?text={{ request.get_host }}{{ request.get_full_path }}" class="sharer button"><i class="fab fa-2x fa-whatsapp"></i></a>
+  <a href="" id="share_hide" class="sharer button"><i class="fas  fa-2x fa-eye-slash"></i></a>
+
+    </div>
+</div>
+</div>
 {% load static %}
 <div class="downlod_fr">
     <P>Loding</P>
@@ -25,8 +39,10 @@
         <a id="dislike" href="#"><i class="far fa-thumbs-down"></i> <span id="dislike_v">{{ dislikes }}</span> </a>
     </div>
 
+    <i  id="share" class="fas fa-share-alt"></i>
 
-    <p id="view">Views {{  views }}</p>
+
+    <p id="view"><i class="far fa-eye"></i>  {{  views }}</p>
 </div>
 <div class="load_frame">
     <button id="online_load" class="button5">
@@ -94,6 +110,16 @@
 
 
     $(document).ready(function (e){
+        $("#share_hide").click(function (e){
+            $(".share-data").hide()
+            return false;
+
+
+        });
+        $("#share").click(function (e){
+$(".share-data").show()
+        })
+
 
 
           $.ajax({
