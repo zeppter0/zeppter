@@ -12,6 +12,11 @@
 <script>
 
 $(".cardlink").click(function (e){
+
+     $('#search').hide()
+       $("#mob-navbar .row").show();
+
+$("html, body").animate({ scrollTop: 0 }, "slow");
     home($(this).attr("href"),function (data){
 
         $(".main").html(data);

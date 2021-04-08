@@ -169,10 +169,8 @@ def loadcontent():
 
 def search(request):
     if request.method in "GET" and "search" in request.GET:
-        searc = request.GET["search"]
-        from translate import Translator
-        translator = Translator(to_lang="hi")  # initalize the Translator object
-        search = translator.translate(searc )  # translate two phrases to Hindi
+        search = request.GET["search"]
+
         book = Book.objects.annotate(search=SearchVector('keyboard','book_title'),).filter(search=search)
         cat = Category.objects.filter(cat_title=search)
         data = {
