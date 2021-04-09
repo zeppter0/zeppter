@@ -27,6 +27,13 @@ function headtag(url ,data ,show){
         }
     })
 }
+function getdata(id,data,sodata){
+
+
+    $.ajax({
+        url : "/mobile/"
+    })
+}
 
 
 

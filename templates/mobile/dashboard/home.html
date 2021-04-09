@@ -71,22 +71,23 @@
             <div id="home-btn">
                 <i  class="material-icons" id="bottom-btn">home</i>
             </div>
+
         </div>
         <div class="col text-center">
-            <i class="material-icons" id="bottom-btn">add</i>
+            <i class="material-icons create-book" id="bottom-btn">add</i>
         </div>
         <div class="col text-center">
            {% if "email" in request.session %}
-            <!---div class="user-logo" onclick="userprofi('{{ userdata.pk }}')"-->
+            <!---div class="user-logo" onclick="userprofi('{{ request.myuser.pk }}')"-->
 
-                {% if userdata.photo == "" %}
-            <img src="{{ MEDIA_URL }}{{ userdata.photo }}" width="100%" height="100%">
+                {% if request.myuser.photo == "" %}
+            <img src="{{ MEDIA_URL }}{{ request.myuser.photo }}" width="100%" height="100%">
 
 
                     {% else %}
 
 
-<i id="user_m" onclick="userprofi('{{ userdata.pk }}')" class="material-icons" aria-hidden="true">person</i>
+<i id="user_m" onclick="userprofi('{{ request.myuser.pk }}')" class="material-icons" aria-hidden="true">person</i>
 
                   {% endif %}
             <!--/div-->
@@ -131,7 +132,8 @@ function login(){
 function userprofi(id){
         $.ajax({
                     url: "/mobile/user/data/"+id,
-                    type: "get",
+                    type: "post",
+                    data : {csrfmiddlewaretoken : '{{ csrf_token }}'},
                     success : function (e){
                        if( $(".show-content").hide()){
                            mai = $(".main")
@@ -159,6 +161,20 @@ function userprofi(id){
                 -        $("#mob-navbar .row").show();
 
             });
+
+
+
+            $(".create-book").click(function (e){
+                $.ajax({
+                    url: "/mobile/create_post",
+                    type : "post",
+                    data : { csrfmiddlewaretoken : '{{ csrf_token }}' , data : true},
+                    success : function (e){
+                        $(".main").html(e);
+                    }
+
+                })
+            })
 
 
 
