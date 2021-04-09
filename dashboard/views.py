@@ -31,7 +31,7 @@ def dashboard(request):
     if "email" in request.session:
         email = request.session["email"]
         user_data = MyUeers.objects.filter(email=email).first()
-        print("user name ")
+
 
     data = Book.objects.all().order_by('-id')[:3]
     carousel = "hhh"
@@ -440,6 +440,9 @@ def user_profile(request,id):
 
     data = MyUeers.objects.filter(id=id)
     if data.count() ==1:
+
+        if "android" in request.device['device'] or 'iphone' in request.device['device']:
+            return HttpResponseRedirect("/mobile/user/data/"+str(id)+'/')
 
 
         return render(request,'dashboard/user_profile.html',{"data": data.first(),"userdata": data.first()})

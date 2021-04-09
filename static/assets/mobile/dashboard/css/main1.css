@@ -280,6 +280,34 @@ display: inline-block;
 }
 
 
+#create_content{
+    border: 1px solid black;
+    margin: 3px 7px;
+    padding: 5px;
+    border-radius: 4px;
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+
+}
+
+#profile_img{
+    display: none;
+}
+
+#profile_img:hover{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.3);
+    color: white;
+
+    z-index: 1000;
+}
+
 
 
 

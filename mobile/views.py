@@ -292,6 +292,7 @@ def login(request):
 
 def register(request):
     checklogin = "nodata"
+    userid = 0
 
 
 
@@ -320,9 +321,10 @@ def register(request):
                 user = MyUeers(gender=gender, first_name=first_name,
                                last_name=last_name, email=email, password=pass4, mobile_no=int(mobile_no))
                 user.save()
+
                 request.session['email'] = email
                 checklogin ="register"
-                return HttpResponse(json.dumps({"check":checklogin,"user": user.first_name}))
+                return HttpResponse(json.dumps({"check":checklogin,"user": user.first_name,"id": user.pk}))
 
 
             else:
@@ -336,12 +338,38 @@ def register(request):
 
         return render(request,"mobile/login/load/register.html")
 
+class UserPofile(View):
+    def post(self,request,id):
+        user = MyUeers.objects.get(pk=id)
 
-def userprofile(request,id):
-    user = MyUeers.objects.get(pk=id)
+        return render(request, "mobile/admin/user_profile.html", {"user": user, "userdata": user})
+    def get(self,request,id):
+        if "android" in request.device['device'] or 'iphone' in request.device['device']:
+            if "hide" in request.GET:
+                user = MyUeers.objects.get(pk=id)
 
-    return render(request,"mobile/admin/user_profile.html",{"user": user ,"userdata" :user})
+                return render(request, "mobile/admin/user_profile.html", {"user": user, "userdata": user})
+            else:
+                return render(request,'mobile/dashboard/home.html')
+        else:
+            return HttpResponseRedirect("/user/data/"+str(id))
+
+
+
+
+
+
+
 
 class Donations(View):
     def get(self,request):
         return render(request,'donations/mobile.html')
+
+
+
+
+class Create_post(View):
+    def post(self,request):
+        return render(request,"mobile/dashboard/load/create_post.html")
+    def get(self):
+        return redirect("/")
