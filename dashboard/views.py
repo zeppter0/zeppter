@@ -354,10 +354,8 @@ def morelist(request):
 
 
     if request.method == "GET":
-        searc = request.GET['search']
-        from translate import Translator
-        translator = Translator(to_lang="hi")  # initalize the Translator object
-        search = translator.translate(searc)  # translate two phrases to Hindi
+        search = request.GET['search']
+
 
 
         print(search)
