@@ -90,7 +90,7 @@ def content(request,url):
 
              comme.append({"id" : d.pk ,"userid" : user_g.pk,"photo": user_g.photo ,"comment" : d.comment,"user_name":user_g.first_name+" "+user_g.last_name} )
 
-        share_url = request.get_host()+"/mobile/content/"+book.book_url
+        share_url = request.get_host()+"/mobile/content/"+book.book_url+'/'
 
         dat = {
 
