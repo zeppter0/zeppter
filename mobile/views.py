@@ -87,8 +87,10 @@ def content(request,url):
 
         for d in comments:
              user_g = MyUeers.objects.get(pk=d.userid)
+
              comme.append({"id" : d.pk ,"userid" : user_g.pk,"photo": user_g.photo ,"comment" : d.comment,"user_name":user_g.first_name+" "+user_g.last_name} )
 
+        share_url = request.get_host()+"/mobile/content/"+book.book_url
 
         dat = {
 
@@ -96,6 +98,7 @@ def content(request,url):
             "views": view.count(),
             "likes" : likes,
             "dislikes" : dislike,
+            "share_url" : share_url,
 
 
                 "book_image": book.book_image,
