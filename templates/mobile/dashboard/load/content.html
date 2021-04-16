@@ -4,10 +4,10 @@
 <div class="shae-dis">
     <div class="horizontal">
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https://{{ request.get_host }}{{ request.get_full_path }}" id="share-fb" class="sharer button"><i class="fab fa-2x fa-facebook-f"></i></a>
-  <a href="http://www.twitter.com/share?url=https://{{ request.get_host }}{{ request.get_full_path }}" id="share-tw" class="sharer button"><i class="fab fa-2x fa-twitter"></i></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://{{ share_url}}" id="share-fb" class="sharer button"><i class="fab fa-2x fa-facebook-f"></i></a>
+  <a href="http://www.twitter.com/share?url=https://{{ share_url }}" id="share-tw" class="sharer button"><i class="fab fa-2x fa-twitter"></i></a>
 
-  <a href="whatsapp://send?text={{ request.get_host }}{{ request.get_full_path }}" class="sharer button"><i class="fab fa-2x fa-whatsapp"></i></a>
+  <a href="whatsapp://send?text={{ share_url }}" class="sharer button"><i class="fab fa-2x fa-whatsapp"></i></a>
   <a href="" id="share_hide" class="sharer button"><i class="fas  fa-2x fa-eye-slash"></i></a>
 
     </div>
@@ -113,6 +113,8 @@
 
 
 
+
+
       $('#search').hide()
        $("#mob-navbar .row").show();
        
@@ -176,6 +178,18 @@ var doc = new jsPDF();
 
 
     $(document).ready(function (e){
+        if (1 < history.length) {
+    window.close()
+} else {
+            conten = $(".show-content")
+            if ( conten.show())  {
+                conten.hide()
+                $(".main").show()
+
+            }else {
+                history.back()
+            }
+}
 
         $("#donation").click(function (e){
             $.ajax({

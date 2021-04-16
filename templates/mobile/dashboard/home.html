@@ -156,6 +156,36 @@ function userprofi(id){
 
 
         $(document).ready(function (e) {
+
+
+
+             if (window.history && window.history.pushState) {
+
+    window.history.pushState('forward', null, "");
+
+    $(window).on('popstate', function() {
+
+     content =  $(".show-content")
+       if(content.show()){
+           content.hide();
+           $(".main").show();
+           return false
+
+        } if (location.pathname != "/") {
+           window.location.href = "/"
+
+        }else {
+                   alert('Back button was pressed.');
+
+        }
+
+    });
+
+  }
+
+
+
+
             $("#hide_search").click(function (e){
                 $('#search').hide();
                 -        $("#mob-navbar .row").show();
@@ -253,8 +283,7 @@ function userprofi(id){
 
 
             $("#home-btn").click(function (e) {
-                    window.history.pushState('page2', 'Title', '/');
-
+  window.history.pushState('page2', 'Title', '/');
 
 
                     $("#backbtn").html("");
