@@ -37,11 +37,12 @@ import json
 
 import urllib.request as ur
 web__ur3 = "www.grihshobha.in"
-web__url = "www.grihshobha.in"
+web__url4 = "www.grihshobha.in"
 web__url2 = "hindi.storytal.com"
+web__url = "homeremediesfast.com"
 
 def wordpress(request,id):
-    for d in range(5):
+    for d in range(11):
         wordpressjson('https://'+web__url+'/wp-json/wp/v2/posts?page='+str(id+d))
         print(id+d)
     return HttpResponse("hello word")
@@ -327,7 +328,7 @@ def wordpressjson(url):
                     book_arrcat=caatid,
                     book_rates=2,
                     publisher=1,
-                    keyboard=",".join(string[:5]),
+                    keyboard="",
                     book_publish=True,
                     book_upload_date=timezone.now(),
                     book_url=urlsd,
