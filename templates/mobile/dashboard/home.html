@@ -46,9 +46,15 @@
 </form>
 
     </div>
-    <div class="progress-show"></div>
+
+                  <div class="progressbar">
+    <div class="stylization">
+    </div>
+</div>
+
 
     </div>
+
 <div class="main" id="main">
 
 
@@ -106,6 +112,8 @@
 
     </div>
     <script type="text/javascript">
+                progressbar_p = $(".progressbar");
+                progressbar_p.show();
 
 function login(){
     $.ajax({
@@ -159,6 +167,7 @@ function userprofi(id){
 
 
 
+
              if (window.history && window.history.pushState) {
 
     window.history.pushState('forward', null, "");
@@ -187,6 +196,7 @@ function userprofi(id){
 
 
             $("#hide_search").click(function (e){
+                progressbar_p.hide();
                 $('#search').hide();
                 -        $("#mob-navbar .row").show();
 
@@ -222,7 +232,8 @@ function userprofi(id){
     $("")
 
     function geshows(s) {
-        home(url+s, function (e) {
+        home(url+s, function (e){
+            progressbar_p.hide();
                         if ($(".show-content").hide()) {
 
                             $(".main").show();
@@ -283,11 +294,13 @@ function userprofi(id){
 
 
             $("#home-btn").click(function (e) {
+                progressbar_p.show();
   window.history.pushState('page2', 'Title', '/');
 
 
                     $("#backbtn").html("");
                     home("/mobile_home", function (e) {
+                        progressbar_p.hide();
                         if ($(".show-content").hide()) {
 
                             $(".main").show();
@@ -308,6 +321,7 @@ function userprofi(id){
 
 
             $("#searif").keyup(function (e) {
+                progressbar_p.show();
                 var main = $(".main");
                 var name = $('#searif').val();
                 if (name === ""){
@@ -321,6 +335,7 @@ function userprofi(id){
                     data: {search : name},
 
                     success : function (data) {
+                        progressbar_p.hide();
 
                         main.html(data);
 

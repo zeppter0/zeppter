@@ -378,6 +378,7 @@ var doc = new jsPDF();
 
 
         $(".list-more").click(function (e) {
+            progressbar_p.show();
         id = $(this).attr("data-listview")
 
         $.ajax({
@@ -387,6 +388,7 @@ var doc = new jsPDF();
                 hide : "show"
             },
             success : function (e){
+                progressbar_p.hide();
                 console.log(e)
                 history.pushState('data to be passed', 'Title of the page', '/mobile/listview/'+id+"/");
 
