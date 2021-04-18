@@ -12,11 +12,13 @@
 <script>
 
 $(".cardlink").click(function (e){
+    progressbar_p.show()
 
      $('#search').hide()
        $("#mob-navbar .row").show();
 
     home($(this).attr("href"),function (data){
+        progressbar_p.hide()
 
         $(".main").html(data);
 

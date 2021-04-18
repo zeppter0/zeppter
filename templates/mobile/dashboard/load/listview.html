@@ -41,7 +41,9 @@
 
 $(document).ready(function (e){
     $(".next_page").click(function (e){
+        progressbar_p.show();
         home("/mobile/listview/{% for d in cat %}{{ d.pk }}{% endfor %}/mobileload"+$(this).attr("href"),function (e){
+            progressbar_p.hide();
             $(".main").html(e)
         })
         return false
