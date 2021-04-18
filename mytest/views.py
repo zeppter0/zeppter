@@ -329,7 +329,7 @@ def wordpressjson(url):
                     book_rates=2,
                     publisher=1,
                     keyboard="",
-                    book_publish=True,
+                      book_publish=True,
                     book_upload_date=timezone.now(),
                     book_url=urlsd,
 
