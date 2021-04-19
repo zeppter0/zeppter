@@ -9,13 +9,15 @@
 
     {% endif %} ">
     <a href="/mobile/content/{{ i.book_url }}/">
-      <img id="carousel-img" class="d-block w-100" src="{{ MEDIA_URL }}{{ i.book_image }}" alt="First slide">
+      <img id="carousel-img" class="d-block w-100" src="{{ MEDIA_URL }}{{ i.book_image }}" >
+        <div class="carousel-text-f">
 
-    <div class="carousel-caption d-none d-md-block">
-    <h5>{{ i.book_title }}</h5>
+    <h1 class="h6">{{ i.book_title|safe }}</h1>
     <p></p>
   </div>
+
         </a>
+
     </div>
 
       {% endfor %}
@@ -38,6 +40,28 @@
 </div>
     <div class="item-list">
         <ul class="lid{{ ca.id }}" id="lid{{ ca.id }}" >
+
+            {% for i in '0123456789'|make_list %}
+
+                <li >
+                <div class="cardview ">
+
+
+
+          <div class="card_image loading"> </div>
+
+
+          <div class="loading-title-frame">
+              <div class="loading-title loading"></div>
+              <div class="loading-discription loading"></div>
+
+
+
+          </div>
+</div>
+                </li>
+
+             {% endfor %}
 
 
 

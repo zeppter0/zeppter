@@ -116,6 +116,7 @@
                 progressbar_p.show();
 
 function login(){
+    progressbar_p.show();
     $.ajax({
                          url: "/mobile/login",
                          type : "post",
@@ -123,6 +124,7 @@ function login(){
                              csrfmiddlewaretoken: '{{ csrf_token }}'
                          },
                          success : function (e){
+                             progressbar_p.hide();
                              $(".main").hide()
                              $(".show-content").show()
                              $(".show-content").html(e)
@@ -143,6 +145,7 @@ function userprofi(id){
                     type: "post",
                     data : {csrfmiddlewaretoken : '{{ csrf_token }}'},
                     success : function (e){
+                        progressbar_p.hide();
                        if( $(".show-content").hide()){
                            mai = $(".main")
                            if( mai.hide()){
@@ -205,11 +208,13 @@ function userprofi(id){
 
 
             $(".create-book").click(function (e){
+                progressbar_p.show();
                 $.ajax({
                     url: "/mobile/create_post",
                     type : "post",
                     data : { csrfmiddlewaretoken : '{{ csrf_token }}' , data : true},
                     success : function (e){
+                        progressbar_p.hide();
                         $(".main").html(e);
                     }
 
