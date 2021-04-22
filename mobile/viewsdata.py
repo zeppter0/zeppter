@@ -32,7 +32,7 @@ class DownloadPDF(View):
         pdf.add_page()
         pdf.add_font("HidiShow", "" ,server_webpath+"static/assets/font/gargi.ttf",uni=True)
         pdf.set_font("HidiShow", "",20)
-        image_url = "media/"+str(book.book_image)
+        image_url = server_webpath+"media/"+str(book.book_image)
         pdf.write(6,book.book_title)
         pdf.ln(8)
 
@@ -61,7 +61,7 @@ class DownloadPDF(View):
 
 
 
-        pdf.output('media/downloadpdf/'+str(book.pk)+'.pdf', 'F')
+        pdf.output(server_webpath+'media/downloadpdf/'+str(book.pk)+'.pdf', 'F')
 
         if pathlib.Path(pdf_path).exists() :
             print("no file data")
