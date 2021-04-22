@@ -2,7 +2,7 @@ from django.urls import path
 from django.views.generic import RedirectView
 
 
-from mobile import views
+from mobile import views,viewsdata
 from django.contrib.sitemaps.views import sitemap
 
 from mobile.MobileSitemap import MobileSitemap
@@ -30,4 +30,5 @@ path("listview/<int:cat>/",views.listview,name="listview"),
 
     path('donation',views.Donations.as_view()),
     path("create_post",views.Create_post.as_view()) ,
+    path("down_pdf",viewsdata.DownloadPDF.as_view(),name="mobile_pdf"),
 ]

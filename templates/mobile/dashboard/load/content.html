@@ -71,6 +71,7 @@
             <tr>
                 <th>Book Publisher</th>
                 <th>
+
                     <a href="#" onclick="userprofi('{{ userdata.pk }}')">{{ userdata.first_name }} {{ userdata.last_name }}</a>
                 </th>
             </tr>
@@ -346,19 +347,27 @@ var doc = new jsPDF();
             $(".downlod_fr").prepend(jspdfs);
         });
         $("#downclick").click(function (e){
-            const doc = new jsPDF({
-  orientation: "landscape",
-  unit: "in",
-  format: [4, 2]
-});
-            doc.text("{{ book_title|safe }}", 1, 1);
 
-            var img = new Image()
-img.src = 'http://{{ request.get_host }}{{ MEDIA_URL }}{{ book_image }}'
-doc.addImage(img, 'png', 10, 78, 12, 15)
+            $.get(
+  "/mobile/down_pdf",{
+                   csrfmiddlewaretoken: '{{ csrf_token }}',
+                    bookid : '{{ id }}',
 
-doc.save("two-by-four.pdf");
 
+
+  },function(data){
+      console.log(data);
+              var blob = new Blob([data]);
+        var link = document.createElement('a');
+
+        link.href = "{{ MEDIA_URL }}downloadpdf/{{ id }}.pdf";
+        link.type = "application/octet-stream";
+      //  link.target = "_blank"
+        link.download = '{{ book_title }}.pdf';
+
+        link.click();
+   }
+);
 
         });
         $("#cancel_click").click(function (e){
@@ -444,10 +453,10 @@ doc.save("two-by-four.pdf");
 
             });
     });
-    $("#downclick").click(function (e) {
+   /* $("#downclick").click(function (e) {
   home("/mobile/mobile_pdf/{{ id }}",function (data){
 
 
     });
-    });
+    });*/
 </script>

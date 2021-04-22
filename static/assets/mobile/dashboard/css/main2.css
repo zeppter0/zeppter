@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,600&family=Roboto:wght@100&display=swap');
 .listviewul{
     list-style-type: none;
 }
 .listviewul li{
     display: inline-block;
     margin: 10px 5px;
+}
+#main-title{
+    font-family: 'Open Sans', sans-serif;
+
 }
