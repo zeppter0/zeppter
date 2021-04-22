@@ -34,10 +34,10 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from admin_dashboard import apps
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 from pathlib import Path
 
-#BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 #PREPEND_WWW = True
 PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 

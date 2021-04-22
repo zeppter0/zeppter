@@ -31,9 +31,9 @@ class DownloadPDF(View):
         pdf = PDF(orientation = 'P', unit = 'mm', format="A5")
         pdf.alias_nb_pages()
         pdf.add_page()
-        pdf.add_font("HidiShow", "" ,settings.BASE_DIR+"/static/assets/font/gargi.ttf",uni=True)
+        pdf.add_font("HidiShow", "" ,str(settings.BASE_DIR)+"/static/assets/font/gargi.ttf",uni=True)
         pdf.set_font("HidiShow", "",20)
-        image_url = settings.BASE_DIR+"/media/"+str(book.book_image)
+        image_url = str(settings.BASE_DIR)+"/media/"+str(book.book_image)
         pdf.write(6,book.book_title)
         pdf.ln(8)
 
@@ -52,11 +52,12 @@ class DownloadPDF(View):
         pdf.ln(70)
         textg = strip_tags(book.book_data)
 
-        pdf.add_font("HidiSh", "", settings.BASE_DIR+"/static/assets/font/gargi.ttf", uni=True)
+        pdf.add_font("HidiSh", "", str(settings.BASE_DIR)+"/static/assets/font/gargi.ttf", uni=True)
         pdf.set_font("HidiSh" ,"" ,10)
 
         for tedt in textg.split('\n'):
            pdf.write(8,tedt)
+           
 
 
 
