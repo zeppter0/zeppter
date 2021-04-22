@@ -60,7 +60,7 @@ class DownloadPDF(View):
 
 
 
-        pdf.output('media/downloadpdf/'+str(book.pk)+'.pdf', 'F')
+        pdf.output(server_webpath+'/media/downloadpdf/'+str(book.pk)+'.pdf', 'F')
 
         if pathlib.Path(pdf_path).exists() :
             print("no file data")
