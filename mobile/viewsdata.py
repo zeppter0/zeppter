@@ -25,12 +25,12 @@ class DownloadPDF(View):
 
 
         pdf_path = "testkese.pdf"
-        server_webpath = "/var/www/zeppter"
+        server_webpath = "/var/www/zeppter/"
 
         pdf = PDF(orientation = 'P', unit = 'mm', format="A5")
         pdf.alias_nb_pages()
         pdf.add_page()
-        pdf.add_font("HidiShow", "" ,"static/assets/font/gargi.ttf",uni=True)
+        pdf.add_font("HidiShow", "" ,server_webpath+"static/assets/font/gargi.ttf",uni=True)
         pdf.set_font("HidiShow", "",20)
         image_url = "media/"+str(book.book_image)
         pdf.write(6,book.book_title)
@@ -51,7 +51,7 @@ class DownloadPDF(View):
         pdf.ln(70)
         textg = strip_tags(book.book_data)
 
-        pdf.add_font("HidiSh", "", "static/assets/font/gargi.ttf", uni=True)
+        pdf.add_font("HidiSh", "",server_webpath+ "static/assets/font/gargi.ttf", uni=True)
         pdf.set_font("HidiSh" ,"" ,10)
 
         for tedt in textg.split('\n'):
