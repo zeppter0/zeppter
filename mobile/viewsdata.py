@@ -47,7 +47,7 @@ class DownloadPDF(View):
       #  pdf.write(9,book.book_title)
 
        # pdf.set_left_margin(20)
-        pdf.image(image_url,pdf.get_x(),pdf.get_y(),100)
+        pdf.image(server_webpath+'/'+image_url,pdf.get_x(),pdf.get_y(),100)
         pdf.ln(70)
         textg = strip_tags(book.book_data)
 
@@ -60,7 +60,7 @@ class DownloadPDF(View):
 
 
 
-        pdf.output('media/downloadpdf/'+str(book.pk)+'.pdf', 'F')
+        pdf.output(server_webpath+'/media/downloadpdf/'+str(book.pk)+'.pdf', 'F')
 
         if pathlib.Path(pdf_path).exists() :
             print("no file data")
