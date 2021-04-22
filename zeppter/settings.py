@@ -38,7 +38,7 @@ from admin_dashboard import apps
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-#PREPEND_WWW = True
+PREPEND_WWW = True
 PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production

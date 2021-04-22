@@ -4,8 +4,7 @@ from wsgiref.util import FileWrapper
 from appdirs import unicode
 from django.views.generic import View
 from django.http import FileResponse, HttpResponse, Http404
-from django.conf import settings
-
+from zeppter import settings
 from fpdf import FPDF
 import os.path
 import pathlib
@@ -31,9 +30,9 @@ class DownloadPDF(View):
         pdf = PDF(orientation = 'P', unit = 'mm', format="A5")
         pdf.alias_nb_pages()
         pdf.add_page()
-        pdf.add_font("HidiShow", "" ,str(settings.BASE_DIR)+"/static/assets/font/gargi.ttf",uni=True)
+        pdf.add_font("HidiShow", "" ,"static/assets/font/gargi.ttf",uni=True)
         pdf.set_font("HidiShow", "",20)
-        image_url = str(settings.BASE_DIR)+"/media/"+str(book.book_image)
+        image_url = "media/"+str(book.book_image)
         pdf.write(6,book.book_title)
         pdf.ln(8)
 
@@ -52,7 +51,7 @@ class DownloadPDF(View):
         pdf.ln(70)
         textg = strip_tags(book.book_data)
 
-        pdf.add_font("HidiSh", "", str(settings.BASE_DIR)+"/static/assets/font/gargi.ttf", uni=True)
+        pdf.add_font("HidiSh", "", "static/assets/font/gargi.ttf", uni=True)
         pdf.set_font("HidiSh" ,"" ,10)
 
         for tedt in textg.split('\n'):
@@ -62,7 +61,7 @@ class DownloadPDF(View):
 
 
 
-        pdf.output(settings.MEDIA_ROOT+'/downloadpdf/'+str(book.pk)+'.pdf', 'F')
+        pdf.output('media/downloadpdf/'+str(book.pk)+'.pdf', 'F')
 
         if pathlib.Path(pdf_path).exists() :
             print("no file data")
@@ -106,7 +105,7 @@ class PDF(FPDF,HTMLMixin):
     def getmyimage(self,myimage):
         self.c_margin()
         self.cell(0,0,)
-        self.image(settings.BASE_DIR+"/media/"+str(myimage),0, 0, 0)
+       # self.image(settings.BASE_DIR+"/media/"+str(myimage),0, 0, 0)
     def maincontent(self,datashow):
         for txt in datashow.split('\n'):
             self.write(8,txt)
