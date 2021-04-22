@@ -29,7 +29,7 @@ class DownloadPDF(View):
         pdf = PDF(orientation = 'P', unit = 'mm', format="A5")
         pdf.alias_nb_pages()
         pdf.add_page()
-        pdf.add_font("HidiShow", "" ,settings.BASE_DIR+"/static/assets/font/gargi.ttf",uni=True)
+        pdf.add_font("HidiShow", "" ,"static/assets/font/gargi.ttf",uni=True)
         pdf.set_font("HidiShow", "",20)
         image_url = settings.BASE_DIR+"/media/"+str(book.book_image)
         pdf.write(6,book.book_title)
@@ -50,7 +50,7 @@ class DownloadPDF(View):
         pdf.ln(70)
         textg = strip_tags(book.book_data)
 
-        pdf.add_font("HidiSh", "", settings.BASE_DIR + "/static/assets/font/gargi.ttf", uni=True)
+        pdf.add_font("HidiSh", "", "static/assets/font/gargi.ttf", uni=True)
         pdf.set_font("HidiSh" ,"" ,10)
 
         for tedt in textg.split('\n'):
@@ -64,13 +64,7 @@ class DownloadPDF(View):
         if pathlib.Path(pdf_path).exists() :
             print("no file data")
 
-        file_path = os.path.join(settings.BASE_DIR, 'tuto2.pdf')
-        if os.path.exists(file_path):
-          with open(file_path, 'rb') as fh:
-            response = HttpResponse(fh.read(), content_type="application/x-pdf")
-            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
-            return response
-        raise Http404
+        return HttpResponse("upload complite")
 
 
 # return FileResponse(pdf_path)
