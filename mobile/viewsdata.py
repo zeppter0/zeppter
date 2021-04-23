@@ -14,10 +14,23 @@ from django.utils.encoding import iri_to_uri, smart_str
 
 from django.utils.html import strip_tags
 class DownloadPDF(View):
-    def get(self,request):
-       # title = request.POST.get("title")[:20]
-        book_id = request.GET.get("bookid")
+    def post(self,request):
+        book_id = request.POST.get("bookid")
+
         book = Book.objects.get(pk=book_id)
+        file_path = os.path.join(settings.MEDIA_ROOT+'/downloadpdf', str(book.pk)+'.pdf')
+        if os.path.isfile(file_path):
+            return HttpResponse("no file")
+
+
+        else:
+            return self.pdfreader(book)
+
+
+
+    def pdfreader(self,book):
+       # title = request.POST.get("title")[:20]
+
        # print(strip_tags(book.book_data))
 
 
@@ -27,14 +40,15 @@ class DownloadPDF(View):
         pdf_path = "testkese.pdf"
         server_webpath = "/var/www/zeppter/"
 
-        pdf = PDF(orientation = 'P', unit = 'mm', format="A5")
+        pdf = PDF('P','mm',(200,500))
         pdf.alias_nb_pages()
         pdf.add_page()
-        pdf.add_font("HidiShow", "" ,server_webpath+"static/assets/font/gargi.ttf",uni=True)
-        pdf.set_font("HidiShow", "",20)
-        image_url = server_webpath+"media/"+str(book.book_image)
-        pdf.write(6,book.book_title)
-        pdf.ln(8)
+        pdf.add_font("HidiShow", "" ,"static/assets/font/gargi.ttf",uni=True)
+        pdf.set_font("HidiShow", "",25)
+        
+        image_url = settings.MEDIA_ROOT+'/'+str(book.book_image)
+        pdf.write(15,book.book_title)
+        pdf.ln(30)
 
 
         # pdf.cell(0,0,book.book_title)
@@ -47,21 +61,23 @@ class DownloadPDF(View):
       #  pdf.write(9,book.book_title)
 
        # pdf.set_left_margin(20)
-        pdf.image(image_url,pdf.get_x(),pdf.get_y(),100)
+        if os.path.isfile(image_url):
+             pdf.image(image_url,pdf.get_x(),pdf.get_y(),100)
+        print(book.book_image)
         pdf.ln(70)
         textg = strip_tags(book.book_data)
 
-        pdf.add_font("HidiSh", "",server_webpath+ "static/assets/font/gargi.ttf", uni=True)
-        pdf.set_font("HidiSh" ,"" ,10)
+        pdf.add_font("HidiSh", "","static/assets/font/gargi.ttf", uni=True)
+        pdf.set_font("HidiSh" ,"" ,18)
 
         for tedt in textg.split('\n'):
-           pdf.write(8,tedt)
+           pdf.write(12,tedt)
            
 
 
 
 
-        pdf.output(server_webpath+'media/downloadpdf/'+str(book.pk)+'.pdf', 'F')
+        pdf.output('media/downloadpdf/'+str(book.pk)+'.pdf', 'F')
 
         if pathlib.Path(pdf_path).exists() :
             print("no file data")

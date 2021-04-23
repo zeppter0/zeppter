@@ -7,7 +7,12 @@
     <meta charset="UTF-8">
     {% block headshow %}
     {% endblock %}
-    <link rel="stylesheet" href="{% static "assets/mobile/dashboard/css/main1.css" %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Yantramanav:wght@400;500&display=swap" rel="stylesheet"> 
+
+<link href="https://fonts.googleapis.com/css2?family=Cambay&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="{% static "assets/mobile/dashboard/css/main1.css" %}">
     <link rel="stylesheet" href="{% static "assets/mobile/dashboard/css/main2.css" %}">
     <link rel="stylesheet" href="{% static "assets/mobile/dashboard/css/content1.css" %}">
      <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}">
@@ -17,6 +22,7 @@
 <link rel="stylesheet" href="{% static 'assets/mobile/dashboard/css/comment.css' %}">
 <link rel="shortcut icon" href="{{ MEDIA_URL }}{{ meta.icon }}">
 <link rel="icon" href="{{ MEDIA_URL }}{{ meta.icon }}" type="image/x-icon">
+
 {% if meta  %}
 
     {% include "mobile/dashboard/load/header.html" %}

@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,600&family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 .listviewul{
     list-style-type: none;
 }
@@ -6,7 +8,65 @@
     display: inline-block;
     margin: 10px 5px;
 }
+.downlod_fr h4{
+    font-family: Lobster;
+}
 #main-title{
-    font-family: 'Open Sans', sans-serif;
+    font-family: Orelega One;
+   
 
 }
+
+.loader { 
+    display: none;
+    width:100%; 
+    margin:0 auto;
+    border-radius:10px;
+    border:4px solid transparent;
+    position:relative;
+    padding:1px;
+  }
+  .loader:before {
+    content:'';
+    border:1px solid #fff; 
+    border-radius:10px;
+    position:absolute;
+    top:-4px; 
+    right:-4px; 
+    bottom:-4px; 
+    left:-4px;
+  }
+  .loader .loaderBar { 
+    position:absolute;
+    border-radius:10px;
+    top:0;
+    right:100%;
+    bottom:0;
+    left:0;
+    background:#fff; 
+    width:0;
+    animation:borealisBar 2s linear infinite;
+  }
+  
+  @keyframes borealisBar {
+    0% {
+      left:0%;
+      right:100%;
+      width:0%;
+    }
+    10% {
+      left:0%;
+      right:75%;
+      width:25%;
+    }
+    90% {
+      right:0%;
+      left:75%;
+      width:25%;
+    }
+    100% {
+      left:100%;
+      right:0%;
+      width:0%;
+    }
+  }

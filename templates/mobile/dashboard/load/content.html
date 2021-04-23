@@ -16,6 +16,9 @@
 {% load static %}
 <div class="downlod_fr">
     <h4 >PDF Book Download</h4>
+    <div class="loader">
+        <div class="loaderBar"></div>
+      </div>
     <div class="downlod_sh">
         <button class="button5 left" id="cancel_click">Cancel</button>
         <button class="button5 right" id="downclick">Download</button>
@@ -346,9 +349,14 @@ var doc = new jsPDF();
             $(".downlod_fr").css("display","block");
             $(".downlod_fr").prepend(jspdfs);
         });
+        var d_check = true
+        d_bar = $('.loader');
         $("#downclick").click(function (e){
+            if(d_check){
+                d_bar.show();
+                d_check =false
 
-            $.get(
+            $.post(
   "/mobile/down_pdf",{
                    csrfmiddlewaretoken: '{{ csrf_token }}',
                     bookid : '{{ id }}',
@@ -366,16 +374,23 @@ var doc = new jsPDF();
         link.download = '{{ book_title }}.pdf';
 
         link.click();
-   }
-);
-
+        d_bar.hide();
+        setInterval(function(){ d_check=true; }, 5000);
+        
+  });
+}
+            
         });
+        
+
+        
         $("#cancel_click").click(function (e){
             var element3 = document.getElementById("pdfjs").remove();
             $(".downlod_fr").css("display","none");
 
         });
         $("#online_load").click(function (e){
+            progressbar_p.show();
             main = $("#main");
             home("/mobile/mobile_pdf/{{ id }}",function (data){
         $(".main").hide();
@@ -384,6 +399,7 @@ var doc = new jsPDF();
 
         content.html(data)
         $("html, body").animate({ scrollTop: 0 }, "slow");
+        progressbar_p.hide();
     });
             return false;
 
