@@ -43,7 +43,7 @@ class DownloadPDF(View):
         pdf = PDF('P','mm',(200,500))
         pdf.alias_nb_pages()
         pdf.add_page()
-        pdf.add_font("HidiShow", "" ,settings.BASE_DIR+"/static/assets/font/gargi.ttf",uni=True)
+        pdf.add_font("HidiShow", "" ,str(settings.BASE_DIR)+"/static/assets/font/gargi.ttf",uni=True)
         pdf.set_font("HidiShow", "",25)
         
         image_url = settings.MEDIA_ROOT+'/'+str(book.book_image)
@@ -67,7 +67,7 @@ class DownloadPDF(View):
         pdf.ln(70)
         textg = strip_tags(book.book_data)
 
-        pdf.add_font("HidiSh", "",settings.BASE_DIR+"/static/assets/font/gargi.ttf", uni=True)
+        pdf.add_font("HidiSh", "",str(settings.BASE_DIR)+"/static/assets/font/gargi.ttf", uni=True)
         pdf.set_font("HidiSh" ,"" ,18)
 
         for tedt in textg.split('\n'):
@@ -77,7 +77,7 @@ class DownloadPDF(View):
 
 
 
-        pdf.output(settings.BASE_DIR+'/media/downloadpdf/'+str(book.pk)+'.pdf', 'F')
+        pdf.output(str(settings.BASE_DIR)+'/media/downloadpdf/'+str(book.pk)+'.pdf', 'F')
 
         if pathlib.Path(pdf_path).exists() :
             print("no file data")
