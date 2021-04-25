@@ -56,8 +56,8 @@ class DownloadPDF(View):
         elements = []
 
         doc = BaseDocTemplate(settings.BASE_DIR+'/media/downloadpdf/'+str(book.pk)+'.pdf', showBoundary=1, pagesize=mobile_size)
-        pdfmetrics.registerFont(TTFont('Montserrat',settings.BASE_DIR+ 'fonts/Hind-SemiBold.ttf'))
-        pdfmetrics.registerFont(TTFont('Montserratd',settings.BASE_DIR+ 'fonts/Martel-ExtraLight.ttf'))
+        pdfmetrics.registerFont(TTFont('Montserrat',settings.BASE_DIR+ '/fonts/Hind-SemiBold.ttf'))
+        pdfmetrics.registerFont(TTFont('Montserratd',settings.BASE_DIR+ '/fonts/Martel-ExtraLight.ttf'))
 
 
         frameT = Frame(5 * mm,5*mm,110*mm,287 *mm,showBoundary=2)
