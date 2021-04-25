@@ -50,8 +50,8 @@ class DownloadPDF(View):
         style = getSampleStyleSheet()['Normal']
         style.fontName = 'Montserratd'
         #style.spaceBefore = 20
-        style.leading=20
-        style.spaceBefore = 30
+        style.leading=24
+        style.spaceBefore = 25
 
 
         elements = []
