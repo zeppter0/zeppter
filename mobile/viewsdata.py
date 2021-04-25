@@ -13,6 +13,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 from reportlab.platypus import BaseDocTemplate, PageTemplate, Image, Paragraph, Frame
+from reportlab.platypus.paragraph import stringWidth
 
 from zeppter import settings
 from fpdf import FPDF
@@ -49,7 +50,7 @@ class DownloadPDF(View):
         style = getSampleStyleSheet()['Normal']
         style.fontName = 'Montserratd'
         #style.spaceBefore = 20
-        style.leading=24
+        style.leading=20
         style.spaceBefore = 30
 
 
@@ -77,12 +78,15 @@ class DownloadPDF(View):
                                    fontSize=16,
                                    #       parent=style['Heading2'],
                                    alignment=1,
+                                   leading = 20,
+
                                    spaceAfter=30)
         # styletitle.alignment = TA_CENTER
 
         elements.append(Paragraph(book.book_title, yourStyle))
         elements.append(im)
-        elements.append(Paragraph(book.book_data, style))
+        for txtd in strip_tags(book.book_data).split('\n'):
+            elements.append(Paragraph(txtd ,style))
 
         # start the construction of the pdf
         doc.build(elements, canvasmaker=NumberedCanvas)
