@@ -1,11 +1,29 @@
 import os
-
+"""    if image_url and not self.book_image:
+            try:
+                result = request.urlretrieve(image_url)
+                self.book_image.save(
+                    os.path.basename(image_url),
+                    File(open(result[0], 'rb'))
+                )
+                self.save()
+            except HTTPError as e:
+                print('The server couldn\'t fulfill the request.')
+                print('Error code: ', e.code)
+            except URLError as e:
+                print('We failed to reach a server.')
+                print('Reason: ', e.reason)
+            else:
+                print('Website is working fine') """
 from urllib import request
 from urllib.error import HTTPError, URLError
 
 from django.core.files import File
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+import requests
+from django.core import files
+import tempfile
 
 # Create your models here.
 from django.urls import reverse
@@ -47,22 +65,38 @@ class Book(models.Model):
         return self.book_title
 
     def get_remote_image(self,image_url):
-        if image_url and not self.book_image:
-            try:
-                result = request.urlretrieve(image_url)
-                self.book_image.save(
-                    os.path.basename(image_url),
-                    File(open(result[0], 'rb'))
-                )
-                self.save()
-            except HTTPError as e:
-                print('The server couldn\'t fulfill the request.')
-                print('Error code: ', e.code)
-            except URLError as e:
-                print('We failed to reach a server.')
-                print('Reason: ', e.reason)
-            else:
-                print('Website is working fine')
+        
+
+    
+
+
+            image_save =  requests.get(image_url,stream=True)
+            if image_save.ok:
+                
+                file_name = image_url.split('/')[-1]
+                lf = tempfile.NamedTemporaryFile()
+                for block in image_save.iter_content(1024 * 8):
+        
+                     # If no more file then stop
+                     if not block:
+                        break
+
+                     lf.write(block)
+                self.book_image.save(file_name,files.File(lf))
+                self.save()     
+
+
+               
+
+
+
+                # self.book_image.save(
+                 #   os.path.basename(image_url),
+                #    File(open(image_save.text, 'rb'))
+                # )
+                # self.save()
+             #   print(os.path.basename(image_url))
+
 
 
 

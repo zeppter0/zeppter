@@ -39,10 +39,11 @@ import urllib.request as ur
 web__ur3 = "www.grihshobha.in"
 web__url4 = "www.grihshobha.in"
 web__url2 = "hindi.storytal.com"
-web__url = "homeremediesfast.com"
+web__url5 = "homeremediesfast.com"
+web__url = "www.merisaheli.com"
 
 def wordpress(request,id):
-    for d in range(11):
+    for d in range(1080):
         wordpressjson('https://'+web__url+'/wp-json/wp/v2/posts?page='+str(id+d))
         print(id+d)
     return HttpResponse("hello word")
@@ -276,20 +277,25 @@ def wordpressjson(url):
             description = parsed_html.text[:400]
             cat = js['categories']
             for ca in cat:
-                caty = geturl("https://"+web__url+"/wp-json/wp/v2/categories/" + str((ca)))
-                jsc = json.loads(caty)
-                catname = jsc['name']
-                cats = Category.objects.filter(cat_title=catname)
-                if cats.count() < 1:
+                caty = requests.get("https://"+web__url+"/wp-json/wp/v2/categories/" + str((ca)))
+             #   print(caty.text)
+                if caty.status_code == 200:
+                  jsc = json.loads(caty.text)
+                  catname = jsc['name']
+                  cats = Category.objects.filter(cat_title=catname)
+                  if cats.count() < 1:
                     catsave = Category(cat_title=catname)
                     catsave.save()
 
                     caatid.append(catsave.id)
-                else:
+                  else:
                     caatid.append(cats[0].id)
-            featured_media = geturl("https://"+web__url+"/wp-json/wp/v2/media/" + str(js['featured_media']))
-            img_json = json.loads(featured_media)
+            featured_media = requests.get("https://"+web__url+"/wp-json/wp/v2/media/" + str(js['featured_media']))
+          #  featured_media  = requests.get(js["_links"]['wp:featuredmedia'][0]['href'])
+            #print(featured_media.text)
+            img_json = json.loads(featured_media.text)
             img = img_json['guid']['rendered']
+         #   print(img)
            # img = js['featuredimage']
             books = Book.objects.filter(book_title=title)
             keybord = re.sub(r"[^A-Za-z0-9 ]+", '', title)
@@ -298,18 +304,18 @@ def wordpressjson(url):
             focaskey = re.sub(r"[^A-Za-z0-9 ]+", '', fgh)
             urlsd = focaskey.replace(" ", "-").rstrip("-").lstrip("-")
 
-            keysearch = '%20'.join(title.split()[:2])
-            datad = requests.get("http://google.com/complete/search?output=toolbar&q=" + keysearch)
+          #  keysearch = '%20'.join(title.split()[:2])
+          #  datad = requests.get("http://google.com/complete/search?output=toolbar&q=" + keysearch)
 
-            soupd = BeautifulSoup(datad.text)
-            d = soupd.findAll('suggestion')
-            data = ""
-            string = []
+           # soupd = BeautifulSoup(datad.text)
+           # d = soupd.findAll('suggestion')
+           # data = ""
+           # string = []
 
-            for i in d:
-                string.append(i['data'])
-
-            print(",".join(string[:5]))
+          #  for i in d:
+         #       string.append(i['data'])
+#
+         #   print(",".join(string[:5]))
 
 
 
@@ -319,7 +325,7 @@ def wordpressjson(url):
             if img == "":
                 return print('notimg')
 
-            if books.count() < 1 and js['status']=="publish" and datad.status_code == 200 and img.find(web__url) >= 0:
+            if books.count() < 1 and js['status']=="publish"  and img.find(web__url) >= 0:
                 book = Book(
                     book_title=title,
                     book_description=description,
