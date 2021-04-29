@@ -36,6 +36,10 @@ from admin_dashboard import apps
 
 #BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 from pathlib import Path
+#from mytest.views import do_something
+
+
+#do_something()
 
 #BASE_DIR = Path(__file__).resolve().parent.parent
 #PREPEND_WWW = True
@@ -93,6 +97,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
 'myuser',
+'mytest',
 
 
 ]

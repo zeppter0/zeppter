@@ -5,6 +5,7 @@ from os.path import join
 from urllib import request
 from urllib.error import HTTPError, URLError
 import translate
+import time,sched
 
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
@@ -37,10 +38,41 @@ import json
 
 import urllib.request as ur
 web__ur3 = "www.grihshobha.in"
-web__url4 = "www.grihshobha.in"
+web__url4 = "www.hindivibhag.com"
 web__url2 = "hindi.storytal.com"
 web__url5 = "homeremediesfast.com"
 web__url = "www.merisaheli.com"
+web__url6 = "www.achhikhabar.com"
+web__url7 = "www.sarita.in"
+web__url8 = "www.hindimein.in"
+web__url9 = "www.hindibabu.com"
+web__url10 = "happyhindi.com"
+web__url11 = "www.sarassalil.in"
+
+
+webarray = [web__ur3,web__url,web__url2,web__url4,web__url5,web__url7,web__url8,web__url9,web__url10,web__url11]
+s = sched.scheduler(time.time, time.sleep)
+
+def do_something(request):
+    while True:
+      for webv in webarray:
+
+         wordpressjson('https://'+webv+'/wp-json/wp/v2/posts',webv)
+         print(webv)
+      else:     
+           time.sleep(21600) 
+
+
+    
+   # s.enter(21600, 1, do_something, (sc,))
+    
+    
+    
+    
+
+
+
+
 
 def wordpress(request,id):
     for d in range(1080):
@@ -256,9 +288,10 @@ def geturl(data):
     return s
 
 
-def wordpressjson(url):
-    try:
-        response = requests.get(url)
+def wordpressjson(url,web):
+    response = requests.get(url)
+
+    if response.ok:
      #   response = requests.get(url)
 
         jas = json.loads(response.text)
@@ -277,7 +310,7 @@ def wordpressjson(url):
             description = parsed_html.text[:400]
             cat = js['categories']
             for ca in cat:
-                caty = requests.get("https://"+web__url+"/wp-json/wp/v2/categories/" + str((ca)))
+                caty = requests.get("https://"+web+"/wp-json/wp/v2/categories/" + str((ca)))
              #   print(caty.text)
                 if caty.status_code == 200:
                   jsc = json.loads(caty.text)
@@ -290,11 +323,10 @@ def wordpressjson(url):
                     caatid.append(catsave.id)
                   else:
                     caatid.append(cats[0].id)
-            featured_media = requests.get("https://"+web__url+"/wp-json/wp/v2/media/" + str(js['featured_media']))
-          #  featured_media  = requests.get(js["_links"]['wp:featuredmedia'][0]['href'])
+            featured_media = requests.get("https://"+web+"/wp-json/wp/v2/media/" + str(js['featured_media']))
+            #featured_media  = requests.get(js["_links"]['wp:featuredmedia'][0]['href'])
             #print(featured_media.text)
             img_json = json.loads(featured_media.text)
-            img = img_json['guid']['rendered']
          #   print(img)
            # img = js['featuredimage']
             books = Book.objects.filter(book_title=title)
@@ -322,10 +354,9 @@ def wordpressjson(url):
 
 
 
-            if img == "":
-                return print('notimg')
+            
 
-            if books.count() < 1 and js['status']=="publish"  and img.find(web__url) >= 0:
+            if books.count() < 1 and js['status']=="publish"  :
                 book = Book(
                     book_title=title,
                     book_description=description,
@@ -342,7 +373,15 @@ def wordpressjson(url):
                     book_catid=1,
                     book_commit_id=1
                 )
-                book.get_remote_image(img)
+
+                try:
+
+
+                   img = img_json['guid']['rendered']
+
+                   book.get_remote_image(img)
+                except KeyError:
+                    print("no img")   
 
 
 
@@ -371,24 +410,7 @@ def wordpressjson(url):
 
 
 
-    #   test = Html(response.read())
-    #  text = test.list()
-    #    s += str(text)
-
-    #   post.json()
-
-    #  return JsonResponse(response.read())
-
-    except HTTPError as e:
-        print('The server couldn\'t fulfill the request.')
-        print('Error code: ', e.code)
-    except URLError as e:
-        print('We failed to reach a server.')
-        print('Reason: ', e.reason)
-    else:
-        print('Website is working fine')
-
-    return "load susecuss"
+  
 
 
 def keyboad(title):

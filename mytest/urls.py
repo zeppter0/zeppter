@@ -14,4 +14,5 @@ path('changecat',views.changecatgory,name="changecatgory"),
     path("posts",views.urldata,name="post"),
     path("changeurl",views.UrlChange.as_view()),
     path('getpostdata',views.Dada.as_view()),
+    path("9023/update",views.do_something,name='update')
 ]
