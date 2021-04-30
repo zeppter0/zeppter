@@ -48,9 +48,21 @@ web__url8 = "www.hindimein.in"
 web__url9 = "www.hindibabu.com"
 web__url10 = "happyhindi.com"
 web__url11 = "www.sarassalil.in"
+web__url12 = 'mauryamotivation.com'
+web__url13 = 'motivational.page'
+web__url14 = 'shortstoriesinhindi.com'
+web__url15 = 'dhakadbaate.com'
+
+web__url16 = 'www.hindikahane.in'
+web__url17 = 'maskaree.com'
+
+web__url18 = 'www.hindivarta.com'
+web__url19 = 'epustakalay.com'
+#web__url20 = 'http://www.hindibol.in'
+web__url20 = 'www.paheliyaninhindi.in'
 
 
-webarray = [web__ur3,web__url,web__url2,web__url4,web__url5,web__url7,web__url8,web__url9,web__url10,web__url11]
+webarray = [web__ur3,web__url,web__url2,web__url4,web__url5,web__url6,web__url7,web__url8,web__url9,web__url10,web__url11,web__url12,web__url13,web__url14,web__url15,web__url16,web__url17,web__url18,web__url19,web__url20]
 s = sched.scheduler(time.time, time.sleep)
 
 def do_something(request):
@@ -60,7 +72,7 @@ def do_something(request):
          wordpressjson('https://'+webv+'/wp-json/wp/v2/posts',webv)
          print(webv)
       else:     
-           time.sleep(21600) 
+           time.sleep(3600) 
 
 
     
