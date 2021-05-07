@@ -1,6 +1,6 @@
 {% for i in book %}
         <li>
-        <a data-value="{{ i.book_url }}" class="cardlink" href="/mobile/content/{{ i.book_url }}/"  >
+        <a data-value="{{ i.book_url }}" data-id="{{ i.pk }}" data-title="{{ i.book_title }}"  class="cardlink" href="/mobile/content/{{ i.book_url }}/"  >
         {% include 'package/cardview.html' %}
         </a>
 
@@ -12,15 +12,24 @@
 <script>
 
 $(".cardlink").click(function (e){
+
+
+
+
+
     progressbar_p.show()
 
      $('#search').hide()
        $("#mob-navbar .row").show();
 
     home($(this).attr("href"),function (data){
+
+
+
         progressbar_p.hide()
 
         $(".main").html(data);
+        console.log(zhistory)
 
 
 
@@ -29,7 +38,7 @@ $(".cardlink").click(function (e){
 
 
     });
-    history.pushState('data to be passed', 'Title of the page', '/mobile/content/'+$(this).data('value')+'/');
+    history.pushState({state:$(this).data('id')}, $(this).data('title'), '/mobile/content/'+$(this).data('value')+'/');
 
 
 

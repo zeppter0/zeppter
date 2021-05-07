@@ -29,6 +29,7 @@ from .html import Html
 from .post import Post
 import re
 
+
 try:
     from BeautifulSoup import BeautifulSoup
 except ImportError:

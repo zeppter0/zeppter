@@ -178,20 +178,37 @@ function userprofi(id){
     $(window).on('popstate', function() {
 
      content =  $(".show-content")
-       if(content.show()){
+       if(content.is(":visible")){
            content.hide();
            $(".main").show();
+           
            return false
 
-        } if (location.pathname != "/") {
-           window.location.href = "/"
+        } if (location.pathname != "/" || location.pathname != "") {
+           home(document.referrer,function (data){
+
+               content.hide();
+               mains = $(".main")
+               mains.show();
+
+               main.html(data);
+           })
+        // alert(history.length)
+          //  window.history.go(-1);
+       
 
         }else {
+
+            
+
                    alert('Back button was pressed.');
 
         }
 
     });
+
+  
+
 
   }
 

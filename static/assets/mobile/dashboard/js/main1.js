@@ -36,6 +36,11 @@ function getdata(id,data,sodata){
 }
 
 
+var zhistory = []
+
+var hisshow = 0
+
+
 
 
 
