@@ -73,7 +73,7 @@ def do_something(request):
          wordpressjson('https://'+webv+'/wp-json/wp/v2/posts',webv)
          print(webv)
       else:     
-           time.sleep(3600) 
+           time.sleep(900) 
 
 
     
