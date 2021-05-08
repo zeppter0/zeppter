@@ -167,6 +167,7 @@ function userprofi(id){
 
 
         $(document).ready(function (e) {
+            zhis.sethistory();
 
 
 
@@ -185,14 +186,20 @@ function userprofi(id){
            return false
 
         } if (location.pathname != "/" || location.pathname != "") {
-           home(document.referrer,function (data){
 
-               content.hide();
-               mains = $(".main")
-               mains.show();
 
-               main.html(data);
-           })
+
+               zhis.gethistory(function (e) {
+                   content.hide();
+                   mains = $(".main")
+                   mains.show();
+
+                   main.html(e);
+
+
+               })
+
+
         // alert(history.length)
           //  window.history.go(-1);
        

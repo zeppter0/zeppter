@@ -36,9 +36,77 @@ function getdata(id,data,sodata){
 }
 
 
-var zhistory = []
 
-var hisshow = 0
+       var hisshow = 1
+
+
+    var arry_history = []
+
+
+class zhistory{
+
+    sethistory(){
+
+
+
+
+        if(!arry_history.includes(location.pathname)){
+            arry_history.unshift(location.pathname)
+            console.log(arry_history)
+
+
+
+        }
+    }
+    gethistory(hish){
+        if (arry_history.length>=hisshow) {
+            var urls = arry_history[hisshow]
+            if (urls === "/" || urls === ""){
+                urls="/mobileload"
+            }
+
+            home(urls, function (e) {
+                hisshow++
+                hish(e)
+                console.log(hisshow)
+            })
+        }else {
+            hisshow = arry_history.length
+        }
+
+    }
+    check_history(){
+        if (!arry_history.includes(location.pathname)){
+            var dat = []
+           var i = hisshow -2;
+
+          /*  while (i<hisshow){
+                arry_history.splice(i,1)
+            }*/
+
+            if (hisshow !== 0) {
+                while (i<arry_history.length){
+                    dat.unshift(arry_history[i]);
+                    i++;
+                }
+                arry_history = []
+                arry_history = dat
+
+
+                hisshow = 1
+                console.log(arry_history.length)
+            }
+
+
+
+        }
+    }
+
+
+}
+
+    zhis = new zhistory()
+
 
 
 

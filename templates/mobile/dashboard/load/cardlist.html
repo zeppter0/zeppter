@@ -23,13 +23,17 @@ $(".cardlink").click(function (e){
        $("#mob-navbar .row").show();
 
     home($(this).attr("href"),function (data){
+              zhis.check_history()
+
+            zhis.sethistory()
+
 
 
 
         progressbar_p.hide()
 
         $(".main").html(data);
-        console.log(zhistory)
+        //console.log(zhistory)
 
 
 
