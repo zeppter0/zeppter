@@ -24,8 +24,9 @@ def content(request,url):
     if "email" in request.session:
         emai = request.session["email"]
 
-        user_data = MyUeers.objects.get(email=emai)
     book = Book.objects.filter(book_url=url).first()
+    user_data = MyUeers.objects.get(pk=book.publisher)
+
     img =  ""
 
     img = book.book_image

@@ -69,21 +69,30 @@
 <div class="item_abaut">
     <div class="item-des">
         <p>{{ book_description }}</p>
+
+        <h4 class="info-title">information</h4>
         <table class="w-100">
             <thead>
             <tr>
-                <th>Book Publisher</th>
-                <th>
 
-                    <a href="#" onclick="userprofi('{{ userdata.pk }}')">{{ userdata.first_name }} {{ userdata.last_name }}</a>
-                </th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>tere</td>
-                <td>bin</td>
+                <td>Book Publisher</td>
+                <td>
+                    {% if userdata.first_name != "" %}
+
+                    <a href="#" onclick="userprofi('{{ userdata.pk }}')">{{ userdata.first_name }} {{ userdata.last_name }}</a>
+
+                {% else %}
+                    <p>zeppter</p>
+
+                    {% endif %}
+
+                </td>
             </tr>
+
             </tbody>
         </table>
 
@@ -132,10 +141,19 @@
 
 
 
+function topsercoll(){
+
+                $(window).scrollTop(0);
+                return false
+
+
+}
 
 
 
     $(document).ready(function (e){
+        topsercoll()
+
 
 
 
@@ -144,7 +162,6 @@
       $('#search').hide()
        $("#mob-navbar .row").show();
        
-$("html, body").animate({ scrollTop: 0 }, "slow");
 
 
 

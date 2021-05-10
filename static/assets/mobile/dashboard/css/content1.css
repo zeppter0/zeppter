@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script&display=swap');
+
 .shae-dis{
     position: absolute;
     top: 50%;
@@ -152,4 +154,14 @@ font-family: Yantramanav;
 }
 .item-des{
     font-family: Cambay;
+}
+
+
+#donation{
+
+font-family: 'Dancing Script', cursive;
+}
+.info-title{
+    text-align: center;
+font-weight: bold;
 }
