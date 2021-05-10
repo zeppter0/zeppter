@@ -1,5 +1,7 @@
 {% load static %}
 
+{% autoescape off %}
+
 <title>{{ meta.title }}</title>
 <link rel="shortcut icon" href="{{ MEDIA_URL }}{{ meta.icon }}">
 
@@ -62,7 +64,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         "@type": "WebPage",
         "@id": "https://{{ request.get_host}}{{ request.path}}"
       },
-      "headline": "{{ title }}",
+      "headline": "{{ title|striptags }}",
       "image":
         "https://{{ request.get_host}}{{ MEDIA_URL }}{{ img }}",
       "datePublished": "{{ create_d}}",
@@ -109,5 +111,5 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 
 
-
+{% endautoescape %}
 

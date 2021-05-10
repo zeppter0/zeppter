@@ -16,6 +16,7 @@ from django.contrib.auth.hashers import make_password, check_password
 
 from zeppter import settings
 from fpdf import FPDF
+from bs4 import BeautifulSoup
 
 
 
@@ -30,16 +31,17 @@ def content(request,url):
     img =  ""
 
     img = book.book_image
+    title1 = BeautifulSoup(book.book_title)
     meta = {
         "icon" : img,
-        "title": book.book_title,
+        "title": title1.text,
         "description": book.book_description,
         "keywords": book.keyboard,
         "pageUrl": request.get_full_path(),
 
         "auther": "devan mandal",
         "facebook": {
-            "pageTitle": book.book_title,
+            "pageTitle": title1.text,
             "description": book.book_description,
             "pageUrl": request.get_full_path(),
             "siteTitle": "zeppter",
@@ -47,13 +49,13 @@ def content(request,url):
 
         },
         "google": {
-            "pageTitle": book.book_title,
+            "pageTitle": title1.text,
             "description": book.book_description,
             "pageUrl": request.get_full_path(),
             "homepageUrl": "zeppter",
         },
         "twitter": {
-            "pageTitle": book.book_title,
+            "pageTitle": title1.text,
             "description": book.book_description,
             "pageUrl": request.get_full_path(),
             "name": "zeppter",
@@ -105,7 +107,7 @@ def content(request,url):
 
 
                 "book_image": book.book_image,
-                "book_title": book.book_title,
+                "book_title": title1.text,
                 "book_description": book.book_description,
                 "data": data,
                 "cat": cat,
@@ -144,11 +146,13 @@ def content(request,url):
 def showdatapdf(request,id):
     dat = ""
     book  = Book.objects.filter(id=id)
+
    # print(id)
     for da in book:
+        title1 = BeautifulSoup(da.book_title)
         dat = {
             "des":da.book_data,
-            "title" : da.book_title ,
+            "title" : title1.text ,
             "img" : da.book_image ,
             "url" : da.book_url,
         }

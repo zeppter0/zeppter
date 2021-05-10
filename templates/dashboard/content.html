@@ -28,8 +28,9 @@
 
 
 
-
+{% autoescape off %}
     <h1>{{ title }}</h1>
+{% endautoescape %}
     <div class="row">
         <div id="show-content"  class="col">
         {{ book_data }}

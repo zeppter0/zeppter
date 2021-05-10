@@ -23,7 +23,7 @@ from myuser.models import MyUeers
 import math
 from django.contrib.postgres.search import SearchVector
 import goslate
-
+from bs4 import BeautifulSoup
 # Create your views here.
 
 def dashboard(request):
@@ -188,12 +188,13 @@ def shodata(request,url):
     if "email" in request.session:
         email = request.session["email"]
         user_data = MyUeers.objects.filter(email=email).first()
-        print("user name ")
+
     book = Book.objects.filter(book_url=url).first()
     cat = Category.objects.filter()
+    title1 = BeautifulSoup(book.book_title).text
     meta = {
         "icon": book.book_image,
-        "title": book.book_title,
+        "title": title1,
         "description": book.book_description,
         "keywords": book.keyboard,
         "pageUrl": request.get_full_path(),
@@ -201,7 +202,7 @@ def shodata(request,url):
 
         "auther": "devan mandal",
         "facebook": {
-            "pageTitle": book.book_title,
+            "pageTitle": title1,
             "description": book.book_description,
             "imageUrl" : "/media/"+str(book.book_image),
             "type" :"book",
@@ -211,13 +212,13 @@ def shodata(request,url):
 
         },
         "google": {
-            "pageTitle": book.book_title,
+            "pageTitle": title1,
             "description": book.book_description,
             "pageUrl": request.get_full_path(),
             "homepageUrl": "zeppter",
         },
         "twitter": {
-            "pageTitle": book.book_title,
+            "pageTitle": title1,
             "description": book.book_description,
             "pageUrl": request.get_full_path(),
             "name": "zeppter",
@@ -270,7 +271,7 @@ def shodata(request,url):
         like = Like.objects.filter(post_id=d.id).count()
         dislike = DisLike.objects.filter(post_id=d.id).count()
         vie = Views.objects.filter(post_id=[d.id])
-        dat = {"like":like,"userdata":user_data,"dislike":dislike,"views": vie.count(),"publish_date":d.created_at,"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cats":dst, 'title': d.book_title, 'dascription': d.book_description,
+        dat = {"like":like,"userdata":user_data,"dislike":dislike,"views": vie.count(),"publish_date":d.created_at,"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cats":dst, 'title': title1, 'dascription': d.book_description,
                'img': d.book_image,"create_b": d.created_at,"update_b": d.updated_at, 'postid': d.id, 'comments': comme ,'meta': meta,"book": True}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("android") > 0:

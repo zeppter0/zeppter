@@ -11,7 +11,7 @@
     {% endif %}
 
           <div class="card_Title title-white">
-              <h4>{{ i.book_title }}</h4>
+              <h4>{{ i.book_title | striptags | safe | escape}}</h4>
             <p>{{ i.book_description }}</p>
 
           </div>
