@@ -374,8 +374,3 @@ class Donations(View):
 
 
 
-class Create_post(View):
-    def post(self,request):
-        return render(request,"mobile/dashboard/load/create_post.html")
-    def get(self):
-        return redirect("/")

@@ -18,11 +18,17 @@ from reportlab.platypus.paragraph import stringWidth
 from zeppter import settings
 from fpdf import FPDF
 import os.path
+
+from django.shortcuts import render
 import pathlib
 from fpdf import FPDF,HTMLMixin
 from admin_dashboard.models import Book
 from django.utils.encoding import iri_to_uri, smart_str
 from bs4 import BeautifulSoup
+
+
+from django.utils.decorators import method_decorator
+from mobile.middleware.login import LOGIN_MOBILE
 
 from django.utils.html import strip_tags
 
@@ -123,4 +129,15 @@ class NumberedCanvas(canvas.Canvas):
                 self.drawRightString(mobile_size[0] -cm,3, "Page %d of %d" % (self._pageNumber, page_count))
 
 
+@method_decorator(LOGIN_MOBILE,name="dispatch")
+class CreateBook(View):
+    def post(self,request):
+       if  "book_title" in request.POST:
 
+
+           book_title = request.POST["book_title"]
+           if book_title != "":
+               return None
+
+       else:
+               return render(request,"mobile/dashboard/load/create_post.html")

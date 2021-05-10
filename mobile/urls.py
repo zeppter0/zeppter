@@ -27,8 +27,7 @@ path("listview/<int:cat>/",views.listview,name="listview"),
     path('user/data/<int:id>',views.UserPofile.as_view(),name="user_profile"),
     path('user/data/<int:id>/', views.UserPofile.as_view(), name="user_profile"),
     path('user/data/<int:id>/mobileload', views.UserPofile.as_view(), name="user_profile"),
-
     path('donation',views.Donations.as_view()),
-    path("create_post",views.Create_post.as_view()) ,
+    path("create_post",viewsdata.CreateBook.as_view(),name="createpost") ,
     path("down_pdf",viewsdata.DownloadPDF.as_view(),name="mobile_pdf"),
 ]
