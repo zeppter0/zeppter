@@ -180,7 +180,7 @@ function userprofi(id){
 
              if (window.history && window.history.pushState) {
 
-    window.history.pushState('forward', null, "");
+  //  window.history.pushState('forward', null, "");
 
     $(window).on('popstate', function() {
 
@@ -188,14 +188,16 @@ function userprofi(id){
        if(content.is(":visible")){
            content.hide();
            $(".main").show();
+             window.history.pushState('page2', '', location.pathname);
+
            
            return false
 
-        } if (location.pathname != "/" || location.pathname != "") {
+     //   } if (location.pathname === "/" || location.pathname === "") {
 
 
 
-               zhis.gethistory(function (e) {
+          /*     zhis.gethistory(function (e) {
                    content.hide();
                    mains = $(".main")
                    mains.show();
@@ -203,7 +205,7 @@ function userprofi(id){
                    main.html(e);
 
 
-               })
+               })*/
 
 
         // alert(history.length)
@@ -211,10 +213,11 @@ function userprofi(id){
        
 
         }else {
+           history.back()
 
             
 
-                   alert('Back button was pressed.');
+  //                 alert('Back button was pressed.');
 
         }
 
