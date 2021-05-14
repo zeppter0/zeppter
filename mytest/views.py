@@ -18,7 +18,7 @@ from admin_dashboard.models import Book
 from mytest.json import Post
 from .form import NameForm
 from bs4 import BeautifulSoup
-from googletrans import Translator
+
 from django.core import serializers
 from admin_dashboard.models import Category
 import requests
