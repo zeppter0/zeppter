@@ -22,7 +22,7 @@ from myuser.models import MyUeers
 
 import math
 from django.contrib.postgres.search import SearchVector
-import goslate
+
 from bs4 import BeautifulSoup
 # Create your views here.
 
