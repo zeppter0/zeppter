@@ -1,5 +1,5 @@
 from django.utils import timezone
-from googletrans import Translator
+
 
 from admin_dashboard.models import Book
 
@@ -16,10 +16,9 @@ class Post(object):
         focaskey = re.sub(r"[^A-Za-z0-9 ]+", '', title)
         urls = focaskey.replace(" ","-").rstrip("-").lstrip("-")
         if urls == "":
-            translator = Translator()
-            trans1 = translator.translate(title, dest='en')
+            
 
-            urls = re.sub(r"[^A-Za-z0-9 ]+", '', trans1.text)
+            urls = re.sub(r"[^A-Za-z0-9 ]+", '', [""])
 
 
         if Book.objects.filter(book_title=title).count() <1 :
