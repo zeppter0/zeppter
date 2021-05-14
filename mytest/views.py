@@ -4,16 +4,14 @@ import urllib.request as re
 from os.path import join
 from urllib import request
 from urllib.error import HTTPError, URLError
-import translate
+
 import time,sched
 
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 from django.utils import timezone
 from django.views import View
-from googletrans import Translator, LANGUAGES
-from googletrans.models import Translated
-from googletrans import Translator
+
 
 
 from admin_dashboard.models import Book
@@ -210,13 +208,13 @@ def changelang(request):
 
 
         if df == " " or d.book_url == "-" or d.book_url.rstrip().lstrip() == "":
-            translator = Translator()
-            trans1 = translator.translate(d.book_title, dest='en')
+           
 
 
 
-            data = re.sub(r"[^A-Za-z0-9 ]+", '', trans1.text)
-            if trans1.text == "":
+            data = ""
+            trans1 = ""
+            if trans1 == "":
                 dat = Book.objects.filter(id=d.id).update(keyboard=d.book_title[:15], book_url=d.book_title[:60].replace(" ", "-"))
             else:
 
@@ -262,19 +260,17 @@ def changebook(request,book):
 
 
         if df == " " or d.book_url == "-" or d.book_url.rstrip().lstrip() == "":
-            translator = Translator()
-            trans1 = translator.translate(d.book_title, dest='en')
+            trans1 = ''
 
 
-
-            data = re.sub(r"[^A-Za-z0-9 ]+", '', trans1.text)
+            data = ""
             if trans1.text == "":
                 dat = Book.objects.filter(id=d.id).update(keyboard=d.book_title[:15], book_url=d.book_title[:60].replace(" ", "-"))
             else:
 
                 dat = Book.objects.filter(id=d.id).update(keyboard=data[:15], book_url=data[:60].replace(" ", "-"))
 
-            print(data[:15])
+            
 
 
 
