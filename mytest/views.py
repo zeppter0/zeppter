@@ -1,4 +1,3 @@
-from sys import addaudithook
 import urllib
 import urllib.request as re
 from os.path import join
