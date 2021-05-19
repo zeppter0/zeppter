@@ -1,6 +1,8 @@
 from django.urls import path
 
-from mytest import views
+from mytest import views,views2
+
+
 
 
 urlpatterns = [
@@ -14,5 +16,6 @@ path('changecat',views.changecatgory,name="changecatgory"),
     path("posts",views.urldata,name="post"),
     path("changeurl",views.UrlChange.as_view()),
     path('getpostdata',views.Dada.as_view()),
-    path("9023/update",views.do_something,name='update')
+    path("9023/update",views.do_something,name='update'),
+    path('google',views2.TopHindiStory.as_view()),
 ]
