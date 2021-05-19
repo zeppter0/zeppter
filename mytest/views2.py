@@ -20,7 +20,8 @@ from admin_dashboard.models import Category, Book
 
 from django.http import HttpResponse
 
-url = "https://www.hindihorrorstories.info/sitemap.xml"
+#url2 = "https://www.hindihorrorstories.info/sitemap.xml"
+url = "https://www.hindisahityadarpan.in/sitemap.xml"
 
 class TopHindiStory(View):
 
@@ -35,7 +36,15 @@ class TopHindiStory(View):
 
               for lo in loc:
                   print(lo.text)
-                  self.gettophindistory(lo.text)
+                  response2 = requests.get(lo.text)
+                  if response2.ok:
+                      sp = BeautifulSoup(response2.text)
+                      loc2 = sp.find_all('loc')
+                      for ld in loc2:
+                          print(ld.text)
+
+
+                          self.gettophindistory(ld.text)
 
 
 
@@ -50,15 +59,17 @@ class TopHindiStory(View):
            soup =  BeautifulSoup(response.text)
            caatid = []
 
-           content = soup.find('div',{"id":"main-wrapper"})
+           content = soup.find('div',{"class":"post hentry"})
            keybord = soup.find_all("a" ,{'rel': 'tag'})
            kbtext = ','.join(str(e.text) for e in keybord)
 
 
 
            title = content.find('h1',{'class':'post-title entry-title'}).text
-           data = content.find('div',{'class': 'post-body entry-content'})
-           img = content.find('img')
+           data = content.find('div',{'class': 'post-body-inner'})
+           img = content.img
+
+           #img = imgd.img
            for s in soup.select('img'):
                s.extract()
            for s in soup.select('div'):
