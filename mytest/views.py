@@ -59,7 +59,7 @@ web__url19 = 'epustakalay.com'
 #web__url20 = 'http://www.hindibol.in'
 web__url20 = 'www.paheliyaninhindi.in'
 web__url21 = 'motivationalstoryinhindi.com'
-web__url = 'https://horrorstorieshindi.com/'
+web__url =horrorstorieshindi.com'
 
 
 webarray = [web__ur3,web__url50,web__url2,web__url4,web__url5,web__url6,web__url7,web__url8,web__url9,web__url10,web__url11,web__url12,web__url13,web__url14,web__url15,web__url16,web__url17,web__url18,web__url19,web__url20,web__url21]
