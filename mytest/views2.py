@@ -34,7 +34,9 @@ class TopHindiStory(View):
               loc = soup.find_all('loc')
 
               for lo in loc:
+                  print(lo.text)
                   self.gettophindistory(lo.text)
+
 
 
 
