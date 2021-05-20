@@ -18,4 +18,5 @@ path('changecat',views.changecatgory,name="changecatgory"),
     path('getpostdata',views.Dada.as_view()),
     path("9023/update",views.do_something,name='update'),
     path('google',views2.TopHindiStory.as_view()),
+    path('thumblr',views2.Tumblr.as_view()),
 ]

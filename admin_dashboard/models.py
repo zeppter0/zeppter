@@ -99,9 +99,12 @@ class Book(models.Model):
 
 
 
-
-
-
+            # self.book_image.save(
+            #   os.path.basename(image_url),
+            #    File(open(image_save.text, 'rb'))
+            # )
+            # self.save()
+        #   print(os.path.basename(image_url))
 
     def get_absolute_url(self):
         return "/content/"+str(self.book_url)

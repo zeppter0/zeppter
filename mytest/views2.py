@@ -1,9 +1,13 @@
 import re
+import tempfile
 
+from django.core import files
 from django.utils import timezone
 from django.views.generic import View
 from bs4 import BeautifulSoup
 import requests
+
+import pytumblr
 
 from admin_dashboard.models import Category, Book
 
@@ -22,6 +26,16 @@ from django.http import HttpResponse
 
 #url2 = "https://www.hindihorrorstories.info/sitemap.xml"
 url = "https://www.hindisahityadarpan.in/sitemap.xml"
+
+
+
+client = pytumblr.TumblrRestClient(
+  's4v0FXPgXKcCswCfpCRNJyF5D8RSOAv4DU0nQUoRgJ7BpHNWoC',
+  'fwlUxcIvVtynb611Ys7VANm2XFEyJVANzWZTykpNDSTIGnNwOv',
+  'B48jqNK64PaO4huou53avOGXRLG5Uq1alqS1re1iPtogS4d5mJ',
+  'VRq5Tgznx7Qt3HtiKdQeHC3PbS7wvyjX6xLIuCCmJRpp8GbsDk'
+)
+
 
 class TopHindiStory(View):
 
@@ -53,27 +67,30 @@ class TopHindiStory(View):
     def gettophindistory(self,url2):
 
 
+        global img
         response = requests.get(url2)
         if response.ok :
            cat = "hooror story"
            soup =  BeautifulSoup(response.text)
            caatid = []
 
-           content = soup.find('div',{"class":"post hentry"})
+           content = soup.find('body')
            keybord = soup.find_all("a" ,{'rel': 'tag'})
            kbtext = ','.join(str(e.text) for e in keybord)
 
 
 
-           title = content.find('h1',{'class':'post-title entry-title'}).text
-           data = content.find('div',{'class': 'post-body-inner'})
-           img = content.img
+           title = soup.find('h1',{'class':'post-title entry-title'}).text
+           data = content.find('div',{'class': 'MsoNormal'})
+           imh = soup.find('div',{'class' : 'post-feature-image-wrapper'})
+           if imh :
+              img = imh.img
 
            #img = imgd.img
-           for s in soup.select('img'):
-               s.extract()
-           for s in soup.select('div'):
-               s.extract()
+         #  for s in data.select('img'):
+         #      s.extract()
+          # for s in data.select('div'):
+          #     s.extract()
 
            cats = Category.objects.filter(cat_title=cat)
            if cats.count() < 1:
@@ -90,7 +107,33 @@ class TopHindiStory(View):
            if books.count() < 1 :
                book = Book(
                    book_title=title,
-                   book_description=data.text[:500],
+                   book_description=data[:500],
+
+                   book_data=str(data),
+                   book_arrcat=caatid,
+                   book_rates=2,
+                   publisher=1,
+                   keyboard=kbtext,
+                   book_publish=True,
+                   book_upload_date=timezone.now(),
+                   book_url=url2.split('/')[-1],
+                   book_catid=1,
+                   book_commit_id=1
+               )
+               try:
+
+                if img :
+                   book.get_remote_image(img['src'])
+
+
+               except NameError:
+                 print("not img")
+
+               book.save()
+           else:
+               books.update(
+                   book_title=title,
+                   book_description=data,
 
                    book_data=str(data),
                    book_arrcat=caatid,
@@ -104,17 +147,38 @@ class TopHindiStory(View):
                    book_commit_id=1
                )
 
-               if img['src']:
-                   book.get_remote_image(img['src'])
 
-               book.save()
-
-
-           return HttpResponse(str(img['src']))
+           return HttpResponse("sow")
 
 
 
+    def update_remote_image(self, image_url):
+
+        image_save = requests.get(image_url, stream=True)
+        if image_save.ok:
+
+            file_name = image_url.split('/')[-1]
+            lf = tempfile.NamedTemporaryFile()
+            for block in image_save.iter_content(1024 * 8):
+
+                # If no more file then stop
+                if not block:
+                    break
+
+                lf.write(block)
+            self.book_image.save(file_name, files.File(lf))
+            self.update()
 
 
 
+class Tumblr(View):
+    def get(self,request):
+        books = Book.objects.all()
+        for book in books:
 
+          client.create_link('zeppter', title=book.book_title, url="https://www.zeppter.com/content/"+book.book_url+"/",
+                   description=book.book_description)
+
+          print(client.info())
+
+        return HttpResponse("post sussessfull")
