@@ -42,7 +42,7 @@ from pathlib import Path
 #do_something()
 
 #BASE_DIR = Path(__file__).resolve().parent.parent
-PREPEND_WWW = True
+PREPEND_WWW = False
 #PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 #BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -62,7 +62,6 @@ ALLOWED_HOSTS = [
     # "192.168.42.211"
     "www.zeppter.com",
     "192.168.1.107",
-    'zeppter.com',
     "18.215.82.54",
     '47.241.20.154',
     '127.0.0.1',

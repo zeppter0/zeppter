@@ -3,16 +3,11 @@ import urllib.request as re
 from os.path import join
 from urllib import request
 from urllib.error import HTTPError, URLError
-
 import time,sched
-
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 from django.utils import timezone
 from django.views import View
-
-
-
 from admin_dashboard.models import Book
 from mytest.json import Post
 from .form import NameForm
@@ -35,41 +30,44 @@ except ImportError:
 import json
 
 import urllib.request as ur
-web__ur3 = "www.grihshobha.in"
-web__url4 = "www.hindivibhag.com"
-web__url2 = "hindi.storytal.com"
-web__url5 = "homeremediesfast.com"
-web__url50 = "www.merisaheli.com"
-web__url6 = "www.achhikhabar.com"
-web__url7 = "www.sarita.in"
-web__url8 = "www.hindimein.in"
-web__url9 = "www.hindibabu.com"
-web__url10 = "happyhindi.com"
-web__url11 = "www.sarassalil.in"
-web__url12 = 'mauryamotivation.com'
-web__url13 = 'motivational.page'
-web__url14 = 'shortstoriesinhindi.com'
-web__url15 = 'dhakadbaate.com'
+web__ur3 = "www.grihshobha.in/wp-json/wp/v2/posts?categories=104"
+web__url4 = "www.hindivibhag.com/wp-json/wp/v2/posts?categories=143"
+web__url2 = "hindi.storytal.com/wp-json/wp/v2/posts"
+web__url5 = "homeremediesfast.com/wp-json/wp/v2/posts?categories=1039"
+web__url50 = "www.merisaheli.com/wp-json/wp/v2/posts?categories=490"
+web__url6 = "www.achhikhabar.com/wp-json/wp/v2/posts?categories=269"
+web__url7 = "www.sarita.in/wp-json/wp/v2/posts?categories=57"
+web__url8 = "www.hindimein.in/wp-json/wp/v2/posts"
+web__url9 = "www.hindibabu.com/wp-json/wp/v2/posts?categories=5"
+#web__url10 = "happyhindi.com"
+web__url11 = "www.sarassalil.in/wp-json/wp/v2/posts?categories=6440"
+web__url12 = 'mauryamotivation.com/wp-json/wp/v2/posts?categories=12'
+web__url13 = 'motivational.page/wp-json/wp/v2/posts?categories=15'
+web__url14 = 'shortstoriesinhindi.com/wp-json/wp/v2/posts'
+web__url15 = 'dhakadbaate.com/wp-json/wp/v2/posts?categories=648122757'
 
-web__url16 = 'www.hindikahane.in'
-web__url17 = 'maskaree.com'
+web__url16 = 'www.hindikahane.in/wp-json/wp/v2/posts'
+#web__url17 = 'maskaree.com'
 
-web__url18 = 'www.hindivarta.com'
-web__url19 = 'epustakalay.com'
+#web__url18 = 'www.hindivarta.com'
+#web__url19 = 'epustakalay.com'
 #web__url20 = 'http://www.hindibol.in'
-web__url20 = 'www.paheliyaninhindi.in'
-web__url21 = 'motivationalstoryinhindi.com'
+web__url20 = 'www.paheliyaninhindi.in/wp-json/wp/v2/posts'
+web__url21 = 'motivationalstoryinhindi.com/wp-json/wp/v2/posts'
 web__url = 'likehindi.com'
 
 
-webarray = [web__ur3,web__url50,web__url2,web__url4,web__url5,web__url6,web__url7,web__url8,web__url9,web__url10,web__url11,web__url12,web__url13,web__url14,web__url15,web__url16,web__url17,web__url18,web__url19,web__url20,web__url21]
+webarray = [web__ur3,web__url50,web__url2,web__url4,web__url5,web__url6,web__url7,web__url8,web__url9,web__url11,web__url12,web__url13,web__url14,web__url15,web__url16,web__url20,web__url21]
 s = sched.scheduler(time.time, time.sleep)
 
 def do_something(request):
     while True:
       for webv in webarray:
+         parts = webv.split('/')
 
-         wordpressjson('https://'+webv+'/wp-json/wp/v2/posts',webv)
+
+
+         wordpressjson('https://'+webv,parts[0])
          print(webv)
       else:     
            time.sleep(900) 

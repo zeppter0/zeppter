@@ -1,3 +1,3 @@
 *media
 *venv
-zeppter/settings.py
+!zeppter/settings.py
