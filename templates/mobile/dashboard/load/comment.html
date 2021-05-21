@@ -25,7 +25,7 @@
                 <div onclick="userprofi('{{ d.userid }}')"><img src="{{ MEDIA_URL }}{{ d.photo }}" width="18"><span class="text2">{{ d.user_name }}</span></div>
                 <div><span class="text3">Upvote?</span><span class="thumbup"><i class="fa fa-thumbs-o-up "></i></span><span class="text4">3</span></div>
                 {% if request.session.email == d.user_email %}
-                <div class="comment-delete" data-userid="{{ d.usserid }}" data-id="{{ d.id }}" ><span>Delete</span></div>
+                <div class="comment-delete" data-csrf="{{ csrf_token }}" onclick="delele_comment(this)" data-userid="{{ d.usserid }}" data-id="{{ d.id }}" ><span>Delete</span></div>
                 {% endif %}
             </div>
         </div>
@@ -41,33 +41,12 @@
 
 
 <script type="text/javascript">
-   function delele_comment(){
-
-
-   }
 
 
     $(document).ready(function (e){
 
 
-            $(".comment-delete").click(function (e){
 
-                $.ajax({
-           url: "/comment/delete",
-           type: "post",
-           data: {divce: "mobile", id: $(this).data("id"), userid: $(this).data('userid'),csrfmiddlewaretoken:'{{ csrf_token }}',},
-           success: function (data) {
-               data = JSON.parse(data)
-               if (data.response === "success") {
-                   $("#" + data.id).remove()
-
-               }
-                                  console.log(data)
-
-           }
-
-       })
-            });
 
 
         {% if "email" in request.session %}

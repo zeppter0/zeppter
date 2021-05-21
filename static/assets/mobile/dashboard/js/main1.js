@@ -110,6 +110,28 @@ class zhistory{
 
 
 
+   function delele_comment(elem){
+                $.ajax({
+           url: "/comment/delete",
+           type: "post",
+           data: {divce: "mobile", id: $(elem).data("id"), userid: $(elem).data('userid'),csrfmiddlewaretoken:$(elem).data('csrf'),},
+           success: function (data) {
+               data = JSON.parse(data)
+               if (data.response === "success") {
+                   $("#" + data.id).remove()
+
+               }
+                                  console.log(data)
+
+           }
+
+       })
+
+   }
+
+
+
+
 
 
 

@@ -3,7 +3,7 @@
             <div class="d-flex justify-content-between py-1 pt-2">
                 <div><img src="{{ MEDIA_URL }}{{ userdata.photo }}" width="18"><span class="text2">{{ userdata.first_name }}</span></div>
                 <div><span class="text3">Upvote?</span><span class="thumbup"><i class="fa fa-thumbs-o-up"></i></span><span class="text4">0</span></div>
-                <div class="comment-delete" data-userid="{{ comment.usserid }}" data-id="{{ comment.id }}" ><span>Delete</span></div>
+                <div class="comment-delete" data-csrf="{{ csrf_token }}" onclick="delele_comment(this)" data-userid="{{ comment.usserid }}" data-id="{{ comment.id }}" ><span>Delete</span></div>
 
 
             </div>
