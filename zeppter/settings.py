@@ -42,7 +42,7 @@ from pathlib import Path
 #do_something()
 
 #BASE_DIR = Path(__file__).resolve().parent.parent
-PREPEND_WWW = False
+PREPEND_WWW = True
 #PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 #BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -54,7 +54,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'a9u^k1a3@8%33v1^hj&@c0do%npc$(r$it4#%w=g2vs%0vzzxe'
 
 # SECURITY WARNING: do3qn't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 APPEND_SLASH=False
 
 ALLOWED_HOSTS = [
