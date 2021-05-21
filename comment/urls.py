@@ -4,5 +4,6 @@ from comment import views
 
 urlpatterns = [
     path('',views.CommentPost.as_view() ),
-    path('/send',views.send ,name="comment"),
+    path('send',views.send ,name="comment"),
+    path('delete',views.Delete.as_view())
 ]

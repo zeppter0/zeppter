@@ -4,6 +4,8 @@ from comment.models import Comment
 from django.views.generic import View
 import json
 from myuser.models import MyUeers
+from django.utils.decorators import method_decorator
+from comment.middleware.login import Login
 # Create your views here.
 
 class CommentPost(View):
@@ -109,3 +111,20 @@ def commentshow(request):
 
     
     return HttpResponse("hello word")
+
+
+
+method_decorator(Login)
+class Delete(View):
+    def post(self,request):
+        data = {'response' : "error"}
+
+        if "id" in request.POST:
+
+             id = request.POST.get('id')
+             data = { "id" :str(id),"response" : "success"}
+             comeent = Comment.objects.get(pk=int(id))
+
+             comeent.delete()
+
+        return HttpResponse(json.dumps(data))

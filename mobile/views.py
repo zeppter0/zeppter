@@ -28,6 +28,7 @@ def content(request,url):
     book = Book.objects.filter(book_url=url).first()
     user_data = MyUeers.objects.get(pk=book.publisher)
 
+
     img =  ""
 
     img = book.book_image
@@ -99,7 +100,9 @@ def content(request,url):
         for d in comments:
              user_g = MyUeers.objects.get(pk=d.userid)
 
-             comme.append({"id" : d.pk ,"userid" : user_g.pk,"photo": user_g.photo ,"comment" : d.comment,"user_name":user_g.first_name+" "+user_g.last_name} )
+
+
+             comme.append({"user_email" : user_g.email,"id" : d.pk ,"userid" : user_g.pk,"photo": user_g.photo ,"comment" : d.comment,"user_name":user_g.first_name+" "+user_g.last_name} )
 
         share_url = request.get_host()+"/mobile/content/"+book.book_url+'/'
 

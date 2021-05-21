@@ -70,3 +70,11 @@
       width:0%;
     }
   }
+
+
+.comment-delete{
+    cursor: pointer;
+    color: #00a5bb;
+    font-family: "Samyak Tamil";
+    font-size: 12px;
+}

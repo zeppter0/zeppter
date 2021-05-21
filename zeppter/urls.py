@@ -17,7 +17,7 @@ urlpatterns = [
 path('hello/', include('admin_dashboard.urls')),
     path('', include('dashboard.urls')),
     path('json/', include('djson.urls')),
-    path('comment', include('comment.urls')),
+    path('comment/', include('comment.urls')),
     path("test/", include("mytest.urls")),
     path("call/", include('videocall.urls')),
     path("mobile/", include("mobile.urls")),
