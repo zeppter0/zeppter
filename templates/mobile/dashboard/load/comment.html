@@ -44,7 +44,7 @@
         {% if "email" in request.session %}
         $("#commentsend").submit(function (e){
             var form_data = new FormData($(this)[0])
-            form_data.append("userid", "{{ userdata.id }}")
+            form_data.append("userid", "{{ cureent_user }}")
             form_data.append("bookid" , "{{ id }}")
             console.log(form_data)
             $(this).closest('form').find("input[type=text], textarea").val("");

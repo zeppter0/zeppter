@@ -84,9 +84,15 @@ def content(request,url):
 
         data = Book.objects.filter(book_catid=cat[0].id)[:10]
         comments = Comment.objects.filter(contentid=book.id).order_by('-pk')
+        cureent_user = ""
+
+        if 'email' in request.session:
+
+              cureent_user = MyUeers.objects.get(email=request.session.get('email')).pk
         view = Views.objects.filter(post_id=[book.id])
         likes = Like.objects.filter(post_id=book.id).count()
         dislike = DisLike.objects.filter(post_id=book.id).count()
+       # print("hllo",cureent_user.pk)
 
         comme = []
 
@@ -115,6 +121,7 @@ def content(request,url):
                 "comments" : comme,
                 "schema" : True,
             "userdata": user_data,
+            'cureent_user':cureent_user,
         }
 
         return render(request, "mobile/dashboard/load/content.html", dat)
