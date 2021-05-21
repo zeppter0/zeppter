@@ -93,7 +93,7 @@ def send(request):
 
 
             return render(request,"mobile/dashboard/load/commet.html",{"comment" : comment_d,"userdata" : user})
-        error = "data"
+        error = json.dumps({'comment': comment,'email': email})
 
 
 

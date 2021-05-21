@@ -83,7 +83,7 @@ def content(request,url):
 
 
         data = Book.objects.filter(book_catid=cat[0].id)[:10]
-        comments = Comment.objects.filter(contentid=book.id)
+        comments = Comment.objects.filter(contentid=book.id).order_by('-pk')
         view = Views.objects.filter(post_id=[book.id])
         likes = Like.objects.filter(post_id=book.id).count()
         dislike = DisLike.objects.filter(post_id=book.id).count()
