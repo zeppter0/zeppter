@@ -19,4 +19,5 @@ path('changecat',views.changecatgory,name="changecatgory"),
     path("9023/update",views.do_something,name='update'),
     path('google',views2.TopHindiStory.as_view()),
     path('thumblr',views2.Tumblr.as_view()),
+    path('reddit',views2.Reddits.as_view()),
 ]

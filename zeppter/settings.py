@@ -54,7 +54,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'a9u^k1a3@8%33v1^hj&@c0do%npc$(r$it4#%w=g2vs%0vzzxe'
 
 # SECURITY WARNING: do3qn't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 APPEND_SLASH=False
 
 ALLOWED_HOSTS = [
