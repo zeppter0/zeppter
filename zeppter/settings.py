@@ -60,6 +60,7 @@ APPEND_SLASH=False
 ALLOWED_HOSTS = [
     # "103.138.96.225",
     # "192.168.42.211"
+    "zeppter.com"
     "www.zeppter.com",
     "192.168.1.107",
     "18.215.82.54",
