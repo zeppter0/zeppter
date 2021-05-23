@@ -42,7 +42,7 @@ from pathlib import Path
 #do_something()
 
 #BASE_DIR = Path(__file__).resolve().parent.parent
-PREPEND_WWW = False
+PREPEND_WWW = True
 #PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 #BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
