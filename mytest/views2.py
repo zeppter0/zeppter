@@ -6,7 +6,6 @@ from django.utils import timezone
 from django.views.generic import View
 from bs4 import BeautifulSoup
 import requests
-from mytest.reddit import Reddit
 import praw
 import time
 
@@ -192,12 +191,11 @@ class Tumblr(View):
 class Reddits(View):
    def get(self,requet):
       books = Book.objects.all()
-      rd = Reddit()
 
     #  position = int(rd.select("devan"))
 
       while len(books) <33000:
-          position = int(rd.select("devan"))
+          position = 1
 
           subr = 'zeppter'
           reddit = praw.Reddit(client_id="C3L3EVrFp8KxUw",
@@ -215,8 +213,6 @@ class Reddits(View):
           selftext = books[position].book_description
 
           subreddit.submit(title, selftext=selftext+"\n https://www.zeppter.com/content/"+books[position].book_url+"/")
-          rd.update(position+1,'devan')
-          print(rd.select('devan'))
           time.sleep(350)
       else:
          return HttpResponse("suceesful")
