@@ -219,7 +219,7 @@ class Reddits(View):
       while books.count() >position:
           book = books[position]
 
-          post.reddit(book=book)
+        #  post.reddit(book=book)
           post.tumblr(book=book)
           position += 1
           print(position)
@@ -245,7 +245,7 @@ class OTpost():
                                 password="Sorry9023@",
                                 user_agent="testscript by u/fakebot3",
                                 username="zeppter0",
-                                refresh_token='962000230191-ET0KhOP6sjAXaagMKXuiqFDcBf_DRg'
+
 
                                 )
 
@@ -253,11 +253,17 @@ class OTpost():
            subreddit = reddit.subreddit(subr)
 
            title = book.book_title
+           title2 = BeautifulSoup(title).text
            selftext = book.book_description
+           descrption = BeautifulSoup(selftext).text
 
-           subreddit.submit(title,selftext=selftext + "\n https://www.zeppter.com/content/" + book.book_url + "/")
+           subreddit.submit(title2,selftext=descrption + "\n https://www.zeppter.com/content/" + book.book_url + "/")
 
        def tumblr(self,book):
-           client.create_link('zeppter', title=book.book_title,
+           title = book.book_title
+           title2 = BeautifulSoup(title).text
+           selftext = book.book_description
+           descrption = BeautifulSoup(selftext).text
+           client.create_link('zeppter', title=title2,
                               url="https://www.zeppter.com/content/" + book.book_url + "/",
-                              description=book.book_description)
+                              description=descrption)
