@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 import requests
 import praw
 import time
+from mytest.models import Reddit
 
 import pytumblr
 
@@ -37,6 +38,8 @@ client = pytumblr.TumblrRestClient(
   'B48jqNK64PaO4huou53avOGXRLG5Uq1alqS1re1iPtogS4d5mJ',
   'VRq5Tgznx7Qt3HtiKdQeHC3PbS7wvyjX6xLIuCCmJRpp8GbsDk'
 )
+
+
 
 
 class TopHindiStory(View):
@@ -191,28 +194,70 @@ class Tumblr(View):
 class Reddits(View):
    def get(self,requet):
       books = Book.objects.all()
+      dev = "devan"
+      try:
+          pod = Reddit.objects.get(name=dev)
+      except Reddit.DoesNotExist:
+          pod = Reddit(
+              name=dev,
+              position=0
 
-    #  position = int(rd.select("devan"))
+          )
+          pod.save()
 
-      while len(books) <33000:
-          position = 1
 
-          subr = 'zeppter'
-          reddit = praw.Reddit(client_id="C3L3EVrFp8KxUw",
-                               client_secret="nM3YOeSTOQ9L8HcFj6hDgkuh6EQlTw",
-                               password="Sorry9023@",
-                               user_agent="testscript by u/fakebot3",
-                               username="zeppter0",
-                               refresh_token='962000230191-ET0KhOP6sjAXaagMKXuiqFDcBf_DRg'
+      pd = Reddit.objects.filter(name=dev)
+      position = pd.first().position
 
-                               )
 
-          subreddit = reddit.subreddit(subr)
 
-          title = books[position].book_title
-          selftext = books[position].book_description
 
-          subreddit.submit(title, selftext=selftext+"\n https://www.zeppter.com/content/"+books[position].book_url+"/")
+
+      print("devan :"+str(position))
+      post = OTpost()
+
+      while books.count() >position:
+          book = books[position]
+
+          post.reddit(book=book)
+          post.tumblr(book=book)
+          position += 1
+          print(position)
+          pd.update(position=position) 
+
+
+
           time.sleep(350)
       else:
          return HttpResponse("suceesful")
+
+
+
+
+
+
+class OTpost():
+      
+       def reddit(self,book):
+           subr = 'zeppter'
+           reddit = praw.Reddit(client_id="C3L3EVrFp8KxUw",
+                                client_secret="nM3YOeSTOQ9L8HcFj6hDgkuh6EQlTw",
+                                password="Sorry9023@",
+                                user_agent="testscript by u/fakebot3",
+                                username="zeppter0",
+                                refresh_token='962000230191-ET0KhOP6sjAXaagMKXuiqFDcBf_DRg'
+
+                                )
+
+
+           subreddit = reddit.subreddit(subr)
+
+           title = book.book_title
+           selftext = book.book_description
+
+           subreddit.submit(title,selftext=selftext + "\n https://www.zeppter.com/content/" + book.book_url + "/")
+
+       def tumblr(self,book):
+           client.create_link('zeppter', title=book.book_title,
+                              url="https://www.zeppter.com/content/" + book.book_url + "/",
+                              description=book.book_description)
