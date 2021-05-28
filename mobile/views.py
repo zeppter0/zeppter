@@ -26,23 +26,28 @@ def content(request,url):
         emai = request.session["email"]
 
     book = Book.objects.filter(book_url=url).first()
-    user_data = MyUeers.objects.get(pk=book.publisher)
+    try:
+        user_data = MyUeers.objects.get(pk=book.publisher)
+    except MyUeers.DoesNotExist:
+        user_data = {}
 
 
     img =  ""
 
     img = book.book_image
-    title1 = BeautifulSoup(book.book_title)
+    title1 = BeautifulSoup(book.book_title).text
+
+
     meta = {
         "icon" : img,
-        "title": title1.text,
+        "title": title1,
         "description": book.book_description,
         "keywords": book.keyboard,
         "pageUrl": request.get_full_path(),
 
         "auther": "devan mandal",
         "facebook": {
-            "pageTitle": title1.text,
+            "pageTitle": title1,
             "description": book.book_description,
             "pageUrl": request.get_full_path(),
             "siteTitle": "zeppter",
@@ -50,13 +55,13 @@ def content(request,url):
 
         },
         "google": {
-            "pageTitle": title1.text,
+            "pageTitle": title1,
             "description": book.book_description,
             "pageUrl": request.get_full_path(),
             "homepageUrl": "zeppter",
         },
         "twitter": {
-            "pageTitle": title1.text,
+            "pageTitle": title1,
             "description": book.book_description,
             "pageUrl": request.get_full_path(),
             "name": "zeppter",
@@ -116,11 +121,12 @@ def content(request,url):
 
 
                 "book_image": book.book_image,
-                "book_title": title1.text,
+                "book_title": title1,
                 "book_description": book.book_description,
                 "data": data,
                 "cat": cat,
                 "id": book.id,
+                'book' : book,
                 "comments" : comme,
                 "schema" : True,
             "userdata": user_data,

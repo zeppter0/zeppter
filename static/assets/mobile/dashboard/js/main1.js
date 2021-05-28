@@ -130,6 +130,11 @@ class zhistory{
    }
 
 
+   function hrefs(vid){
+    window.location.href = '/mobile/content/'+vid+'/'
+   }
+
+
 
 
 

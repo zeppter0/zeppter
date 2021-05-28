@@ -187,7 +187,11 @@ def shodata(request,url):
     user_data = ""
     if "email" in request.session:
         email = request.session["email"]
-        user_data = MyUeers.objects.filter(email=email).first()
+        try:
+              user_data = MyUeers.objects.filter(email=email).first()
+        except MyUeers.DoesNotExist:
+            user_data = ""
+
 
     book = Book.objects.filter(book_url=url).first()
     cat = Category.objects.filter()

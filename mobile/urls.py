@@ -30,4 +30,7 @@ path("listview/<int:cat>/",views.listview,name="listview"),
     path('donation',views.Donations.as_view()),
     path("create_post",viewsdata.CreateBook.as_view(),name="createpost") ,
     path("down_pdf",viewsdata.DownloadPDF.as_view(),name="mobile_pdf"),
+
+
+    path('books',viewsdata.Books.as_view()),
 ]

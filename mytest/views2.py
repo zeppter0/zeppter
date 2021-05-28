@@ -1,3 +1,4 @@
+from os import name
 import re
 import tempfile
 
@@ -193,8 +194,11 @@ class Tumblr(View):
 
 class Reddits(View):
    def get(self,requet):
-      books = Book.objects.all()
+      if "position" in requet.GET:
+          position = requet.GET['position']
+          pf = Reddit.objects.filter(name="devan").update(position=int(position))
       dev = "devan"
+      books = Book.objects.all()
       try:
           pod = Reddit.objects.get(name=dev)
       except Reddit.DoesNotExist:
@@ -216,18 +220,18 @@ class Reddits(View):
       print("devan :"+str(position))
       post = OTpost()
 
-      while books.count() >position:
+      while books.count() >position and True:
           book = books[position]
 
-        #  post.reddit(book=book)
-          post.tumblr(book=book)
+          post.reddit(book=book)
+        #  post.tumblr(book=book)
           position += 1
           print(position)
           pd.update(position=position) 
 
 
 
-          time.sleep(350)
+          time.sleep(900)
       else:
          return HttpResponse("suceesful")
 
@@ -239,12 +243,13 @@ class Reddits(View):
 class OTpost():
       
        def reddit(self,book):
-           subr = 'zeppter'
-           reddit = praw.Reddit(client_id="C3L3EVrFp8KxUw",
-                                client_secret="nM3YOeSTOQ9L8HcFj6hDgkuh6EQlTw",
+           subr = 'zeppter2'
+           reddit = praw.Reddit(client_id="_Q2Ct9Pq_cq4rQ",
+                                client_secret="dvCTDkB7JwLKO-BUcJYCSyFPtWpiWg",
                                 password="Sorry9023@",
                                 user_agent="testscript by u/fakebot3",
-                                username="zeppter0",
+                                username="zeppter2",
+                                refresh_token="964035758195-slRbr3DjtWEUMRWWke9XiuiIUJi98g"
 
 
                                 )
@@ -252,10 +257,11 @@ class OTpost():
 
            subreddit = reddit.subreddit(subr)
 
-           title = book.book_title
+           title = book.book_title[:300]
            title2 = BeautifulSoup(title).text
-           selftext = book.book_description
-           descrption = BeautifulSoup(selftext).text
+           selftext = book.book_data
+           descrption = BeautifulSoup(selftext).text[:2000]
+           
 
            subreddit.submit(title2,selftext=descrption + "\n https://www.zeppter.com/content/" + book.book_url + "/")
 

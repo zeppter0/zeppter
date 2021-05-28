@@ -98,104 +98,21 @@
 
     </div>
 </div>
-    {% for ca in cat %}
-<div class="_343 w-100">
-        <div class="_9050">
-            <h4 class="list-title" >{{ ca.cat_title }}</h4>
-            <button data-listview="{{ ca.id }}" class="list-more button5"><strong>More</strong></button>
+
+
+<div class="container">
+    <style>
+        .item-card{
+            width: 100%;
+        }
+    </style>
+
+    <ul class="card-items">
+
+    </ul>
+
+
 </div>
-     <div class="item-list">
-        <ul class="lid{{ ca.id }}" id="lid{{ ca.id }}" >
-                        {% for i in '0123456789'|make_list %}
-
-                <li >
-                <div class="cardview ">
-
-
-
-          <div class="card_image loading"> </div>
-
-
-          <div class="loading-title-frame">
-              <div class="loading-title loading"></div>
-              <div class="loading-discription loading"></div>
-
-
-
-          </div>
-</div>
-                </li>
-
-             {% endfor %}
-
-
-
-
-        </ul>
-
-    </div>
-    </div>
-
-    <script>
-
-
-
-
-function topsercoll(){
-
-                $(window).scrollTop(0);
-                return false
-
-
-}
-
-
-
-    $(document).ready(function (e){
-        topsercoll()
-
-
-
-
-
-
-      $('#search').hide()
-       $("#mob-navbar .row").show();
-       
-
-
-
-        $("#share_hide").click(function (e){
-            $(".share-data").hide()
-            return false;
-
-
-        });
-        $("#share").click(function (e){
-$(".share-data").show()
-        })
-
-
-
-          $.ajax({
-       //
-       success:function(data){
-          $.ajax(
-        {
-            url : "/mobile/mobilecard/{{ ca.id }}",
-            cache: false,
-            success : function (data){
-                $("#lid{{ ca.id }}").html(data)
-
-            }
-        });
-       }
-      });
-
-
-            });
-    </script>
-{% endfor %}
         {% include "mobile/dashboard/load/comment.html" %}
 
 
@@ -216,6 +133,89 @@ $(".share-data").show()
 
 
     $(document).ready(function (e){
+       /* hi =['hello','ksesde']
+        hi.unshift('dev')
+        hi.pop()
+
+        alert(hi)*/
+
+        
+        id = {{ id }}
+
+        var sideBar = localStorage.books;
+        if (sideBar == undefined){
+            localStorage.books = JSON.stringify([id])
+        }
+
+
+
+
+
+        books = JSON.parse(localStorage.books);
+
+        $.ajax({
+            url : '/mobile/books',
+
+            type : 'post',
+            data : {id : '{{ book.book_arrcat }}' , books : JSON.stringify(books),csrfmiddlewaretoken: '{{ csrf_token }}', },
+            success : function (e){
+                $('.card-items').append(e)
+            }
+        })
+
+
+
+
+
+
+
+
+
+
+
+                    if(books.indexOf(id) == -1){
+
+
+
+
+                       // console.log(books.length)
+
+
+
+
+            if (books.length <=  9 ){
+                books.unshift(id)
+                alert("hello")
+
+
+
+            }else {
+                books.pop();
+                books.unshift(id)
+            }
+
+            localStorage.books = JSON.stringify(books)
+            console.log(localStorage.bokks)
+
+
+
+        }
+
+
+        console.log(books)
+
+
+
+
+
+
+
+
+
+
+
+
+
         if (1 < history.length) {
     window.close()
 } else {

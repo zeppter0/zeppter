@@ -32,6 +32,27 @@
     <span class="sr-only">Next</span>
   </a>
     </div>
+
+
+
+
+<div class="_343 w-100">
+        <div class="_9050">
+            <h4 class="list-title" >Show</h4>
+            <button data-listview="{{ ca.id }}" class="list-more button5"><strong>More</strong></button>
+</div>
+    <div class="item-list">
+       <ul id="show-list">
+
+
+       </ul>
+
+    </div>
+    </div>
+
+
+
+
 {% for ca in cat %}
 <div class="_343 w-100">
         <div class="_9050">
@@ -70,7 +91,13 @@
     </div>
     </div>
     <script>
+
+
+
     $(document).ready(function (e){
+
+
+
 
 
           $.ajax({
@@ -95,6 +122,30 @@
 
 
 <script>
+
+
+    var sideBar = localStorage.books;
+        boof = {}
+        if (sideBar == undefined){
+            boof =  {csrfmiddlewaretoken: '{{ csrf_token }}',}
+
+        }else {
+            boof = {books : boof,csrfmiddlewaretoken: '{{ csrf_token }}', }
+        }
+
+
+
+
+
+        $.ajax({
+            url : '/mobile/books',
+
+            type : 'post',
+            data : boof,
+            success : function (e){
+                $('#show-list').append(e)
+            }
+        })
 
 
 

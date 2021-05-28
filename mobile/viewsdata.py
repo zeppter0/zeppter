@@ -1,6 +1,9 @@
 import mimetypes
+import numbers
 from typing import Text
 from wsgiref.util import FileWrapper
+import operator
+import json
 
 from appdirs import unicode
 from django.views.generic import View
@@ -141,3 +144,58 @@ class CreateBook(View):
 
        else:
                return render(request,"mobile/dashboard/load/create_post.html")
+
+
+
+
+class Books(View):
+    def post(self,req):
+        if 'id' in  req.POST and 'books' in req.POST :
+            id = json.loads(req.POST['id'])
+            b_json =req.POST['books']
+           # print(id)
+
+            mybooks = []
+            books = json.loads(b_json)[:5]
+
+        #    print(books)
+
+            for book in books:
+                bd = Book.objects.get(id=book)
+
+                mybooks.append(bd)
+              #  mybooks += bd
+            for fg in id:
+                c_book = Book.objects.filter(pk=fg)[:2]
+                if mybooks.count(c_book) is not 1:
+                    for gf in  c_book:
+                        mybooks.append(gf)
+
+
+
+
+
+            return render(req,'mobile/dashboard/load/book.html',{'mybook':mybooks[:12]})
+
+        elif 'books' in req.POST and req.POST['books'] is not 'not':
+           # id = json.loads(req.POST['id'])
+            b_json = req.POST['books']
+            # print(id)
+
+            mybooks = []
+            books = json.loads(b_json)
+
+            #    print(books)
+
+            for book in books:
+                bd = Book.objects.get(id=book)
+
+                mybooks.append(bd)
+            return render(req, 'mobile/dashboard/load/book.html', {'mybook': mybooks[:5]})
+        else:
+          books =   Book.objects.all()[:5]
+          return render(req, 'mobile/dashboard/load/book.html', {'mybook': books})
+
+
+
+
