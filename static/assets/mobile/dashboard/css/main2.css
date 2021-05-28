@@ -109,10 +109,12 @@
    width: 100%;
     height: 140px;
 }
-.item-card h5{
+.item-card h4{
     margin-top: 10px;
-  font-family: 'Limelight', cursive;
-  font-size: 15px;
+  
+  font-weight: 700;
+
+  font-size: 17px;
 }
 
 .item-card p{

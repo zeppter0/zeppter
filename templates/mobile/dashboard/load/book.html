@@ -3,7 +3,7 @@
 <li>
             <div class="item-card" onclick="hrefs('{{ book.book_url }}')">
                <img src="http://{{ request.get_host }}{{ MEDIA_URL }}{{ book.book_image }}">
-                <h5>{{ book.book_title|truncatewords:10 }}</h5>
+                <h4>{{ book.book_title|truncatewords:10  | striptags | safe | escape }}</h4>
                 <p>{{ book.book_description|truncatewords:20}}</p>
             </div>
         </li>
