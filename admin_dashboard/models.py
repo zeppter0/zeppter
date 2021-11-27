@@ -30,6 +30,15 @@ from django.urls import reverse
 from django.core.validators import int_list_validator
 
 
+class Tag(models.Model):
+    word        = models.CharField(max_length=35)
+    slug        = models.CharField(max_length=250)
+    created_at  = models.DateTimeField(auto_now_add=False)
+
+    def __unicode__(self):
+        return self.word
+
+
 class Book(models.Model):
     id = models.AutoField(primary_key=True)
 
@@ -51,6 +60,13 @@ class Book(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     publisher = models.IntegerField()
     book_url = models.CharField(max_length=300)
+    specifications = models.CharField(default="",max_length=1000000)
+    brand = models.CharField(default="",max_length=100)
+    tags = models.ManyToManyField(Tag)
+
+
+
+
 
 
 
@@ -145,6 +161,18 @@ class DisLike(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.CharField(max_length=60)
     post_id = models.IntegerField()
+
+
+
+
+class Shops(models.Model):
+    id = models.AutoField(primary_key=True)
+    book_id  = models.PositiveSmallIntegerField(default=0)
+    name = models.CharField(default="" ,max_length=1000)
+    shipping = models.CharField(default="",max_length=1000)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+  #  rating =
+
 
 
 

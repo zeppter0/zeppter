@@ -3,80 +3,165 @@
 
 {% block content %}
 {% include "dashboard/main/header.html" %}
-    <div class="_7585">
-        <div id="iconframe" class="">
-            {% if img != "" %}
-            <img src="{{ MEDIA_URL }}{{ img }}"  width="330" height="330"/>
-            {% else %}
+<div class="_7585">
+    <div id="iconframe" class="">
+        {% if img != "" %}
+        <img src="{{ MEDIA_URL }}{{ img }}" width="330" height="330" />
+        {% else %}
 
 
-                {% include "404/mobiel_img.html" %}
-            {% endif %}
-            <div class="w-full">
-                <p>view {{ views }} </p>
-                <a class="like">
-        <i class="fab fa-thumbs-up" style="float: left"></i>  Like
-        <input class="qty1" name="qty1" readonly="readonly" type="text" value="{{ like }}" />
-    </a>
-    <a class="dislike">
-        <i class="fab fa-thumbs-o-down" style="float: right"></i> Dislike
-        <input class="qty2"  name="qty2" readonly="readonly" type="text" value="{{ dislike }}" />
-    </a>
+        {% include "404/mobiel_img.html" %}
+        {% endif %}
+        <div class="w-full">
+            <p>view {{ views }} </p>
+            <a class="like">
+                <i class="fab fa-thumbs-up" style="float: left"></i> Like
+                <input class="qty1" name="qty1" readonly="readonly" type="text" value="{{ like }}" />
+            </a>
+            <a class="dislike">
+                <i class="fab fa-thumbs-o-down" style="float: right"></i> Dislike
+                <input class="qty2" name="qty2" readonly="readonly" type="text" value="{{ dislike }}" />
+            </a>
+        </div>
+        <div class="_786786  ">
+            <div class="btn_frame">
+                <button class="show-btn" id="card_add">Show Book</button>
+
+                <button class="show-btn" id="download" href="../pdf_show/{{ url }}"
+                    onclick="window.open('/pdf_show/{{ url }}')">Download Book</button>
+
             </div>
-            <div class="_786786  ">
-                <div class="btn_frame">
-                    <button class="show-btn" id="card_add" >Show Book</button>
+        </div>
 
-                <button class="show-btn" id="download" href="../pdf_show/{{ url }}" onclick="window.open('/pdf_show/{{ url }}')" >Download Book</button>
+    </div>
+    <div class="_90237">
 
+
+
+        <div class="_786865">
+
+            <div class="_boottile">
+                {% autoescape off %}
+                <h1 class="h2">{{ title }}</h1>
+                {% endautoescape %}
+            </div>
+
+            <div class="price-show">
+                <h2>₹47,399</h2>
+
+                <div class="logo-price">
+                    <img width="100%" height="100%"
+                        src="{% static 'assets/img/01cada77a0a7d326d85b7969fe26a728.jpg' %}" />
+                </div>
+
+
+
+            </div>
+            <div class="dis-fram">
+                <div>brand</div>
+                <div>
+                    hello
                 </div>
             </div>
 
-        </div>
-        <div class="_90237">
 
 
-
-                <div class="_786865">
-
-                        <div class="_boottile">
-                            {% autoescape off %}
-                            <h1 class="h2">{{ title }}</h1>
-                            {% endautoescape %}
-                        </div>
-
-                        <p class="_7854">{{ dascription }}</p>
-
-
-
-
-                </div>
-        </div>
 
         </div>
+    </div>
+
+</div>
 
 
-    <div class="container">
-        <h3 class="text-center">description</h3>
-        <table  class="center_margin" id="description_frame">
-            <thead>
+<div class="container">
+
+<div class="price-fd">
+    <table cellspacing="0" class="price-shop">
+        <thead>
+            <tr>
+                <th>Seller</th>
+                <th>Seller Rating</th>
+                <th>Shipping</th>
+                <th>Price</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="5" class="table-heading">New Products</td>
+            </tr>
+            <tr class="stock_UNKNOWN store_62">
+                <td class="store-logo">
+                    <div><a href="https://www.smartprix.com/l.php?k=12boV_~VxWZxPgZ019reAIUwfhrhArnrysuhyihDRPl-JoV1vph-hrhhaFhrhrhhacBrWahrhrBi5HFPWUXUrhrFB5qO.Ijgv2gGuz&amp;click_src=comparison-logo"
+                            title="Amazon" target="_blank" rel="nofollow"><img
+                                src="https://cdn1.smartprix.com/rx-i48gutXgz-w100-h33/amazon.webp" alt="Amazon"></a>
+                    </div>
+                </td>
+                <td><span title="User ratings: 4.75/5" class="rating r16" data-value="4.75"><i
+                            style="width: 95%"></i></span></td>
+                <td style="font-size: 12px;" class="shipping">Shipping: <strong style="color:#656565">FREE</strong><br
+                        style="line-height: 20px;">4-6 Business Days</td>
+                <td class="price">
+                    <div>₹19,999 <div class="no-icon"></div>
+                    </div>
+                </td>
+                <td>
+                    <div style="position: relative;"><a
+                            href="https://www.smartprix.com/l.php?k=12boV_~VxWZxPgZ019reAIUwfhrhArnrysuhyihDRPl-JoV1vph-hrhhaFhrhrhhacBrWahrhrBi5HFPWUXUrhrFB5qO.Ijgv2gGuz&amp;click_src=comparison-shop-now"
+                            class="button big" target="_blank" rel="nofollow">Shop Now</a></div>
+                </td>
+            </tr>
+            <tr class="stock_IN_STOCK store_9">
+                <td class="store-logo">
+                    <div><a href="https://www.smartprix.com/l.php?k=12eB0ieY3Or6UkFkb1w1sTgrhrhAgTYBOr3Uh7Tr2rcrWuYcgYa3Ic6TCac5oXcW6h-hDh8ZPao55bo5oaXbhmBYihkpkR7XwEx70.vdxJGhrhhaFhrhrhhacBrWahrhrBi5HFPWUXUrhrFB5rTGG~vS_pf4o&amp;click_src=comparison-logo"
+                            title="Flipkart" target="_blank" rel="nofollow"><img
+                                src="https://cdn1.smartprix.com/rx-ignQrI9qO-w100-h33/flipkart.webp" alt="Flipkart"></a>
+                    </div>
+                </td>
+                <td><span title="User ratings: 4.5/5" class="rating r16" data-value="4.5"><i
+                            style="width: 90%"></i></span></td>
+                <td style="font-size: 12px;" class="shipping">Shipping: <strong style="color:#656565">FREE</strong><br
+                        style="line-height: 20px;">2-5 Business Days</td>
+                <td class="price">
+                    <div>₹19,999 <div class="no-icon"></div>
+                    </div>
+                </td>
+                <td>
+                    <div style="position: relative;"><a
+                            href="https://www.smartprix.com/l.php?k=12eB0ieY3Or6UkFkb1w1sTgrhrhAgTYBOr3Uh7Tr2rcrWuYcgYa3Ic6TCac5oXcW6h-hDh8ZPao55bo5oaXbhmBYihkpkR7XwEx70.vdxJGhrhhaFhrhrhhacBrWahrhrBi5HFPWUXUrhrFB5rTGG~vS_pf4o&amp;click_src=comparison-shop-now"
+                            class="button big" target="_blank" rel="nofollow">Shop Now</a></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" class="blank-td"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+    <h3 class="text-center">description</h3>
+    <table class="center_margin" id="description_frame">
+        <thead>
 
 
             <tr>
-                <th >Name</th>
-                <th >Description</th>
+                <th>Name</th>
+                <th>Description</th>
             </tr>
-            </thead>
-            <tbody>
+        </thead>
+        <tbody>
             <tr>
                 <td>Publidsher</td>
                 <td><a href="/user/data/{{ user.id }}">{{ user.fullname }}</a> </td>
             </tr>
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 
-    </div>
-    <div class="container">
+</div>
+<div class="container">
+    {% include 'dashboard/specifications.html' %}
     <h4>Book Share</h4>
     <div class="social">
 
@@ -84,122 +169,124 @@
 
 
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.scheme }}://{{ request.get_host }}{{ request.get_full_path }}" id="share-fb" class="sharer button"><i class="fab fa-2x fa-facebook-f"></i></a>
-  <a href="http://www.twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{{ request.get_full_path }}" id="share-tw" class="sharer button"><i class="fab fa-2x fa-twitter"></i></a>
-  <a href="https://plus.google.com/share?url={{ request.scheme }}://{{ request.get_host }}{{ request.get_full_path }}" id="share-li" class="sharer button"><i class="fab  fa-2x fa-google-plus-g"></i></a>
-  <a href="https://plus.google.com/share?url=" id="share-em" class="sharer button"><i class="fa fa-2x fa-envelope-square"></i></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.scheme }}://{{ request.get_host }}{{ request.get_full_path }}"
+            id="share-fb" class="sharer button"><i class="fab fa-2x fa-facebook-f"></i></a>
+        <a href="http://www.twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{{ request.get_full_path }}"
+            id="share-tw" class="sharer button"><i class="fab fa-2x fa-twitter"></i></a>
+        <a href="https://plus.google.com/share?url={{ request.scheme }}://{{ request.get_host }}{{ request.get_full_path }}"
+            id="share-li" class="sharer button"><i class="fab  fa-2x fa-google-plus-g"></i></a>
+        <a href="https://plus.google.com/share?url=" id="share-em" class="sharer button"><i
+                class="fa fa-2x fa-envelope-square"></i></a>
+    </div>
 </div>
-    </div>
-    <div class="container">
+<div class="container">
     {% for ca in cats %}
-        <div class="item-layout">
-      <div class="title-layout">
-        <h4>{{ ca.cat_title }}</h4>
-        <a href="/catlist/{{ ca.id }}">More</a>
+    <div class="item-layout">
+        <div class="title-layout">
+            <h4>{{ ca.cat_title }}</h4>
+            <a href="/catlist/{{ ca.id }}">More</a>
 
 
-      </div>
-      <div class="container">
-          <div class="card-layout">
-       <ul id="card_list{{ ca.id }}" class="card-list">
+        </div>
+        <div class="container">
+            <div class="card-layout">
+                <ul id="card_list{{ ca.id }}" class="card-list">
 
-       </ul>
+                </ul>
 
-      </div>
-      </div>
-    <script>
-        $(document).ready(function (e){
-
-
-
-
-
-
-            $.ajax(
-        {
-            url : "/cardlist/{{ ca.id }}",
-            cache: false,
-            success : function (data){
-                $("#card_list{{ ca.id }}").html(data)
-
-            }
-        }
-    );
-            $(function () {
-     $(".like").click(function () {
-
-         var input = $(this).find('.qty1');
-
-         $.ajax({
-             url : "/hello/post/like",
-             type : "get",
-             data: {
-
-                 postid : "{{ postid }}"
-             },
-             success : function (e){
-                data =  JSON.parse(e)
-                 if (data.check === "like"){
-
-                         input.val(data.likes);
-
-
-                 }else if (data.check === "delete"){
-
-                         input.val(data.likes);
-
-
-                 }
-                 console.log(e)
-             }
-         })
-         return false;
-     });
-
-     $(".dislike").click(function () {
-         var input = $(this).find('.qty2');
-
-
-         $.ajax({
-             url : "/hello/post/dislike",
-             type : "get",
-             data: {
-
-                 postid : "{{ postid }}"
-             },
-             success : function (e){
-                 data =  JSON.parse(e)
-                 if (data.check === "dislike"){
-
-                         input.val(data.likes);
-
-
-                 }else if (data.check === "delete"){
-
-                         input.val(data.likes);
-
-
-                 }
-                 console.log(e)
-             }
-         })
-         return false
-     });
-});
-        });
-    </script>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function (e) {
 
 
 
 
 
-      </div>
-    {% endfor %}
+
+                $.ajax({
+                    url: "/cardlist/{{ ca.id }}",
+                    cache: false,
+                    success: function (data) {
+                        $("#card_list{{ ca.id }}").html(data)
+
+                    }
+                });
+                $(function () {
+                    $(".like").click(function () {
+
+                        var input = $(this).find('.qty1');
+
+                        $.ajax({
+                            url: "/hello/post/like",
+                            type: "get",
+                            data: {
+
+                                postid: "{{ postid }}"
+                            },
+                            success: function (e) {
+                                data = JSON.parse(e)
+                                if (data.check === "like") {
+
+                                    input.val(data.likes);
+
+
+                                } else if (data.check === "delete") {
+
+                                    input.val(data.likes);
+
+
+                                }
+                                console.log(e)
+                            }
+                        })
+                        return false;
+                    });
+
+                    $(".dislike").click(function () {
+                        var input = $(this).find('.qty2');
+
+
+                        $.ajax({
+                            url: "/hello/post/dislike",
+                            type: "get",
+                            data: {
+
+                                postid: "{{ postid }}"
+                            },
+                            success: function (e) {
+                                data = JSON.parse(e)
+                                if (data.check === "dislike") {
+
+                                    input.val(data.likes);
+
+
+                                } else if (data.check === "delete") {
+
+                                    input.val(data.likes);
+
+
+                                }
+                                console.log(e)
+                            }
+                        })
+                        return false
+                    });
+                });
+            });
+        </script>
+
+
+
+
+
     </div>
+    {% endfor %}
+</div>
 
 
-        <div   class="container">
-        <div class="row">
+<div class="container">
+    <div class="row">
         <div class="panel panel-default widget w-100">
             <div class="panel-heading">
                 <span class="glyphicon glyphicon-comment"></span>
@@ -219,78 +306,75 @@
                 </ul>
 
 
-            {% if comments.count > 9 %}
+                {% if comments.count > 9 %}
 
-                <a href="#" class="btn btn-primary btn-sm btn-block" role="button"><span class="glyphicon glyphicon-refresh"></span> More</a>
-            {% endif %}
+                <a href="#" class="btn btn-primary btn-sm btn-block" role="button"><span
+                        class="glyphicon glyphicon-refresh"></span> More</a>
+                {% endif %}
             </div>
         </div>
     </div>
 
-        {% if request.session.email %}
-
-
-            
-        <form action="#" id="content-comment" class="form-inline" style="margin: 50px auto;">
-            {% csrf_token %}
-
-
-  <div class="form-group  comment-text">
-
-    <textarea style="width: 500px;margin: 0 40px" name="comment" class="form-control" id="inputPassword2" placeholder="Comment" required></textarea>
-  </div>
-  <button type="submit" class="btn btn-primary comment-send "><i class="fas fa-paper-plane" style="color: white"></i> </button>
+    {% if request.session.email %}
 
 
 
+    <form action="#" id="content-comment" class="form-inline" style="margin: 50px auto;">
+        {% csrf_token %}
 
 
+        <div class="form-group  comment-text">
 
-
-            <input type="hidden" name="postid" value="{{ postid }}">
-
-        </form>
-        {% endif %}
-    </div>
+            <textarea style="width: 500px;margin: 0 40px" name="comment" class="form-control" id="inputPassword2"
+                placeholder="Comment" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary comment-send "><i class="fas fa-paper-plane"
+                style="color: white"></i> </button>
 
 
 
 
 
-    <script>
-    $(document).ready(function (e){
-        $("#content-comment").submit(function (e){
-        data_form = new FormData($(this)[0]);
-       var form =  $(this);
 
-        $.ajax({
-            url: "/comment",
-            method : "POST",
-            data : form.serialize(),
-            cache :false,
-            success:function (data) {
 
-                $("#comments-list").append(data);
-               $("#content-comment").closest('form').find( "textarea").val("");
+        <input type="hidden" name="postid" value="{{ postid }}">
+
+    </form>
+    {% endif %}
+</div>
 
 
 
-            }
+
+
+<script>
+    $(document).ready(function (e) {
+        $("#content-comment").submit(function (e) {
+            data_form = new FormData($(this)[0]);
+            var form = $(this);
+
+            $.ajax({
+                url: "/comment",
+                method: "POST",
+                data: form.serialize(),
+                cache: false,
+                success: function (data) {
+
+                    $("#comments-list").append(data);
+                    $("#content-comment").closest('form').find("textarea").val("");
+
+
+
+                }
+            });
+
+            return false;
         });
-
-        return false;
-    });
-        $("#card_add").click(function (e){
+        $("#card_add").click(function (e) {
             window.location.href = '/pdf_show/{{ url}}';
         });
 
     })
-
-
-
-
-
-
 </script>
 
 {% endblock %}
@@ -298,4 +382,3 @@
 <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}">
 
 {% endblock %}
-

@@ -1,3 +1,7 @@
+@font-face {
+font-family: title-show;
+  src: url(/static/assets/fonts/DrymePersonalUseBold-2OYRe.ttf);
+}
 #iconframe{
     text-align: center;
     padding: 30px;
@@ -116,6 +120,17 @@ padding: 4px 10px;
     border-radius: 6px;
     transition-duration: 1s;
 }
+
+
+.h-title{
+
+
+
+}
+
+
+
+
 #nav-bar-frame{
     position: sticky;
     top: 0;
@@ -130,7 +145,10 @@ padding: 4px 10px;
 }
 #nav-user{
     color: white;
-    font-family: "proxima-nova", sans-serif;
+    text-decoration: none;
+    font-family: title-show;
+    letter-spacing: 10px;
+    font-size: 20px;
   font-weight: 100;
 }
 .center_margin{
@@ -155,6 +173,12 @@ line-height: inherit;
 white-space: nowrap;
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
+
+}
+#nav-bar-brand h1{
+    font-family: title-show;
+        letter-spacing: 10px;
+
 
 }
 #pdf-example{
@@ -234,4 +258,85 @@ object-fit: cover;
     color: #00a5bb;
 
 
+}
+
+
+.sp-table tr td{
+    width: 50%;
+    padding-left: 30px;
+    
+    
+
+}
+.sp-title{
+    width: 100%;
+    text-align: center;
+    padding: 30px;
+}
+.sp-table tr{
+    height: 40px;
+}
+.sp-frame{
+    padding: 40px;
+}
+.price-show{
+    margin-top: 20px;
+    
+}
+.price-show h2{
+    color: red;
+    display: inline-block;
+
+
+}
+.dis-fram{
+    width: 300px;
+}
+.dis-fram div{
+    display: inline;
+    padding: 30px 30px 30px 0;
+
+}
+
+
+.logo-price{
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+
+.price-shop{
+    width: 100%;
+}
+
+
+.table-heading {
+    font-size: 16px;
+    color: #33538f;
+    text-align: left;
+    height: 28px;
+    padding-left: 12px;
+    font-weight: 700;
+    background-color: #bccedd;
+}
+
+.price-fd{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.price-fd td {
+    height: 65px;
+    border-bottom: 10px solid #c4defb;
+    border-top: 1px solid azure;
+}
+
+
+.price-fd .table-heading {
+    font-size: 16px;
+    color: #33538f;
+    text-align: left;
+    height: 28px;
+    padding-left: 12px;
+    font-weight: 700;
+    background-color: #bccedd;
 }
