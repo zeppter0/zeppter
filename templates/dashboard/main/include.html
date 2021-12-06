@@ -52,18 +52,15 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "51dggxc84d");
 </script>
-
-
-
+    <title>{{ title }}</title>
 
 
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5B8PSGJ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-{% block content %}{% endblock %}
+
+{% block content %}
+
+{% endblock %}
 {% include 'dashboard/main/footer.html' %}
 </body>
 </html>

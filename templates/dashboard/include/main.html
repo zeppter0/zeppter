@@ -11,7 +11,7 @@
 
     {% endif %} ">
     <a href="/content/{{ i.book_url }}/">
-      <img id="carousel-img" class="d-block w-100" src="{{ MEDIA_URL }}{{ i.book_image }}" alt="First slide">
+      <img id="carousel-img" class="d-block h-100" src="/file/img/{{ i.book_image | first}}" alt="First slide">
 
     <div class="carousel-caption d-none d-md-block">
     <h5>{{ i.book_title }}</h5>

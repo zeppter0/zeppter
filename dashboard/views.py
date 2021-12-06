@@ -275,8 +275,8 @@ def shodata(request,url):
         like = Like.objects.filter(post_id=d.id).count()
         dislike = DisLike.objects.filter(post_id=d.id).count()
         vie = Views.objects.filter(post_id=[d.id])
-        dat = {"like":like,"userdata":user_data,"dislike":dislike,"views": vie.count(),"publish_date":d.created_at,"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cats":dst, 'title': title1, 'dascription': d.book_description,
-               'img': d.book_image,"create_b": d.created_at,"update_b": d.updated_at, 'postid': d.id, 'comments': comme ,'meta': meta,"book": True}
+        dat = {'product':d,"like":like,"userdata":user_data,"dislike":dislike,"views": vie.count(),"publish_date":d.created_at,"url" : d.book_url,'book_data': d.book_data,"user" : user ,"cats":dst, 'title': title1, 'dascription': d.book_description,
+               'img': d.book_image[0],"create_b": d.created_at,"update_b": d.updated_at, 'postid': d.id, 'comments': comme ,'meta': meta,"book": True}
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
     if ua.find("android") > 0:
         return HttpResponseRedirect(request.scheme+"://" + request.get_host() + "/mobile/content/" + url+"/")

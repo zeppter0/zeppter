@@ -8,10 +8,13 @@ from django.views.generic import View
 from bs4 import BeautifulSoup
 import requests
 import praw
+from pathlib import Path
 import time
 from mytest.models import Reddit
+from zeppter import settings
 
 import pytumblr
+vurls = "https://www.vedantcomputers.com/index.php?route=extension/feed/google_sitemap"
 
 from admin_dashboard.models import Category, Book
 
@@ -273,3 +276,166 @@ class OTpost():
            client.create_link('zeppter', title=title2,
                               url="https://www.zeppter.com/content/" + book.book_url + "/",
                               description=descrption)
+
+
+class Vedantcomputers(View):
+    def get_data(self, request,loc):
+
+
+        getdata = loc
+        print(loc)
+        response = requests.get(getdata)
+        url2 = BeautifulSoup(response.text)
+
+
+        input_tag = url2.find(attrs={"id": "content"})
+        brands = input_tag.find('div', {'class': 'brand-image product-manufacturer'})
+
+
+        if brands:
+            title = input_tag.find('div', {'class': 'title page-title'})
+
+            discription = input_tag.find('div', {'class': "block-content expand-content"})
+            if discription.find("table"):
+
+                Specification = discription.table.prettify()
+            else:
+                Specification = ""
+
+            brands = input_tag.find('div', {'class': 'brand-image product-manufacturer'})
+            brand = brands.find("a").span
+
+            model = input_tag.find('li', {'class': "product-model"}).span
+            img = input_tag.find('div', {'class': "swiper-wrapper"}).findAll('img')
+            imgs = []
+            print("hjhghjkfghjv")
+            cad = []
+            cats = url2.find('ul', {'class': 'breadcrumb'})
+            for cat in cats:
+                ct = cat.string
+                if ct:
+                    cad.append(ct)
+            csa = cad[:-1]
+            urlsd = cad.pop()[0].replace(' ', "-")
+
+            for imh in img:
+                imgs.append(imh['src'].split('/')[-1])
+
+            for div in discription.findAll('table'):
+                div.extract()
+            #  for imgd in img.find('div',{'div':'swiper-wrapper'}):
+            #      imgs.append(imgd.img.src)
+            #  print(imgs)
+
+            caatid = []
+
+            for cd in csa:
+                cats = Category.objects.filter(cat_title=cd)
+                if cats.count() < 1:
+                    catsave = Category(cat_title=cd)
+                    catsave.save()
+                    caatid.append(catsave.id)
+                else:
+                    caatid.append(cats[0].id)
+
+            product = Book.objects.filter(book_title=title.text)
+            print(title)
+            if product.count() < 1:
+                book = Book(
+                    book_title=title.text,
+                    book_description=discription.prettify(),
+                    book_image=imgs,
+
+                    book_data=str(discription),
+                    book_arrcat=caatid,
+                    book_rates=2,
+                    publisher=1,
+                    keyboard="",
+                    book_publish=True,
+                    book_upload_date=timezone.now(),
+                    book_url=title.text.replace(' ', "-"),
+
+                    book_catid=1,
+                    book_commit_id=1,
+                    brand=brand.string,
+                    model=model.string,
+                    specifications=Specification
+                )
+                self.imgsave(imgs)
+
+                book.save()
+
+
+
+
+
+    #    div2 = input_tag.find(attrs={'id': 'product'})
+
+
+
+
+
+
+
+    def post(self):
+        response = requests.get(vurls)
+
+        if response.ok:
+            soup = BeautifulSoup(response.text)
+
+            loc = soup.find_all('loc')
+
+            for lo in loc:
+                url2 = BeautifulSoup(lo.text)
+
+                input_tag = url2.find(attrs={"id": "content"})
+                div2 = input_tag.find(attrs={'id': 'product'})
+                div3 = input_tag.find(attrs={'class': ''})
+
+        return None
+
+
+    def imgsave(self,ims):
+        for url in ims:
+            local_filename = url.split('/')[-1]
+            local =settings.BASE_DIR+"/file/img/"
+
+            r = requests.get(url)
+            f = open(local + local_filename, 'wb')
+
+            for chunk in r.iter_content(chunk_size=512 * 1024):
+                if chunk:  # filter out keep-alive new chunks
+                    f.write(chunk)
+            f.close()
+    def get(self,request):
+        url = requests.get(vurls)
+        if url.status_code == 200:
+            soup = BeautifulSoup(url.text)
+
+
+            locs = soup.findAll("loc")
+            for loc in locs:
+
+                self.get_data(request,loc.string)
+
+
+
+
+
+        return HttpResponse("susessuful")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

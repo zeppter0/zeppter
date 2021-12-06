@@ -609,7 +609,7 @@ def hindistory(request, url):
                     book_rates=2,
                     publisher=1,
 
-                    keyboard=",".join(string[:5]),
+                    keyboard="",
                     book_publish=True,
                     book_upload_date=timezone.now(),
                     book_url=url.replace("\n", "").replace(" ", "-"),

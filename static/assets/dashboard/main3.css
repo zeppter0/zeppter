@@ -290,6 +290,8 @@ object-fit: cover;
 
 }
 .dis-fram{
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 300px;
 }
 .dis-fram div{

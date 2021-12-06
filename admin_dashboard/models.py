@@ -38,19 +38,18 @@ class Tag(models.Model):
     def __unicode__(self):
         return self.word
 
-
 class Book(models.Model):
     id = models.AutoField(primary_key=True)
 
     book_title = models.CharField(max_length=100000,default=None)
     book_description = models.CharField(max_length=100000,default=None)
-    book_image = models.ImageField(upload_to='cat_img',default='',blank=True, null=True)
+    book_image =  ArrayField(models.CharField(max_length=1000,default=""))
     book_rates = models.IntegerField(default=5)
     book_commit_id = models.IntegerField()
-    book_data = models.TextField()
+    book_data = models.CharField(max_length=100000,default="")
     book_upload_date = models.DateTimeField("date published")
     book_publish = models.BooleanField(default=False)
-    data_book = models.FileField("zip_data",default=None)
+
     book_catid = models.IntegerField(default=1)
 
     book_arrcat = ArrayField(models.IntegerField(),default=[1])
@@ -62,7 +61,9 @@ class Book(models.Model):
     book_url = models.CharField(max_length=300)
     specifications = models.CharField(default="",max_length=1000000)
     brand = models.CharField(default="",max_length=100)
-    tags = models.ManyToManyField(Tag)
+    model = models.CharField(default="",max_length=1000)
+   # tags = models.ManyToManyField(Tag)
+
 
 
 
@@ -130,6 +131,9 @@ class Book(models.Model):
 
 
 
+
+
+
 class Category(models.Model):
     id = models.AutoField(primary_key=True)
     cat_title = models.CharField(max_length=500)
@@ -171,7 +175,7 @@ class Shops(models.Model):
     name = models.CharField(default="" ,max_length=1000)
     shipping = models.CharField(default="",max_length=1000)
     price = models.DecimalField(max_digits=8, decimal_places=2)
-  #  rating =
+
 
 
 

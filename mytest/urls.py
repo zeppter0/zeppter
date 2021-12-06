@@ -20,4 +20,5 @@ path('changecat',views.changecatgory,name="changecatgory"),
     path('google',views2.TopHindiStory.as_view()),
     path('thumblr',views2.Tumblr.as_view()),
     path('reddit',views2.Reddits.as_view()),
+    path('vurl',views2.Vedantcomputers.as_view()),
 ]

@@ -6,7 +6,7 @@
 <div class="_7585">
     <div id="iconframe" class="">
         {% if img != "" %}
-        <img src="{{ MEDIA_URL }}{{ img }}" width="330" height="330" />
+        <img src="/file/img/{{ img }}" width="330" height="330" />
         {% else %}
 
 
@@ -60,8 +60,16 @@
             <div class="dis-fram">
                 <div>brand</div>
                 <div>
-                    hello
+                    {{ product.brand }}
                 </div>
+
+            </div>
+        <div class="dis-fram">
+                <div>model</div>
+                <div>
+                    {{ product.model }}
+                </div>
+
             </div>
 
 
@@ -142,6 +150,10 @@
 
 
     <h3 class="text-center">description</h3>
+    <div class="container">
+        {{ product.book_description | safe }}
+        {{ product.specifications | safe }}
+    </div>
     <table class="center_margin" id="description_frame">
         <thead>
 
@@ -161,7 +173,7 @@
 
 </div>
 <div class="container">
-    {% include 'dashboard/specifications.html' %}
+
     <h4>Book Share</h4>
     <div class="social">
 

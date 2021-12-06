@@ -55,3 +55,27 @@
     
 </body>
 </html>
+
+
+
+<script type="9e39ecb53abafc3dcc9255aa-text/javascript">window.onICMerchantSDKReady = function() {
+ICMerchantSDK.init({
+"merchantKey": "b955b695-74d5-4309-8ca4-b0bfffca079c",
+"onSDKInit": function() {
+    var priceText = document.querySelector('.product-price').innerText;
+    var string = document.querySelector('.product-price').innerText;
+    var newString = string.replace("₹", "");
+    if (priceText) {
+        var price = (newString);
+ICMerchantSDK.showCEWidget({
+phoneNumber: "",
+loanAmount: price,
+productEAN: "",
+size: "regular",
+pageType: "pdp",
+},
+"flexmoney");
+}
+},
+});
+}</script>

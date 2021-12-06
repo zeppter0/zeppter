@@ -2,7 +2,9 @@
 
 {% load static %}
     {%  if i.book_image != "" %}
-          <div class="card_image"> <img src="http://{{ request.get_host }}{{ MEDIA_URL }}{{ i.book_image }}" /> </div>
+
+          <div class="card_image"> <img src="/file/img/{{ i.book_image | first }}" /> </div>
+
       {% else %}
 
       <div class="card_image"> <img src="http://{{ request.get_host }}{% static 'assets/404/img/404img.png' %}" /> </div>
@@ -12,7 +14,7 @@
 
           <div class="card_Title title-white">
               <h4>{{ i.book_title | striptags | safe | escape}}</h4>
-            <p>{{ i.book_description }}</p>
+            <p>{{ i.description | safe }}</p>
 
           </div>
 </div>
