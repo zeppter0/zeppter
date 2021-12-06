@@ -79,7 +79,7 @@ class Book(models.Model):
 
 
     def __str__(self):
-        return self.book_title
+        return self.book_title+" "+str(self.id)
 
     def get_remote_image(self,image_url):
         

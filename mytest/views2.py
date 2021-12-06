@@ -308,6 +308,7 @@ class Vedantcomputers(View):
             model = input_tag.find('li', {'class': "product-model"}).span
             img = input_tag.find('div', {'class': "swiper-wrapper"}).findAll('img')
             imgs = []
+            imds = []
             print("hjhghjkfghjv")
             cad = []
             cats = url2.find('ul', {'class': 'breadcrumb'})
@@ -319,6 +320,7 @@ class Vedantcomputers(View):
             urlsd = cad.pop()[0].replace(' ', "-")
 
             for imh in img:
+                imds.append(imh['src'])
                 imgs.append(imh['src'].split('/')[-1])
 
             for div in discription.findAll('table'):
@@ -361,7 +363,7 @@ class Vedantcomputers(View):
                     model=model.string,
                     specifications=Specification
                 )
-                self.imgsave(imgs)
+                self.imgsave(imds)
 
                 book.save()
 
